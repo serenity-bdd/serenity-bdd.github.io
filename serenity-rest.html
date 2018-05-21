@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working with REST APIs using Serenity Screenplay :: The Serenity BDD Book</title>
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">The Serenity BDD Book</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="theserenitybook" data-version="0.0.1">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">The Serenity Book</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serenity BDD Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction to Serenity BDD</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="first-steps.html">First Steps</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serenity BDD  and the Screenplay Pattern</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#screenplay-rest">REST API Tesing with Screenplay</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">The Serenity Book</span>
+    <span class="version">0.0.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">The Serenity Book</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">The Serenity Book</a></li>
+    <li class="crumb"><a href="serenity-rest.html">Working with REST APIs using Serenity Screenplay</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/john/Projects/OpenSource/the-serenity-book/modules/ROOT/pages/serenity-rest.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>Working with REST APIs using Serenity Screenplay</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Screenplay pattern is an approach to writing automated acceptance tests that helps us write cleaner, more maintainable automation code. A Screenplay test talks first and foremost about the tasks a user performs, in business language, rather than diving into the details about buttons, clicks and input fields. Focusing on the business tasks makes our tests more readable, more maintainable, and easier to scale.</p>
+</div>
+<div class="paragraph">
+<p>Screenplay is often associated with UI testing. In fact, the name of the pattern comes from a theatre metaphor, where actors play roles on a stage following a predefined script (the "screenplay"). But</p>
+</div>
+<div class="paragraph">
+<p>Screenplay also works well with API tests, and is ideal when we want to include API and UI activities in the same test. For example, we might have an API task to set up some test data, a UI task to illustrate how a user interacts with this data, then another API task to check the new state of the database.</p>
+</div>
+<div class="paragraph">
+<p>Serenity Screenplay uses <a href="http://rest-assured.io">Rest-Assured</a> to interact with rest endpoints, and to query the responses. Rest-Assured provides us with a simple but extremely powerful Java DSL that allows us to test and virtually any kind of REST end point. Its highly readable code is also an ideal fit for Screenplay.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_your_project"><a class="anchor" href="#_setting_up_your_project"></a>Setting up your project</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_simple_queries"><a class="anchor" href="#_simple_queries"></a>Simple queries</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: The Serenity BDD Book</title>
+    <title>Glossary :: The Serenity BDD Book</title>
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -55,7 +55,7 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Serenity BDD Fundamentals</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="index.html">Introduction to Serenity BDD</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -133,30 +133,57 @@
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">The Serenity Book</a></li>
-    <li class="crumb">Serenity BDD Fundamentals</li>
-    <li class="crumb"><a href="index.html">Introduction to Serenity BDD</a></li>
+    <li class="crumb"><a href="glossary.html">Glossary</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/john/Projects/OpenSource/the-serenity-book/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///Users/john/Projects/OpenSource/the-serenity-book/modules/ROOT/pages/glossary.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
+<h1>Glossary</h1>
+<div class="sect1">
+<h2 id="_behaviour_driven_development"><a class="anchor" href="#_behaviour_driven_development"></a>Behaviour Driven Development</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Serenity BDD is an open source library that aims to make the idea of living documentation a reality.</p>
+<p>A collaborative practice where teams use conversations around business rules and concrete examples to build up a shared understanding of customer needs. The team selects some key examples as the basis for acceptance criteria, which can be automated in the form of executable specifications.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cucumber"><a class="anchor" href="#_cucumber"></a>Cucumber</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A tool used to execute Gherkin scenarios. See <a href="https://cucumber.io/docs" class="bare">https://cucumber.io/docs</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_executable_specifications"><a class="anchor" href="#_executable_specifications"></a>Executable Specifications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Acceptance Criteria that have been written in a form that can be executed automatically. For high-level acceptance criteria, tools like Cucumber and JBehave are often used to automate acceptance criteria.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gherkin"><a class="anchor" href="#_gherkin"></a>Gherkin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The semi-formal language used by Cucumber to express executable specifications. Gherkin uses the Given..When..Then notation, like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Adding an item to a todo list
+  Only incomplete tasks should appear in the default todo list
+
+  Given Joe has a todo list containing 6 completed tasks
+  When Joe adds 'Buy some milk'
+  Then his default todo list should contain 'Buy some milk'</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Serenity BDD helps you write cleaner and more maintainable automated acceptance and regression tests faster. Serenity also uses the test results to produce illustrated, narrative reports that document and describe what your application does and how it works. Serenity tells you not only what tests have been executed, but more importantly, what requirements have been tested.</p>
+<p>Gherkin scenarios are organised in Feature Files.</p>
 </div>
-<div class="paragraph">
-<p>One key advantage of using Serenity BDD is that you do not have to invest time in building and maintaining your own automation framework.</p>
 </div>
-<div class="paragraph">
-<p>Serenity BDD provides strong support for automated web tests using Selenium 2, though it also works very effectively for non-web tests such as tests that exercise web services or even call application code directly.</p>
-</div>
-<div class="paragraph">
-<p>The aim of Serenity is to make it easy to quickly write well-structured, maintainable automated acceptance criteria, using your favourite BDD or conventional testing library. You can work with Behaviour-Driven-Development tools like Cucumber or JBehave, or simply use JUnit. You can integrate with requirements stored in an external source (such as JIRA or any other test cases management tool), or just use a simple directory-based approach to organise your requirements.</p>
-</div>
-<div class="paragraph">
-<p>Up until November 2014, Serenity went by the name of Thucydides.</p>
 </div>
 </article>
   </main>
