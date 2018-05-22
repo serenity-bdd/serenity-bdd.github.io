@@ -137,7 +137,7 @@
     <li class="crumb"><a href="serenity-screenplay-rest.html">REST API Tesing with Screenplay</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/john/Projects/OpenSource/the-serenity-book/modules/ROOT/pages/serenity-screenplay-rest.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/serenity-screenplay-rest.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
 <h1>Working with REST APIs using Serenity Screenplay</h1>
@@ -882,7 +882,7 @@ public class FindAUser implements Task{
     }
 
     @Override
-    @Step("{0} fetches the user with id #userId")
+    @Step("{0} fetches the user with id #id")
     public &lt;T extends Actor&gt; void performAs(T actor) {
         actor.attemptsTo(
                 Get.resource("/users/{id}")
@@ -902,6 +902,15 @@ public class FindAUser implements Task{
         FindAUser.withId(1)
 );</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Using tasks to encapsulate REST interactions results in a clear, layered reporting structure, that first describes what the user is doing, and they how they go about it. The test report for the previous scenario is shown here:</p>
+</div>
+<div id="fig-requirements-tab" class="imageblock">
+<div class="content">
+<img src="_images/find-a-user-by-id.png" alt="find a user by id">
+</div>
+<div class="title">Figure 1. Serenity living documentation for Screenplay and REST</div>
 </div>
 </div>
 </div>
