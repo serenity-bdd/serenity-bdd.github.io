@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serenity Page Objects :: The Serenity BDD Book</title>
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.3">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -100,6 +100,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="living-documentation.html">Living Documentation</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extended-reports.html">Additional Reports</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -153,7 +156,7 @@
 <p>If you are working with WebDriver web tests, you will be familiar with the concept of Page Objects. Page Objects are a way of isolating the implementation details of a web page inside a class, exposing only business-focused methods related to that page. They are an excellent way of making your web tests more maintainable.</p>
 </div>
 <div class="paragraph">
-<p>In Serenity, page objects can be just ordinary WebDriver page objects, on the condition that they have a constructor that accepts a WebDriver parameter. However, the Serenity <code>PageObject</code> class provides a number of utility methods that make page objects more convenient to work with, so a Serenity Page Object generally extends this class.</p>
+<p>In Serenity, page objects are just ordinary classes that extend the <code>PageObject</code> class. Serenity automatically injects a WebDriver instance into the page object that you can access via the <code>getDriver()</code> method, although you rarely need to use the WebDriver directly. The Serenity <code>PageObject</code> class provides a number of convenient methods that make accessing and manipulating web elements much easier than with conventional WebDriver test scripts.</p>
 </div>
 <div class="paragraph">
 <p>Here is a simple example:</p>
@@ -170,10 +173,6 @@ public class FindAJobPage extends PageObject {
 
     WebElementFacade keywords;
     WebElementFacade searchButton;
-
-    public FindAJobPage(WebDriver driver) {
-        super(driver);
-    }
 
     public void look_for_jobs_with_keywords(String values) {
         typeInto(keywords, values);
