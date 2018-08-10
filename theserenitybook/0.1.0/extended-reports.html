@@ -233,6 +233,59 @@ an overview of the test results, and a configurable breakdown of the status of d
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>If you are using Maven, you can also generate these reports directly using the <code>reports</code> goal and by passing the <code>serenity.reports</code> system property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn serenity:reports -Dserenity.reports=email</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_setting_up_gradle"><a class="anchor" href="#_setting_up_gradle"></a>Setting up Gradle</h3>
+<div class="paragraph">
+<p>If you are using Gradle, you can use the <code>reports</code> task to generate any configured extended reports. First of all, you need to add the dependencies to the extended reports you want to run in the <code>buildscript</code> section of your <code>build.gradle</code> file, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:1.9.36"
+        classpath "net.serenity-bdd:serenity-emailer:1.9.36"
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, you need to configure the report you want to generate in your <code>build.gradle</code> file using the <code>serenity</code> section, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">serenity {
+    reports = ["email"]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can generate these reports by invoking the <code>reports</code> task:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$gradle reports
+
+&gt; Task :reports
+Generating Serenity Reports for bdd-bank to directory /Users/john/Projects/SerenityDojo/bdd-bank/target/site/serenity
+PROCESSING EXTENDED REPORTS: [email]
+
+BUILD SUCCESSFUL in 2s
+1 actionable task: 1 executed</pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_custom_field_reporting"><a class="anchor" href="#_custom_field_reporting"></a>Custom field Reporting</h3>
