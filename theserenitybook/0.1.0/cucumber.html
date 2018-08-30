@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: The Serenity BDD Book</title>
+    <meta name="generator" content="Antora 1.1.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">The Serenity BDD Book</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <a class="navbar-item" href="https://github.com/serenity-bdd/serenity-core/issues">Issues</a>
+        <a class="navbar-item" href="https://github.com/serenity-bdd/serenity-core">Source Code on Github</a>
+        <a class="navbar-item" href="https://johnfergusonsmart.com/serenity-bdd-mentoring/">Serenity Support</a>
+        <a class="navbar-item" href="https://serenitydojo.teachable.com">Serenity Online Training</a>
+
+        <!-- <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div> -->
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="theserenitybook" data-version="0.1.0">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">The Serenity Book</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serenity BDD Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction to Serenity BDD</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="first-steps.html">First Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="step-libraries.html">Working with Step Libraries</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing Web Applications</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="page-objects.html">Working with Page Objects</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="angularjs.html">Testing AngularJS applications</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serenity with BDD Frameworks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jbehave.html">Working with JBehave</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="cucumber.html">Working with Cucumber JVM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Working with REST APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-rest.html">REST API Testing in Serenity</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-screenplay-rest.html">REST API Testing with Screenplay</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reporting and Living documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="living-documentation.html">Living Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extended-reports.html">Additional Reports</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Running Serenity tests</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-parallel.html">Running Serenity tests in parallel</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.adoc">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">The Serenity Book</span>
+    <span class="version">0.1.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">The Serenity Book</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">The Serenity Book</a></li>
+    <li class="crumb">Serenity with BDD Frameworks</li>
+    <li class="crumb"><a href="cucumber.html">Working with Cucumber JVM</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/cucumber.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<div class="paragraph">
+<p><a href="http://cukes.info">Cucumber</a> is a popular BDD test automation tool. <strong>Cucumber-JVM</strong> is the Java implementation of Cucumber.
+In Cucumber, you express acceptance criteria in a natural, human-readable form.
+For example, we could write the "wool scarf" example mentioned in the JBehave example like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin"> Given I want to buy a wool scarf
+ When I search for items containing 'wool'
+ Then I should only see items related to 'wool'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This format is known as 'Gherkin', and is widely used in Cucumber and other Cucumber-based BDD tools such as SpecFlow (for .NET) and Behave (for Python). Gherkin is a flexible, highly readable format that can be written collaboratively with product owners to ensure that everyone . The loosely-structured 'Given-When-Then' format helps people focus on what they are trying to achieve, and how they will know when they get it.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes tables can be used to summarize several different examples of the same scenario.
+In Gherkin, you can use example tables to do this.
+For instance, the following scenario illustrates how you can search for different types of products made of different materials:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">  Scenario Outline: Filter by different item types
+    Given I have searched for items containing '&lt;material&gt;'
+    When I filter results by type '&lt;type&gt;'
+    Then I should only see items containing '&lt;material&gt;' of type '&lt;type&gt;'
+  Examples:
+    | material | type           |
+    | silk     | Handmade       |
+    | bronze   | Vintage        |
+    | wool     | Craft Supplies |</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_writing_executable_specifications_with_cucumber_and_serenity"><a class="anchor" href="#_writing_executable_specifications_with_cucumber_and_serenity"></a>Writing executable specifications with Cucumber and Serenity</h4>
+<div class="paragraph">
+<p>In Cucumber, scenarios are stored in 'Feature Files', which contain an overall description of a feature as well as a number of scenarios.
+The Feature File for the example above is called <code>search_by_keyword.feature</code>, and looks something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Feature: Searching by keyword
+
+  In order to find items that I would like to purchase
+  As a potential buyer
+  I want to be able to search for items containing certain words
+
+  Scenario: Should list items related to a specified keyword
+    Given I want to buy a wool scarf
+    When I search for items containing 'wool'
+    Then I should only see items related to 'wool'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These feature files can be placed in different locations, but you can reduce the amount of configuration you need to do with Serenity if you put them in the <code>src/test/resources/features</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>You typically organize the feature files in sub-directories that reflect the higher-level requirements.
+In the following directory structure, for example, we have feature definitions for several capabilities: 'search' and 'shopping_cart':</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>|----src
+| |----test
+| | |----resources
+| | | |----features
+| | | | |----search
+| | | | | |----search_by_keyword.feature
+| | | | |----shopping_cart
+| | | | | |----adding_items_to_the_shopping_cart.feature</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Another option is to place them in <code>src/test/resources', but underneath the same package name as your scenario runner class (see below).
+This requires slightly less configuration of the scenario runner class.
+However in this case, you need to specify the `thucydides.requirements.dir</code> property in your <code>serenity.properties</code> (or <code>thucydides.properties</code>) file to point to the root requirements directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>thucydides.requirements.dir=src/test/resources/net/serenity_bdd/samples/etsy/features</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_scenario_runner"><a class="anchor" href="#_the_scenario_runner"></a>The Scenario Runner</h4>
+<div class="paragraph">
+<p>Cucumber runs the feature files via JUnit, and needs a dedicated test runner class to actually run the feature files.
+When you run the tests with Serenity, you use the <code>CucumberWithSerenity</code> test runner.
+If the feature files are not in the same package as the test runner class, you also need to use the <code>@CucumberOptions</code> class to provide the root directory where the feature files can be found.
+A simple test runner looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package net.serenity_bdd.samples.etsy.features;
+
+import cucumber.api.CucumberOptions;
+import net.serenitybdd.cucumber.CucumberWithSerenity;
+import org.junit.runner.RunWith;
+
+@RunWith(CucumberWithSerenity.class)
+@CucumberOptions(features="src/test/resources/features/search/search_by_keyword.feature")
+public class SearchByKeyword {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If your feature files are stored in or under the same package as your scenario runner class (in <code>src/test/resources</code>) as discussed in the previous section, then you don&#8217;t need to use <code>@CucumberOptions</code> to provide the root directory.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_step_definitions"><a class="anchor" href="#_step_definitions"></a>Step definitions</h4>
+<div class="paragraph">
+<p>In Cucumber, each line of the Gherkin scenario maps to a method in a Java class, known as a 'Step Definition'.
+These use annotations like <code>@Given</code>, <code>@When</code> and <code>@Then</code> match lines in the scenario to Java methods.
+You define simple regular expressions to indicate parameters that will be passed into the methods:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SearchByKeywordStepDefinitions {
+    @Steps
+    BuyerSteps buyer;
+
+    @Given("I want to buy (.*)")
+    public void buyerWantsToBuy(String article) {
+        buyer.opens_etsy_home_page();
+    }
+
+    @When("I search for items containing '(.*)'")
+    public void searchByKeyword(String keyword) {
+        buyer.searches_for_items_containing(keyword);
+    }
+
+    @Then("I should only see items related to '(.*)'")
+    public void resultsForACategoryAndKeywordInARegion(String keyword) {
+        buyer.should_see_items_related_to(keyword);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These step definitions use Serenity to organize the step definition code into more reusable components.
+The <code>@Steps</code> annotation tells Serenity that this variable is a Step Library.
+In Serenity, we use Step Libraries to add a layer of abstraction between the "what" and the "how" of our acceptance tests.
+The Cucumber step definitions describe "what" the acceptance test is doing, in fairly implementation-neutral, business-friendly terms.
+So we say "searches for items containing ''wool'", not "enters ''wool'' into the search field and clicks on the search button".
+This layered approach makes the tests both easier to understand and to maintain, and helps build up a great library of reusable business-level steps that we can use in other tests. Without this kind of layered approach, step definitions tend to become very technical very quickly, which limits reuse and makes them harder to understand and maintain.</p>
+</div>
+<div class="paragraph">
+<p>Step definition files need to go in or underneath the package containing the scenario runners:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>|----src
+| |----test
+| | |----java
+| | | |----net
+| | | | |----serenity_bdd
+| | | | | |----samples
+| | | | | | |----etsy
+| | | | | | | |----features                                    <i class="conum" data-value="1"></i><b>(1)</b>
+| | | | | | | | |----AcceptanceTests.java                      <i class="conum" data-value="2"></i><b>(2)</b>
+| | | | | | | | |----steps                                     <i class="conum" data-value="3"></i><b>(3)</b>
+| | | | | | | | | |----SearchByKeywordStepDefinitions.java
+| | | | | | | | | |----serenity                                <i class="conum" data-value="4"></i><b>(4)</b>
+| | | | | | | | | | |----BuyerSteps.java</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The scenario runner package</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A scenario runner</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Step definitions for the scenario runners</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Serenity Step Libraries are placed in a different sub-package</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_serenity_step_libraries_and_page_objects"><a class="anchor" href="#_serenity_step_libraries_and_page_objects"></a>Serenity Step Libraries and Page Objects</h4>
+<div class="paragraph">
+<p>Both scenario step libraries (annotated with the <code>@Steps</code> annotation) and Page Objects that are declared inside the Cucumber step definition classes will be automatically instantiated.</p>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

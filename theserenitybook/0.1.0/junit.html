@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: The Serenity BDD Book</title>
+    <meta name="generator" content="Antora 1.1.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">The Serenity BDD Book</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <a class="navbar-item" href="https://github.com/serenity-bdd/serenity-core/issues">Issues</a>
+        <a class="navbar-item" href="https://github.com/serenity-bdd/serenity-core">Source Code on Github</a>
+        <a class="navbar-item" href="https://johnfergusonsmart.com/serenity-bdd-mentoring/">Serenity Support</a>
+        <a class="navbar-item" href="https://serenitydojo.teachable.com">Serenity Online Training</a>
+
+        <!-- <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div> -->
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="theserenitybook" data-version="0.1.0">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">The Serenity Book</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serenity BDD Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction to Serenity BDD</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="first-steps.html">First Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="step-libraries.html">Working with Step Libraries</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing Web Applications</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="page-objects.html">Working with Page Objects</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="angularjs.html">Testing AngularJS applications</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serenity with BDD Frameworks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jbehave.html">Working with JBehave</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cucumber.html">Working with Cucumber JVM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Working with REST APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-rest.html">REST API Testing in Serenity</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-screenplay-rest.html">REST API Testing with Screenplay</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reporting and Living documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="living-documentation.html">Living Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extended-reports.html">Additional Reports</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Running Serenity tests</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-parallel.html">Running Serenity tests in parallel</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.adoc">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">The Serenity Book</span>
+    <span class="version">0.1.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">The Serenity Book</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/junit.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<div class="paragraph">
+<p>In this section we will look at how to run your Serenity tests using JUnit in more detail.</p>
+</div>
+<div class="sect2">
+<h3 id="_basic_junit_integration"><a class="anchor" href="#_basic_junit_integration"></a>Basic JUnit integration</h3>
+<div class="paragraph">
+<p>We have already seen a simple example of a JUnit Serenity test shown earlier on (<a href="#First Steps with Serenity BDD">[First Steps with Serenity BDD]</a>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>You run the JUnit test using the 'Serenity' test runner</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>@Steps</code> annotation marks a Serenity step library</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The most important thing here is the 'SerenityRunner' test runner. This class instruments any step libraries in your class, and ensures that the test results will be recorded and reported on by the Serenity reporters.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_human_readable_method_titles"><a class="anchor" href="#_human_readable_method_titles"></a>Human-readable method titles</h3>
+<div class="paragraph">
+<p>By default, Serenity will convert the test method names into a readable form in the reports. This will convert both camelCasedMethods and methods_with_underscores into a form with spaces. So both 'shouldCalculateCorrectOutcome()' and 'should_calculate_correct_outcome()' will appear as "Should calculate correct outcome" in the test reports.</p>
+</div>
+<div class="paragraph">
+<p>You can override this convention by adding a <code>@Title</code> annotation onto the test method, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>@Title</code> annotation lets you provide your own title for this test in the test reports</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Also <code>@Title</code> can be used for providing information about issues for this test, you can find more info in <a href="#Linking scenarios/tests with issues">[Linking scenarios/tests with issues]</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_serenity_webdriver_support_in_junit"><a class="anchor" href="#_serenity_webdriver_support_in_junit"></a>Serenity WebDriver support in JUnit</h3>
+<div class="paragraph">
+<p>Serenity BDD also provides strong support for Selenium WebDriver and the Page Objects model. We will look at these features in detail later on. But while we are on the topic of JUnit integration, let&#8217;s look at how this integration fits in with a JUnit Serenity test.</p>
+</div>
+<div class="paragraph">
+<p>Serenity will manage your WebDriver instance, including opening the appropriate driver at the start of each test, and shutting it down when the test is finished. You just need to provide a 'WebDriver' variable in your test, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Declare a WebDriver instance that will be managed by Serenity</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The WebDriver instance will be initialized automatically</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>@Managed</code> annotation also provides several useful parameters. The 'driver' parameter lets you define what WebDriver driver you want to run these tests in. Possible values include 'firefox', 'chrome','iexplorer','phantomjs', and 'htmlunit':</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Managed(driver="chrome")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Default value for <code>driver</code> is <code>""</code>, and Serenity BDD will use Firefox in this case. List of supported drivers by this annotation: <strong>Firefox</strong>, <strong>Chrome</strong>, <strong>Opera</strong>, <strong>HtmlUnit</strong>, <strong>PhantomJS</strong>, <strong>IExplorer</strong>, <strong>Edge</strong>, <strong>Safari</strong>, <strong>Appium</strong>.</p>
+</div>
+<div class="paragraph">
+<p>You can also get Serenity to open the browser at the start of the tests, and leave it open until all of the tests in this test case have been executed, using the 'uniqueSession' parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Managed(uniqueSession=true)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Default value for <code>uniqueSession</code> is <code>false</code></p>
+</div>
+<div class="paragraph">
+<p>To make Serenity BDD clear cookies for each test or never clear cookies you can use property <code>clearCookies</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Managed(clearCookies=BeforeEachTest)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Default value for <code>clearCookies</code> is <code>BeforeEachTest</code>, possible values are: <strong>BeforeEachTest</strong>, <strong>Never</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_serenity_pageobjects_in_junit"><a class="anchor" href="#_serenity_pageobjects_in_junit"></a>Serenity PageObjects in JUnit</h3>
+<div class="paragraph">
+<p>The WebDriver test in the previous example will work, but it is poorly written for a number of reasons as below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In particular, it exposes too much WebDriver-specific details about how the test is executed, which as a result obscures the intent of the test</p>
+</li>
+<li>
+<p>It will also be harder to maintain, as it contains WebDriver logic that would be repeated and maintained in other tests</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A better approach is to hide the WebDriver logic in "Page Objects". Serenity provides excellent built-in support for Page Objects, as we will learn in the chapter dedicated to Serenity WebDriver support (<a href="#Writing Serenity Page Objects">[Writing Serenity Page Objects]</a>).</p>
+</div>
+<div class="paragraph">
+<p>The JUnit Serenity integration provides some special support for Serenity Page Objects. In particular, Serenity will automatically instantiate any PageObject fields in your JUnit test. For example, the following Page Object would perform the same operations as the test shown above:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, when you declare a field of type 'GooglePage' in your test, Serenity will instatiate it for you:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_skipping_tests"><a class="anchor" href="#_skipping_tests"></a>Skipping tests</h3>
+<div class="paragraph">
+<p>Sometimes it can be useful to flag a test as "work-in-progress". In Serenity, you use the <code>@Pending</code> annotation, either for a test or for a <code>@Step</code>-annotated method, to incidate that the scenario is still being implemented and that the results should. These tests appear as 'Pending' (shown in blue) in the test reports.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As can be seen here, Serenity also honors the JUnit <code>@Ignore</code> annotation. Tests marked with <code>@Ignore</code> will appear as 'Ignored' (shown in grey) in the test reports.</p>
+</div>
+<div id="fig-ignored-tests" class="imageblock">
+<div class="content">
+<img src="_images/junit-ignored-and-pending-tests.png" alt="junit ignored and pending tests">
+</div>
+<div class="title">Figure 1. A test report showing ignored (yellow) and pending (blue) tests</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_handling_failing_assumptions"><a class="anchor" href="#_handling_failing_assumptions"></a>Handling failing assumptions</h3>
+<div class="paragraph">
+<p>Sometimes it can be useful to define a pre-condition for a test. For example, suppose a series of integration tests depend on a mainframe server being running. If the mainframe is unavailable (for example, if it only runs during office hours), you may want to ignore these tests entirely. The test might look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The assumption is encapsulated in the <code>assuming_the_mainframe_is_available()</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Ensure that the mainframe is available</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Do whatever needs to be done to check the availability of the mainframe</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>assuming_the_mainframe_is_available()</code> method uses the JUnit Assume class, which behaves in a very similar way to Hamcrest matchers. If this check fails, the test will not be executed, and the test result will be reported as 'Ignored'.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_driven_tests"><a class="anchor" href="#_data_driven_tests"></a>Data-driven tests</h3>
+<div class="paragraph">
+<p>Serenity provides some features to support simplified Data-Driven testing. In JUnit 4, you can use the Parameterized test runner to perform data-driven tests. In Serenity, you use the SerenityParameterizedRunner. This runner is very similar to the JUnit Parameterized test runner, except that you use the <code>@TestData</code> annotation to provide test data, and you can use all of the other Serenity annotations (<code>@Managed</code>, <code>@Steps</code> and so on). This test runner will also generate proper serenity reports for the executed tests.</p>
+</div>
+<div class="paragraph">
+<p>An example of a data-driven Serenity test is shown below. In this test, we check the number of status points a Frequent Flyer member needs to obtain a new status. To test this, we use several combinations of points and status levels, specified by the testData() method. These values are represented as instance variables in the test class, and instantiated via the constructor.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Test data</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The test data is injected into these member variables</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>You need a constructor with the parameters in the correct order for this to work.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Then use these member variables to perform your test</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For slow-running tests, you may be able to speed up your tests using the <code>@Concurrent</code> annotation, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Run these tests in parallel</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use test data from this method</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Inject test data into this field through the constructor</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>By default, this will run your tests concurrently, by default using two threads per CPU core. If you want to fine-tune the number of threads to be used, you can specify the threads annotation property.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(SerenityParameterizedRunner.class)
+@Concurrent(threads="4")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also express this as a value relative to the number of available processors. For example, to run 4 threads per CPU, you could specify the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(SerenityParameterizedRunner.class)
+@Concurrent(threads="4x")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_test_data_from_csv_files"><a class="anchor" href="#_using_test_data_from_csv_files"></a>Using test data from CSV files</h3>
+<div class="paragraph">
+<p>Serenity lets you perform data-driven testing using test data in a CSV file. You store your test data in a CSV file (by default with columns separated by commas), with the first column acting as a header:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, create a test class containing properties that match the columns in the test data, as you did for the data-driven test in the previous example. The test class will typically contain one or more tests that use these properties as parameters to the test step or Page Object methods.</p>
+</div>
+<div class="paragraph">
+<p>The class will also contain the <code>@UseTestDataFrom</code> annotation to indicate where to find the CSV file (this can either be a file on the classpath or a relative or absolute file path - putting the data set on the class path (e.g. in <code>src/test/resources</code>) makes the tests more portable).</p>
+</div>
+<div class="paragraph">
+<p>An example of a test running against the CSV data listed above is shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also specify multiple file paths separated by path separators – colon, semi-colon or comma. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@UseTestDataFrom("test-data/simple-data.csv,test-data-subfolder/simple-data.csv")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also configure an arbitrary directory using system property serenity.data.dir and then refer to it as <code>$DATADIR</code> variable in the annotation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@UseTestDataFrom("$DATADIR/simple-data.csv")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each row of test data needs to be distinguished in the generated reports. By default, Serenity will call the toString() method. If you provide a public method returning a String that is annotated by the <code>@Qualifier</code> annotation, then this method will be used to distinguish data sets. It should return a value that is unique to each data set.</p>
+</div>
+<div class="paragraph">
+<p>The test runner will create a new instance of this class for each row of data in the CSV file, assigning the properties with corresponding values in the test data.</p>
+</div>
+<div class="paragraph">
+<p>There are a few points to note. The columns in the CSV files are converted to camel-case property names (so for example <code>KILOMETERS TRAVELLED</code> becomes <code>kilometersTravelled</code>). All of the fields should be strings or primitive types.</p>
+</div>
+<div class="paragraph">
+<p>If some of the field values contain commas, you will need to use a different separator. You can use the separator attribute of the <code>@UseTestDataFrom</code> annotation to specify an alternative separator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@UseTestDataFrom(value="test-data/simple-semicolon-data.csv", separator=';')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modelling_requirements_in_junit"><a class="anchor" href="#_modelling_requirements_in_junit"></a>Modelling requirements in JUnit</h3>
+<div class="paragraph">
+<p>As we have seen previously, Serenity produces reports that summarize the test results, going into details about the steps that were executed within each test. Serenity also produces an overall list of the test results, as shown below:</p>
+</div>
+<div id="fig-test-report" class="imageblock">
+<div class="content">
+<img src="_images/junit-overall-test-results.png" alt="junit overall test results">
+</div>
+<div class="title">Figure 2. Test results reported in Serenity</div>
+</div>
+<div class="paragraph">
+<p>But Serenity also lets you group your tests in terms of features or user stories, in order to get a better high-level picture of the state of your application. The 'Requirements' tab provides a high-level overview of your requirements.</p>
+</div>
+<div class="paragraph">
+<p>For this to work, you need to organize your JUnit tests into meaningful packages. For example, you might group create packages for high-level features, and group your test cases by feature. By default, a test case is considered to represent a User Story in agile terms, and the tests within the test case correspond to the acceptance criteria for that user story.</p>
+</div>
+<div id="fig-test-report" class="imageblock">
+<div class="content">
+<img src="_images/junit-feature-report.png" alt="junit feature report">
+</div>
+<div class="title">Figure 3. Test cases can be grouped by high level features</div>
+</div>
+<div class="paragraph">
+<p>Serenity uses the test package structure to discover the requirements organization. For example, suppose your package structure looks like this:</p>
+</div>
+<div id="fig-test-package-structure" class="imageblock">
+<div class="content">
+<img src="_images/junit-overall-test-results.png" alt="junit overall test results">
+</div>
+<div class="title">Figure 4. Test results reported in Serenity</div>
+</div>
+<div class="paragraph">
+<p>In this structure, the test cases are organized by feature, in a number of directories under the <code>features</code> parent directory.</p>
+</div>
+<div class="paragraph">
+<p>For this to work properly, you need to tell Serenity the root package that you are using, and what terms you use for your requirements. You do this in a special file called <code>serenity.properties</code>, which lives in the root directory of your project, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The way Serenity will report your requirements depends on the depth of the directory structure you use to store your requirements. By default, if you group your test cases in a single level of directories (as in the example above), Serenity will treat each directory as a <code>feature</code>. If there are two levels, the first level directories will be considered <code>capabilities</code>, and the second <code>features</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can define your own way of naming your requirements using the <code>serenity.requirement.types</code> property. For example, if you wanted top-level directories to represent "themes", and have a second level "epics" that actually contains the test cases, you could set this property to the following value:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">serenity.requirement.types=theme,epic</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can provide extra information about stories and requirements in several ways. One is to use the <code>@Narrative</code> annotation in the test case, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A narrative text, represented as an array of Strings</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This will produce a report like the following:</p>
+</div>
+<div id="fig-test-report-with-narrative" class="imageblock">
+<div class="content">
+<img src="_images/story-with-narrative.png" alt="story with narrative">
+</div>
+<div class="title">Figure 5. The <code>@Narrative</code> annotation lets you add a narrative text to story reports</div>
+</div>
+<div class="paragraph">
+<p>You can also add the <code>@Narrative</code> annotation to a <code>package-info.java</code> file. This will add a narrative to the requirement represented by this package in the requirements reports, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
