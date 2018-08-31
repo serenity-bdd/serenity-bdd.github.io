@@ -237,7 +237,9 @@ You implement the story steps using annotated methods to represent the steps in 
 }</code></pre>
 </div>
 </div>
-<h1 id="_working_with_jbehave_and_serenity" class="sect0"><a class="anchor" href="#_working_with_jbehave_and_serenity"></a>Working with JBehave and Serenity</h1>
+<div class="sect1">
+<h2 id="_getting_started_with_jbehave_and_serenity"><a class="anchor" href="#_getting_started_with_jbehave_and_serenity"></a>Getting Started with JBehave and Serenity</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Serenity and JBehave work well together.
 Serenity uses simple conventions to make it easier to get started writing and implementing Serenity stories, and reports on both JBehave and Serenity steps, which can be seamlessly combined in the same class, or placed in separate classes, depending on your preferences.</p>
@@ -270,6 +272,40 @@ Serenity uses simple conventions to make it easier to get started writing and im
 </div>
 <div class="paragraph">
 <p>New versions come out regularly, so be sure to check the Maven Central repository (<a href="http://search.maven.org" class="bare">http://search.maven.org</a>) to know the latest version numbers for each dependency.</p>
+</div>
+<div class="sect2">
+<h3 id="_jbehave_maven_archetype"><a class="anchor" href="#_jbehave_maven_archetype"></a>JBehave Maven Archetype</h3>
+<div class="paragraph">
+<p>A JBehave archetype is available to help you jumpstart a new project. As usual, you can run <code>mvn archetype:generate -Dfilter=serenity</code> from the command line and then select the <code>net.serenity-bdd:serenity-jbehave-archetype</code> archetype from the proposed list of archetypes.
+Or you can use your favorite IDE to generate a new Maven project using an archetype.</p>
+</div>
+<div class="paragraph">
+<p>This archetype creates a project directory structure similar to the one shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>+ main
+    + java
+       + SampleJBehave
+           + pages
+               - DictionaryPage.java
+           + steps
+               - EndUserSteps.java
++ test
+    + java
+       + SampleJBehave
+           + jbehave
+               - AcceptanceTestSuite.java
+               - DefinitionSteps.java
+    + resources
+        + SampleJBehave
+            + stories
+                + consult_dictionary
+                    - LookupADefinition.story</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="_setting_up_your_project_and_organizing_your_directory_structure"><a class="anchor" href="#_setting_up_your_project_and_organizing_your_directory_structure"></a>Setting up your project and organizing your directory structure</h2>
@@ -808,38 +844,6 @@ I want to perform some simple action, but I commented scenario
 <img src="_images/jbehave_scenario_commented.png" alt="jbehave scenario commented">
 </div>
 <div class="title">Figure 6. Report with commented scenario</div>
-</div>
-<div class="sect2">
-<h3 id="_jbehave_maven_archetype"><a class="anchor" href="#_jbehave_maven_archetype"></a>JBehave Maven Archetype</h3>
-<div class="paragraph">
-<p>A JBehave archetype is available to help you jumpstart a new project. As usual, you can run <code>mvn archetype:generate -Dfilter=serenity</code> from the command line and then select the <code>net.serenity-bdd:serenity-jbehave-archetype</code> archetype from the proposed list of archetypes.
-Or you can use your favorite IDE to generate a new Maven project using an archetype.</p>
-</div>
-<div class="paragraph">
-<p>This archetype creates a project directory structure similar to the one shown here:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>+ main
-    + java
-       + SampleJBehave
-           + pages
-               - DictionaryPage.java
-           + steps
-               - EndUserSteps.java
-+ test
-    + java
-       + SampleJBehave
-           + jbehave
-               - AcceptanceTestSuite.java
-               - DefinitionSteps.java
-    + resources
-        + SampleJBehave
-            + stories
-                + consult_dictionary
-                    - LookupADefinition.story</pre>
-</div>
-</div>
 </div>
 </div>
 </div>
