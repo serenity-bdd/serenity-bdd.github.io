@@ -97,7 +97,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="junit-data-driven.html">Data Driven Tests</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="junit-requirements.html">Modelling JUnit Requirements</a>
   </li>
 </ul>
@@ -182,11 +182,138 @@
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">The Serenity Book</a></li>
+    <li class="crumb">Serenity with JUnit</li>
+    <li class="crumb"><a href="junit-requirements.html">Modelling JUnit Requirements</a></li>
+  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/advanced-topics.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/junit-requirements.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
+<div class="sect2">
+<h3 id="_modelling_requirements_in_junit"><a class="anchor" href="#_modelling_requirements_in_junit"></a>Modelling requirements in JUnit</h3>
+<div class="paragraph">
+<p>As we have seen previously, Serenity produces reports that summarize the test results, going into details about the steps that were executed within each test. Serenity also produces an overall list of the test results, as shown below:</p>
+</div>
+<div id="fig-test-report" class="imageblock">
+<div class="content">
+<img src="_images/junit-overall-test-results_new.png" alt="junit overall test results new">
+</div>
+<div class="title">Figure 1. Test results reported in Serenity</div>
+</div>
+<div class="paragraph">
+<p>But Serenity also lets you group your tests in terms of features or user stories, in order to get a better high-level picture of the state of your application. The <code>Requirements</code> tab provides a high-level overview of your requirements.</p>
+</div>
+<div class="paragraph">
+<p>For this to work, you need to organize your JUnit tests into meaningful packages. For example, you might group create packages for high-level features, and group your test cases by feature. By default, a test case is considered to represent a User Story in agile terms, and the tests within the test case correspond to the acceptance criteria for that user story.</p>
+</div>
+<div id="fig-test-report" class="imageblock">
+<div class="content">
+<img src="_images/junit-feature-report_new.png" alt="junit feature report new">
+</div>
+<div class="title">Figure 2. Test cases can be grouped by high level features</div>
+</div>
+<div class="paragraph">
+<p>Serenity uses the test package structure to discover the requirements organization. For example, suppose your package structure looks like this:</p>
+</div>
+<div id="fig-test-package-structure" class="imageblock">
+<div class="content">
+<img src="_images/junit-test-dir-structure.png" alt="junit test dir structure">
+</div>
+<div class="title">Figure 3. Test package structure</div>
+</div>
+<div class="paragraph">
+<p>In this structure, the test cases are organized by feature, in a number of directories under the <code>features</code> parent directory.</p>
+</div>
+<div class="paragraph">
+<p>For this to work properly, you need to tell Serenity the root package that you are using, and what terms you use for your requirements. You do this in a special file called <code>serenity.properties</code>, which lives in the root directory of your project, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">serenity.test.root=net.serenitybdd.samples.junit.features</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The way Serenity will report your requirements depends on the depth of the directory structure you use to store your requirements. By default, if you group your test cases in a single level of directories (as in the example above), Serenity will treat each directory as a <code>feature</code>. If there are two levels, the first level directories will be considered <code>capabilities</code>, and the second <code>features</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can define your own way of naming your requirements using the <code>serenity.requirement.types</code> property. For example, if you wanted top-level directories to represent <code>themes</code>, and have a second level <code>epics</code> that actually contains the test cases, you could set this property to the following value:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">serenity.requirement.types=theme,epic</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the generating report using this requirements naming will look like this</p>
+</div>
+<div id="fig-test-report-theme" class="imageblock">
+<div class="content">
+<img src="_images/junit-theme-report.png" alt="junit theme report">
+</div>
+<div class="title">Figure 4. Test cases grouped by themes</div>
+</div>
+<div class="paragraph">
+<p>You can provide extra information about stories and requirements in several ways. One is to use the <code>@Narrative</code> annotation in the test case, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Narrative(text={"In order to choose the best flight for my travels",                      <i class="conum" data-value="1"></i><b>(1)</b>
+                 "As a traveller",
+                 "I want to be able to search for flights between specific destinations"})
+@RunWith(SerenityRunner.class)
+public class WhenSearchingFlights {
 
+    @Managed(driver = "chrome")
+    WebDriver driver;
+
+    @Steps
+    FlightSearchSteps theCustomer;
+
+    @Test
+    public void should_display_selected_flight_details() {
+        // GIVEN
+        theCustomer.searches_for_flights_between("Sydney", "London");
+        // WHEN
+        theCustomer.view_flight_details_for_flight(1);
+        // THEN
+        theCustomer.should_see_the_destination_city_in_the_summary();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A narrative text, represented as an array of Strings</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This will produce a report like the following:</p>
+</div>
+<div id="fig-test-report-with-narrative" class="imageblock">
+<div class="content">
+<img src="_images/story-with-narrative.png" alt="story with narrative">
+</div>
+<div class="title">Figure 5. The <code>@Narrative</code> annotation lets you add a narrative text to story reports</div>
+</div>
+<div class="paragraph">
+<p>You can also add the <code>@Narrative</code> annotation to a <code>package-info.java</code> file. This will add a narrative to the requirement represented by this package in the requirements reports, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Narrative(
+        text = {"Search-related functionality"}
+)
+package net.serenitybdd.samples.junit.features.searching;
+
+import net.thucydides.core.annotations.Narrative;</code></pre>
+</div>
+</div>
+</div>
 </article>
   </main>
 </div>

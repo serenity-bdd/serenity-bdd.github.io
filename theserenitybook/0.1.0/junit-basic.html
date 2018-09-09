@@ -85,7 +85,7 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Serenity with JUnit</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="junit-basic.html">JUnit Basic Integration</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -182,11 +182,105 @@
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">The Serenity Book</a></li>
+    <li class="crumb">Serenity with JUnit</li>
+    <li class="crumb"><a href="junit-basic.html">JUnit Basic Integration</a></li>
+  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/advanced-topics.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/junit-basic.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
+<div class="sect2">
+<h3 id="_basic_junit_integration"><a class="anchor" href="#_basic_junit_integration"></a>Basic JUnit integration</h3>
+<div class="paragraph">
+<p>We have already seen a simple example of a JUnit Serenity test shown earlier on <a href="first-steps.html" class="page">First Steps</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(SerenityRunner.class)      <i class="conum" data-value="1"></i><b>(1)</b>
+public class ASimpleTest {
 
+    @Steps
+    MathWizSteps michael;           <i class="conum" data-value="2"></i><b>(2)</b>
+
+    @Test
+    public void addingSums() {
+        // Given
+        michael.startsWith(1);       <i class="conum" data-value="3"></i><b>(3)</b>
+
+        // When
+        michael.adds(2);             <i class="conum" data-value="3"></i><b>(3)</b>
+
+        // Then
+        michael.shouldHave(3);       <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>You run the JUnit test using the Serenity test runner</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>@Steps</code> annotation marks a Serenity step library</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Create the test following the Given/When/Then pattern and using step methods from the step library</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The most important thing here is the <code>SerenityRunner</code> test runner. This class instruments any step libraries in your class, and ensures that the test results will be recorded and reported on by the Serenity reporters.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_human_readable_method_titles"><a class="anchor" href="#_human_readable_method_titles"></a>Human-readable method titles</h3>
+<div class="paragraph">
+<p>By default, Serenity will convert the test method names into a readable form in the reports. This will convert both camelCasedMethods and methods_with_underscores into a form with spaces. So both 'shouldCalculateCorrectOutcome()' and 'should_calculate_correct_outcome()' will appear as "Should calculate correct outcome" in the test reports.</p>
+</div>
+<div class="paragraph">
+<p>You can override this convention by adding a <code>@Title</code> annotation onto the test method, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(SerenityRunner.class)
+public class WhenEarningFrequentFlyerStatus {
+
+    @Steps
+    TravellerStatusSteps travellerSteps;
+
+    @Test
+    @Title("Members earn Gold status after 5000 points (50000 km)")         <i class="conum" data-value="1"></i><b>(1)</b>
+    public void earnGoldAfter5000Points() {
+        // GIVEN
+        travellerSteps.a_traveller_joins_the_frequent_flyer_program();
+
+        // WHEN
+        travellerSteps.the_traveller_flies(50000);
+
+        // THEN
+        travellerSteps.traveller_should_have_a_status_of(Gold);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>@Title</code> annotation lets you provide your own title for this test in the test reports</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Also <code>@Title</code> can be used for providing information about issues for this test, you can find more info in  <a href="serenity-issues.html" class="page">Linking scenarios/tests with issues</a></p>
+</div>
+</div>
 </article>
   </main>
 </div>
