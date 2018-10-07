@@ -251,7 +251,7 @@
 <p>Testers are also the primary consumers of test reports. In many projects, other team members will only ever see test report summaries or overviews.</p>
 </div>
 <div class="paragraph">
-<p>Living Documentation is for the whole team. It describes what the application should do before a feature is implemented (in the form of pending scenarios), and demonstrates that the implemented feature behaves as expected (in the form of passing scenarios). For this reason, living documentation scenarios need to be written in business terms, in a way that is easily understandable by non-testers.</p>
+<p>Living Documentation is for the whole team, including product owners, stakeholders and users involved in the project. It describes what the application should do before a feature is implemented (in the form of pending scenarios), and demonstrates (and gives evidence) that the implemented feature behaves as expected (in the form of passing scenarios). For this reason, living documentation scenarios need to be written in business terms, in a way that is easily understandable by non-testers.</p>
 </div>
 </div>
 <div class="sect2">
@@ -310,11 +310,26 @@
 <div class="paragraph">
 <p>In highly regulated environments, on the other hand, living documentation will often be more exhaustive and detailed, as it may be used for audits or regulatory reporting.</p>
 </div>
+<div class="paragraph">
+<p>In Serenity, living documentation can be "layered", so that the most important details are presented first, and the more exhaustive scenarios presented further down.</p>
+</div>
 </div>
 </div>
 <h1 id="_organising_requirements_for_living_documentation" class="sect0"><a class="anchor" href="#_organising_requirements_for_living_documentation"></a>Organising requirements for living documentation</h1>
 <div class="paragraph">
-<p>In Serenity BDD, living documentation is organised in a requirements hierarchy. This hierarchy is usually implemented as a directory tree (for JBehave and Cucumber) or as a package structure (for JUnit).</p>
+<p>In Serenity BDD, living documentation is organised in a requirements hierarchy. This hierarchy is usually implemented as a directory tree (for Cucumber or JBehave) or as a package structure (for JUnit). You can view the requirements hierarchy of any Serenity project in the <em>Requirements</em> tab, as shown here:</p>
+</div>
+<div id="fig-living-documentation" class="imageblock">
+<div class="content">
+<img src="_images/reports-overview-page.png" alt="reports overview page">
+</div>
+<div class="title">Figure 2. The Requirements overview in a serenity report</div>
+</div>
+<div class="paragraph">
+<p>This sort of hierarchy can be implemented very simply by organising your feature or story files in a structure that reflects the organisation you want.</p>
+</div>
+<div class="paragraph">
+<p>Before we look at how to do this in more detail, let&#8217;s look at a few options for organising requirements.</p>
 </div>
 <div class="sect1">
 <h2 id="_common_requirements_structures"><a class="anchor" href="#_common_requirements_structures"></a>Common Requirements Structures</h2>
@@ -362,7 +377,7 @@
 <div class="sect2">
 <h3 id="_user_stories"><a class="anchor" href="#_user_stories"></a>User Stories</h3>
 <div class="paragraph">
-<p>User Stories are commonly used in Agile as a way to organise work, but they are not always very useful when it comes to Living Documentation. This is because they reflect how a feature was sliced  That&#8217;s why Cucumber prefers to group scenarios in Feature Files (which describe a feature). JBehave still uses the older convention of "Story Files", which were meant to contain the acceptance criteria of a given story).</p>
+<p>User Stories are commonly used in Agile as a way to organise work, but they are not always very useful when it comes to Living Documentation. This is because they reflect how a feature was sliced up when it was built. But once a feature is delivered, no one cares how it was broken down during the development phase - all that matters is what was delivered. That&#8217;s why Cucumber prefers to group scenarios in Feature Files (which describe a feature). For this reason, User Stories are generally considered to be not a great way to structure living documentation. (Note that JBehave still uses the older convention of "Story Files", which were meant to contain the acceptance criteria of a given story).</p>
 </div>
 </div>
 <div class="sect2">
@@ -502,69 +517,153 @@
 </div>
 </div>
 </div>
-<h1 id="_adding_more_details" class="sect0"><a class="anchor" href="#_adding_more_details"></a>Adding more details</h1>
+<h1 id="_the_requirements_view" class="sect0"><a class="anchor" href="#_the_requirements_view"></a>The Requirements view</h1>
 <div class="paragraph">
-<p>You can add a special markdown file called <code>overview.md</code> at any level in the requirements hierarchy. This file will be rendered on the corresponding page in the Requirements report.</p>
-</div>
-<div class="paragraph">
-<p>An <code>overview.md</code> file placed in the root requirements directory (<code>src/test/resources/features</code> or <code>src/test/resources/stories</code>) will be rendered on the Requirements home page in the report. Overview files can also be called <code>narrative.md</code> or <code>narrative.txt</code> (a convention used in older versions of Serenity).</p>
+<p>Serenity&#8217;s requirements view is a core part of the Serenity reporting approach, and understanding how it works is key to producing great living documentation. The Serenity living documentation goes far beyond traditional test reporting, and aims to . In mature BDD teams working in large organisations, stakeholders regularly use the living documentation produced by Serenity to validate and document new releases.</p>
 </div>
 <div class="paragraph">
-<p>Markdown (<a href="https://daringfireball.net/projects/markdown/" class="bare">https://daringfireball.net/projects/markdown/</a>) is a convenient lightweight format that you can use to make your living documentation more readable. An example of a simple Markdown overview file is shown here:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">## A fantastic Todo application.
-
-This application lets you do **great things**, like:
-
-* Add new todo items
-* Mark your items as complete
-* Share your todo lists with your friends</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you place this <code>overview.md</code> file in the requirements root directory, the generated report will include this text on the main Requirements page:</p>
+<p>You can see an example of this report in the figure below.</p>
 </div>
 <div id="fig-requirements-tab" class="imageblock">
 <div class="content">
-<img src="_images/overview-example.png" alt="overview example">
+<img src="_images/reports-overview-page.png" alt="reports overview page">
 </div>
-<div class="title">Figure 2. A rendered application overview</div>
-</div>
-<h1 id="_report_assets" class="sect0"><a class="anchor" href="#_report_assets"></a>Report assets</h1>
-<div class="paragraph">
-<p>You can also include images in the <code>overview.md</code> files. By default, Serenity will copy any files in the <code>src/test/resources/assets</code> directory into the <code>target/site/serenity/assets</code> directory when it generates the reports.</p>
+<div class="title">Figure 3. The Requirements overview in a serenity report</div>
 </div>
 <div class="paragraph">
-<p>You can place any images you want to include in your living documentation here, and then refer to them using the Markdown image syntax, like this:</p>
+<p>Let&#8217;s look at the various parts of this report, to better understand you might configure them in your own projects.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">The application architecture is as shown below:
-
-![Application architecture ](assets/architecture.png)</code></pre>
-</div>
-</div>
+<div class="sect1">
+<h2 id="_the_requirements_hierarchy"><a class="anchor" href="#_the_requirements_hierarchy"></a>The Requirements Hierarchy</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>This image would then appear in your reports, as illustrated here:</p>
+<p>In Serenity, you organise your requirements</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_requirement_description"><a class="anchor" href="#_the_requirement_description"></a>The Requirement description</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The requirements description is the first thing you see on a typical living documentation report - you can see it below in the white box at the top of the report:</p>
 </div>
 <div id="fig-requirements-tab" class="imageblock">
 <div class="content">
-<img src="_images/illustrated-overview.png" alt="illustrated overview">
+<img src="_images/reports-overview-summary.png" alt="reports overview summary">
 </div>
-<div class="title">Figure 3. A rendered application overview including an image</div>
+<div class="title">Figure 4. The Requirements Description</div>
 </div>
 <div class="paragraph">
-<p>If you need to override the location of the <code>assets</code> directory, you can do so using the <code>report.assets.directory</code> property, as shown here:</p>
+<p>This text is a bit like an introduction to a book or to a chapter in a book - it should present the application or high level functionality that is described in detail in the rest of the report.</p>
+</div>
+<div class="paragraph">
+<p>You can add this introductory text at any level of your requirements hierarchy by adding a <code>readme.md</code> file at the appropriate level of your requirements hierarchy. A well-documented set of living documentation will have <code>readme.md</code> files at each level of the hierarchy, to explain the purpose and background of each functional area in the application.</p>
+</div>
+<div class="paragraph">
+<p>Markdown (<a href="https://daringfireball.net/projects/markdown/" class="bare">https://daringfireball.net/projects/markdown/</a>) is a convenient lightweight format that you can use to make your living documentation more readable. The markdown used in the illustration above looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>report.assets.directory=src/test/resources/my-special-resources</pre>
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">## Regulatory Reporting Controls
+
+This project illustrates Serenity's living documentation capabilities, through a set of requirements for an imaginary investment bank.
+ * The _Customer Due Diligence_ requirements, which are partially implemented (a mixture of pending and passing requirements), and
+ * The _Reporting controls_, which contain a variety of different kinds of failing acceptance tests.
+ ----
+
+
+
+== The Requirements Overview
+
+The Requirements Overview is the first thing
+
+== The Test Results tab
+
+== High Level Overviews
+
+== Feature Overviews
+
+- The requirements hierarchy - item count and status, collapse and expand
+- The test results tab - results by status, functional coverage, automated and manual tests
+- The overview - markdown summary, referring to scenarios, referring to tables
+- Feature level summary
+
+= Adding more details
+
+You can add a special markdown file called `readme.md` or `overview.md` at any level in the requirements hierarchy. This file will be rendered on the corresponding page in the Requirements report.
+
+An `overview.md` file placed in the root requirements directory (`src/test/resources/features` or `src/test/resources/stories`) will be rendered on the Requirements home page in the report. Overview files can also be called `narrative.md` or `narrative.txt` (a convention used in older versions of Serenity).
+
+Markdown (https://daringfireball.net/projects/markdown/) is a convenient lightweight format that you can use to make your living documentation more readable. An example of a simple Markdown overview file is shown here:
+
+[source, markdown]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_a_fantastic_todo_application"><a class="anchor" href="#_a_fantastic_todo_application"></a>A fantastic Todo application.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This application lets you do <strong>great things</strong>, like:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add new todo items</p>
+</li>
+<li>
+<p>Mark your items as complete</p>
+</li>
+<li>
+<p>Share your todo lists with your friends</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>If you place this `overview.md` file in the requirements root directory, the generated report will include this text on the main Requirements page:
+
+[[fig-requirements-tab]]
+.A rendered application overview
+image::overview-example.png[]
+
+= Report assets
+
+You can also include images in the `overview.md` files. By default, Serenity will copy any files in the `src/test/resources/assets` directory into the `target/site/serenity/assets` directory when it generates the reports.
+
+You can place any images you want to include in your living documentation here, and then refer to them using the Markdown image syntax, like this:
+
+[source, markdown]</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that the target directory in the <code>target/site/serenity</code> directory will always be called <code>assets</code>.</p>
+<p>The application architecture is as shown below:</p>
+</div>
+<div class="paragraph">
+<p>![Application architecture ](assets/architecture.png)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>This image would then appear in your reports, as illustrated here:
+
+[[fig-requirements-tab]]
+.A rendered application overview including an image
+image::illustrated-overview.png[]
+
+
+If you need to override the location of the `assets` directory, you can do so using the `report.assets.directory` property, as shown here:</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>report.assets.directory=src/test/resources/my-special-resources</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Note that the target directory in the `target/site/serenity` directory will always be called `assets`.</pre>
+</div>
+</div>
+</div>
 </div>
 </article>
   </main>
