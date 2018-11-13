@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: The Serenity BDD Book</title>
+    <title>Email and PDF Reports :: The Serenity BDD Book</title>
     <meta name="generator" content="Antora 1.1.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -185,11 +185,82 @@
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">The Serenity Book</a></li>
+    <li class="crumb"><a href="email-and-pdf-reports.html">Email and PDF Reports</a></li>
+  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/advanced-topics.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/email-and-pdf-reports.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-
+<h1>Email and PDF Reports</h1>
+<div class="sect1">
+<h2 id="_email_reports"><a class="anchor" href="#_email_reports"></a>Email Reports</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_custom_fields"><a class="anchor" href="#_custom_fields"></a>Custom fields</h3>
+<div class="paragraph">
+<p>The email report contains a section where you can define custom field values. You configure these in your Serenity properties or config file, and can provide their values either in the configuration file itself, or via command line properties or environment variables.</p>
+</div>
+<div class="paragraph">
+<p>You define the fields and values you want to display using the special property prefix of <code>report.customfields</code>. For example, your <code>serenity.properties</code> file could have the following values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>report.customfields.application_version = 1.2.3
+report.customfields.environment = UAT</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or if you are using the <code>serenity.conf</code> JSON format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>report {
+    customfields {
+        application_version = 1.2.3
+        environment = UAT
+    }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you need to refer to a system environment variable, just use the <code>$</code> symbol and the corresponding system environment property will be used:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>report.customfields.host = ${HOST}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also configure the order the fields will appear using the <code>report.customfields.order</code> field, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>report {
+    customfields {
+        application_version = 1.2.3
+        environment = UAT
+        host = ${HOST}
+        order = host,environment,application_version
+    }
+}</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_highlighted_results"><a class="anchor" href="#_highlighted_results"></a>Highlighted results</h3>
+<div class="paragraph">
+<p>The summary report can also displays results for specific tags.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>report.tagtypes = group</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
   </main>
 </div>
