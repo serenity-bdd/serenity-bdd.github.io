@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What is Living documentation :: The Serenity BDD Book</title>
-    <meta name="generator" content="Antora 1.1.1">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -74,9 +74,6 @@
     <span class="nav-text">Testing Web Applications</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="web-testing-in-serenity.html">Testing Web Applications</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="page-objects.html">Working with Page Objects</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -123,15 +120,6 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="serenity-rest.html">REST API Testing in Serenity</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Serenity and the Screenplay Pattern</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="serenity-screenplay.html">Screenplay Fundamentals</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="serenity-screenplay-rest.html">REST API Testing with Screenplay</a>
@@ -200,7 +188,7 @@
     <li class="crumb"><a href="living-documentation.html">Living Documentation</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/living-documentation.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///Users/john/Projects/OpenSource/the-serenity-book/modules/ROOT/pages/living-documentation.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
 <h1>What is Living documentation</h1>
@@ -653,28 +641,7 @@ Icons indicate whether a scenario passed or failed, and if you click on the titl
 <p>Sometimes the automated test results are not alone enough to satisfy stakeholders or auditors. We need to be able to add some extra proof that our application works as described.</p>
 </div>
 <div class="paragraph">
-<p>In Serenity, you can add evidence in the form of a String or the contents of a file. For example, you might record the results of a SQL query to demonstrate that a database contains the expected results, or record the full version of a generated XML report when you only make assertions on a few key fields.</p>
-</div>
-<div class="paragraph">
-<p>You can do this using the <code>Serenity.recordReportData()</code> method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    sqlQueryResult = ...
-    Serenity.recordReportData().withTitle("Database evidence").andContents(sqlQueryResult);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This method lets you record data from a String or from a file. To get data from a file, use the <code>fromFile()</code> method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    Path report = ...
-    Serenity.recordReportData().withTitle("Generated Report").fromFile(report);</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In both cases, this data is recorded with the test, and appears in the test results:</p>
+<p>In Serenity, you can add</p>
 </div>
 <div id="fig-requirements-adding-evidence" class="imageblock">
 <div class="content">

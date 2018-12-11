@@ -507,17 +507,437 @@ sam.attemptsTo(
 <h2 id="_querying_a_web_ui"><a class="anchor" href="#_querying_a_web_ui"></a>Querying a web UI</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Serenity Screenplay also gives you a large number of options when it comes to querying a web UI. Most involve special types of <code>Question</code> class. We look at these in this section.</p>
+<p>Serenity Screenplay also gives you a large number of options when it comes to querying a web UI. Most involve special types of <code>Question</code> class.</p>
 </div>
-<div class="sect2">
-<h3 id="_reading_the_value_of_a_field"><a class="anchor" href="#_reading_the_value_of_a_field"></a>Reading the value of a field</h3>
 <div class="paragraph">
-<p>Reading a value from an element is one of the most common ways we interact with a web page.</p>
+<p>In Screenplay web tests, you can simply implement a question which returns the object type you are interested, and then query the UI in a conventional Webdriver way. For example, suppose we want to read the user name on a page, which can be located with the ".user-name" CSS selector.</p>
+</div>
+<div class="paragraph">
+<p>A Screenplay assertion to check the user name might look like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">sam.attemptsTo(Switch.toAlert());</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">sam.should(seeThat(TheUserName.value(), equalTo("sam")));</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>We could create a <code>TheUserName</code> question class to query this field as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Subject("the displayed username")
+public class TheUserName implements Question&lt;String&gt; {
+    @Override
+    public String answeredBy(Actor actor) {
+        return BrowseTheWeb.as(actor).findBy(".user-name").getText();
+    }
+
+    public static Question&lt;String&gt; value() { return new TheUserName(); }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we use <code>BrowseTheWeb.as(actor)</code> to get the Serenity WebDriver API for the actor&#8217;s webdriver instance, which gives access to the full range of Serenity Page Object methods.</p>
+</div>
+<div class="paragraph">
+<p>We could also use a Target to locate the user name, which we could store in a separate Page Compenent class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>public static Target USER_NAME = Target.the("User name").locatedBy(".user-name");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can then use the <code>resolveFor()</code> method to find the element matching that target in the actor&#8217;s browser:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Subject("the displayed username")
+public class TheUserName implements Question&lt;String&gt; {
+
+    @Override
+    public String answeredBy(Actor actor) {
+        return USER_NAME.resolveFor(actor).getText();
+    }
+
+    public static Question&lt;String&gt; value() { return new TheUserName(); }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, we could write this class as a factory, and use a lambda expression instead of a fully blown Qeustion class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class TheUserName {
+
+    public static Question&lt;String&gt; value() {
+        return actor -&gt; USER_NAME.resolveFor(actor).getText();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the <code>@Subject</code> annotation will have no effect, so we need to pass in the name of the object we are checking in the Screenplay assertion:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">sam.should(seeThat("the displayed username", TheUserName.value(), equalTo("sam")));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Serenity also provides a number of shortcuts related to querying web pages, which you will find in the <code>net.serenitybdd.screenplay.questions</code> package. In the following sections we look at how these work.</p>
+</div>
+<div class="sect2">
+<h3 id="_reading_text"><a class="anchor" href="#_reading_text"></a>Reading text</h3>
+<div class="paragraph">
+<p>Reading a value from an element is one of the most common ways we interact with a web page. The <code>Text</code> class can be used to read text values in a more fluent style. The basic usage pattern looks something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Text.of(&lt;target&gt;).viewedBy(actor).as&lt;Type&gt;();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using this style, we could rewrite the user name question from the previous section like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class TheUserName {
+
+    public static Question&lt;String&gt; value() {
+        return actor -&gt; Text.of(USER_NAME).viewedBy(actor).asString();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reading_numbers"><a class="anchor" href="#_reading_numbers"></a>Reading numbers</h4>
+<div class="paragraph">
+<p>This would not be a very strong use case by itself. But the <code>Text</code> class makes it easy to do type conversions in a very readable way. For example, if we wanted to read an Integer value rather than a String, we can use the <code>asInteger()</code> method in the place of <code>asString()</code>. This might lead to a factory class like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class TheUser {
+
+    public static Question&lt;String&gt; name() {
+        return actor -&gt; Text.of(USER_NAME).viewedBy(actor).asString();
+    }
+
+    public static Question&lt;Integer&gt; age() {
+        return actor -&gt; Text.of(USER_AGE).viewedBy(actor).asInteger();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use <code>asLong()</code>, <code>asDouble()</code>, <code>asFloat()</code> and <code>asBigDecimal()</code> to convert the value to other numerical types.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reading_lists"><a class="anchor" href="#_reading_lists"></a>Reading lists</h4>
+<div class="paragraph">
+<p>We can also return a list of values located by a given target, with the <code>asList()</code> method, illustrated in the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Subject("the displayed todo items")
+public class DisplayedItems implements Question&lt;List&lt;String&gt;&gt; {
+
+    @Override
+    public List&lt;String&gt; answeredBy(Actor actor) {
+        return Text.of(TodoList.ITEMS)
+                .viewedBy(actor)
+                .asList();
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reading_dates"><a class="anchor" href="#_reading_dates"></a>Reading dates</h4>
+<div class="paragraph">
+<p>You can convert a retrieved value to a <code>LocalDate</code> using the <code>asLocalDate()</code> method, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    public static Question&lt;LocalDate&gt; dateOfBirth() {
+        return actor -&gt; Text.of(USER_DOB).viewedBy(actor).asLocalDate("dd-MMM-yyyy");
+    }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reading_enums"><a class="anchor" href="#_reading_enums"></a>Reading enums</h4>
+<div class="paragraph">
+<p>It is often convenient to convert displayed values directly to enums. You can do this by using the <code>asEnum()</code> method. For example, suppose we have the following enum class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public enum TodoStatusFilter {
+    All, Active, Completed
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We could write a class to convert a text value on a page to the <code>TodoStatusFilter</code> enum as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class CurrentFilter implements Question&lt;TodoStatusFilter&gt; {
+
+    @Override
+    public TodoStatusFilter answeredBy(Actor actor) {
+        return Text.of(TodoList.SELECTED_FILTER)
+                .viewedBy(actor)
+                .asEnum(TodoStatusFilter.class);
+    }
+
+    public static CurrentFilter selected() {
+        return new CurrentFilter();
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reading_off_screen_text"><a class="anchor" href="#_reading_off_screen_text"></a>Reading off-screen text</h4>
+<div class="paragraph">
+<p>The WebDriver <code>getText()</code> method may fail in certain cases if the element being read is not visible on the screen. For example, if you have a long list, elements below the bottom of the screen may not be accessible.
+To get around this issue, you can scroll to the element before retrieving the text, but this can be slow and not always reliable.</p>
+</div>
+<div class="paragraph">
+<p>Another approach is to read th <code>textContent</code> attribute, which will return a value whether the element is displayed or not. You can use the <code>TextContent</code> class in the place of the <code>Text</code> class to achieve this. For example, you could read the full list of results, even if some where below the bottom of the page, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@Subject("the displayed todo items")
+public class DisplayedItems implements Question&lt;List&lt;String&gt;&gt; {
+
+    @Override
+    public List&lt;String&gt; answeredBy(Actor actor) {
+        return TextContent.of(TodoList.ITEMS)
+                .viewedBy(actor)
+                .asList();
+    }
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reading_values"><a class="anchor" href="#_reading_values"></a>Reading values</h3>
+<div class="paragraph">
+<p>For HTML form elements, we are often more interested in the <code>value</code> attribute than the text content. In native WebDriver, you would get the value by calling <code>element.getAttribute("value")</code>. In Serenity Screenplay, we can use the <code>Value</code> class to achieve this.</p>
+</div>
+<div class="paragraph">
+<p>For example, suppose we have a registration form</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class TheRegistrationForm {
+
+    public static Question&lt;String&gt; firstName() {
+        return actor -&gt; Value.of(FIRST_NAME).viewedBy(actor).asString();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Value.of()</code> method follows the same pattern as <code>Text.of()</code>, so all of the conversion strategies discussed in the previous section also apply to <code>Value.of()</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reading_from_dropdown_lists"><a class="anchor" href="#_reading_from_dropdown_lists"></a>Reading from dropdown lists</h3>
+<div class="paragraph">
+<p>You can read the selected value or values from a dropdown list using either the <code>SelectedValue</code> or <code>SelectedVisibleTextValue</code> class. For example, imagine our registration form had an age dropdown, with integer values. We could reead the selected value as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class TheRegistrationForm {
+
+    public static Question&lt;Integer&gt; age() {
+        return actor -&gt; SelectedValue.of(AGE).viewedBy(actor).asInteger();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you needed to return the displayed value, you could use <code>SelectedVisibleTextValue</code> instead:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class TheRegistrationForm {
+
+    public static Question&lt;String&gt; age() {
+        return actor -&gt; SelectedVisibleTextValue.of(AGE).viewedBy(actor).asString();
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reading_attributes"><a class="anchor" href="#_reading_attributes"></a>Reading attributes</h3>
+<div class="paragraph">
+<p>Sometimes you need to read values directly HTML or CSS attributes. You can do this using the <code>Attribute</code> and <code>CSSValue</code> classes. Some examples are shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class TheRegistrationForm {
+
+    public static Question&lt;Boolean&gt; hasOptedIn() {
+        return actor -&gt;  Attribute.of(OPT_IN).named("checked").viewedBy(actor).as(Boolean)
+    }
+
+    public static Question&lt;String&gt; titleFont() {
+        return actor -&gt; CSSValue.of(TITLE).named("font").viewedBy(actor).asString()
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_checking_ui_state"><a class="anchor" href="#_checking_ui_state"></a>Checking UI state</h3>
+<div class="paragraph">
+<p>You can also ask about the <em>state</em> of elements on the page. State includes things like visibiliy or presence on the page, whether a field is enabled or disabled, and whether a field is selected.</p>
+</div>
+<div class="paragraph">
+<p>The <code>WebElementStateMatchers</code> contains a set of Hamcrest matchers which can be used to check the state of an element, as well as whether the field contains a given text or value. Possible matchers include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>isVisible()</p>
+</li>
+<li>
+<p>isNotVisible()</p>
+</li>
+<li>
+<p>isCurrentlyVisible()</p>
+</li>
+<li>
+<p>isNotCurrentlyVisible()</p>
+</li>
+<li>
+<p>isEnabled()</p>
+</li>
+<li>
+<p>isNotEnabled()</p>
+</li>
+<li>
+<p>isCurrentlyEnabled()</p>
+</li>
+<li>
+<p>isNotCurrentlyEnabled()</p>
+</li>
+<li>
+<p>isPresent()</p>
+</li>
+<li>
+<p>isNotPresent()</p>
+</li>
+<li>
+<p>isSelected()</p>
+</li>
+<li>
+<p>isNotSelected()</p>
+</li>
+<li>
+<p>containsText()</p>
+</li>
+<li>
+<p>containsOnlyText()</p>
+</li>
+<li>
+<p>containsSelectOption()</p>
+</li>
+<li>
+<p>hasValue()</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To check the state of an element, you first need to convert the locator used to locate the element into a <code>Question</code> about the state of the element. This locator can be a <code>Target</code>, a <code>By</code> locator, or an XPath or CSS expression.</p>
+</div>
+<div class="paragraph">
+<p>To convert a locator to a Question about the element&#8217;s state, we use the <code>WebElementQuestion</code> class. This class has three static DSL methods, which are all equivalent (you just use the one that reads the most fluently):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>WebElementQuestion.stateOf(locator)</code></p>
+</li>
+<li>
+<p><code>WebElementQuestion.valueOf(locator)</code></p>
+</li>
+<li>
+<p><code>WebElementQuestion.the(locator)</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Once you have converted the locator to a question, you can combine this with a <code>WebElementStateMatchers</code> method to form a Screenplay assertion. For example, to check the visibility of a field, we could write the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">sam.should(
+    seeThat(
+        WebElementQuestion.the(TITLE),
+        WebElementStateMatchers.isVisible()
+    )
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using static imports will make the code more readable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
+import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
+.
+.
+.
+sam.should(
+    seeThat(the(TITLE), isVisible())
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example checks the value of the AGE field:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">sam.should(
+    seeThat(the(AGE), hasValue("40"))
+)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_performing_waits"><a class="anchor" href="#_performing_waits"></a>Performing waits</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When writing web tests, you often need to wait for specific states or events. In Screenplay, you can use the <code>WaitUntil</code> interaction class to do this. This class lets you wait for a given state, using the same DSL as we saw in the previous section. For example, to wait until the title is visible, we could write the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">sam.attemptsTo(
+    WaitUntil.the(TITLE, isVisible())
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We could also specify a maximum wait time:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">sam.attemptsTo(
+    WaitUntil.the(TITLE, isVisible()).forNoMoreThan(10).seconds()
+)</code></pre>
 </div>
 </div>
 </div>

@@ -44,7 +44,7 @@
   </nav>
 </header>
 <div class="main-wrapper">
-<div class="navigation-container" data-component="theserenitybook" data-version="2.0.5">
+<div class="navigation-container" data-component="theserenitybook" data-version="0.1.0">
   <aside class="navigation" role="navigation">
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
@@ -74,9 +74,6 @@
     <span class="nav-text">Testing Web Applications</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="web-testing-in-serenity.html">Testing Web Applications</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="page-objects.html">Working with Page Objects</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -86,55 +83,10 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Serenity with JUnit</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="junit-basic.html">JUnit Basic Integration</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="junit.html">JUnit WebDriver Support</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="junit-skipping.html">Skipping Tests</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="junit-data-driven.html">Data Driven Tests</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="junit-requirements.html">Modelling JUnit Requirements</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Serenity with BDD Frameworks</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="jbehave.html">Working with JBehave</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="cucumber.html">Working with Cucumber JVM</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
     <span class="nav-text">Working with REST APIs</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="serenity-rest.html">REST API Testing in Serenity</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Serenity and the Screenplay Pattern</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="serenity-screenplay.html">Screenplay Fundamentals</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="screenplay-selenium-tasks.html">Web Testing with Screenplay</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="serenity-screenplay-rest.html">REST API Testing with Screenplay</a>
@@ -147,18 +99,6 @@
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="living-documentation.html">Living Documentation</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="extended-reports.html">Additional Reports</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Running Serenity tests</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="serenity-parallel.html">Running Serenity tests in parallel</a>
   </li>
 </ul>
   </li>
@@ -177,14 +117,14 @@
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
     <span class="title">The Serenity Book</span>
-    <span class="version">2.0.5</span>
+    <span class="version">0.1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">The Serenity Book</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">2.0.5</a>
+          <a href="index.html">0.1.0</a>
         </li>
       </ul>
     </li>
@@ -203,7 +143,7 @@
     <li class="crumb"><a href="living-documentation.html">Living Documentation</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/john/Projects/OpenSource/the-serenity-book/modules/ROOT/pages/living-documentation.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/living-documentation.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
 <h1>What is Living documentation</h1>
@@ -266,7 +206,7 @@
 <p>Testers are also the primary consumers of test reports. In many projects, other team members will only ever see test report summaries or overviews.</p>
 </div>
 <div class="paragraph">
-<p>Living Documentation is for the whole team, including product owners, stakeholders and users involved in the project. It describes what the application should do before a feature is implemented (in the form of pending scenarios), and demonstrates (and gives evidence) that the implemented feature behaves as expected (in the form of passing scenarios). For this reason, living documentation scenarios need to be written in business terms, in a way that is easily understandable by non-testers.</p>
+<p>Living Documentation is for the whole team. It describes what the application should do before a feature is implemented (in the form of pending scenarios), and demonstrates that the implemented feature behaves as expected (in the form of passing scenarios). For this reason, living documentation scenarios need to be written in business terms, in a way that is easily understandable by non-testers.</p>
 </div>
 </div>
 <div class="sect2">
@@ -325,369 +265,15 @@
 <div class="paragraph">
 <p>In highly regulated environments, on the other hand, living documentation will often be more exhaustive and detailed, as it may be used for audits or regulatory reporting.</p>
 </div>
+</div>
+</div>
+<h1 id="_organising_requirements_for_living_documentation" class="sect0"><a class="anchor" href="#_organising_requirements_for_living_documentation"></a>Organising requirements for living documentation</h1>
 <div class="paragraph">
-<p>In Serenity, living documentation can be "layered", so that the most important details are presented first, and the more exhaustive scenarios presented further down.</p>
-</div>
-<div class="paragraph">
-<p>At the heart of this reporting is the <em>Requirements</em> tab. Let&#8217;s see what you will find there.</p>
-</div>
-</div>
-</div>
-<h1 id="_the_requirements_view" class="sect0"><a class="anchor" href="#_the_requirements_view"></a>The Requirements view</h1>
-<div class="paragraph">
-<p>Serenity&#8217;s requirements view is a core part of the Serenity reporting approach, and understanding how it works is key to producing great living documentation. The Serenity living documentation goes far beyond traditional test reporting: in mature BDD teams working in large organisations, stakeholders regularly use the living documentation produced by Serenity not only to validate and document new releases, but also to explain and document how the system works.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s look at the various parts of this report, to better understand you might configure them in your own projects.</p>
+<p>In Serenity BDD, living documentation is organised in a requirements hierarchy. This hierarchy is usually implemented as a directory tree (for JBehave and Cucumber) or as a package structure (for JUnit).</p>
 </div>
 <div class="sect1">
-<h2 id="_the_requirements_hierarchy"><a class="anchor" href="#_the_requirements_hierarchy"></a>The Requirements Hierarchy</h2>
+<h2 id="_common_requirements_structures"><a class="anchor" href="#_common_requirements_structures"></a>Common Requirements Structures</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>In Serenity, requirements are organised in a hierarchy. You can see this hierarchy in the tree structure in the bottom part of the Requirements tab shown in <a href="#fig-requirements-tab">A test report generated by Serenity</a>.</p>
-</div>
-<div class="paragraph">
-<p>There are a few ideas of how you can organise this hierarchy at the end of this chapter. You can break your requirements down by high level capabilities down into more granular features, or it might make more sense to organise things in terms of some cross-cutting business functionality.</p>
-</div>
-<div class="paragraph">
-<p>In all cases, the requirements hierarchy is implemented as a nested directory structure (for Cucumber or JBehave) or as a package structure (for JUnit).</p>
-</div>
-<div class="paragraph">
-<p>The Requirements hierarchy can be any depth, though it can be confusing if different branches have different depths. At the bottom level are the feature files (for Cucumber), story files (for JBehave) or test classes (for JUnit). The directories that contain these files represent the higher level requirements.</p>
-</div>
-<div class="paragraph">
-<p>You can get an idea of the full directory structure (in the <code>src/test/features</code> directory) for the project shown in <a href="#fig-requirements-tab">A test report generated by Serenity</a> here:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>├── customer_due_diligence
-│   ├── customer_acceptance_policy
-│   │   ├── business_activities.feature
-│   │   ├── country_risk_ratings.feature
-│   │   ├── customer_risk_profiles.feature
-│   │   ├── enhanced_due_diligence.feature
-│   │   ├── non-face-to-face-customers.feature
-│   │   ├── pep.feature
-│   │   ├── readme.md
-│   │   └── standard_due_diligence.feature
-│   ├── customer_identification
-│   │   └── readme.md
-│   ├── ongoing_monitoring
-│   │   └── readme.md
-│   └── readme.md
-├── readme.md
-└── reporting_controls
-    ├── eligibility
-    │   ├── cftc_eligibility.feature
-    │   ├── mifid2_eligibility.feature
-    │   └── readme.md
-    ├── readme.md
-    └── reportability
-        ├── readme.md
-        └── reportable_state.feature</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you expand the nodes of the requirement tree view, you will get a similar structure in the Requirements tab (see <a href="#fig-requirements-expanded">An expanded requirements tree</a>).</p>
-</div>
-<div id="fig-requirements-expanded" class="imageblock">
-<div class="content">
-<img src="_images/requirements-expanded.png" alt="requirements expanded">
-</div>
-<div class="title">Figure 2. An expanded requirements tree</div>
-</div>
-<div class="paragraph">
-<p>The tree view also gives you some useful extra information. The little icon on the right hand side of the requirements line tells you the overall result of any executed tests (requirements with no implemented tests are marked as pending). The tree also tells you how many sub-requirements there are underneath each requirement.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_the_requirement_description"><a class="anchor" href="#_the_requirement_description"></a>The Requirement description</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The requirements description is the first thing you see on a typical living documentation report - you can see it below in the white box at the top of the report:</p>
-</div>
-<div id="fig-requirements-description" class="imageblock">
-<div class="content">
-<img src="_images/reports-overview-summary.png" alt="reports overview summary">
-</div>
-<div class="title">Figure 3. The Requirements Description</div>
-</div>
-<div class="paragraph">
-<p>This text is a bit like an introduction to a book or to a chapter in a book - it should present the application or high level functionality that is described in detail in the rest of the report.</p>
-</div>
-<div class="paragraph">
-<p>You can add this introductory text at any level of your requirements hierarchy by adding a <code>readme.md</code> file at the appropriate level of your requirements hierarchy. A well-documented set of living documentation will have <code>readme.md</code> files at each level of the hierarchy, to explain the purpose and background of each functional area in the application. You can see these files in the directory structure we looked at in the previous section.</p>
-</div>
-<div class="paragraph">
-<p>Markdown (<a href="https://daringfireball.net/projects/markdown/" class="bare">https://daringfireball.net/projects/markdown/</a>) is a convenient lightweight format that you can use to make your living documentation more readable. The markdown used in the report shown above looks like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>## Regulatory Reporting Controls
-
-This project illustrates Serenity's living documentation capabilities, through a set of requirements for an imaginary investment bank.
- * The _Customer Due Diligence_ requirements, which are partially implemented (a mixture of pending and passing requirements), and
- * The _Reporting controls_, which contain a variety of failing acceptance tests.</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For any <code>readme.md</code> in a nested requirements directory (so any <code>readme.md</code> file other than the top level one), the first line should contain the name of the requirement. An example for the <em>Customer Due Diligence</em> capability is shown below:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>Customer Due Diligence
-
-Banks are required to "have in place adequate policies, practices and procedures that promote high ethical and professional standards and prevent the bank from being used, intentionally or unintentionally, by criminal elements".
-
-Certain key elements should be included by banks in the design of KYC programmes. Such essential elements should start from the banks’ risk management and control procedures and should include
-
-1) customer acceptance policy,
-2) customer identification, and
-3) on-going monitoring of high risk accounts</pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_adding_images_to_the_requirement_description"><a class="anchor" href="#_adding_images_to_the_requirement_description"></a>Adding images to the requirement description</h3>
-<div class="paragraph">
-<p>You can also include images in the <code>readme.md</code> files. By default, Serenity will copy any files in the <code>src/test/resources/assets</code> directory into the <code>target/site/serenity/assets</code> directory when it generates the reports.</p>
-</div>
-<div class="paragraph">
-<p>You can place any images you want to include in your living documentation here, and then refer to them using the Markdown image syntax, like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">![Customer Due Diligence](assets/customer-due-diligence.png)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This image would then appear in your reports, as illustrated here:</p>
-</div>
-<div id="fig-requirements-overview" class="imageblock">
-<div class="content">
-<img src="_images/requirements-overview-image.png" alt="requirements overview image">
-</div>
-<div class="title">Figure 4. A rendered application overview including an image</div>
-</div>
-<div class="paragraph">
-<p>If you need to override the location of the <code>assets</code> directory, you can do so using the <code>report.assets.directory</code> property, as shown here:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>report.assets.directory=src/test/resources/my-special-resources</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Note that the target directory in the <code>target/site/serenity</code> directory will always be called <code>assets</code>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_the_test_results_tab"><a class="anchor" href="#_the_test_results_tab"></a>The Test Results tab</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The <em>Test Results</em> tab (shown below) tells you about the acceptance tests that were executed for this set of requirements. Both automated and manual tests appear in the summary donut chart and table (the manual results are the same color as the equivalent automated results, but in a lighter tone).</p>
-</div>
-<div id="fig-requirements-test-result-tab" class="imageblock">
-<div class="content">
-<img src="_images/requirements-results.png" alt="requirements results">
-</div>
-<div class="title">Figure 5. The test results for a given requirement</div>
-</div>
-<div class="paragraph">
-<p>You can also find the full list of automated and manual test results in the bottom part of the screen.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_functional_coverage"><a class="anchor" href="#_functional_coverage"></a>Functional Coverage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Functional Coverage section shows the test results broken down by functional area.</p>
-</div>
-<div id="fig-functional-coverage" class="imageblock">
-<div class="content">
-<img src="_images/requirements-functional-coverage-stats.png" alt="requirements functional coverage stats">
-</div>
-<div class="title">Figure 6. Functional Coverage</div>
-</div>
-<div class="paragraph">
-<p>For example, in the illustration shown above, the <em>Customer Due Diligence</em> high level requirement has three child requirements:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Customer Acceptance Policies</p>
-</li>
-<li>
-<p>Customer Identification, and</p>
-</li>
-<li>
-<p>Ongoing Monitoring</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The functional coverage view shows the breakdown of test results for each of these child requirements. This is a useful way to get an idea of the stability or release-readiness of different parts of an application.</p>
-</div>
-<div class="sect2">
-<h3 id="_test_results"><a class="anchor" href="#_test_results"></a>Test Results</h3>
-<div class="paragraph">
-<p>At the bottom of the <code>Test Results</code> tab, you will find the actual test results - the list of all the tests, automated and manual, that were executed for this requirement.</p>
-</div>
-<div id="fig-requirements-test-results" class="imageblock">
-<div class="content">
-<img src="_images/requirements-test-results.png" alt="requirements test results">
-</div>
-<div class="title">Figure 7. The test results for a given requirement</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_feature_overviews"><a class="anchor" href="#_feature_overviews"></a>Feature Overviews</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Features are an important part of the Serenity living documentation model. Features correspond to the contents of a feature file in Cucumber, a story file in JBehave, or a test case in JUnit. A feature represents a coherent piece of functionality that customers value; as a rule of thumb, a feature is something we could deploy by itself and the users would stil find it useful.</p>
-</div>
-<div class="paragraph">
-<p>A feature contains a set of acceptance criteria, automated scenarios that demonstrate and verify how the feature works. But often the acceptance criteria are not enough in themselves to fully explain what a feature does. We need some extra information, which we provide at the top of the feature or story file. For example, in the following feature file, we give some additional business context about the <em>Business Activities</em> feature before diving into individual scenarios:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Feature: Business Activities
-
-  Some business activities are considered more risk-prone than others,
-  and certain customers and entities may pose specific risks.
-
-  Scenario Outline: The business activity risk factor for an industry
-
-  The industry risk factor is a value from 0 to 10.
-
-    When a customer works in &lt;Business Category&gt;
-    Then their base business activity risk factor should be &lt;Risk Factor&gt;
-
-    Examples:
-      | Business Category        | Risk Factor |
-      | Casino                   | 10          |
-      | Precious Metals Exchange | 9           |
-      | Currency Exchange        | 9           |
-      | Jewellery Store          | 8           |
-      | Convenience Store        | 7           |
-      | Real Estate Broker       | 6           |
-      | Software Development     | 3           |
-
-  Scenario Outline: The business activity risk factor for an established business
-      Established businessess have been in activity for 2 years or more
-
-        When a customer with a business risk factor of &lt;Risk Factor&gt;, such as for a &lt;Business Category&gt; business
-        And the business been operation for more than two years
-        Then their business activity risk rating should be &lt;Risk Rating&gt;
-
-        Examples:
-          | Risk Factor | Business Category    | Risk Rating |
-          | 7 or above  | Casino               | High        |
-          | 5 to 7      | Jewellery Store      | Medium      |
-          | Under 5     | Software Development | Low         |
-    ...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The requirements page for this feature is shown in <a href="#fig-requirements-feature-overview">The requirements page for a feature</a>.
-Here we see the introductory text from the top of the feature file,
-the list of scenarios (or acceptance criteria) defined for this feature,
-and a detailed description of each scenario.
-Icons indicate whether a scenario passed or failed, and if you click on the title bar of one of the scenarios, you will go to the test results page for that scenario.</p>
-</div>
-<div id="fig-requirements-feature-overview" class="imageblock">
-<div class="content">
-<img src="_images/requirements-feature-overview.png" alt="requirements feature overview">
-</div>
-<div class="title">Figure 8. The requirements page for a feature</div>
-</div>
-<div class="sect2">
-<h3 id="_enhanced_feature_documentation"><a class="anchor" href="#_enhanced_feature_documentation"></a>Enhanced Feature Documentation</h3>
-<div class="paragraph">
-<p>When you use Serenity with Cucumber, you can turn this feature overview into a rich living document that mixes business rules with examples and scenarios drawn from the acceptance tests. This lets you design a requirements overview that product owners and stakeholders can review quickly and easily, while still keeping the details on hand if they want to know more.</p>
-</div>
-<div class="paragraph">
-<p>T&gt; Enhanced feature documentation is currently only supported for Cucumber.</p>
-</div>
-<div class="paragraph">
-<p>For example, we could improve the <em>Business Activities</em> feature overview by embedding the tables (but not the "Given..When..Then" texts which essentially act as text fixtures in this case). To do this, we use the <code>{Examples}</code> tag along with the name of the scenario outline that we want to use:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Feature: Business Activities
-
-  Some business activities are considered more risk-prone than others,
-  and certain customers and entities may pose specific risks.
-  The business activity risk factor for an industry is determined by the potential risk they present to the bank. For example:
-
-  {Examples} The business activity risk factor for an industry</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When the report is generated, Serenity will include the example table from the <em>The business activity risk factor for an industry</em> scenario in the feature description (see <a href="#fig-requirements-embedded-table">Example tables from the scenarios can be included in the feature overview</a>).</p>
-</div>
-<div id="fig-requirements-embedded-table" class="imageblock">
-<div class="content">
-<img src="_images/requirements-embedded-table.png" alt="requirements embedded table">
-</div>
-<div class="title">Figure 9. Example tables from the scenarios can be included in the feature overview</div>
-</div>
-<div class="paragraph">
-<p>If the tests for this table have been executed, the result for each row will be indicated in the table.</p>
-</div>
-<div class="paragraph">
-<p>The default form (using the <code>{Examples}</code> tag) will take <em>only</em> the examples table from the scenario outline; if you would like the title to be displayed as well, you can use the <code>{Examples!WithTitle}</code> tag instead.</p>
-</div>
-<div class="paragraph">
-<p>Scenarios are generally to granular for the feature summary, and best left for the detailed section further down the page. However sometimes it makes sense to include a scenario or two in the summary. You can do this by using the <code>{Scenario}</code> tag. This works for both scenarios and scenario outlines.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_adding_additional_evidence"><a class="anchor" href="#_adding_additional_evidence"></a>Adding additional evidence</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Sometimes the automated test results are not alone enough to satisfy stakeholders or auditors. We need to be able to add some extra proof that our application works as described.</p>
-</div>
-<div class="paragraph">
-<p>In Serenity, you can add evidence in the form of a String or the contents of a file. For example, you might record the results of a SQL query to demonstrate that a database contains the expected results, or record the full version of a generated XML report when you only make assertions on a few key fields.</p>
-</div>
-<div class="paragraph">
-<p>You can do this using the <code>Serenity.recordReportData()</code> method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    sqlQueryResult = ...
-    Serenity.recordReportData().withTitle("Database evidence").andContents(sqlQueryResult);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This method lets you record data from a String or from a file. To get data from a file, use the <code>fromFile()</code> method:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    Path report = ...
-    Serenity.recordReportData().withTitle("Generated Report").fromFile(report);</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In both cases, this data is recorded with the test, and appears in the test results:</p>
-</div>
-<div id="fig-requirements-adding-evidence" class="imageblock">
-<div class="content">
-<img src="_images/requirements-adding-evidence.png" alt="requirements adding evidence">
-</div>
-<div class="title">Figure 10. Adding evidence to a test result</div>
-</div>
-</div>
-</div>
-<h1 id="_common_requirements_structures" class="sect0"><a class="anchor" href="#_common_requirements_structures"></a>Common Requirements Structures</h1>
 <div class="paragraph">
 <p>The exact organisation varies from project to project, but some common structures include:</p>
 </div>
@@ -713,9 +299,8 @@ Icons indicate whether a scenario passed or failed, and if you click on the titl
 <div class="paragraph">
 <p>A two-level requirements hierarchy works well for most projects. A small project (for example, a micro-service) might need only a short list of features. Only very large or complex projects would typically need three or more levels.</p>
 </div>
-<div class="sect1">
-<h2 id="_goals_capabilities_and_features"><a class="anchor" href="#_goals_capabilities_and_features"></a>Goals, Capabilities and Features</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_goals_capabilities_and_features"><a class="anchor" href="#_goals_capabilities_and_features"></a>Goals, Capabilities and Features</h3>
 <div class="paragraph">
 <p>The aim of any software project is to help our stakeholders achieve their <em>goals</em> by providing them with <em>capabilities</em>. In BDD, a <em>Capability</em> is something that allows users to do something that they couldn&#8217;t do previously, or to do something that they could do previously, but do it more efficiently. A capability is technology-agnostic: it does not commit to a particular solution or implementation. An example of a capability might be the ability to pay online with a credit card.</p>
 </div>
@@ -723,26 +308,20 @@ Icons indicate whether a scenario passed or failed, and if you click on the titl
 <p>A <em>Feature</em> is a concrete solution or implementation that delivers a capability. Some possible features that deliver the capability we mentioned earlier might be to pay via PayPal, via Stripe or to pay by integrating with a merchant banking platform.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_themes_and_epics"><a class="anchor" href="#_themes_and_epics"></a>Themes and Epics</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_themes_and_epics"><a class="anchor" href="#_themes_and_epics"></a>Themes and Epics</h3>
 <div class="paragraph">
 <p>In Scrum, an <em>Epic</em> is simply a big user story, one that can&#8217;t be delivered in a sprint. A <em>Theme</em> is just another way to group related User Stories, though many teams use Themes as groups of related epics. (Another way to implement the original idea of themes in Serenity BDD is to use tags).</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_user_stories"><a class="anchor" href="#_user_stories"></a>User Stories</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_user_stories"><a class="anchor" href="#_user_stories"></a>User Stories</h3>
 <div class="paragraph">
-<p>User Stories are commonly used in Agile as a way to organise work, but they are not always very useful when it comes to Living Documentation. This is because they reflect how a feature was sliced up when it was built. But once a feature is delivered, no one cares how it was broken down during the development phase - all that matters is what was delivered. That&#8217;s why Cucumber prefers to group scenarios in Feature Files (which describe a feature). For this reason, User Stories are generally considered to be not a great way to structure living documentation. (Note that JBehave still uses the older convention of "Story Files", which were meant to contain the acceptance criteria of a given story).</p>
+<p>User Stories are commonly used in Agile as a way to organise work, but they are not always very useful when it comes to Living Documentation. This is because they reflect how a feature was sliced  That&#8217;s why Cucumber prefers to group scenarios in Feature Files (which describe a feature). JBehave still uses the older convention of "Story Files", which were meant to contain the acceptance criteria of a given story).</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_configuring_your_requirements_structure_in_serenity_bdd"><a class="anchor" href="#_configuring_your_requirements_structure_in_serenity_bdd"></a>Configuring your requirements structure in Serenity BDD</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_configuring_your_requirements_structure_in_serenity_bdd"><a class="anchor" href="#_configuring_your_requirements_structure_in_serenity_bdd"></a>Configuring your requirements structure in Serenity BDD</h3>
 <div class="paragraph">
 <p>You can configure the way Serenity names the different levels in your own requirements structure using the <code>serenity.requirements.types</code> property. For example, if you want to describe your requirements in terms of themes, epics and stories, you would add the following to your Serenity configuration file:</p>
 </div>
@@ -782,6 +361,7 @@ Icons indicate whether a scenario passed or failed, and if you click on the titl
 </table>
 <div class="paragraph">
 <p>Requirements configuration applies to the container levels, not to the feature or story files themselves. If you are using Cucumber, feature files will always be represented as features. If you are using JBehave, story files will always be represented as stories.</p>
+</div>
 </div>
 </div>
 </div>
@@ -876,6 +456,70 @@ Icons indicate whether a scenario passed or failed, and if you click on the titl
 <p>By default the Story files represent stories, and the directories above them are rendered as Features.</p>
 </div>
 </div>
+</div>
+<h1 id="_adding_more_details" class="sect0"><a class="anchor" href="#_adding_more_details"></a>Adding more details</h1>
+<div class="paragraph">
+<p>You can add a special markdown file called <code>overview.md</code> at any level in the requirements hierarchy. This file will be rendered on the corresponding page in the Requirements report.</p>
+</div>
+<div class="paragraph">
+<p>An <code>overview.md</code> file placed in the root requirements directory (<code>src/test/resources/features</code> or <code>src/test/resources/stories</code>) will be rendered on the Requirements home page in the report. Overview files can also be called <code>narrative.md</code> or <code>narrative.txt</code> (a convention used in older versions of Serenity).</p>
+</div>
+<div class="paragraph">
+<p>Markdown (<a href="https://daringfireball.net/projects/markdown/" class="bare">https://daringfireball.net/projects/markdown/</a>) is a convenient lightweight format that you can use to make your living documentation more readable. An example of a simple Markdown overview file is shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">## A fantastic Todo application.
+
+This application lets you do **great things**, like:
+
+* Add new todo items
+* Mark your items as complete
+* Share your todo lists with your friends</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you place this <code>overview.md</code> file in the requirements root directory, the generated report will include this text on the main Requirements page:</p>
+</div>
+<div id="fig-requirements-tab" class="imageblock">
+<div class="content">
+<img src="_images/overview-example.png" alt="overview example">
+</div>
+<div class="title">Figure 2. A rendered application overview</div>
+</div>
+<h1 id="_report_assets" class="sect0"><a class="anchor" href="#_report_assets"></a>Report assets</h1>
+<div class="paragraph">
+<p>You can also include images in the <code>overview.md</code> files. By default, Serenity will copy any files in the <code>src/test/resources/assets</code> directory into the <code>target/site/serenity/assets</code> directory when it generates the reports.</p>
+</div>
+<div class="paragraph">
+<p>You can place any images you want to include in your living documentation here, and then refer to them using the Markdown image syntax, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">The application architecture is as shown below:
+
+![Application architecture ](assets/architecture.png)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This image would then appear in your reports, as illustrated here:</p>
+</div>
+<div id="fig-requirements-tab" class="imageblock">
+<div class="content">
+<img src="_images/illustrated-overview.png" alt="illustrated overview">
+</div>
+<div class="title">Figure 3. A rendered application overview including an image</div>
+</div>
+<div class="paragraph">
+<p>If you need to override the location of the <code>assets</code> directory, you can do so using the <code>report.assets.directory</code> property, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>report.assets.directory=src/test/resources/my-special-resources</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the target directory in the <code>target/site/serenity</code> directory will always be called <code>assets</code>.</p>
 </div>
 </article>
   </main>
