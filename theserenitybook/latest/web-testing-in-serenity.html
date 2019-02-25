@@ -82,6 +82,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="angularjs.html">Testing AngularJS applications</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="remote.html">Running Remote Tests</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -480,11 +483,12 @@ drivers.linux.webdriver.chrome.driver = src/test/resources/webdriver/linux/chrom
 </div>
 </div>
 <div class="paragraph">
-<p>This approach also works when you have more than one driver to configure. Suppose you need to run tests on three environments, using Firefox or Windows. One convenient approach is to store your drivers in a directory structure under <code>src/test/resources</code> similar to the following:</p>
+<p>This approach also works when you have more than one driver to configure. Suppose you need to run tests on three environments, using Firefox or Windows.
+One convenient approach is to store your drivers in a directory structure under <code>src/test/resources</code> similar to the following:</p>
 </div>
-<hr>
-<div class="paragraph">
-<p>src/test/resources
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>src/test/resources
 └── webdriver
     ├── linux
     │   ├── chromedriver
@@ -494,8 +498,8 @@ drivers.linux.webdriver.chrome.driver = src/test/resources/webdriver/linux/chrom
     │   └── geckkodriver
     └── windows
         ├── chromedriver.exe
-        └── geckodriver.exe
----</p>
+        └── geckodriver.exe</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>This means that your tests will not need the webdriver binaries to be installed on every machine.</p>
@@ -624,19 +628,33 @@ chrome.capabilities.handlesAlerts = true</code></pre>
 <div class="sect3">
 <h4 id="_configuring_firefox"><a class="anchor" href="#_configuring_firefox"></a>Configuring Firefox</h4>
 <div class="paragraph">
-<p>COMING SOON</p>
+<p>Firefox has [a number of Firefox-specific options](<a href="https://firefox-source-docs.mozilla.org/testing/geckodriver/geckodriver/Capabilities.html" class="bare">https://firefox-source-docs.mozilla.org/testing/geckodriver/geckodriver/Capabilities.html</a>) which you can configure in Serenity.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_configuring_internet_explorer"><a class="anchor" href="#_configuring_internet_explorer"></a>Configuring Internet Explorer</h4>
 <div class="paragraph">
-<p>COMING SOON</p>
+<p>The <code>moz:firefoxOptions</code> property can be set using the <code>gecko.firefox.options</code> property, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">gecko.firefox.options="{log: {level: trace}}"</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_configuring_edge"><a class="anchor" href="#_configuring_edge"></a>Configuring Edge</h4>
 <div class="paragraph">
-<p>COMING SOON</p>
+<p>You can add more complete JSON configuratio options in the <code>serenity.conf</code> file, as shown in the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">gecko.firefox.options="""
+{
+    args": ["-headless", "-profile", "/path/to/my/profile"],
+    "prefs": {
+        "dom.ipc.processCount": 8
+    },
+    "log": {
+        "level": "trace"
+    }
+}
+"""</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -663,6 +681,63 @@ chrome.capabilities.handlesAlerts = true</code></pre>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_other_useful_webdriver_configuration_options"><a class="anchor" href="#_other_useful_webdriver_configuration_options"></a>Other useful Webdriver configuration options</h3>
+<div class="sect3">
+<h4 id="_restart_the_browser_each_scenario_or_feature"><a class="anchor" href="#_restart_the_browser_each_scenario_or_feature"></a>Restart the browser each scenario or feature</h4>
+<div class="paragraph">
+<p>Normally, each test or scenario should be independent.
+Serenity therefore starts a new browser session for each scenario by default.
+However there are some cases where, for performance reasons, you may want to run all of the scenarios or tests in a single feature or test class with the same browser.
+In this case, it is your responsibility to ensure that the browser is in the correct state at the start of each scenario.</p>
+</div>
+<div class="paragraph">
+<p>The <code>serenity.restart.browser.for.each</code> property allows you to fine-tune when the browser will be restarted.
+The possible values are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>scenario</p>
+</li>
+<li>
+<p>story or feature</p>
+</li>
+<li>
+<p>never</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_pausing_between_each_step"><a class="anchor" href="#_pausing_between_each_step"></a>Pausing between each step</h4>
+<div class="paragraph">
+<p>Sometimes, for demonstration purposes, you may which the tests to run more slowly than they normally do.
+You can use the <code>serenity.step.delay</code> property for this.
+This is the time in milliseconds (0 by default) that Serenity will pause between each step.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_general_driver_capabilities"><a class="anchor" href="#_general_driver_capabilities"></a>General Driver capabilities</h3>
+<div class="paragraph">
+<p>You can add arbitrary capabilities to the WebDriver driver by using the <code>serenity.driver.capabilities</code> property, as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">serenity.driver.capabilities="browserName:iphone; deviceName:iPad Retina; version:9.2"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_driver_troubleshooting"><a class="anchor" href="#_driver_troubleshooting"></a>Driver troubleshooting</h3>
+<div class="paragraph">
+<p>One of the most common Serenity issues is the "Could not instantiate new WebDriver instance" message.
+This is usually not a Serenity issue as such, but more commonly an issue to do with an incompatible version of the WebDriver binary
+or the browser installed on the machine. Be sure to read the error message carefully, and to make sure you have the latest versions
+ of Serenity, the WebDriver driver, and your browser.</p>
 </div>
 </div>
 </div>
