@@ -85,6 +85,9 @@
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="remote.html">Running Remote Tests</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extending-webdriver.html">Extending Webdriver setup and teardown</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -164,10 +167,16 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Running Serenity tests</span>
+    <span class="nav-text">Scaling Serenity</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="serenity-parallel.html">Running Serenity tests in parallel</a>
+    <a class="nav-link" href="serenity-parallel.html">Running Serenity tests in parallel on a local machine</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-grid.html">Running Serenity tests on a Selenium Grid</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-parallel-batches.html">Running Serenity tests in parallel batches</a>
   </li>
 </ul>
   </li>
@@ -221,10 +230,11 @@
 <div class="paragraph">
 <p>In all cases, you tell Serenity to run tests remotely by using the Selenium Remote driver,</p>
 </div>
-<div class="sect2">
-<h3 id="_running_tests_against_a_selenium_grid_server"><a class="anchor" href="#_running_tests_against_a_selenium_grid_server"></a>Running tests against a Selenium Grid server</h3>
+<div class="sect1">
+<h2 id="_running_tests_against_a_selenium_grid_server"><a class="anchor" href="#_running_tests_against_a_selenium_grid_server"></a>Running tests against a Selenium Grid server</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://github.com/SeleniumHQ/selenium/wiki/Grid2">Selenium Grid</a> allows you to run tests on a number of remote machines. It is open source, and relatively easy to set up and configure.</p>
+<p><a href="https://code.google.com/p/selenium/wiki/Grid2">Selenium Grid</a> allows you to run tests on a number of remote machines. It is open source, and relatively easy to set up and configure.</p>
 </div>
 <div class="paragraph">
 <p>To run your Serenity tests on a Selenium Grid, you need to provide the URL of the Selenium Hub using the <code>webdriver.remote.url</code> property. You may also want to provide more information about how and where you want to run your tests, using the following properties:
@@ -257,8 +267,10 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_running_tests_on_appium"><a class="anchor" href="#_running_tests_on_appium"></a>Running tests on Appium</h3>
+</div>
+<div class="sect1">
+<h2 id="_running_tests_on_appium"><a class="anchor" href="#_running_tests_on_appium"></a>Running tests on Appium</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Serenity supports running tests on mobile devices/emulators out of the box with <a href="http://appium.io">Appium</a>.</p>
 </div>
@@ -366,8 +378,10 @@ androidDriver().hideKeyboard();</pre>
 <p>You can also add Appium to an existing grid. See the <a href="http://appium.io/slate/en/v1.2.3/?java#server-flags">Appium documentation</a> for more details about the node-config option.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_running_tests_on_saucelabs"><a class="anchor" href="#_running_tests_on_saucelabs"></a>Running tests on SauceLabs</h3>
+</div>
+<div class="sect1">
+<h2 id="_running_tests_on_saucelabs"><a class="anchor" href="#_running_tests_on_saucelabs"></a>Running tests on SauceLabs</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Serenity has special support for running tests on the Cloud-based testing platform <a href="http://www.saucelabs.com">SauceLabs</a>. The general approach is the same as discussed above, but there are a few extra Saucelabs-specific properties:</p>
 </div>
@@ -421,10 +435,73 @@ androidDriver().hideKeyboard();</pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_running_tests_on_browserstack"><a class="anchor" href="#_running_tests_on_browserstack"></a>Running tests on BrowserStack</h3>
+</div>
+<div class="sect1">
+<h2 id="_running_serenity_tests_on_browserstack"><a class="anchor" href="#_running_serenity_tests_on_browserstack"></a>Running Serenity Tests on BrowserStack</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The setup for running tests on BrowserStack is similar to the one for SauceLabs. The following system properties are available:</p>
+<p>Serenity provides integrated support for running tests on <a href="https://www.browserstack.com">BrowserStack</a>.</p>
+</div>
+<div class="paragraph">
+<p>First of all, add the <code>serenity-browserstack</code> dependency to your project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;net.serenity-bdd&lt;/groupId&gt;
+    &lt;artifactId&gt;serenity-browserstack&lt;/artifactId&gt;
+    &lt;version&gt;${serenity.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, in your <code>serenity.conf</code> configuration file, add a <code>browserstack</code> section with your BrowserStack username and API key, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hacon hljs" data-lang="hacon">browserstack {
+    user = &lt;your-username&gt;
+    key = &lt;your-api-key&gt;
+    server = hub-cloud.browserstack.com
+    browser = chrome
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the <code>webdriver</code> section, you need to configure a <code>remote</code> driver like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hacon hljs" data-lang="hacon">webdriver {
+    driver = remote
+    remote.url = "http://&lt;your-username&gt;:&lt;your-api-key&gt;@hub-cloud.browserstack.com/wd/hub"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also do the same thing in your <code>serenity.properties</code> file, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">browserstack.user=&lt;your-username&gt;
+browserstack.key=&lt;your-api-key&gt;
+browserstack.server = hub-cloud.browserstack.com
+browserstack.browser = chrome
+
+webdriver.driver = remote;
+webdriver.remote.url = "http://&lt;your-username&gt;:&lt;your-api-key&gt;@hub-cloud.browserstack.com/wd/hub"</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_retries"><a class="anchor" href="#_retries"></a>Retries</h3>
+<div class="paragraph">
+<p>If your BrowserStack account is limited to a certain number of parallel tests, BrowserStack will add your tests to a queue. If your queue reaches a maximum size, BrowserStack will refuse to run your tests until a spot frees up. Serenity allows for this by delaying the test execution for 30 seconds before retrying. Serenity will retry up to 30 times by default; you can configure the maximum number of retries Serenity will attempt with the <code>webdriver.creation.retry.max.times</code> system property.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_browserstack_system_properties"><a class="anchor" href="#_browserstack_system_properties"></a>BrowserStack system properties</h3>
+<div class="paragraph">
+<p>The following system properties are available:</p>
 </div>
 <div class="dlist">
 <dl>
@@ -474,7 +551,7 @@ androidDriver().hideKeyboard();</pre>
 </dd>
 <dt class="hdlist1"><code>browserstack.localIdentifier</code></dt>
 <dd>
-<p>Specify an identifier fot the local browserstack connection check <a href="https://www.browserstack.com/local-testing#multiple-connections" class="bare">https://www.browserstack.com/local-testing#multiple-connections</a></p>
+<p>Specify an identifier for the local BrowserStack connection check <a href="https://www.browserstack.com/local-testing#multiple-connections" class="bare">https://www.browserstack.com/local-testing#multiple-connections</a></p>
 </dd>
 <dt class="hdlist1"><code>browserstack.debug</code></dt>
 <dd>
@@ -498,6 +575,184 @@ androidDriver().hideKeyboard();</pre>
 <p>Enable the popup blocker in Internet Explorer on BrowserStack</p>
 </dd>
 </dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_serenity_on_zalenium"><a class="anchor" href="#_running_serenity_on_zalenium"></a>Running Serenity on Zalenium</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we look at how you can run Serenity BDD tests on a Zalenium server using <a href="https://www.docker.com">Docker</a>. <a href="https://opensource.zalando.com/zalenium">Zalenium</a> is an open source tool based on Docker that makes it easy to start up and run a Selenium Grid. The rest of this tutorial assumes that you have Docker installed on your machine.</p>
+</div>
+<div class="sect2">
+<h3 id="_starting_zalenium"><a class="anchor" href="#_starting_zalenium"></a>Starting Zalenium</h3>
+<div class="paragraph">
+<p>You can start a Zalenium server using the following commands (see the <a href="https://opensource.zalando.com/zalenium/#try-it">Zalenium Documentation</a> for more details or for the latest version of these instructions):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># Pull docker-selenium
+docker pull elgalu/selenium
+
+# Pull Zalenium
+docker pull dosel/zalenium
+
+# Run it!
+docker run --rm -ti --name zalenium -p 4444:4444 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /tmp/videos:/home/seluser/videos -e WAIT_FOR_AVAILABLE_NODES=false \
+  --privileged dosel/zalenium start --desiredContainers 4</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should end up seeing an output like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>08:42:05.272 [main] INFO  org.openqa.grid.web.Hub - Selenium Grid hub is up and running
+08:42:05.272 [main] INFO  org.openqa.grid.web.Hub - Nodes should register to http://172.17.0.2:4445/grid/register/
+08:42:05.272 [main] INFO  org.openqa.grid.web.Hub - Clients should connect to http://172.17.0.2:4445/wd/hub
+Selenium Hub started!
+Sauce Labs not enabled...
+Browser Stack not enabled...
+TestingBot not enabled...
+Zalenium is now ready!</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can see if the Zalenium server is running correctly by checking out the <a href="http://localhost:4444/grid/console">Grid Console</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_your_serenity_tests"><a class="anchor" href="#_configuring_your_serenity_tests"></a>Configuring your Serenity tests</h3>
+<div class="paragraph">
+<p>To run your tests on the Selenium grid, you now just need to use the remote driver instead of the usual one. For example, in your <code>serenity.conf</code> file, you can configure your tests to run on the Zalenium server using Chrome like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hocon hljs" data-lang="hocon">webdriver {
+  driver = remote
+  remote {
+      url="http://localhost:4444/wd/hub"
+      driver=chrome
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you are using the <code>serenity.properties</code> file, the configuration would look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">webdriver.driver = remote
+webdriver.remote.url = "http://localhost:4444/wd/hub"
+webdriver.remote.driver = chrome</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Zalenium even has a <a href="http://localhost:4444/dashboard/#">Dashboard</a> where you can see a recording of the tests you executed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_advanced_zalenium_integration"><a class="anchor" href="#_advanced_zalenium_integration"></a>Advanced Zalenium Integration</h3>
+<div class="paragraph">
+<p>Serenity also supports more advanced integration with Zalenium, including the ability to pass custom capabilities to the Zalenium server, and displaying the test results correctly. You can enable these features by adding the <code>serenity-zalenium</code> dependency to your project. If you are using Maven, you would add the following dependency:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;net.serenity-bdd&lt;/groupId&gt;
+    &lt;artifactId&gt;serenity-zalenium&lt;/artifactId&gt;
+    &lt;version&gt;${serenity.version}&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And in Gradle, you would add the equivalent dependency like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">testCompile 'net.serenity-bdd:serenity-zalenium:${serenity.version}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you add this dependency, unsuccessful tests (those with an outcome of failed, broken or compromised) will be marked as failures in Zalenium.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hacon hljs" data-lang="hacon">zalenium {
+    screenResolution = "1280x720"
+    idleTimeout = 150
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_extending_serenity_for_distributed_testing"><a class="anchor" href="#_extending_serenity_for_distributed_testing"></a>Extending Serenity for Distributed Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Serenity offers a simple way to extend the default driver capabilities and customise the driver creation and teardown activities. Simply implement the <code>BeforeAWebdriverScenario</code> and/or the <code>AfterAWebDriverScenario</code> interfaces (both are in the <code>net.serenitybdd.core.webdriver.enhancers</code> package). Serenity will execute <code>BeforeAWebdriverScenario</code> classes just before a driver instance is created, allowing you to add customised options to the driver capabilities. Any <code>AfterAWebDriverScenario</code> are executed at the end of a test, just before the driver is closed.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_beforeawebdriverscenario_interface"><a class="anchor" href="#_the_beforeawebdriverscenario_interface"></a>The BeforeAWebdriverScenario interface</h3>
+<div class="paragraph">
+<p>The <code>BeforeAWebdriverScenario</code> is used to enhance the <code>DesiredCapabilities</code> object that will be passed to the WebDriver instance when a new driver is created. The method call passes in the requested driver and the <code>TestOutcome</code> object, which contains information about the name and tags used for this test. It also passes in the <code>EnvironmentVariables</code>, which gives you access to the current environment configuration. An example of a simple <code>BeforeAWebdriverScenario</code> is shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyCapabilityEnhancer implements BeforeAWebdriverScenario {
+
+    @Override
+    public DesiredCapabilities apply(EnvironmentVariables environmentVariables,
+                                     SupportedWebDriver driver,
+                                     TestOutcome testOutcome,
+                                     DesiredCapabilities capabilities) {
+        capabilities.setCapability("name", testOutcome.getStoryTitle() + " - " + testOutcome.getTitle());
+        return capabilities;
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_afterawebdriverscenario_interface"><a class="anchor" href="#_the_afterawebdriverscenario_interface"></a>The AfterAWebdriverScenario interface</h3>
+<div class="paragraph">
+<p>The <code>AfterAWebdriverScenario</code> is called at the end of a test, just before the driver is closed, and once the result of the test is known. The test result (and other details) can be obtained from the <code>TestOutcome</code> parameter. This allows any last manipulations or checks to be performed on the driver, before the end of the test. The following example checks the result of the test that has just finished, and adds a cookie with a value depending on the test outcome:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyTestResultUpdater implements AfterAWebdriverScenario {
+    void apply(EnvironmentVariables environmentVariables,
+               TestOutcome testOutcome,
+               WebDriver driver) {
+       if ((driver == null) || (!RemoteDriver.isARemoteDriver(driver))) {
+           return;
+       }
+
+       Cookie cookie = new Cookie("testPassed",
+                                   testOutcome.isFailure() || testOutcome.isError() || testOutcome.isCompromised() ? "false" : "true");
+       driver.manage().addCookie(cookie);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_extension_packages"><a class="anchor" href="#_configuring_the_extension_packages"></a>Configuring the extension packages</h3>
+<div class="paragraph">
+<p>The last thing you need to do is to tell Serenity what package it needs to look for your extension classes. Add the package, or a parent package to your Serenity configuration using the <code>serenity.extension.packages</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>serenity.extension.packages=com.acme.myserenityextensions</code></p>
+</div>
+<div class="paragraph">
+<p>You can find an example of how these classes are implemented in a real-world use case in the <a href="https://github.com/serenity-bdd/serenity-core/tree/master/serenity-browserstack/src/main/java/net/serenitybdd/browserstack">serenity-browserstack</a> module on Github.</p>
+</div>
+</div>
 </div>
 </div>
 </article>
