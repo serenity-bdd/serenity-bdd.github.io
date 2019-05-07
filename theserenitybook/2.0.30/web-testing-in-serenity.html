@@ -453,7 +453,7 @@ Scenario: Mark a task as completed in Cucumber
 </div>
 </div>
 <div class="paragraph">
-<p>However, adding a system path to your <code>serenity.properties</code> file is poor practice, as it means your tests will only run if the specified directory and binary exists, and that you are running the tests on tshe correct operating system. This obviously makes little sense if you are running your tests both locally, and on a CI environment.</p>
+<p>However, adding a system path to your <code>serenity.properties</code> file is poor practice, as it means your tests will only run if the specified directory and binary exists, and that you are running the tests on the correct operating system. This obviously makes little sense if you are running your tests both locally, and on a CI environment.</p>
 </div>
 <div class="paragraph">
 <p>A more robust approach is to have your drivers in your source code, but have different drivers per OS. Serenity allows you to pass driver-specific properties to a driver, as long as they are prefixed with <code>drivers.&lt;os&gt;</code>. For example, the following line will configure the <code>webdriver.chrome.driver</code> if you are running your tests under windows.</p>
