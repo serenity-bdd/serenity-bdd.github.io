@@ -303,10 +303,22 @@ This is quite flexible, as you can add custom matchers quite easily. However, it
 int age = 20;
 
 aster.attemptsTo(
-    Ensure.that(age)                  <i class="conum" data-value="1"></i><b>(1)</b>
+    Ensure.that(age)                      <i class="conum" data-value="1"></i><b>(1)</b>
               .isEqualTo(20)              <i class="conum" data-value="2"></i><b>(2)</b>
 );</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Pass the value under test to the <code>Ensure.that(&#8230;&#8203;)</code> method</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Add an assertion method</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Almost all <code>Ensure</code> assertions start with the <code>Ensure.that()</code> method (1).
@@ -324,50 +336,57 @@ For integers, longs and floating point numbers, the assertions include:</p>
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isEqualTo</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(age).isEqualTo(18)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isNotEqualTo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(age).isNotEqualTo(65)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isGreaterThan</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(age).isGreaterThan(18)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isGreaterThanOrEqualTo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(age).isGreaterThanOrEqualTo(20)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isLessThan</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(age).isLessThan(100)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isBetween</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(age).isBetween(18,25)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isStrictlyBetween</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(age).isStrictlyBetween(20,25)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -406,50 +425,57 @@ aster.attemptsTo(
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isEqualTo</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(name).isEqualTo("Bill")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isNotEqualTo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(name).isNotEqualTo("Joe")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isGreaterThan</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(name).isGreaterThan("Alfred")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isGreaterThanOrEqualTo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(name).isGreaterThanOrEqualTo("Al")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isLessThan</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(name).isLessThan("Carrie")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isBetween</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(name).isBetween("Bill","Carrie")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isStrictlyBetween</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(name).isStrictlyBetween("Al",25)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -471,100 +497,117 @@ aster.attemptsTo(
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsIgnoringCase</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).containsIgnoringCase("RED")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsOnlyDigits</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("123").containsOnlyDigits()</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsOnlyLettersOrDigits</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("abc123").containsOnlyLettersOrDigits()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsOnlyLetters</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("abc").containsOnlyLetters()</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsWhitespaces</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("Red Green").containsWhitespaces()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsOnlyWhitespaces</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("   ").containsOnlyWhitespaces()</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">startsWith</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).startsWith("Red")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">endsWith</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).endsWith("Blue")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">matches</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).matches("Red (.*) Blue")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">doesNotContain</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).doesNotContain("cyan")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isBlank()</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("  ").isBlank()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isNotBlank()</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).isNotBlank()</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isEmpty()</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("").isEmpty()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isNotEmpty()</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).isNotEmpty()</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isInLowerCase()</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("red").isInLowerCase()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isInUpperCase()</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("RED").isInUpperCase()</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isSubstringOf</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("Green").isSubstringOf(colors)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -587,50 +630,57 @@ aster.attemptsTo(
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSize</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("red").hasSize(3)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSizeGreaterThan</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("red").hasSizeGreaterThan(2)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSizeGreaterThanOrEqualTo</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("red").hasSizeGreaterThanOrEqualTo(3)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSizeLessThan</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("red").hasSizeLessThan(4)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSizeLessThanOrEqualTo</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("red").hasSizeLessThanOrEqualTo(3)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSizeBetween</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that("red").hasSizeBetween(1,5)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasLineCount</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).hasLineCount(1)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -724,37 +774,39 @@ aster.attemptsTo(
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isDayOfWeek</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(firstOfJanuary).isDayOfWeek(SATURDAY)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isDayOfMonth</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(firstOfJanuary).isDayOfMonth(1)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isInTheMonthOf</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(firstOfJanuary).isInTheMonthOf(JANUARY)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isTheYear</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(firstOfJanuary).isTheYear(2000)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -801,57 +853,63 @@ or whether it is equivalent to another collection.</p>
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isEqualTo</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).isEqualTo(sameColors)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isEmpty</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(noColors).isEmpty()</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isNotEmpty</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).isNotEmpty()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSize</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).hasSize(3)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSizeGreaterThan</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).hasSizeGreaterThan(2)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSizeLessThan</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).hasSizeLessThan(4)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSizeBetween</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).hasSizeBetween(2,4)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasSameSizeAs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).hasSameSize(differentColors)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -876,90 +934,105 @@ aster.attemptsTo(
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">contains</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).contains("red","blue")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsAnyOf</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).anyOf("red","pink")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsOnly</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).containsOnly("blue","green","red")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsExactly</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).containsExactly("red","blue","green")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsExactlyInAnyOrder</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).containsExactly("red","blue","green")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">doesNotContain</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).doesNotContain("pink")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsElementsFrom</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(allColors).containsElementsFrom(colors)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsAnyElementsOf</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).containsAnyElementsOf(redAndPink)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsExactlyElementsOf</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).containsExactlyElementsOf(sameColors)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isASubsetOf</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).isASubsetOf(allColors)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">doesNotHaveDuplicates</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).doesNotHaveDuplicates()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">startsWith</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).startsWith("red", "green")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">startsWithElementsFrom</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(allColors).startsWithElementsFrom(colors)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">endsWith</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(colors).endsWith("green","blue")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">endWithElementsFrom</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(allColors).endWithElementsFrom(lastColors)`</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -1107,30 +1180,33 @@ is displayed or disabled.</p>
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isDisplayed</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(FIRST_NAME).isDisplayed()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isDisabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(FIRST_NAME).isDisabled()</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isEnabled</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(FIRST_NAME).isEnabled()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -1173,57 +1249,63 @@ making it useful in cases where you need to read a full set of values, even thos
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(FIRST_NAME).value().isEqualTo("Joe")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(DESCRIPTION).text().isNotEmpty()</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">textContent</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(DESCRIPTION).textContent().isNotEmpty()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attribute</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(FIRST_NAME).attribute("title").isEqualTo("First name")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">selectedValue</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(COLORS).selectedValue().isEqualTo("green")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">selectedVisibleText</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(COLORS).selectedVisibleText().isEqualTo("Green")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasCssClass</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(COLORS).hasCssClass("color-list")</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsElements</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(RESULT_LIST).containsElements(".result-details")</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -1252,50 +1334,57 @@ For example:</p>
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">asAnInteger</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(ITEM_COUNT).value().asAnInteger().isEqualTo(2)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">asADouble</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(TOTAL_COST).value().asADouble().isEqualTo(99.99d)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">asAFloat</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(TOTAL_COST).value().asAFloat().isCloseTo(99.99f,0.01f)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">asABigDecimal</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(TOTAL_COST).value().asABigDecimal().isEqualTo(new BigDecimal("99.99"))</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">asADate</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(CURRENT_DATE).value().asADate().isEqualTo(expectedLocalDate)</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">asATime</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(CURRENT_TIME).value().asATime().isEqualTo(expectedLocalTime)</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">asABoolean</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.that(SOME_FLAG).value().asABoolean().isTrue()</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -1348,70 +1437,81 @@ This method takes a <code>Target</code> or a locator, and lets you apply the</p>
 </div>
 <table class="tableblock frame-topbot grid-all" style="width: 80%;">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Assertion</th>
 <th class="tableblock halign-left valign-top">Example</th>
-<th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isDisplayed</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(RESULTS).allMatch(isDisplayed())</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isNotDisplayed</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(RESULTS).noneMatch(isNotDisplayed())</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isDisabled</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(INPUT_FIELDS).atLeast(1, isDisabled())</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isNotDisabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(INPUT_FIELDS).atLeast(1, isNotDisabled())</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isEnabled</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(INPUT_FIELDS).atLeast(1, isEnabled())</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">isNotEnabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(INPUT_FIELDS).atLeast(1, isNotEnabled())</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasCssClass</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(RESULTS).noMoreThan(1, hasCssClass("selected"))</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hasValue</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(RESULTS).anyMatch(hasValue("red"))</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsText</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(RESULTS).anyMatch(containsText("Red"))</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsOnlyText</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(RESULTS).anyMatch(containsOnlyText("Red Car"))</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containsElementsLocatedBy</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ensure.thatTheSetOf(RESULTS).anyMatch(containsElementsLocatedBy(".model"))</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -1551,7 +1651,7 @@ In these cases, we may prefer to leave the <code>Ensure</code> statement out of 
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">aster.attemptsTo(
-    Ensure.that(ElementLocated.by("#firstName")).silently().isDisplayed(),
+    Ensure.that(ElementLocated.by("#firstName")).silently().isDisplayed()
 );</code></pre>
 </div>
 </div>
