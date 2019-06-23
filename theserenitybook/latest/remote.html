@@ -83,7 +83,7 @@
     <a class="nav-link" href="angularjs.html">Testing AngularJS applications</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="remote.html">Running Remote Tests</a>
+    <a class="nav-link" href="remote.html">xRunning Remote Tests</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="extending-webdriver.html">Extending Webdriver setup and teardown</a>
@@ -144,6 +144,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="serenity-screenplay-rest.html">REST API Testing with Screenplay</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-screenplay-ensure.html">Fluent Assertions in Screenplay</a>
   </li>
 </ul>
   </li>
@@ -218,7 +221,7 @@
   <ul>
     <li class="crumb"><a href="index.html">The Serenity Book</a></li>
     <li class="crumb">Testing Web Applications</li>
-    <li class="crumb"><a href="remote.html">Running Remote Tests</a></li>
+    <li class="crumb"><a href="remote.html">xRunning Remote Tests</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/remote.adoc">Edit this Page</a></div>
@@ -687,70 +690,6 @@ webdriver.remote.driver = chrome</code></pre>
     idleTimeout = 150
 }</code></pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_extending_serenity_for_distributed_testing"><a class="anchor" href="#_extending_serenity_for_distributed_testing"></a>Extending Serenity for Distributed Testing</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Serenity offers a simple way to extend the default driver capabilities and customise the driver creation and teardown activities. Simply implement the <code>BeforeAWebdriverScenario</code> and/or the <code>AfterAWebDriverScenario</code> interfaces (both are in the <code>net.serenitybdd.core.webdriver.enhancers</code> package). Serenity will execute <code>BeforeAWebdriverScenario</code> classes just before a driver instance is created, allowing you to add customised options to the driver capabilities. Any <code>AfterAWebDriverScenario</code> are executed at the end of a test, just before the driver is closed.</p>
-</div>
-<div class="sect2">
-<h3 id="_the_beforeawebdriverscenario_interface"><a class="anchor" href="#_the_beforeawebdriverscenario_interface"></a>The BeforeAWebdriverScenario interface</h3>
-<div class="paragraph">
-<p>The <code>BeforeAWebdriverScenario</code> is used to enhance the <code>DesiredCapabilities</code> object that will be passed to the WebDriver instance when a new driver is created. The method call passes in the requested driver and the <code>TestOutcome</code> object, which contains information about the name and tags used for this test. It also passes in the <code>EnvironmentVariables</code>, which gives you access to the current environment configuration. An example of a simple <code>BeforeAWebdriverScenario</code> is shown below:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyCapabilityEnhancer implements BeforeAWebdriverScenario {
-
-    @Override
-    public DesiredCapabilities apply(EnvironmentVariables environmentVariables,
-                                     SupportedWebDriver driver,
-                                     TestOutcome testOutcome,
-                                     DesiredCapabilities capabilities) {
-        capabilities.setCapability("name", testOutcome.getStoryTitle() + " - " + testOutcome.getTitle());
-        return capabilities;
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_the_afterawebdriverscenario_interface"><a class="anchor" href="#_the_afterawebdriverscenario_interface"></a>The AfterAWebdriverScenario interface</h3>
-<div class="paragraph">
-<p>The <code>AfterAWebdriverScenario</code> is called at the end of a test, just before the driver is closed, and once the result of the test is known. The test result (and other details) can be obtained from the <code>TestOutcome</code> parameter. This allows any last manipulations or checks to be performed on the driver, before the end of the test. The following example checks the result of the test that has just finished, and adds a cookie with a value depending on the test outcome:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyTestResultUpdater implements AfterAWebdriverScenario {
-    void apply(EnvironmentVariables environmentVariables,
-               TestOutcome testOutcome,
-               WebDriver driver) {
-       if ((driver == null) || (!RemoteDriver.isARemoteDriver(driver))) {
-           return;
-       }
-
-       Cookie cookie = new Cookie("testPassed",
-                                   testOutcome.isFailure() || testOutcome.isError() || testOutcome.isCompromised() ? "false" : "true");
-       driver.manage().addCookie(cookie);
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_configuring_the_extension_packages"><a class="anchor" href="#_configuring_the_extension_packages"></a>Configuring the extension packages</h3>
-<div class="paragraph">
-<p>The last thing you need to do is to tell Serenity what package it needs to look for your extension classes. Add the package, or a parent package to your Serenity configuration using the <code>serenity.extension.packages</code>.</p>
-</div>
-<div class="paragraph">
-<p><code>serenity.extension.packages=com.acme.myserenityextensions</code></p>
-</div>
-<div class="paragraph">
-<p>You can find an example of how these classes are implemented in a real-world use case in the <a href="https://github.com/serenity-bdd/serenity-core/tree/master/serenity-browserstack/src/main/java/net/serenitybdd/browserstack">serenity-browserstack</a> module on Github.</p>
 </div>
 </div>
 </div>

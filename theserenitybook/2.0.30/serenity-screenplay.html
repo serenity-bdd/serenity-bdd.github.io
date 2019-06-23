@@ -83,7 +83,7 @@
     <a class="nav-link" href="angularjs.html">Testing AngularJS applications</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="remote.html">Running Remote Tests</a>
+    <a class="nav-link" href="remote.html">xRunning Remote Tests</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="extending-webdriver.html">Extending Webdriver setup and teardown</a>
@@ -144,6 +144,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="serenity-screenplay-rest.html">REST API Testing with Screenplay</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-screenplay-ensure.html">Fluent Assertions in Screenplay</a>
   </li>
 </ul>
   </li>
@@ -244,8 +247,9 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_introducing_the_screenplay_pattern"><a class="anchor" href="#_introducing_the_screenplay_pattern"></a>Introducing the Screenplay Pattern</h3>
+<div class="sect1">
+<h2 id="_introducing_the_screenplay_pattern"><a class="anchor" href="#_introducing_the_screenplay_pattern"></a>Introducing the Screenplay Pattern</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Suppose we are implementing the “Add new todo items” feature of the ToDo MVC application. This feature could have an acceptance criteria along the lines of “Should be able to add a new todo item”. If we were testing these scenarios manually, we could create test plans like the following:</p>
 </div>
@@ -291,7 +295,6 @@
 </div>
 <div class="paragraph">
 <p>The code listed above certainly reads cleanly, but it may leave you wondering how it actually works under the hood. Let’s see how it all fits together.</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_screenplay_pattern_tests_runs_like_any_other_serenity_test"><a class="anchor" href="#_screenplay_pattern_tests_runs_like_any_other_serenity_test"></a>Screenplay Pattern tests runs like any other Serenity test</h3>
@@ -791,6 +794,12 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">return Text.of(ToDoList.TODO_ITEMS)
            .onTheScreenOf(actor)
            .asList();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fluent_assertions_with_serenity_screenplay"><a class="anchor" href="#_fluent_assertions_with_serenity_screenplay"></a>Fluent Assertions with Serenity Screenplay</h3>
+
 </div>
 </div>
 </div>
