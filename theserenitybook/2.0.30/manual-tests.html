@@ -274,10 +274,20 @@ Scenario: Invoice details should be downloadable as a PDF file
 <div class="sectionbody">
 <div class="paragraph">
 <p>By default, <code>@manual</code> scenarios are marked as <em>pending</em> in the Serenity reports.
-However, you can indicate a different result by adding the <code>@manual-result</code> tag as shown here:
-   * A passing test: <code>@manual-result:passed</code>
-   * A failing test: <code>@manual-result:failed</code>
-   * A compromised test: <code>@manual-result:compromised</code></p>
+However, you can indicate a different result by adding the <code>@manual-result</code> tag as shown here:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A passing test: <code>@manual-result:passed</code></p>
+</li>
+<li>
+<p>A failing test: <code>@manual-result:failed</code></p>
+</li>
+<li>
+<p>A compromised test: <code>@manual-result:compromised</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Note that if you want to record the result of a manual test, you should include both the <code>@manual</code> and the <code>@manual-result</code> tags.
@@ -286,7 +296,7 @@ This also makes it easier to run all of the manual tests in isolation.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
-@manual:passed
+@manual-result:passed
 Scenario: Invoice details should be downloadable as a PDF file
    ...</code></pre>
 </div>
