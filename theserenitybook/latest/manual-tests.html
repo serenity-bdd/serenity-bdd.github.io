@@ -368,7 +368,7 @@ with a note indicating that a new manual test is required:</p>
 <h2 id="_attaching_evidence"><a class="anchor" href="#_attaching_evidence"></a>Attaching evidence</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can either include a link to an external site, or place an image in the <code>src/test/resources/assets</code> folder and include a relative link to this file (without the <code>assets</code> folder name), e.g.</p>
+<p>Sometimes we need to attach screenshots or other files to our manual test reports as additional evidence. The <code>@manual-test-evidence</code> tag allows you to do just this. You can either include a link to an external site, as shown here:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -381,7 +381,7 @@ Scenario: Invoice details should be downloadable as a PDF file
 </div>
 </div>
 <div class="paragraph">
-<p>or</p>
+<p>Alternatively, you can place an image in the <code>src/test/resources/assets</code> folder and include a relative link to this file (starting with "assets/"):</p>
 </div>
 <div class="listingblock">
 <div class="content">
