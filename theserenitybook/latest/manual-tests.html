@@ -231,110 +231,176 @@
 </div>
 <article class="doc">
 <h1>Reporting Manual Test Results</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Serenity is primarily designed to report the results of <em>automated</em> acceptance tests. However, there are times when some tests need to be done manually. And it is useful to report these tests in the overall test reports, to get a broader picture of test coverage.</p>
+<p>One of the principles of BDD is to have a single source of truth for both the requirements that describe a feature, and the automated tests that verify them. And it is a natural step to want to include both automated and manual tests in this single source of truth.</p>
 </div>
 <div class="paragraph">
-<p>To make this easier, Serenity with Cucumber provides some support for recording and reporting manual test results.</p>
+<p>Cucumber is primarily and traditionally used for automating executable specifications. But with Serenity BDD, you can add special tags to indicate that a scenario represents a manual test case.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recording_manual_test_cases"><a class="anchor" href="#_recording_manual_test_cases"></a>Recording manual test cases</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>You can mark a test as a manual test using the <code>@manual</code> tag, e.g.</p>
+<p>You can flag any Cucumber scenario as manual simply by using the <code>@manual</code> tag:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>@Manual
-Scenario: Monitoring a new low risk customer
-  Given Joe is a new customer
-  And Joe is considered a low risk customer
-  When he is onboarded
-  Then his account should be scheduled for review in 3 months time</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This will appear in the reports as a manual test, as shown below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/manual-test-result.png" alt="manual test result">
-</div>
-<div class="title">Figure 1. A manual test reported in Serenity</div>
-</div>
-<div class="paragraph">
-<p>By default, manual tests are reported as "pending", like the one above. The individual steps will be marked as ignored, as they are just there for documentation purposes.</p>
-</div>
-<div class="paragraph">
-<p>You can override this status, and mark a test explicitly as a passing or failing test, like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>@Manual:Passed
-Scenario: Monitoring a new low risk customer
-  Given Joe is a new customer
-  And Joe is considered a low risk customer
-  When he is onboarded
-  Then his account should be scheduled for review in 3 months time</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Or if you want to report that a manual test was unsuccessful:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>@Manual:Failed
-Scenario: Monitoring a new low risk customer
-  Given Joe is a new customer
-  And Joe is considered a low risk customer
-  When he is onboarded
-  Then his account should be scheduled for review in 3 months time</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The test will then appear as both a manual and a failing test:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/failing-test.png" alt="failing test">
-</div>
-<div class="title">Figure 2. A failing manual test reported in Serenity</div>
-</div>
-<div class="paragraph">
-<p>If you need to provide more details about the test failure, you can add a note starting with the "Failure:" keyword underneath the scenario title, e.g.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>@manual:failed
-Scenario: Monitoring a new low risk customer
-  Failure:Joe is showing as a high-risk customer
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
+Scenario: Invoice details should be downloadable as a PDF file
+  The layout and content of the PDF file should be verified
 
-  Given Joe is a new customer
-  And Joe is considered a low risk customer
-  When he is onboarded
-  Then his account should be scheduled for review in 3 months time</code></pre>
+  Given Clive has made a purchase
+  When he reviews his past orders
+  Then he should be able to download his invoice as an PDF file</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This error message will then appear in the report:</p>
+<p>This scenario will now appear as a manual test case in the Serenity reports:</p>
 </div>
-<div class="imageblock">
+<div id="manual-scenario" class="imageblock">
 <div class="content">
-<img src="_images/failure-with-message.png" alt="failure with message">
+<img src="_images/manual-scenario.png" alt="manual scenario">
 </div>
-<div class="title">Figure 3. A failing manual test including an error message.</div>
+<div class="title">Figure 1. A manual scenario</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recording_manual_test_results"><a class="anchor" href="#_recording_manual_test_results"></a>Recording manual test results</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, <code>@manual</code> scenarios are marked as <em>pending</em> in the Serenity reports.
+However, you can indicate a different result by adding the <code>@manual-result</code> tag as shown here:
+   * A passing test: <code>@manual-result:passed</code>
+   * A failing test: <code>@manual-result:failed</code>
+   * A compromised test: <code>@manual-result:compromised</code></p>
 </div>
 <div class="paragraph">
-<p>Manual test results also appear in the overall test reports, where they are represented in a lighter shade of the normal test result colour:</p>
+<p>Note that if you want to record the result of a manual test, you should include both the <code>@manual</code> and the <code>@manual-result</code> tags.
+This also makes it easier to run all of the manual tests in isolation.</p>
 </div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="_images/manual-overview.png" alt="manual overview">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
+@manual:passed
+Scenario: Invoice details should be downloadable as a PDF file
+   ...</code></pre>
 </div>
-<div class="title">Figure 4. Manual tests appearing in a summary report</div>
 </div>
 <div class="paragraph">
-<p>Note that you should use this feature with caution, as marking a manual test as passing may be misleading: if you are running your Serenity tests on a CI server, you cannot safely say that they were manually tested with the version that was built on the build server. For this reason, manual test results should be considered as indicative, not definitive.</p>
+<p>These manual test results are indicated in a different shade in the Serenity reports, and also appear in the summary table on the home page:</p>
+</div>
+<div id="manual-results" class="imageblock">
+<div class="content">
+<img src="_images/dashboard-with-manual-results.png" alt="dashboard with manual results">
+</div>
+<div class="title">Figure 2. The Serenity dashboard showing some manual test results</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_updating_manual_test_results"><a class="anchor" href="#_updating_manual_test_results"></a>Updating manual test results</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Manual test results are generally only valid for a given version of an application - when a new version is built, the manual tests may need to be redone.</p>
 </div>
 <div class="paragraph">
-<p>Although Manual tests can have steps (like the one above), they are not really supposed to have step definitions. If Cucumber finds a step definition for a step, it will execute it, and this may not be what you intend if you mark a test as manual.</p>
+<p>Different projects deal with manual testing in different ways. For example some teams refer to a target release version, and test against this version when a new feature or story is ready to test. They do not, for example, feel the need to redo every manual test for each commit. They assess on a case-by-case basis whether any given changes might impact the features that have already been tested.</p>
+</div>
+<div class="paragraph">
+<p>For example, suppose that a team is working towards a release at the end of the 15th sprint of their project.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
+@manual:passed
+@manual-last-tested:sprint-15
+Scenario: Invoice details should be downloadable as a PDF file
+   ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the Serenity properties or configuration file, the team also records the current version (or sprint number):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">current.target.version = sprint-15</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the manual tests are processed, this scenario will be reported as passing, because the <code>current.target.version</code> matches the <code>@last-tested</code> tag in the scenario.</p>
+</div>
+<div class="paragraph">
+<p>However, in the next sprint, the target version is updated:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">current.target.version = sprint-16</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, when the manual scenario is processed, it will be marked as <em>pending</em>,
+with a note indicating that a new manual test is required:</p>
+</div>
+<div id="manual-results-pending-retest" class="imageblock">
+<div class="content">
+<img src="_images/manual-test-pending-retest.png" alt="manual test pending retest">
+</div>
+<div class="title">Figure 3. An out-of-date manual test</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_attaching_evidence"><a class="anchor" href="#_attaching_evidence"></a>Attaching evidence</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can either include a link to an external site, or place an image in the <code>src/test/resources/assets</code> folder and include a relative link to this file (without the <code>assets</code> folder name), e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
+@manual-result:passed
+@manual-last-tested:sprint-15
+@manual-test-evidence:https://some.external/link.png
+Scenario: Invoice details should be downloadable as a PDF file
+   ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
+@manual-result:passed
+@last-tested:sprint-15
+@test-evidence:assets/some-screenshot.png
+Scenario: Invoice details should be downloadable as a PDF file
+   ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test Evidence is only displayed if the <code>@last-tested</code> annotation is defined.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_updating_manual_test_results_in_an_existing_test_suite"><a class="anchor" href="#_updating_manual_test_results_in_an_existing_test_suite"></a>Updating manual test results in an existing test suite</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Manual test results are not always updated at the same time as code changes.
+You can update an existing set of test results by selectively running the manual scenarios.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> mvn verify -Dcucumber.options="--tags @manual"</pre>
+</div>
+</div>
+</div>
 </div>
 </article>
   </main>

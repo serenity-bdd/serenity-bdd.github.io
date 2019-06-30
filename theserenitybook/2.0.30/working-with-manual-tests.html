@@ -163,7 +163,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="extended-reports.html">Additional Reports</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="manual-tests.html">Reporting Manual Test Results</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -223,11 +223,10 @@
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">The Serenity Book</a></li>
-    <li class="crumb">Reporting and Living documentation</li>
-    <li class="crumb"><a href="manual-tests.html">Reporting Manual Test Results</a></li>
+    <li class="crumb"><a href="working-with-manual-tests.html">Reporting Manual Test Results</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/manual-tests.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/working-with-manual-tests.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
 <h1>Reporting Manual Test Results</h1>
@@ -273,23 +272,10 @@ Scenario: Invoice details should be downloadable as a PDF file
 <h2 id="_recording_manual_test_results"><a class="anchor" href="#_recording_manual_test_results"></a>Recording manual test results</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>By default, <code>@manual</code> scenarios are marked as <em>pending</em> in the Serenity reports.
-However, you can indicate a different result by adding the <code>@manual-result</code> tag as shown here:
-   * A passing test: <code>@manual-result:passed</code>
-   * A failing test: <code>@manual-result:failed</code>
-   * A compromised test: <code>@manual-result:compromised</code></p>
-</div>
-<div class="paragraph">
-<p>Note that if you want to record the result of a manual test, you should include both the <code>@manual</code> and the <code>@manual-result</code> tags.
-This also makes it easier to run all of the manual tests in isolation.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
-@manual:passed
-Scenario: Invoice details should be downloadable as a PDF file
-   ...</code></pre>
-</div>
+<p>By default, <code>@manual</code> scenarios are marked as <em>pending</em> in the Serenity reports. However, you can indicate a different result as shown here:
+   * A passing test: <code>@manual:passed</code>
+   * A failing test: <code>@manual:failed</code>
+   * A compromised test: <code>@manual:compromised</code></p>
 </div>
 <div class="paragraph">
 <p>These manual test results are indicated in a different shade in the Serenity reports, and also appear in the summary table on the home page:</p>
@@ -316,8 +302,7 @@ Scenario: Invoice details should be downloadable as a PDF file
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
-@manual:passed
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual:passed
 @manual-last-tested:sprint-15
 Scenario: Invoice details should be downloadable as a PDF file
    ...</code></pre>
@@ -362,8 +347,7 @@ with a note indicating that a new manual test is required:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
-@manual-result:passed
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual:passed
 @manual-last-tested:sprint-15
 @manual-test-evidence:https://some.external/link.png
 Scenario: Invoice details should be downloadable as a PDF file
@@ -375,8 +359,7 @@ Scenario: Invoice details should be downloadable as a PDF file
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
-@manual-result:passed
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual:passed
 @last-tested:sprint-15
 @test-evidence:assets/some-screenshot.png
 Scenario: Invoice details should be downloadable as a PDF file
@@ -391,15 +374,7 @@ Scenario: Invoice details should be downloadable as a PDF file
 <div class="sect1">
 <h2 id="_updating_manual_test_results_in_an_existing_test_suite"><a class="anchor" href="#_updating_manual_test_results_in_an_existing_test_suite"></a>Updating manual test results in an existing test suite</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Manual test results are not always updated at the same time as code changes.
-You can update an existing set of test results by selectively running the manual scenarios.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre> mvn verify -Dcucumber.options="--tags @manual"</pre>
-</div>
-</div>
+
 </div>
 </div>
 </article>

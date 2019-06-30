@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: The Serenity BDD Book</title>
+    <title>Screenplay Assertions :: The Serenity BDD Book</title>
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -230,9 +230,9 @@
   <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/serenity-screenplay-ensure.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<div class="paragraph">
-<p>Assertions are an important part of any test automation framework, and Serenity gives us many options. To start with, you can use standard JUnit, <a href="http://hamcrest.org/">Hamcrest</a> or <a href="https://joel-costigliola.github.io/assertj/">AssertJ</a> assertions at any point in a Screenplay test.</p>
-</div>
+<h1>Screenplay Assertions</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>We have seen how make assertions using the <code>should()</code> method with targets or questions combined with Hamcrest matchers, like this:</p>
 </div>
@@ -250,6 +250,8 @@ sam.should(
 <div class="paragraph">
 <p>In the code shown here, the <code>the()</code> method is a static import from the <code>WebElementQuestion</code> class, and the <code>hasValue()</code> is a static import from the <code>WebElementStateMatchers</code> class.
 This is quite flexible, as you can add custom matchers quite easily. However, it means you need to know what matchers exist, and which ones can be used in different circumstances.</p>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="_introducing_serenity_ensure"><a class="anchor" href="#_introducing_serenity_ensure"></a>Introducing Serenity Ensure</h2>
