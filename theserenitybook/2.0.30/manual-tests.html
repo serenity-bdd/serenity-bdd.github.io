@@ -80,9 +80,6 @@
     <a class="nav-link" href="page-objects.html">Working with Page Objects</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#">screenshots.adoc</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="angularjs.html">Testing AngularJS applications</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -159,6 +156,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="living-documentation.html">Living Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="filtering-reports.html">Filtering Reports</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="extended-reports.html">Additional Reports</a>
@@ -394,7 +394,36 @@ Scenario: Invoice details should be downloadable as a PDF file
 </div>
 </div>
 <div class="paragraph">
-<p>Test Evidence is only displayed if the <code>@lmanual-ast-tested</code> annotation is defined.</p>
+<p>You can provide more than one piece of evidence by providing a comma-separated list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
+@manual-result:passed
+@manual-last-tested:sprint-15
+@manual-test-evidence:assets/first-screenshot.png,assets/second-screenshot.png
+Scenario: Invoice details should be downloadable as a PDF file
+   ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use a markdown-like syntax to customise the text that will describe each piece of evidence:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">@manual
+@manual-result:passed
+@manual-last-tested:sprint-15
+@manual-test-evidence:[First_Screenshot](assets/first-screenshot.png)
+Scenario: Invoice details should be downloadable as a PDF file
+   ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since Cucumber does not allow spaces in tags, you can use underscores for spaced.</p>
+</div>
+<div class="paragraph">
+<p>Test Evidence is only displayed if the <code>@manual-last-tested</code> annotation is defined.</p>
 </div>
 </div>
 </div>
