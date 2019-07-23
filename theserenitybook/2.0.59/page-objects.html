@@ -819,9 +819,17 @@ Normally, Serenity uses <code>SmartElementLocatorFactory</code>, an extension of
 <p>The <code>SmartElementLocatorFactory</code> uses the default implicit wait, or the <code>timeoutInSeconds</code> attribute of the <code>@FindBy</code> annotation if this value has been specified (see below), or the default implicit wait value specified by the <code>webdriver.timeouts.implicitlywait</code> property.</p>
 </div>
 <div class="paragraph">
-<p>In rare cases, you may need to customise this behaviour. To do this, you can use the <code>serenity.locator.factory</code> property to use one of the following alternative locator factories:
-  * <code>AjaxElementLocatorFactory</code>: A WebDriver locator factory more suitable for Ajax applications. According to the WebDriver docs, this locator factory will return <em>an element locator that will wait for the specified number of seconds for an element to appear, rather than failing instantly if it&#8217;s not present. This works by polling the UI on a regular basis. The element returned will be present on the DOM, but may not actually be visible.</em>
-  * <code>DefaultElementLocatorFactory</code>: the default WebDriver locator factory</p>
+<p>In rare cases, you may need to customise this behaviour. To do this, you can use the <code>serenity.locator.factory</code> property to use one of the following alternative locator factories:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AjaxElementLocatorFactory</code>: A WebDriver locator factory more suitable for Ajax applications. According to the WebDriver docs, this locator factory will return <em>an element locator that will wait for the specified number of seconds for an element to appear, rather than failing instantly if it&#8217;s not present. This works by polling the UI on a regular basis. The element returned will be present on the DOM, but may not actually be visible.</em></p>
+</li>
+<li>
+<p><code>DefaultElementLocatorFactory</code>: the default WebDriver locator factory</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>If you use the <code>AjaxElementLocatorFactory</code>, you can use the <code>webdriver.timeouts.implicitlywait</code> parameter is to specify the number of seconds to wait. If no value is specified, the default wait will be 5 seconds.</p>
