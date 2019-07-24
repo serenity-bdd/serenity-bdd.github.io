@@ -1190,7 +1190,7 @@ public class DeveloperSteps {
 </div>
 </div>
 <div class="paragraph">
-<p>You can also check that the number of matching elements corresponds to what you are expecting. For example, to check that there is only one person who&#8217;s first name is Bill, you could do this:</p>
+<p>You can also check that the number of matching elements corresponds to what you are expecting. For example, to check that there is only one person named Bill, you could do this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1409,6 +1409,44 @@ List&lt;WebElement&gt; options</code></pre>
 </div>
 <div class="paragraph">
 <p>Paranoid will wait until all of the elements are displayed. This can be slow for long lists.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_working_with_fixture_methods"><a class="anchor" href="#_working_with_fixture_methods"></a>Working with fixture methods</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When a UI step fails in a Serenity test, the WebDriver instance is disabled for the rest of the test. This avoids unnecessary waits as the test steps through the subsequent steps (which it needs to do to document the test steps). The exception to this rule is in the case of fixture methods, such as methods annotated with the <code>@After</code> annotation in JUnit or Cucumber.</p>
+</div>
+<div class="paragraph">
+<p>In these methods, the WebDriver instance can be used normally. In addition to the known JUnit and Cucumber annotations, any annotation starting with the word <code>After</code> will be considered a fixture method.</p>
+</div>
+<div class="paragraph">
+<p>For example, suppose you need to delete the customer accounts via the UI at the end of each test. You already have an <code>AdminSteps</code> step library with a <code>deleteAllCustomerAccounts()</code> method that performs this task. You could ensure that all of the customer accounts are deleted like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Steps
+AdminSteps asAdministrator;
+
+...
+
+@After
+public void deleteUserAccounts() {
+    asAdministrator.deleteAllCustomerAccounts();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This makes it easy to perform teardown or cleanup operations that use the user interface, potentially reusing steps or tasks that are used elsewhere in the tests.</p>
+</div>
+<div class="paragraph">
+<p>You can also override this behaviour at any point by calling the <code>reenableDrivers()</code> method, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Serenity.webdriver().reenableDrivers();</code></pre>
+</div>
 </div>
 </div>
 </div>
