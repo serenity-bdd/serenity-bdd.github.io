@@ -113,13 +113,22 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Serenity with BDD Frameworks</span>
+    <span class="nav-text">Serenity with Cucumber</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cucumber.html">Working with Cucumber JVM</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cucumber-before-and-after.html">Setting up and tearing down test data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Serenity with JBehave</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="jbehave.html">Working with JBehave</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="cucumber.html">Working with Cucumber JVM</a>
   </li>
 </ul>
   </li>
@@ -315,6 +324,22 @@ public class WhenAddingNumbers {
 <div class="content">
 <pre class="highlightjs highlight"><code>$ mvn clean verify -Dcucumber.options="--tags @sprint-2" -Dtags=sprint-2</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>If you have already run the full set of tests, you can also produce a filtered aggregate report, in which case you don&#8217;t need to provide the <code>cucumber.options</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ mvn serenity:aggregate -Dtags=sprint-2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_custom_requirements_structures"><a class="anchor" href="#_using_custom_requirements_structures"></a>Using custom requirements structures</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, requirements filtering will a</p>
 </div>
 </div>
 </div>
