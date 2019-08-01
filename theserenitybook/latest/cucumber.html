@@ -481,7 +481,7 @@ You also need to use the <code>@CucumberOptions</code> class to provide the root
 </div>
 </div>
 <div class="sect2">
-<h3 id="_step_definitions"><a class="anchor" href="#_step_definitions"></a>Step definitions</h3>
+<h3 id="_cucumber_step_definitions"><a class="anchor" href="#_cucumber_step_definitions"></a>Cucumber Step definitions</h3>
 <div class="paragraph">
 <p>In Cucumber, each line of the Gherkin scenario maps to a method in a Java class, known as a 'Step Definition'.
 These use annotations like <code>@Given</code>, <code>@When</code> and <code>@Then</code> match lines in the scenario to Java methods.
@@ -528,20 +528,228 @@ In Cucumber 2, you define simple regular expressions to indicate parameters that
 </div>
 </div>
 <div class="sect2">
-<h3 id="_integrating_with_serenity_step_libraries_and_action_classes"><a class="anchor" href="#_integrating_with_serenity_step_libraries_and_action_classes"></a>Integrating with Serenity Step Libraries and Action Classes</h3>
+<h3 id="_using_serenity_step_libraries_in_cucumber_step_definitions"><a class="anchor" href="#_using_serenity_step_libraries_in_cucumber_step_definitions"></a>Using Serenity step libraries in Cucumber Step definitions</h3>
+<div class="paragraph">
+<p>It is perfectly possible to call classic test automation code directly in your step definition methods. In this case, Serenity will only report on the <em>Given..When..Then</em> steps, and leave you full control of the underlying code.</p>
+</div>
+<div class="paragraph">
+<p>Many teams however find it useful to organise their tests into reusable components and domain layer classes. And Serenity provides many ways to help with this.</p>
+</div>
+<div class="paragraph">
+<p>Serenity Step Libraries integrate smoothly into Cucumber Step Definition files;
+all you need to do is to annotate a step library variable with the <code>@Steps</code> annotation. For example, suppose our banking application has a set of web services to handle account balances and withdrawals. We could wrap these web service calls in Serenity Action classes, and inject these action classes into the step definition classes using the Serenity <code>@Steps</code> annotation, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class CashWithdrawalsStepDefinitions {
+    @Steps
+    CreateAccountAction createAnAccount;
 
+    @Given("{word} has ${int} in his {word} account")
+    public void in_his_current_account(String customer,
+                                       int balance,
+                                       String accountType) {
+        createAnAccount.forCustomer(customer)
+                       .ofType(accountType)
+                       .withABalanceOf(balance);
+    }
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Action class uses a builder pattern for better readability.
+We use the <code>@Step</code> annotation on the last method to ensure that we get a complete description of the step in our reports:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class CreateAccountAction {
+    String customerName;
+    String accountType;
+
+    public CreateAccountAction forCustomer(String customerName) {
+        this.customerName = customerName;
+        return this;
+    }
+
+    public CreateAccountAction ofType(String accountType) {
+        this.accountType = accountType;
+        return this;
+    }
+
+    @Step("Create a #accountType account for customer #customerName with a balance of ${0}")
+    public int withABalanceOf(int balance) {
+        // Call the appropriate web service and return the account unique ID
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The other step definition methods would use similar step libraries.
+Some teams group their step libraries by theme or end point (for example, they might place all the web service calls related to managing a bank account in a single <code>BankAccountActions</code> step library). Others prefer to enforce a stricter separation of concerns, and have a single class per action (this approach is know as the <em>Action Classes</em> pattern), as illustrated here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class CashWithdrawalsStepDefinitions {
+
+    @Steps
+    CreateAccountAction createAnAccount;
+
+    @Steps
+    WithdrawAction withdraw;
+
+    @Steps
+    AccountBalanceAction accountBalance;
+
+    int accountIdentifier;
+
+    @Given("{word} has ${int} in his {word} account")
+    public void in_his_current_account(String customer, int balance, String accountType) {
+        accountIdentifier = createAnAccount.forCustomer(customer).ofType(accountType).withABalanceOf(balance);
+    }
+
+    @When("he withdraws ${int} in cash")
+    public void he_withdraws_in_cash(int withdrawal) {
+        withdraw.fromAccount(accountIdentifier).theSumOf(withdrawal);
+    }
+
+    @Then("his remaining balance should be ${int}")
+    public void his_remaining_balance_should_be(int expectedBalance) {
+        assertThat(accountBalance.forAccount(accountIdentifier)).isEqualTo(expectedBalance);
+    }
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_integrating_with_serenity_page_objects"><a class="anchor" href="#_integrating_with_serenity_page_objects"></a>Integrating with Serenity Page Objects</h3>
+<div class="paragraph">
+<p>Integration Cucumber with Serenity UI tests is also easy. Unlike with JUnit, you don&#8217;t need to declare an <code>@Managed</code> WebDriver instance in your tests; Serenity will automatically instantiate a driver on demand.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following scenario is a very simple example of using a search engine:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Feature: Search by keyword
 
+  Scenario: Search for terms by a single keyword
+    Given Serge is on the Search page
+    When he searches by "Tomato"
+    Then he should only see search results containing the word "Tomato"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We could use Serenity Page Objects or UI Action Classes to model the UI interactions.
+For example, the following Serenity <code>PageObject</code> models the DuckDuckGo home page:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DefaultUrl("https://duckduckgo.com")
+public class SearchPage extends PageObject {
+
+    public void searchBy(String keyword) {
+        $("#search_form_input_homepage").sendKeys(keyword, Keys.ENTER);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And this one allows us to query the search results:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ResultsPage extends PageObject {
+
+    public List&lt;String&gt; getSearchResultTitles() {
+        return findAll(".results .result__title")
+                .stream()
+                .map(WebElementFacade::getTextContent)
+                .collect(Collectors.toList());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We could use both of these page objects directly in our Cucumber step definition code, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SearchStepDefinitions {
+
+    SearchPage searchPage;
+    ResultsPage resultsPage;
+
+    @Given("Serge is on the Search page")
+    public void serge_is_on_the_Search_page() {
+        searchPage.open();
+    }
+
+    @When("he searches by {string}")
+    public void he_searches_by(String keyword) {
+        searchPage.searchBy(keyword);
+    }
+
+    @Then("he should only see search results containing the word {string}")
+    public void he_should_only_see_search_results_containing_the_word(String expectedKeyword) {
+        resultsPage.getSearchResultTitles().forEach(
+                title -&gt; assertThat(title).containsIgnoringCase(expectedKeyword)
+        );
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, we could use Action Classes or Step Libraries to encapsulate the UI logic.
+In both cases, Serenity will instantiate the WebDriver instance for us the first time a page object is invoked.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_maintaining_the_browser_open_for_the_entire_feature"><a class="anchor" href="#_maintaining_the_browser_open_for_the_entire_feature"></a>Maintaining the browser open for the entire feature</h3>
-
+<h3 id="_configuring_cucumber_and_serenity"><a class="anchor" href="#_configuring_cucumber_and_serenity"></a>Configuring Cucumber and Serenity</h3>
+<div class="paragraph">
+<p>Serenity provides a number of configuration options when using Cucumber.</p>
+</div>
+<div class="sect3">
+<h4 id="_maintaining_the_browser_open_for_the_entire_feature"><a class="anchor" href="#_maintaining_the_browser_open_for_the_entire_feature"></a>Maintaining the browser open for the entire feature</h4>
+<div class="paragraph">
+<p>Reopening a browser session for each scenario can slow down your tests.
+If you want Serenity to keep the browser open for the duration of a feature, you can set the following property in your <code>serenity.properties</code> or <code>serenity.conf</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">serenity.restart.for.each = feature</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_maintaining_state_between_scenarios"><a class="anchor" href="#_maintaining_state_between_scenarios"></a>Maintaining state between scenarios</h4>
+<div class="paragraph">
+<p>You may also wish to maintain state between scenarios.
+By default, Serenity will use new step libraries and action classes for each scenario.
+However, if you want to share data between the scenarios of a feature, you can use the following option:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">serenity.maintain.session = true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this value set, you can now use either the <code>@Shared</code> annotation, or the <code>@Steps(shared=true)</code>. For example, suppose that the <code>CreateAccountAction</code> needs to retrieve a security token before making any calls, but that it only needs to do this once.
+We could tell Serenity to maintain the same <code>CreateAccountAction</code> step library for all the scenarios in a feature file like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Shared
+CreateAccountAction createAnAccount;</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_maintaining_state_between_scenarios"><a class="anchor" href="#_maintaining_state_between_scenarios"></a>Maintaining state between scenarios</h3>
-
+<h3 id="_integrating_with_serenity_screenplay"><a class="anchor" href="#_integrating_with_serenity_screenplay"></a>Integrating with Serenity Screenplay</h3>
+<div class="paragraph">
+<p>COMING SOON</p>
+</div>
 </div>
 </div>
 </div>
