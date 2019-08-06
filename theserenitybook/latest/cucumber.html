@@ -450,7 +450,12 @@ The Feature File for the first example we saw earlier is called <code>cash_withd
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">include::../examples/cucumber2-sample/src/test/resources/features/bank/cash_withdrawals.feature</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Feature: Cash Withdrawals
+
+  Scenario: Cash withdrawal
+    Given Clive has $1000 in his Current account
+    When he withdraws $100 in cash
+    Then his remaining balance should be $900</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -489,7 +494,7 @@ For example, in the following directory structure, we have feature definitions f
 </div>
 <div id="fig-cucumber-requirements-hierarchy" class="imageblock">
 <div class="content">
-<img src="_images/cucumber-requirements-hierarchy.png" alt="cucumber requirements hierarchy" width="475">
+<img src="_images/cucumber-requirements-hierarchy.png" alt="cucumber requirements hierarchy" width="600">
 </div>
 <div class="title">Figure 2. A Cucumber requirements hierarchy report</div>
 </div>
@@ -514,10 +519,18 @@ public class CashWithdrawals {
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>(1) Serenity Cucumber feature files need the <code>CucumberWithSerenity</code> test runner.
-(2) The <code>features</code> attribute indicates where to look for the feature files, and can be a path to a directory or to a specific feature file
-(3) The <code>glue</code> attribute tells Cucumber where to find the Step Definition classes</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Serenity Cucumber feature files need the <code>CucumberWithSerenity</code> test runner.</p>
+</li>
+<li>
+<p>The <code>features</code> attribute indicates where to look for the feature files, and can be a path to a directory or to a specific feature file</p>
+</li>
+<li>
+<p>The <code>glue</code> attribute tells Cucumber where to find the Step Definition classes</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
@@ -756,25 +769,21 @@ public void in_his_current_account(Actor customer,
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The name of the custom parameter</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The regular expression used to capture the parameter value</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The parameter type</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>A lambda expression to convert the String parameter to the target type</td>
-</tr>
-</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The name of the custom parameter</p>
+</li>
+<li>
+<p>The regular expression used to capture the parameter value</p>
+</li>
+<li>
+<p>The parameter type</p>
+</li>
+<li>
+<p>A lambda expression to convert the String parameter to the target type</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect3">
@@ -835,13 +844,12 @@ public void hasTheFollowingAccounts(List&lt;Map&lt;String,String&gt;&gt; account
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Jackson needs a default constructor to work correctly</td>
-</tr>
-</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Jackson needs a default constructor to work correctly</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Secondly, the column names need to match the Java field names exactly.
