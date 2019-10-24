@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untitled :: The Serenity BDD Book</title>
-    <meta name="generator" content="Antora 2.1.1">
+    <meta name="generator" content="Antora 2.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -530,7 +530,7 @@ james.attemptsTo(openTheApplication);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The actual implementation uses pre-defined <code>Action</code> classes (such as <code>Enter</code> and <code>Hit `shown here) that come with Serenity.  `Action</code> classes are very similar to <code>Task</code> classes, except that they focus on interacting directly with the application. Serenity provides a small number of basic Action classes for core UI interactions such as entering field values, clicking on elements, or selecting values from drop-down lists. You can find these in the <code>net.serenitybdd.screenplay.actions</code> package. In practice, these provide a convenient and readable DSL that let you describe common low-level UI interactions needed to perform a task.</p>
+<p>The actual implementation uses pre-defined <code>Action</code> classes (such as <code>Enter</code> and <code>Hit</code> shown here) that come with Serenity. <code>Action</code> classes are very similar to <code>Task</code> classes, except that they focus on interacting directly with the application. Serenity provides a small number of basic Action classes for core UI interactions such as entering field values, clicking on elements, or selecting values from drop-down lists. You can find these in the <code>net.serenitybdd.screenplay.actions</code> package. In practice, these provide a convenient and readable DSL that let you describe common low-level UI interactions needed to perform a task.</p>
 </div>
 <div class="paragraph">
 <p>For example, the UI Action to enter the text defined in the <code>thingToDo</code> field into the input field with an ID value of “new-todo” would look like this:</p>
@@ -682,7 +682,7 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 <p>The Question object here is defined by the <code>TheRemainingItemCount</code> class.  This class has one very precise responsibility: to read the number in the remaining item count text displayed at the bottom of the todo list.</p>
 </div>
 <div class="paragraph">
-<p>The static <code>value()`</code> method is a simple factory method that returns a new instance of the <code>TheRemainingItemCount</code> class.  This is simply to make the code read more fluently.</p>
+<p>The static <code>value()</code> method is a simple factory method that returns a new instance of the <code>TheRemainingItemCount</code> class.  This is simply to make the code read more fluently.</p>
 </div>
 <div class="paragraph">
 <p><code>Question</code> objects are similar to <code>Task</code> and <code>Action</code> objects. However, instead of the <code>performAs()</code> used for Tasks and Actions, a Question class needs to implement the <code>answeredBy(actor)</code> method, and return a result of a specified type. The <code>TheRemainingItemCount</code> class is configured to return an Integer. Since it will be querying the web interface, we can extend the WebQuestion class to give us access to the powerful Serenity WebDriver API.</p>
