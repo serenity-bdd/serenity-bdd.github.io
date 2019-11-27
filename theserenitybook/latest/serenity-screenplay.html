@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Writing User-centric tests using Serenity Screenplay :: The Serenity BDD Book</title>
-    <meta name="generator" content="Antora 2.1.2">
+    <meta name="generator" content="Antora 2.2.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -814,8 +814,72 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_fluent_assertions_with_serenity_screenplay"><a class="anchor" href="#_fluent_assertions_with_serenity_screenplay"></a>Fluent Assertions with Serenity Screenplay</h3>
+<h3 id="_conditional_tasks"><a class="anchor" href="#_conditional_tasks"></a>Conditional tasks</h3>
+<div class="paragraph">
+<p>The <code>Check</code> task gives you a convenient way to only execute a task if a value or the answer to a question is true. For example, in the following code we choose to add items to an initial list or not depending on whether there are any items in the list.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public void has_a_list_containing(Actor actor, List&lt;String&gt; expectedItems) {
 
+    actor.attemptsTo(
+            Open.browserOn().the(TodoReactHomePage.class),
+            Check.whether(!expectedItems.isEmpty())
+                    .andIfSo(AddTodoItems.from(expectedItems))
+
+    );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We could avoid the negation by using the <code>otherwise()</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public void has_a_list_containing(Actor actor, List&lt;String&gt; expectedItems) {
+
+    actor.attemptsTo(
+            Open.browserOn().the(TodoReactHomePage.class),
+            Check.whether(expectedItems.isEmpty())
+                    .otherwise(AddTodoItems.from(expectedItems))
+
+    );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can also use a <code>Question</code> and a Hamcrest matcher rather than a boolean value to decide which task or tasks to run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">actor.attemptsTo(
+        Check.whether(theNumberOfItemsLeft(), Matchers.equalTo(0))
+             .otherwise(completeAllItems())
+);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the <code>theNumberOfItemsLeft()</code> would be a method that returns a <code>Question&lt;Integer&gt;</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private static Question&lt;Integer&gt; theNumberOfItemsLeft() {
+    return actor -&gt; Text.of(ITEMS_LEFT).viewedBy(actor).asInteger();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the <code>completeAllItems()</code> method would return a performable that does the actual work.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private Performable completeAllItems() {
+    return Task.where("{0} completes each item",
+            actor -&gt; COMPLETE_ITEM_CHECKBOXS.resolveAllFor(actor)
+                                            .forEach(WebElementFacade::click));
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
