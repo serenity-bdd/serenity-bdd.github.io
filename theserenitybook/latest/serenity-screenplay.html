@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Writing User-centric tests using Serenity Screenplay :: The Serenity BDD Book</title>
-    <meta name="generator" content="Antora 2.2.0">
+    <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -294,7 +294,15 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @Test
+    public void should_be_able_to_add_a_todo_item() {
+
+        givenThat(james).wasAbleTo(OpenTheApplication.onTheHomePage());
+
+        when(james).attemptsTo(AddATodoItem.called("Buy some milk"));
+
+        then(james).should(seeThat(theDisplayedItems, hasItem("Buy some milk")));
+    }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -319,7 +327,34 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(SerenityRunner.class)
+public class AddNewTodos {
+
+    private Actor james = Actor.named("James");
+
+    @Managed
+    private WebDriver hisBrowser;
+
+    @Steps
+    private PlaceholderText thePlaceholderText;
+
+    private DisplayedItems theDisplayedItems = new DisplayedItems();
+
+    @Before
+    public void jamesCanBrowseTheWeb() {
+        james.can(BrowseTheWeb.with(hisBrowser));
+    }
+
+    @Test
+    public void should_be_able_to_add_a_todo_item() {
+
+        givenThat(james).wasAbleTo(OpenTheApplication.onTheHomePage());
+
+        when(james).attemptsTo(AddATodoItem.called("Buy some milk"));
+
+        then(james).should(seeThat(theDisplayedItems, hasItem("Buy some milk")));
+    }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -536,7 +571,13 @@ james.attemptsTo(openTheApplication);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @Step("{0} adds a todo item called #thingToDo")
+    public &lt;T extends Actor&gt; void performAs(T actor) {
+        actor.attemptsTo(
+                Enter.theValue(thingToDo).into(NewTodoForm.NEW_TODO_FIELD),
+                Hit.the(RETURN).keyIn(NewTodoForm.NEW_TODO_FIELD)
+        );
+    }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -622,7 +663,23 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class AddTodoItems implements Task {
+
+    private final List&lt;String&gt; todos;
+
+    protected AddTodoItems(List&lt;String&gt; items) { this.todos = ImmutableList.copyOf(items); }
+
+    @Step("{0} adds the todo items called #todos")
+    public &lt;T extends Actor&gt; void performAs(T actor) {
+        todos.forEach(
+                todo -&gt; actor.attemptsTo(AddATodoItem.called(todo))
+        );
+    }
+
+    public static AddTodoItems called(String... items) {
+        return Instrumented.instanceOf(AddTodoItems.class).withProperties(asList(items));
+    }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -677,7 +734,35 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @Test
+    public void items_left_counter_should_be_decremented_when_an_item_is_completed() {
+
+        givenThat(james).wasAbleTo(OpenTheApplication.onTheHomePage());
+        andThat(james).wasAbleTo(AddTodoItems.called("Walk the dog", "Put out the garbage"));
+
+        when(james).attemptsTo(
+                Complete.itemCalled("Walk the dog")
+        );
+
+        then(james).should(seeThat(TheRemainingItemCount.value(), is(1)));
+    }
+    // end::items_left_counter_should_be_decremented_when_an_item_is_completed
+
+    @Test
+    public void completed_items_should_not_appear_in_the_active_list() {
+
+        givenThat(james).wasAbleTo(OpenTheApplication.onTheHomePage());
+        andThat(james).wasAbleTo(AddTodoItems.called("Walk the dog", "Put out the garbage"));
+
+        when(james).attemptsTo(
+                Complete.itemCalled("Walk the dog"),
+                FilterItems.byStatus(Active)
+        );
+
+        then(james).should(seeThat(theDisplayedItems, not(contains("Walk the dog"))));
+    }
+
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
