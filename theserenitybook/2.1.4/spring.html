@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: The Serenity BDD Book</title>
+    <title>Integration testing Spring :: The Serenity BDD Book</title>
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -101,7 +101,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="junit-basic.html">Basic JUnit Integration</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="junit.html">JUnit WebDriver Support</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -167,7 +167,7 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Integrating in Spring</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="spring.html">Integration testing Spring</a>
   </li>
 </ul>
@@ -245,165 +245,185 @@
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">The Serenity Book</a></li>
-    <li class="crumb">Serenity with JUnit</li>
-    <li class="crumb"><a href="junit.html">JUnit WebDriver Support</a></li>
+    <li class="crumb">Integrating in Spring</li>
+    <li class="crumb"><a href="spring.html">Integration testing Spring</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/junit.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/spring.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
+<h1>Integration testing Spring</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>In this section we will look at how to run your Serenity tests using JUnit in more detail.</p>
+<p>Spring projects are well suited for running your acceptance tests against different layers of your application.
+With Serenity you can ensure correct behavior using a browser, the REST API or work with the service layer of you application directly.
+Occasionally it can also be useful to access the service layers directly in your browser based ent-to-end tests.
+For example, you may have a scenario where a user action must, as a side effect, record an audit log in a table in the database.
+To keep your test focused and simple, you may want to call the service layer directly to check the audit logs, rather than using the browser to log in as an administrator and navigate to the audit logs screen.</p>
 </div>
-<div class="sect2">
-<h3 id="_serenity_webdriver_support_in_junit"><a class="anchor" href="#_serenity_webdriver_support_in_junit"></a>Serenity WebDriver support in JUnit</h3>
 <div class="paragraph">
-<p>Serenity BDD also provides strong support for Selenium WebDriver and the Page Objects model. We will look at these features in detail later on. But while we are on the topic of JUnit integration, let&#8217;s look at how this integration fits in with a JUnit Serenity test.</p>
-</div>
-<div class="paragraph">
-<p>Serenity will manage your WebDriver instance, including opening the appropriate driver at the start of each test, and shutting it down when the test is finished. You just need to provide a <code>WebDriver</code> variable in your test, as shown here:</p>
+<p>Integration tests must use the <code>SerenityRunner</code>.
+To be able to inject (e.g. <code>@Autowired</code>) dependencies and use the usual annotations (like <code>@DirtiesContext</code>), you just need to include the Serenity <code>SpringIntegrationMethodRule</code> in your test class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(SerenityRunner.class)
-public class WhenSearchingOnGoogle {
+@SpringBootTest
+public class WhenInjectingSpringDependencies {
 
-    @Managed                                                                <i class="conum" data-value="1"></i><b>(1)</b>
+    @Managed
     WebDriver driver;
 
-    @Test
-    public void shouldInstantiateAWebDriverInstanceForAWebTest() {
-        driver.get("http://www.google.com");                                <i class="conum" data-value="2"></i><b>(2)</b>
+    @ManagedPages(defaultUrl = "http://www.google.com")
+    public Pages pages;
 
-        driver.findElement(By.name("q")).sendKeys("firefly", Keys.ENTER);
+    @Rule
+    public SpringIntegrationMethodRule springIntegrationMethodRule =
+      new SpringIntegrationMethodRule();
 
-        new WebDriverWait(driver,5).until(titleContains("firefly - Google"));
-
-        assertThat(driver.getTitle()).contains("firefly - Google");
-    }
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Declare a WebDriver instance that will be managed by Serenity</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The WebDriver instance will be initialized automatically</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The <code>@Managed</code> annotation also provides several useful parameters. The <code>driver</code> parameter lets you define what WebDriver driver you want to run these tests in.
-Possible values include <strong>firefox</strong>, <strong>chrome</strong>, <strong>iexplorer</strong>, <strong>phantomjs</strong>, <strong>appium</strong>, <strong>safari</strong>, <strong>edge</strong> and <strong>htmlunit</strong> :</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Managed(driver="chrome")</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Default value for <code>driver</code> is <strong>firefox</strong>.</p>
-</div>
-<div class="paragraph">
-<p>You can also get Serenity to open the browser at the start of the tests, and leave it open until all of the tests in this test case have been executed, using the <code>uniqueSession</code> parameter:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Managed(uniqueSession=true)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Default value for <code>uniqueSession</code> is <strong>false</strong></p>
-</div>
-<div class="paragraph">
-<p>To make Serenity BDD clear cookies for each test or never clear cookies you can use property <code>clearCookies</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Managed(clearCookies=BeforeEachTest)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Default value for <code>clearCookies</code> is <strong>BeforeEachTest</strong>, possible values are: <strong>BeforeEachTest</strong>, <strong>Never</strong>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_serenity_pageobjects_in_junit"><a class="anchor" href="#_serenity_pageobjects_in_junit"></a>Serenity PageObjects in JUnit</h3>
-<div class="paragraph">
-<p>The WebDriver test in the previous example will work, but it is poorly written for a number of reasons as below:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>In particular, it exposes too much WebDriver-specific details about how the test is executed, which as a result obscures the intent of the test</p>
-</li>
-<li>
-<p>It will also be harder to maintain, as it contains WebDriver logic that would be repeated and maintained in other tests</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>A better approach is to hide the WebDriver logic in "Page Objects". Serenity provides excellent built-in support for Page Objects, as described in the chapter dedicated to Serenity WebDriver support <a href="#page-objects.adoc">Working with Page Objects</a> .</p>
-</div>
-<div class="paragraph">
-<p>The JUnit Serenity integration provides some special support for Serenity Page Objects. In particular, Serenity will automatically instantiate any PageObject fields in your JUnit test. For example, the following Page Object would perform the same operations as the test shown above:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package net.serenitybdd.samples.junit.pages;
-
-import net.thucydides.core.annotations.DefaultUrl;
-import net.thucydides.core.pages.PageObject;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.titleContains;
-
-@DefaultUrl("http://www.google.com")
-public class GooglePage extends PageObject {
-
-    @FindBy(name="q")
-    WebElement search;
-
-    public void searchFor(String keywords) {
-        search.sendKeys(keywords, Keys.ENTER);
-        waitFor(titleContains(keywords  + " - Google"));
-    }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    GooglePage googlePage;                                                  <i class="conum" data-value="1"></i><b>(1)</b>
+    @Autowired
+    public GizmoService gizmoService;
 
     @Test
-    public void shouldInstantiatedPageObjectsForAWebTest() {
+    public void shouldInstanciateGizmoService() {
+        assertThat(gizmoService, is(not(nullValue())));
+    }
 
-        googlePage.open();                                                  <i class="conum" data-value="2"></i><b>(2)</b>
-
-        googlePage.searchFor("firefly");
-
-        assertThat(googlePage.getTitle()).contains("firefly - Google");
+    @Test
+    public void shouldInstanciateNestedServices() {
+        assertThat(gizmoService.getWidgetService(), is(not(nullValue())));
     }
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>When you declare a field of type <code>GooglePage</code> in your test, Serenity will instantiate it for you</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The page is automatically instantiated and ready to be used.</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_in_spring_boot_1_3"><a class="anchor" href="#_in_spring_boot_1_3"></a>In Spring Boot &lt;1.3</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>use the <code>@ContextConfiguration</code> annotation to define the configuration file or files to use. The you can inject dependencies as you would with an ordinary Spring integration test, using the usual Spring annotations such as <code>@Autowired</code> or <code>@Resource</code>. For example, suppose we are using the following Spring configuration file, called ‘config.xml’:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;beans&gt;
+    &lt;bean id="widgetService" class="net.serenity.junit.spring.WidgetService"&gt;
+        &lt;property name="name"&gt;&lt;value&gt;Widgets&lt;/value&gt;&lt;/property&gt;
+        &lt;property name="quota"&gt;&lt;value&gt;1&lt;/value&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+    &lt;bean id="gizmoService" class="net.serenity.junit.spring.GizmoService"&gt;
+        &lt;property name="name"&gt;&lt;value&gt;Gizmos&lt;/value&gt;&lt;/property&gt;
+        &lt;property name="widgetService"&gt;&lt;ref bean="widgetService" /&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can use this configuration file to inject dependencies as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(SerenityRunner.class)
+@ContextConfiguration(locations = "/config.xml")
+public class WhenInjectingSpringDependencies {
+
+    @Managed
+    WebDriver driver;
+
+    @ManagedPages(defaultUrl = "http://www.google.com")
+    public Pages pages;
+
+    @Rule
+    public SpringIntegrationMethodRule springIntegrationMethodRule = new SpringIntegrationMethodRule();
+
+    @Autowired
+    public GizmoService gizmoService;
+
+    @Test
+    public void shouldInstanciateGizmoService() {
+        assertThat(gizmoService, is(not(nullValue())));
+    }
+
+    @Test
+    public void shouldInstanciateNestedServices() {
+        assertThat(gizmoService.getWidgetService(), is(not(nullValue())));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other context-related annotations such as @DirtiesContext will also work as they would in a traditional Spring Integration test. Spring will create a new ApplicationContext for each test, but it will use a single ApplicationContext for all of the methods in your test. If one of your tests modifies an object in the ApplicationContext, you may want to tell Spring so that it can reset the context for the next test. You do this using the @DirtiesContext annotation. In the following test case, for example, the tests will fail without the @DirtiesContext annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(SerenityRunner.class)
+@ContextConfiguration(locations = "/spring/config.xml")
+public class WhenWorkingWithDirtyContexts {
+
+    @Managed
+    WebDriver driver;
+
+    @ManagedPages(defaultUrl = "http://www.google.com")
+    public Pages pages;
+
+    @Rule
+    public SpringIntegration springIntegration = new SpringIntegration();
+
+    @Autowired
+    public GizmoService gizmoService;
+
+    @Test
+    @DirtiesContext
+    public void shouldNotBeAffectedByTheOtherTest() {
+        assertThat(gizmoService.getName(), is("Gizmos"));
+        gizmoService.setName("New Gizmos");
+    }
+
+    @Test
+    @DirtiesContext
+    public void shouldNotBeAffectedByTheOtherTestEither() {
+        assertThat(gizmoService.getName(), is("Gizmos"));
+        gizmoService.setName("New Gizmos");
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also inject Spring dependencies directly into your Step libraries, for JUnit, Cucumber and JBehave, as shown in this example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ContextConfiguration(locations = "/spring/config.xml")
+public class NestedSpringEnabledSteps {
+
+    @Autowired
+    public WidgetService widgetService;
+
+    private String widgetName;
+
+    @Steps
+    private NestedSteps nestedSteps;
+
+    @Given("I hava a nested autowired Spring bean")
+    public void givenIHavaAnAutowiredSpringBean() {
+        assertThat(nestedSteps.widgetService, notNullValue());
+    }
+
+    @When("I use the nested bean")
+    public void whenIUseTheBean() {
+        widgetName = nestedSteps.widgetService.getName();
+    }
+
+    @Then("the nested bean should be instanciated")
+    public void thenItShouldBeInstanciated() {
+        assertThat(widgetName, is("Widgets"));
+    }
+
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </article>
