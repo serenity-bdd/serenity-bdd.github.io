@@ -286,8 +286,9 @@ public class FindAJobPage extends PageObject {
     }
 
     public List&lt;String&gt; getJobTabs() {
-        List&lt;WebElementFacade&gt; tabs = findAll("//div[@id='tabs']//a");
-        return extract(tabs, on(WebElement.class).getText());
+        return findAll("//div[@id='tabs']//a").stream()
+            .map(WebElementFacade::getText)
+            .collect(Collectors.toList());
     }
 }</code></pre>
 </div>
@@ -313,8 +314,9 @@ public class FindAJobPage extends PageObject {
 	}
 
 	public List&lt;String&gt; getJobTabs() {
-	    List&lt;WebElementFacade&gt; tabs = findAll("//div[@id='tabs']//a");
-	    return extract(tabs, on(WebElement.class).getText());
+	     return findAll("//div[@id='tabs']//a").stream()
+            .map(WebElementFacade::getText)
+            .collect(Collectors.toList());
 	}
 }</code></pre>
 </div>
