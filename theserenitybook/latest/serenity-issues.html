@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: The Serenity BDD Book</title>
+    <title>Integration with Issue &amp;amp; Project Tracking systems :: The Serenity BDD Book</title>
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -188,6 +188,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="manual-tests.html">Reporting Manual Test Results</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="serenity-issues.html">Integration with Issue &amp; Project Tracking systems</a>
+  </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="jira.html">Integrating with JIRA</a>
   </li>
@@ -249,10 +252,18 @@
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">The Serenity Book</a></li>
+    <li class="crumb">Reporting and Living documentation</li>
+    <li class="crumb"><a href="serenity-issues.html">Integration with Issue &amp; Project Tracking systems</a></li>
+  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/serenity-issues.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
+<h1>Integration with Issue &amp; Project Tracking systems</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>Serenity BDD allows create links between stories/tests and issues. Sometimes it is useful for complex development workflow, and for organizing self-documented tests.</p>
 </div>
@@ -262,8 +273,11 @@
 <div class="paragraph">
 <p>Generally in annotations you should use name of issues according to mask #(NAME)(-)(NUMBER), link will be created to (NAME)(-)(NUMBER), below you can find example.</p>
 </div>
-<div class="sect3">
-<h4 id="_linking_with_issues_for_junit"><a class="anchor" href="#_linking_with_issues_for_junit"></a>Linking with issues for JUnit</h4>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linking_with_issues_for_junit"><a class="anchor" href="#_linking_with_issues_for_junit"></a>Linking with issues for JUnit</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>When tests created with JUnit you can use annotations <code>@Issue</code>, <code>@Issues</code>, <code>@Title</code>.</p>
 </div>
@@ -288,7 +302,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin"></code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">serenity.issue.tracker.url = https://example.server.com/cases/view/{0}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -296,7 +310,44 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(SerenityRunner.class)
+public class SampleTest {
+
+    @Steps
+    TestSteps steps;
+
+    @Test
+    @Title("Test case for some issue #BP-64  ")
+    public void shouldExecuteThisTest() {
+        steps.initialization();
+        steps.when_example_action_for(1);
+        steps.then_example_result_should_be(2);
+    }
+
+    @Test
+    @Title("Tests important bugs : #BP-64,#IS-84")
+    public void shouldExecuteThisTestTwo() {
+        steps.initialization();
+        steps.when_example_action_for(1);
+        steps.then_example_result_should_be(2);
+    }
+
+    @Test
+    @Issue("#NO-97")
+    public void shouldExecuteThisTestThree() {
+        steps.initialization();
+        steps.when_example_action_for(1);
+        steps.then_example_result_should_be(2);
+    }
+
+    @Test
+    @Issues({"#PN-97", "#KB-927"})
+    public void shouldExecuteThisTestLast() {
+        steps.initialization();
+        steps.when_example_action_for(1);
+        steps.then_example_result_should_be(2);
+    }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -319,8 +370,10 @@
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_linking_with_issues_for_jbehave"><a class="anchor" href="#_linking_with_issues_for_jbehave"></a>Linking with issues for JBehave</h4>
+</div>
+<div class="sect1">
+<h2 id="_linking_with_issues_for_jbehave"><a class="anchor" href="#_linking_with_issues_for_jbehave"></a>Linking with issues for JBehave</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Also you can use the <code>@issue</code> annotation or <code>#</code> in scenario name to link scenarios with issues when using JBehave, as illustrated here:</p>
 </div>
@@ -344,8 +397,10 @@ Then I should get a successful result</code></pre>
 <p>In this case links will be created according same rules as for <a href="#_linking_with_issues_for_junit">Linking with issues for JUnit</a></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_linking_with_issues_for_cucumber"><a class="anchor" href="#_linking_with_issues_for_cucumber"></a>Linking with issues for Cucumber</h4>
+</div>
+<div class="sect1">
+<h2 id="_linking_with_issues_for_cucumber"><a class="anchor" href="#_linking_with_issues_for_cucumber"></a>Linking with issues for Cucumber</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The <code>@issue</code> or <code>@issues</code> annotations can be used in Cucumber <code>.feature</code> files to link scenarios with issues , as shown below:</p>
 </div>
@@ -367,6 +422,7 @@ Feature: Basic Arithmetic
   Scenario: Another Addition
     When I add 4 and 7
     Then the result is 11</code></pre>
+</div>
 </div>
 </div>
 </div>
