@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filtering Reports :: The Serenity BDD Book</title>
+    <title>Filtering Execution and Reports with Tags :: The Serenity BDD Book</title>
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -180,7 +180,7 @@
     <a class="nav-link" href="living-documentation.html">Living Documentation</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="filtering-reports.html">Filtering Reports</a>
+    <a class="nav-link" href="filtering-reports.html">Filtering Execution and Reports with Tags</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="extended-reports.html">Additional Reports</a>
@@ -252,15 +252,20 @@
   <ul>
     <li class="crumb"><a href="index.html">The Serenity Book</a></li>
     <li class="crumb">Reporting and Living documentation</li>
-    <li class="crumb"><a href="filtering-reports.html">Filtering Reports</a></li>
+    <li class="crumb"><a href="filtering-reports.html">Filtering Execution and Reports with Tags</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/filtering-reports.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>Filtering Reports</h1>
+<h1>Filtering Execution and Reports with Tags</h1>
 <div id="preamble">
 <div class="sectionbody">
+<div class="paragraph">
+<p>Serenity BDD makes it easy to get both a broad overview of your test results and functional coverage.
+But when working with large test suites, it is often useful to be able to focus on specific functional areas of the application when reporting results.
+For example, you may want to view only the results for the tests related to the current release, or to a specific functional area.</p>
+</div>
 <div class="paragraph">
 <p>In Serenity BDD, you can use tags to generate this kind of focused report.</p>
 </div>
@@ -288,7 +293,7 @@ public class WhenAddingNumbers {
     MathWizSteps michael;
 
     @Test
-    @WithTag("sprint-2")
+    @WithTag("release:sprint-2")
     public void addingSums() {
         // Given
         michael.startsWith(1);
@@ -299,17 +304,28 @@ public class WhenAddingNumbers {
         // Then
         michael.shouldHave(3);
     }
+
+    @WithTagsValuesOf({"Reporting", "release:sprint-3"})
+    public void testWithMultipleTags() {
+    }
 }</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_running"><a class="anchor" href="#_running"></a>Running</h2>
+<h2 id="_running_scenarios_by_tags"><a class="anchor" href="#_running_scenarios_by_tags"></a>Running Scenarios by tags</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Tags are also a great way to help organize test execution.
+For example, you might want to flag all of the web services tests, or mark certain tests to run against Internet Explorer browser only.
+With JUnit tests, this can be achieved by providing a single tag or a comma separated list of tags from command line.
+If provided, only classes and/or methods with tags in this list will be executed.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>mvn clean verify -Dtags="sprint-2"</pre>
+<pre>mvn clean verify -Dtags="feature:Reporting, release:sprint-2"
+mvn clean verify -Dtags="feature:Reporting, release:sprint-2"</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -351,14 +367,6 @@ public class WhenAddingNumbers {
 <div class="content">
 <pre class="highlightjs highlight"><code>$ mvn serenity:aggregate -Dtags=sprint-2</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_using_custom_requirements_structures"><a class="anchor" href="#_using_custom_requirements_structures"></a>Using custom requirements structures</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>By default, requirements filtering will a</p>
 </div>
 </div>
 </div>
