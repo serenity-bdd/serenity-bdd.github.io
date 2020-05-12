@@ -754,6 +754,9 @@ stage("report aggregation") {
             unstash batchName
         }
 
+        //build report
+        mvn "serenity:aggregate"
+
         // publish the Serenity report
 
         publishHTML(target: [
