@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Untitled :: The Serenity BDD Book</title>
-    <meta name="generator" content="Antora 2.3.1">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="shortcut icon" type="image/x-icon" href="../../_/img/favicon.ico">
 <link rel="apple-touch-icon" sizes="57x57" href="../../_/img/apple-icon-57x57.png">
@@ -86,6 +86,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="step-libraries.html">Working with Step Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="maven.html">Building Serenity BDD with Maven</a>
   </li>
 </ul>
   </li>
@@ -298,8 +301,8 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DefaultUrl(""http://myapp.myorg.com"/somepage")
-public void MyAppHomePage extends PageObject {}</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DefaultUrl("http://myapp.myorg.com/somepage")
+public class MyAppHomePage extends PageObject {}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -318,7 +321,7 @@ public void MyAppHomePage extends PageObject {}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">environments {
+<pre class="highlightjs highlight"><code>environments {
     default {
         webdriver.base.url = "http://localhost:8080/myapp"
     }
@@ -355,7 +358,7 @@ public void MyAppHomePage extends PageObject {}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">environments {
+<pre class="highlightjs highlight"><code>environments {
     default {
         webdriver.base.url = "http://localhost:8080/myapp"
         accounts.service.url = "http://localhost:8081"
@@ -381,19 +384,18 @@ public void MyAppHomePage extends PageObject {}</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DefaultUrl("page:home.page")
-public void MyAppHomePage extends PageObject {}
-Or, if you are using Screenplay, you can refer to the pages directly by name:
-actor.attemptsTo(
-    Open.thePageNamed("home.page")
-)</code></pre>
+public class MyAppHomePage extends PageObject {}</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Or, if you are using Screenplay, you can refer to the pages directly by name: <code>actor.attemptsTo(Open.thePageNamed("home.page"))</code></p>
 </div>
 <div class="paragraph">
 <p>You can also add an all section, for URLs that will apply to any environment. These can use properties from the <code>default</code> environment section (or elsewhere in the config file), using the # symbol (the $ symbol, normally used, may conflict with the normal TypeSafe Config variable substitution). An example is shown here:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">environments {
+<pre class="highlightjs highlight"><code>environments {
     ...
     all {
         home.page = "#{webdriver.base.url}/myapp"
@@ -414,7 +416,7 @@ Suppose your <code>serenity.conf</code> file contains the following configuratio
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">environments {
+<pre class="highlightjs highlight"><code>environments {
     default {
         my.webservice.endpoint = "http://localhost:8081"
     }
@@ -440,7 +442,7 @@ Suppose your <code>serenity.conf</code> file contains the following configuratio
   public void invoke_my_webservice() {
     String webserviceEndpoint =  EnvironmentSpecificConfiguration.from(environmentVariables)
                                                                  .getProperty("my.webservice.endpoint");
-    ...
+    // ...
   }
 }</code></pre>
 </div>

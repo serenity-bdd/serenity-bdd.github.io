@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Serenity System Properties and Configuration :: The Serenity BDD Book</title>
-    <meta name="generator" content="Antora 2.3.1">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="shortcut icon" type="image/x-icon" href="../../_/img/favicon.ico">
 <link rel="apple-touch-icon" sizes="57x57" href="../../_/img/apple-icon-57x57.png">
@@ -86,6 +86,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="step-libraries.html">Working with Step Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="maven.html">Building Serenity BDD with Maven</a>
   </li>
 </ul>
   </li>
@@ -310,6 +313,12 @@
 </div>
 </div>
 <div class="sect2">
+<h3 id="_webdriver_autodownload"><a class="anchor" href="#_webdriver_autodownload"></a>webdriver.autodownload</h3>
+<div class="paragraph">
+<p>Set to <code>false</code> if you don&#8217;t want Serenity to automatically download driver binaries for local runs.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_webdriver_provided_type"><a class="anchor" href="#_webdriver_provided_type"></a>webdriver.provided_type</h3>
 <div class="paragraph">
 <p>If using a provided driver, what type is it. The implementation class needs to be defined in the webdriver.provided.{type} system property.</p>
@@ -415,6 +424,22 @@
 </li>
 <li>
 <p><code>DISABLED</code>: Doesn&#8217;t save screenshots for any steps.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_serenity_full_page_screenshot_strategy"><a class="anchor" href="#_serenity_full_page_screenshot_strategy"></a>serenity.full.page.screenshot.strategy</h3>
+<div class="paragraph">
+<p>Set this property to have full page screenshot support. This property can take the following values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>true</code>: Enables WHOLE_PAGE screenshot mode.</p>
+</li>
+<li>
+<p><code>false</code>: Enables VIEWPORT_ONLY screenshot mode. (default)</p>
 </li>
 </ul>
 </div>
@@ -554,7 +579,7 @@ This is set to <code>false</code> by default.</p>
 <div class="sect2">
 <h3 id="_serenity_restart_browser_for_each"><a class="anchor" href="#_serenity_restart_browser_for_each"></a>serenity.restart.browser.for.each</h3>
 <div class="paragraph">
-<p>Indicate when a browser should be restarted during a test run. Can be one of: example, scenario, story, feature, never</p>
+<p>Indicate when a browser should be restarted during a test run. Can be one of: scenario, story, feature, never</p>
 </div>
 </div>
 <div class="sect2">
