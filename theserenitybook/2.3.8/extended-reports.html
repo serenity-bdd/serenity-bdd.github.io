@@ -302,7 +302,7 @@
 <p>Emailable HTML reports</p>
 </li>
 <li>
-<p>Archivable PDF reports (coming soon)</p>
+<p>Html report as single page react application</p>
 </li>
 </ul>
 </div>
@@ -339,8 +339,13 @@ an overview of the test results, and a configurable breakdown of the status of d
     &lt;groupId&gt;net.serenity-bdd.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;serenity-maven-plugin&lt;/artifactId&gt;
     &lt;version&gt;${serenity.version}&lt;/version&gt;
-    &lt;dependencies&gt;
-        &lt;dependency&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;dependencies&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+        &lt;dependency&gt;
+            &lt;groupId&gt;net.serenity-bdd&lt;/groupId&gt;
+            &lt;artifactId&gt;serenity-single-page-report&lt;/artifactId&gt;
+            &lt;version&gt;${serenity.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
             &lt;groupId&gt;net.serenity-bdd&lt;/groupId&gt;
             &lt;artifactId&gt;serenity-single-page-report&lt;/artifactId&gt;
             &lt;version&gt;${serenity.version}&lt;/version&gt;
@@ -348,7 +353,7 @@ an overview of the test results, and a configurable breakdown of the status of d
     &lt;/dependencies&gt;
     &lt;configuration&gt;
         &lt;tags&gt;${tags}&lt;/tags&gt;
-        &lt;reports&gt;single-page-html&lt;/reports&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+        &lt;reports&gt;single-page-html,navigator&lt;/reports&gt; <i class="conum" data-value="2"></i><b>(2)</b>
     &lt;/configuration&gt;
     &lt;executions&gt;
         &lt;execution&gt;
@@ -366,11 +371,11 @@ an overview of the test results, and a configurable breakdown of the status of d
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Add a dependency to the serenity-emailer module</td>
+<td>Dependencies on the different report modules</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Produce the emailable summary report when we run the aggregate goal</td>
+<td>List of reports to generate</td>
 </tr>
 </table>
 </div>
