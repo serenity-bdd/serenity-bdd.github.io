@@ -1003,19 +1003,22 @@ public WebElementState facebookIcon() {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">	evaluateJavascript("document.getElementById('firstname').focus()");</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">evaluateJavascript("document.getElementById('firstname').focus()");</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And, if you are familiar with JQuery, you can also invoke JQuery expressions:</p>
+<p>And, if you are familiar with JQuery, you can also invoke JQuery expressions, as Serenity will automatically inject a bundled version of JQuery into each page, unless the page already includes it:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">	evaluateJavascript("$('#firstname').focus()");</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">evaluateJavascript("$('#firstname').focus()");</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>This is often a useful strategy if you need to trigger events such as mouse-overs that are not currently supported by the WebDriver API.</p>
+</div>
+<div class="paragraph">
+<p>You can disable the injection of JQuery by setting <code>serenity.jquery.integration</code> to <code>false</code> in your <code>serenity.conf</code>, as this can speed up the page load.</p>
 </div>
 </div>
 </div>
