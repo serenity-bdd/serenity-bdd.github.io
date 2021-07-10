@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: The Serenity BDD Book</title>
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="shortcut icon" type="image/x-icon" href="../../_/img/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="../../_/img/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../../_/img/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../../_/img/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../../_/img/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../../_/img/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../../_/img/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../../_/img/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../../_/img/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../_/img/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="../../_/img/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../_/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../../_/img/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../_/img/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../../_/img/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">The Serenity BDD Book</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <a class="navbar-item" href="https://github.com/serenity-bdd/serenity-core/issues">Issues</a>
+        <a class="navbar-item" href="https://github.com/serenity-bdd/serenity-core">Source Code on Github</a>
+        <a class="navbar-item" href="https://johnfergusonsmart.com/training/">Learn BDD</a>
+        <a class="navbar-item" href="https://serenitydojo.teachable.com">Video Tutorials</a>
+        <a class="navbar-item" href="https://serenitydojo.teachable.com">Online Training</a>
+        <a class="navbar-item" href="https://johnfergusonsmart.com/serenity-bdd-mentoring/">Support</a>
+
+        <!-- <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div> -->
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="theserenitybook" data-version="2.4.48">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">The Serenity Book</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Serenity BDD Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction to Serenity BDD</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="first-steps.html">First Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="step-libraries.html">Working with Step Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="maven.html">Building Serenity BDD with Maven</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Testing Web Applications</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="web-testing-in-serenity.html">Testing Web Applications</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="page-objects.html">Working with Page Objects</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="angularjs.html">Testing AngularJS applications</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="remote.html">Running Remote Tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extending-webdriver.html">Extending Webdriver</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="environment-specific-config.html">Environment-specific configurations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="advanced-webdriver.html">Advanced WebDriver integration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Serenity with JUnit</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="junit-basic.html">Basic JUnit Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="junit.html">JUnit WebDriver Support</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="junit-skipping.html">Skipping Tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="junit-data-driven.html">Data Driven Tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="junit-requirements.html">Modelling JUnit Requirements</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Serenity with Cucumber</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cucumber.html">Getting Started with Cucumber and Serenity</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cucumber-before-and-after.html">Setting up and tearing down test data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Serenity with JBehave</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jbehave.html">Working with JBehave</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Working with REST APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-rest.html">REST API Testing in Serenity</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Serenity and the Screenplay Pattern</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-screenplay.html">Screenplay Fundamentals</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="screenplay-selenium-tasks.html">Web Testing with Screenplay</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-screenplay-rest.html">REST API Testing with Screenplay</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-screenplay-ensure.html">Fluent Assertions in Screenplay</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrating in Spring</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="spring.html">Integration testing Spring</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reporting and Living documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="living-documentation.html">Living Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="filtering-reports.html">Filtering Execution and Reports with Tags</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extended-reports.html">Additional Reports</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="manual-tests.html">Reporting Manual Test Results</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-issues.html">Integration with Issue &amp; Project Tracking systems</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="jira.html">Integrating with JIRA</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="screenshot.html">Managing Screenshots</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="importing-test-outcomes.html">Importing test results generated by Serenity BDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Scaling Serenity</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-parallel.html">Running Serenity tests in parallel on a local machine</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-grid.html">Running Serenity tests on a Selenium Grid</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-parallel-batches.html">Running Serenity tests in parallel batches</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-system-properties.html">Serenity System Properties and Configuration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">The Serenity Book</span>
+    <span class="version">2.4.48</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">The Serenity Book</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">2.4.48</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">The Serenity Book</a></li>
+    <li>Reporting and Living documentation</li>
+    <li><a href="jira.html">Integrating with JIRA</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/jira.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<div class="paragraph">
+<p>With Selenium BDD it is possible create tight one and two-way integration with JIRA</p>
+</div>
+<div class="sect2">
+<h3 id="_one_way_integration_with_jira"><a class="anchor" href="#_one_way_integration_with_jira"></a>One way integration with JIRA</h3>
+<div class="paragraph">
+<p><a href="https://www.atlassian.com/software/jira">JIRA</a> is a popular issue tracking system that is also often used for Agile project and requirements management. Many teams using JIRA store their requirements electronically in the form of story cards and epics in JIRA</p>
+</div>
+<div class="paragraph">
+<p>Suppose we are implementing a Frequent Flyer application for an airline. The idea is that travellers will earn points when they fly with our airline, based on the distance they fly. Travellers start out with a “Bronze” status, and can earn a better status by flying more frequently. Travellers with a higher frequent flyer status benefit from advantages such as lounge access, prioritized boarding, and so on. One of the story cards for this feature might look like the following:</p>
+</div>
+<div id="frequent-flyer-story-card" class="imageblock">
+<div class="content">
+<img src="_images/frequent-flyer-story-card.png" alt="frequent flyer story card">
+</div>
+<div class="title">Figure 1. Frequent Flyer story card</div>
+</div>
+<div class="paragraph">
+<p>This story contains a description following one of the frequently-used formats for user story descriptions (“as a..I want..so that”). It also contains a custom “Acceptance Criteria” field, where we can write down a brief outline of the “definition of done” for this story.</p>
+</div>
+<div class="paragraph">
+<p>These stories can be grouped into epics, and placed into sprints for project planning, as illustrated in the JIRA Agile board shown here:</p>
+</div>
+<div id="jira-agile-board" class="imageblock">
+<div class="content">
+<img src="_images/jira-agile-board.png" alt="jira agile board">
+</div>
+<div class="title">Figure 2. JIRA sample agile board</div>
+</div>
+<div class="paragraph">
+<p>As illustrated in the story card, each of these stories has a set of acceptance criteria, which we can build into more detailed scenarios, based on concrete examples. We can then automate these scenarios using a BDD tool like JBehave.</p>
+</div>
+<div class="paragraph">
+<p>The story in <a href="#frequent-flyer-story-card">Frequent Flyer story card</a> describes how many points members need to earn to be awarded each status level. A JBehave scenario for the story card illustrated earlier might look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Frequent Flyer status is calculated based on points
+
+Meta:
+@issue #FH-17
+
+Scenario: New members should start out as Bronze members
+Given Jill Smith is not a Frequent Flyer member
+When she registers on the Frequent Flyer program
+Then she should have a status of Bronze
+
+Scenario: Members should get status updates based on status points earned
+Given a member has a status of &lt;initialStatus&gt;
+And he has &lt;initialStatusPoints&gt; status points
+When he earns &lt;extraPoints&gt; extra status points
+Then he should have a status of &lt;finalStatus&gt;
+Examples:
+| initialStatus | initialStatusPoints | extraPoints | finalStatus | notes                    |
+| Bronze        | 0                   | 300         | Silver      | 300 points for Silver    |
+| Silver        | 0                   | 700         | Gold        | 700 points for Gold      |
+| Gold          | 0                   | 1500        | Platinum    | 1500 points for Platinum |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Serenity lets you associate JBehave stories or JUnit tests with a JIRA card using the @issue meta tag (illustrated above), or the equivalent @Issue annotation in JUnit. At the most basic level, this will generate links back to the corresponding JIRA cards in your test reports, as illustrated here:</p>
+</div>
+<div id="jira-serenity-report" class="imageblock">
+<div class="content">
+<img src="_images/jira-serenity-report.png" alt="jira serenity report">
+</div>
+<div class="title">Figure 3. Serenity report with links to JIRA</div>
+</div>
+<div class="paragraph">
+<p>For this to work, Serenity needs to know where your JIRA server. The simplest way to do this is to define the following properties in a file called serenity.properties in your project root directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">jira.url=https://myserver.atlassian.net
+jira.project=FH
+jira.username=jirauser
+jira.password=t0psecret</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also set these properties up in your Maven pom.xml file or pass them in as system properties.</p>
+</div>
+<div class="sect3">
+<h4 id="_feature_coverage"><a class="anchor" href="#_feature_coverage"></a>Feature Coverage</h4>
+<div class="paragraph">
+<p>But test results only report part of the picture. If you are using JIRA to store your stories and epics, you can use these to keep track of progress. But how do you know what automated acceptance tests have been implemented for your stories and epics, and, equally importantly, how do you know which stories or epics have no automated acceptance tests? In agile terms, a story cannot be declared “done” until the automated acceptance tests pass. Furthermore, we need to be confident not only that the tests exist, but they test the right requirements, and that they test them sufficiently well.</p>
+</div>
+<div class="paragraph">
+<p>We call this idea of measuring the number (and quality) of the acceptance tests for each of the features we want to build “feature coverage”. Serenity can provide feature coverage reporting in addition to the more conventional test results. If you are using JIRA, you will need to add serenity-jira-requirements-provider to the dependencies section of your pom.xml file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependencies&gt;
+    ...
+    &lt;dependency&gt;
+        &lt;groupId&gt;net.serenity.plugins.jira&lt;/groupId&gt;
+        &lt;artifactId&gt;serenity-jira-requirements-provider&lt;/artifactId&gt;
+        &lt;version&gt;xxx&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(The actual version number might be different for you – always take a look at <a href="http://search.maven.org/#search%7Cga%7C1%7Cthucydides">Maven Central</a> to know what the latest version is).</p>
+</div>
+<div class="paragraph">
+<p>You will also need to add this dependency to the Serenity reporting plugin configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;build&gt;
+    ...
+    &lt;plugins&gt;
+        ...
+        &lt;plugin&gt;
+            &lt;groupId&gt;net.serenity.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-serenity-plugin&lt;/artifactId&gt;
+            &lt;version&gt;xxx&lt;/version&gt;
+            &lt;executions&gt;
+                &lt;execution&gt;
+                    &lt;id&gt;serenity-reports&lt;/id&gt;
+                    &lt;phase&gt;post-integration-test&lt;/phase&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;aggregate&lt;/goal&gt;
+                    &lt;/goals&gt;
+                &lt;/execution&gt;
+            &lt;/executions&gt;
+            &lt;dependencies&gt;
+                &lt;dependency&gt;
+                    &lt;groupId&gt;net.serenity.plugins.jira&lt;/groupId&gt;
+                    &lt;artifactId&gt;serenity-jira-requirements-provider&lt;/artifactId&gt;
+                    &lt;version&gt;xxx&lt;/version&gt;
+                &lt;/dependency&gt;
+            &lt;/dependencies&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, when you run the tests, Serenity will query JIRA to determine the epics and stories that you have defined, and list them in the Requirements page. This page gives you an overview of how many requirements (epics and stories) have passing tests (green), how many have failing (red) or broken (orange) tests, and how many have no tests at all (blue):</p>
+</div>
+<div id="serenity-jira-requirements-view" class="imageblock">
+<div class="content">
+<img src="_images/serenity-jira-requirements-view.png" alt="serenity jira requirements view">
+</div>
+<div class="title">Figure 4. Requirements in Serenity report</div>
+</div>
+<div class="paragraph">
+<p>If you click on an epic, you can see the stories defined for the epic, including an indicator (in the “Coverage” column) of how well each story has been tested.</p>
+</div>
+<div id="serenity-jira-report-epic-details" class="imageblock">
+<div class="content">
+<img src="_images/serenity-jira-report-epic-details.png" alt="serenity jira report epic details">
+</div>
+<div class="title">Figure 5. Epic details in Serenity report</div>
+</div>
+<div class="paragraph">
+<p>From here, you may want to drill down into the details about a given story, including what acceptance tests have been defined for this story, and whether they ran successfully:</p>
+</div>
+<div id="serenity-jira-story-report" class="imageblock">
+<div class="content">
+<img src="_images/serenity-jira-story-report.png" alt="serenity jira story report">
+</div>
+<div class="title">Figure 6. Story in Serenity report</div>
+</div>
+<div class="paragraph">
+<p>Both JIRA and the JIRA-Serenity integration are quite flexible. We saw earlier that we had configured a custom “Acceptance Criteria” field in our JIRA stories. We have displayed this custom field in the report shown above by including it in the serenity.properties file, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>jira.custom.field.1=Acceptance Criteria</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Serenity reads the narrative text appearing in this report (“As a frequent flyer…”) from the Descriptionfield of the corresponding JIRA card. We can override this behavior and get Serenity to read this value from a different custom field using the <code>jira.custom.narrative.field</code> property. For example, some teams use a custom field called “User Story” to store the narrative text, instead of the Description field. We could get Serenity to use this field as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>jira.custom.narrative.field=User Story</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_two_way_integration_with_jira"><a class="anchor" href="#_two_way_integration_with_jira"></a>Two way integration with JIRA</h3>
+<div class="sect3">
+<h4 id="_links_from_jira_to_serenity"><a class="anchor" href="#_links_from_jira_to_serenity"></a>Links from JIRA to Serenity</h4>
+<div class="paragraph">
+<p>The simplest form of two-way integration between Serenity and JIRA is to get Serenity to insert a comment containing links to the Serenity test reports for each related issue card. To get this to work, you need to tell Serenity where the reports live. One way to do this is to add a property called serenity.public.url to your serenity.properties file with the address of the serenity reports.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>serenity.public.url=http://buildserver.myorg.com/latest/serenity/report</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will tell Serenity that you not only want links from the Serenity reports to JIRA, but you also want to include links in the JIRA cards back to the corresponding Serenity reports. When this property is defined, Serenity will add a comment like the following to any issues associated with the executed tests:</p>
+</div>
+<div id="jira-serenity-comment" class="imageblock">
+<div class="content">
+<img src="_images/jira-serenity-comment.png" alt="jira serenity comment">
+</div>
+<div class="title">Figure 7. JIRA report with Serenity comments</div>
+</div>
+<div class="paragraph">
+<p>The <code>serenity.public.url</code> will typically point to a local web server where you deploy your reports, or to a path within your CI server. For example you could publish the Serenity reports on Jenkins using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin">Jenkins HTML Publisher Plugin</a>, and then add a line like the following to your serenity.properties file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>serenity.public.url=http://jenkins.myorg.com/job/myproject-acceptance-tests/Serenity_Report/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you do not want Serenity to update the JIRA issues for a particular run (e.g. when running your tests locally), you can also set <code>serenity.skip.jira.updates</code> to true, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>serenity.skip.jira.updates=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will simply write the relevant issue numbers to the log rather than trying to connect to JIRA.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_updating_jira_issue_states"><a class="anchor" href="#_updating_jira_issue_states"></a>Updating JIRA issue states</h4>
+<div class="paragraph">
+<p>You can also configure the plugin to update the status of JIRA issues. This is deactivated by default: to use this option, you need to set the <code>serenity.jira.workflow.active</code> option to true, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>serenity.jira.workflow.active=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The default configuration will work with the default JIRA workflow: open or in progress issues associated with successful tests will be resolved, and closed or resolved issues associated with failing tests will be reopened. If you are using a customized workflow, or want to modify the way the transitions work, you can write your own workflow configuration. Workflow configuration uses a simple Groovy DSL. The following is an example of the configuration file used for the default workflow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">when 'Open', {
+    'success' should: 'Resolve Issue'
+}
+
+when 'Reopened', {
+    'success' should: 'Resolve Issue'
+}
+
+when 'Resolved', {
+    'failure' should: 'Reopen Issue'
+}
+
+when 'In Progress', {
+    'success' should: ['Stop Progress','Resolve Issue']
+}
+
+when 'Closed', {
+    'failure' should: 'Reopen Issue'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can write your own configuration file and place it on the classpath of your test project (e.g. in serenity&#8217;s directory). Then you can override the default configuration by using <code>serenity.jira.workflow</code> property, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>serenity.jira.workflow=my-workflow.groovy</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can simply create a file called jira-workflow.groovy and place it somewhere on your classpath (e.g. in the src/test/resources directory). Serenity will then use this workflow. In both these cases, you don’t need to explicitly set the <code>serenity.jira.workflow.active</code> property.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_release_management"><a class="anchor" href="#_release_management"></a>Release management</h4>
+<div class="paragraph">
+<p>In JIRA, you can organize your project releases into versions, as illustrated here:</p>
+</div>
+<div id="jira-versions" class="imageblock">
+<div class="content">
+<img src="_images/jira-versions.png" alt="jira versions">
+</div>
+<div class="title">Figure 8. JIRA project releases - versions</div>
+</div>
+<div class="paragraph">
+<p>You can and assign cards to one or more versions using the <code>Fix Version/s</code> field:</p>
+</div>
+<div id="jira-fix-versions" class="imageblock">
+<div class="content">
+<img src="_images/jira-fix-versions.png" alt="jira fix versions">
+</div>
+<div class="title">Figure 9. JIRA fix versions</div>
+</div>
+<div class="paragraph">
+<p>By default, Serenity will read version details from the Releases in JIRA. Test outcomes will be associated with a particular version using the “Fixed versions” field. The <strong>Releases</strong> tab gives you a run-down of the different planned versions, and how well they have been tested so far:</p>
+</div>
+<div id="releases-tab" class="imageblock">
+<div class="content">
+<img src="_images/releases-tab.png" alt="releases tab">
+</div>
+<div class="title">Figure 10. JIRA releases tab</div>
+</div>
+<div class="paragraph">
+<p>JIRA uses a flat version structure – you can’t have for example releases that are made up of a number of sprints. Serenity lets you organize these in a hierarchical structure based on a simple naming convention. By default, Serenity uses “release” as the highest level release, and either “iteration” or “sprint” as the second level. For example, suppose you have the the following list of versions in JIRA – Release 1 – Iteration 1.1 – Iteration 1.2 – Release 2 – Release 3</p>
+</div>
+<div class="paragraph">
+<p>This will produce Release reports for Release 1, Release 2, and Release 3, with Iteration 1.2 and Iteration 1.2 appearing underneath Release 1. The reports will contain the list of requirements and test outcomes associated with each release. You can drill down into any of the releases to see details about that particular release.</p>
+</div>
+<div id="serenity-jira-releases" class="imageblock">
+<div class="content">
+<img src="_images/serenity-jira-releases.png" alt="serenity jira releases">
+</div>
+<div class="title">Figure 11. Serenity releases reports</div>
+</div>
+<div class="paragraph">
+<p>You can also customize the names of the types of release usinge the serenity.release.types property, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>serenity.release.types=milestone, release, version</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

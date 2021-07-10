@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: The Serenity BDD Book</title>
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="shortcut icon" type="image/x-icon" href="../../_/img/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="../../_/img/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../../_/img/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../../_/img/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../../_/img/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../../_/img/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../../_/img/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../../_/img/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../../_/img/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../_/img/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="../../_/img/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../_/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../../_/img/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../_/img/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../../_/img/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">The Serenity BDD Book</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <a class="navbar-item" href="https://github.com/serenity-bdd/serenity-core/issues">Issues</a>
+        <a class="navbar-item" href="https://github.com/serenity-bdd/serenity-core">Source Code on Github</a>
+        <a class="navbar-item" href="https://johnfergusonsmart.com/training/">Learn BDD</a>
+        <a class="navbar-item" href="https://serenitydojo.teachable.com">Video Tutorials</a>
+        <a class="navbar-item" href="https://serenitydojo.teachable.com">Online Training</a>
+        <a class="navbar-item" href="https://johnfergusonsmart.com/serenity-bdd-mentoring/">Support</a>
+
+        <!-- <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div> -->
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="theserenitybook" data-version="2.4.48">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">The Serenity Book</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Serenity BDD Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction to Serenity BDD</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="first-steps.html">First Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="step-libraries.html">Working with Step Libraries</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="maven.html">Building Serenity BDD with Maven</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Testing Web Applications</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="web-testing-in-serenity.html">Testing Web Applications</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="page-objects.html">Working with Page Objects</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="angularjs.html">Testing AngularJS applications</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="remote.html">Running Remote Tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extending-webdriver.html">Extending Webdriver</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="environment-specific-config.html">Environment-specific configurations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="advanced-webdriver.html">Advanced WebDriver integration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Serenity with JUnit</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="junit-basic.html">Basic JUnit Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="junit.html">JUnit WebDriver Support</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="junit-skipping.html">Skipping Tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="junit-data-driven.html">Data Driven Tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="junit-requirements.html">Modelling JUnit Requirements</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Serenity with Cucumber</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cucumber.html">Getting Started with Cucumber and Serenity</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cucumber-before-and-after.html">Setting up and tearing down test data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Serenity with JBehave</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jbehave.html">Working with JBehave</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Working with REST APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-rest.html">REST API Testing in Serenity</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Serenity and the Screenplay Pattern</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-screenplay.html">Screenplay Fundamentals</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="screenplay-selenium-tasks.html">Web Testing with Screenplay</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-screenplay-rest.html">REST API Testing with Screenplay</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-screenplay-ensure.html">Fluent Assertions in Screenplay</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrating in Spring</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="spring.html">Integration testing Spring</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reporting and Living documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="living-documentation.html">Living Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="filtering-reports.html">Filtering Execution and Reports with Tags</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extended-reports.html">Additional Reports</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="manual-tests.html">Reporting Manual Test Results</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-issues.html">Integration with Issue &amp; Project Tracking systems</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jira.html">Integrating with JIRA</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="screenshot.html">Managing Screenshots</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="importing-test-outcomes.html">Importing test results generated by Serenity BDD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Scaling Serenity</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-parallel.html">Running Serenity tests in parallel on a local machine</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-grid.html">Running Serenity tests on a Selenium Grid</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-parallel-batches.html">Running Serenity tests in parallel batches</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="serenity-system-properties.html">Serenity System Properties and Configuration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">The Serenity Book</span>
+    <span class="version">2.4.48</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">The Serenity Book</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">2.4.48</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">The Serenity Book</a></li>
+    <li>Testing Web Applications</li>
+    <li><a href="remote.html">Running Remote Tests</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/serenity-bdd/the-serenity-book/edit/master/modules/ROOT/pages/remote.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<div class="paragraph">
+<p>You can also use Serenity to run your WebDriver tests on a remote machine, such as a Selenium Grid or a remote service such as provided by <a href="http://www.saucelabs.com">SauceLabs</a> or <a href="https://www.browserstack.com">BrowserStack</a>. This allows you to run your web tests against a variety of different browsers and operating systems, and also benefit from faster test execution when running the tests in parallel.</p>
+</div>
+<div class="paragraph">
+<p>In all cases, you tell Serenity to run tests remotely by using the Selenium Remote driver,</p>
+</div>
+<div class="sect1">
+<h2 id="_running_tests_against_a_selenium_grid_server"><a class="anchor" href="#_running_tests_against_a_selenium_grid_server"></a>Running tests against a Selenium Grid server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://code.google.com/p/selenium/wiki/Grid2">Selenium Grid</a> allows you to run tests on a number of remote machines. It is open source, and relatively easy to set up and configure.</p>
+</div>
+<div class="paragraph">
+<p>To run your Serenity tests on a Selenium Grid, you need to provide the URL of the Selenium Hub using the <code>webdriver.remote.url</code> property. You may also want to provide more information about how and where you want to run your tests, using the following properties:
+<code>webdriver.remote.driver</code>:: What driver to use remotely ('firefox','chrome','iexplorer' etc.)
+<code>webdriver.remote.browser.version</code>:: What version of the remote browser to use
+<code>webdriver.remote.os</code>:: What operating system the tests should be run on.</p>
+</div>
+<div class="paragraph">
+<p>For example, if you were running a Selenium Hub locally on port 4444 (the default),</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn verify -Dwebdriver.remote.url=http://localhost:4444/wd/hub -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you are running PhantomJS remotely, you may need to specify what port PhantomJS is to run on using the <code>phantomjs.webdriver</code> property.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn verify -Dphantomjs.webdriver=5555 -Dwebdriver.remote.url=http://seleniumgrid:4444/wd/hub</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also pass the usual driver-specific capabilities to the remote browser</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn verify -Dwebdriver.remote.url=http://localhost:4444/wd/hub -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run"</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_tests_on_appium"><a class="anchor" href="#_running_tests_on_appium"></a>Running tests on Appium</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Serenity supports running tests on mobile devices/emulators out of the box with <a href="http://appium.io">Appium</a>.</p>
+</div>
+<div class="paragraph">
+<p>You just need to install Appium:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(sudo) npm install -g appium --chromedriver_version="2.16"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Afterwards Appium is available as command and can be started by invoking the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>appium</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then adopt <code>serenity.properties</code> to run on an Android device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>webdriver.driver= appium
+webdriver.base.url = http://www.google.com/
+appium.hub = http://127.0.0.1:4723/wd/hub
+appium.platformName = Android
+appium.platformVersion = 5.1.1
+appium.deviceName = e2f5c460
+appium.browserName = Chrome</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example for iOS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>webdriver.driver= appium
+webdriver.base.url = http://www.google.com/
+appium.hub = http://127.0.0.1:4723/wd/hub
+appium.platformName = iOS
+appium.platformVersion = 8.1
+appium.deviceName = iPhone 5
+appium.browserName = Safari</pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>Note</code></dt>
+<dd>
+<p>All properties which are starting with <code>appium</code> in serenity.properties will be forwarded to appium driver.
+e.g. setting <code>appium.automationName = XCUITest</code> in serenity.properties will have as end effect setting the property <code>automationName = XCUITest</code> in appium driver capabilities.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Besides the properties file you can also use commandline switches:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn test -Dappium.hub=http://127.0.0.1:4723/wd/hub -Dwebdriver.driver=appium -Dappium.platformName=iOS -Dappium.browserName=Safari -Dappium.deviceName="iPhone 5"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All properties starting with appium.* will be forwarded to the appium driver as appium desired capabilities.
+For example, setting the property <code>appium.automationName=myAutomationName</code> will have as effect setting the capability <code>automationName</code>
+in the appium driver to <code>myAutomationName</code>.</p>
+</div>
+<div class="paragraph">
+<p>Following annotations are supported for a PageObject element:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@AndroidFindBy(id="")
+private WebElement loginButton;</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@iOSFindBy(id="")
+private WebElement loginButton;</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@FindBy(accessibilityId="")
+private WebElement loginButton;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sometimes it may be necessary in a PageObject to use specific methods of the underlying driver</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>AndroidDriver&lt;AndroidElement&gt; androidDriver() {
+    return (AndroidDriver&lt;AndroidElement&gt;)
+            ((WebDriverFacade) getDriver()).getProxiedDriver();
+}
+...
+androidDriver().hideKeyboard();</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also add Appium to an existing grid. See the <a href="http://appium.io/slate/en/v1.2.3/?java#server-flags">Appium documentation</a> for more details about the node-config option.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_tests_on_saucelabs"><a class="anchor" href="#_running_tests_on_saucelabs"></a>Running tests on SauceLabs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Serenity has special support for running tests on the Cloud-based testing platform <a href="http://www.saucelabs.com">SauceLabs</a>. The general approach is the same as discussed above, but there are a few extra Saucelabs-specific properties:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>saucelabs.url</code></dt>
+<dd>
+<p>Usually of the form <a href="http://&lt;my_id&gt;:&lt;my_API" class="bare">http://&lt;my_id&gt;:&lt;my_API</a> Key&gt;@ondemand.saucelabs.com:80/wd/hub</p>
+</dd>
+<dt class="hdlist1"><code>saucelabs.target.platform</code></dt>
+<dd>
+<p>See <a href="https://saucelabs.com/platforms/" class="bare">https://saucelabs.com/platforms/</a></p>
+</dd>
+<dt class="hdlist1"><code>saucelabs.driver.version</code></dt>
+<dd>
+<p>See <a href="https://saucelabs.com/platforms/" class="bare">https://saucelabs.com/platforms/</a></p>
+</dd>
+<dt class="hdlist1"><code>saucelabs.test.name</code></dt>
+<dd>
+<p>The name of the test as it will appear on the Saucelabs site</p>
+</dd>
+<dt class="hdlist1"><code>saucelabs.access.key</code></dt>
+<dd>
+<p>Your Saucelabs API key, optional, used to generate links to the Saucelabs results</p>
+</dd>
+<dt class="hdlist1"><code>saucelabs.user.id</code></dt>
+<dd>
+<p>Your Saucelabs User ID, optional, used to generate links to the Saucelabs results
+<code>saucelabs.record.screenshots</code>::Saucelabs records screenshots as well as videos by default. Since Serenity also records screenshots, this feature is disabled by default. It can be reactivated using this system property</p>
+</dd>
+<dt class="hdlist1"><code>saucelabs.implicit.wait</code></dt>
+<dd>
+<p>Override the default implicit timeout value for the Saucelabs driver</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>An example of running tests on Saucelabs is shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn verify -Dsaucelabs.target.platform=XP -Dwebdriver.driver=chrome -Dsaucelabs.driver.version=26 -Dsaucelabs.url=http://&lt;my_id&gt;:&lt;my_API Key&gt;@ondemand.saucelabs.com:80/wd/hub -Dsaucelabs.access.key=&lt;My_API_Key&gt; -Dsaucelabs.user.id=&lt;my_id&gt; -Dwebdriver.base.url=https://www.website.com -Dmaven.test.failure.ignore=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case if you need to define an OS-Browser Combination, you should change <strong>serenity.driver.capabilities</strong> as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>serenity.driver.capabilities="browserName:iphone; deviceName:iPad Retina; version:9.2"</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_serenity_tests_on_browserstack"><a class="anchor" href="#_running_serenity_tests_on_browserstack"></a>Running Serenity Tests on BrowserStack</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Serenity provides integrated support for running tests on <a href="https://www.browserstack.com">BrowserStack</a>.</p>
+</div>
+<div class="paragraph">
+<p>First of all, add the <code>serenity-browserstack</code> dependency to your project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;net.serenity-bdd&lt;/groupId&gt;
+    &lt;artifactId&gt;serenity-browserstack&lt;/artifactId&gt;
+    &lt;version&gt;${serenity.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, in your <code>serenity.conf</code> configuration file, add a <code>browserstack</code> section with your BrowserStack username and API key, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hacon hljs" data-lang="hacon">browserstack {
+    user = &lt;your-username&gt;
+    key = &lt;your-api-key&gt;
+    server = hub-cloud.browserstack.com
+    browser = chrome
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the <code>webdriver</code> section, you need to configure a <code>remote</code> driver like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hacon hljs" data-lang="hacon">webdriver {
+    driver = remote
+    remote.url = "http://&lt;your-username&gt;:&lt;your-api-key&gt;@hub-cloud.browserstack.com/wd/hub"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also do the same thing in your <code>serenity.properties</code> file, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">browserstack.user=&lt;your-username&gt;
+browserstack.key=&lt;your-api-key&gt;
+browserstack.server = hub-cloud.browserstack.com
+browserstack.browser = chrome
+
+webdriver.driver = remote;
+webdriver.remote.url = "http://&lt;your-username&gt;:&lt;your-api-key&gt;@hub-cloud.browserstack.com/wd/hub"</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_retries"><a class="anchor" href="#_retries"></a>Retries</h3>
+<div class="paragraph">
+<p>If your BrowserStack account is limited to a certain number of parallel tests, BrowserStack will add your tests to a queue. If your queue reaches a maximum size, BrowserStack will refuse to run your tests until a spot frees up. Serenity allows for this by delaying the test execution for 30 seconds before retrying. Serenity will retry up to 30 times by default; you can configure the maximum number of retries Serenity will attempt with the <code>webdriver.creation.retry.max.times</code> system property.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_browserstack_system_properties"><a class="anchor" href="#_browserstack_system_properties"></a>BrowserStack system properties</h3>
+<div class="paragraph">
+<p>The following system properties are available:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>browserstack.url</code></dt>
+<dd>
+<p>BrowserStack Hub URL if running the tests on BrowserStack Cloud</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.os</code></dt>
+<dd>
+<p>OS type (e.g. WINDOWS, OS X)</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.os_version</code></dt>
+<dd>
+<p>OS version (e.g. Windows: XP, 7, 8 and 8.1; OS X: Snow Leopard, Lion, Mountain Lion, Mavericks, Yosemite, El Capitan)</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.browser</code></dt>
+<dd>
+<p>Browser type (e.g. Firefox, Safari, IE, Chrome, Opera)</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.browser_version</code></dt>
+<dd>
+<p>Browser version (defaults to latest stable; check <a href="https://www.browserstack.com/list-of-browsers-and-platforms?product=automate">list of available browsers</a>)</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.device</code></dt>
+<dd>
+<p>BrowserStack <a href="https://www.browserstack.com/list-of-browsers-and-platforms?product=automate">mobile device</a> name on which tests should be run</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.deviceOrientation</code></dt>
+<dd>
+<p>Set the screen orientation of BrowserStack mobile device (portrait or landscape, default: portrait)</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.project</code></dt>
+<dd>
+<p>Specify a name for a logical group of builds on BrowserStack</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.build</code></dt>
+<dd>
+<p>Specify a name for a logical group of tests on BrowserStack</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.name</code></dt>
+<dd>
+<p>Specify an identifier for the test run on BrowserStack</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.local</code></dt>
+<dd>
+<p>For Testing against <a href="https://www.browserstack.com/local-testing">internal/local</a> servers on BrowserStack</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.localIdentifier</code></dt>
+<dd>
+<p>Specify an identifier for the local BrowserStack connection check <a href="https://www.browserstack.com/local-testing#multiple-connections" class="bare">https://www.browserstack.com/local-testing#multiple-connections</a></p>
+</dd>
+<dt class="hdlist1"><code>browserstack.debug</code></dt>
+<dd>
+<p>Generates screenshots at various steps in tests on BrowserStack</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.resolution</code></dt>
+<dd>
+<p>Sets resolution of VM on BrowserStack</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.selenium_version</code></dt>
+<dt class="hdlist1"><code>browserstack.ie.noFlash</code></dt>
+<dd>
+<p>Disable flash on Internet Explorer on BrowserStack</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.ie.driver</code></dt>
+<dd>
+<p>Specify the Internet Explorer webdriver version on BrowserStack</p>
+</dd>
+<dt class="hdlist1"><code>browserstack.ie.enablePopups</code></dt>
+<dd>
+<p>Enable the popup blocker in Internet Explorer on BrowserStack</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_serenity_on_zalenium"><a class="anchor" href="#_running_serenity_on_zalenium"></a>Running Serenity on Zalenium</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we look at how you can run Serenity BDD tests on a Zalenium server using <a href="https://www.docker.com">Docker</a>. <a href="https://opensource.zalando.com/zalenium">Zalenium</a> is an open source tool based on Docker that makes it easy to start up and run a Selenium Grid. The rest of this tutorial assumes that you have Docker installed on your machine.</p>
+</div>
+<div class="sect2">
+<h3 id="_starting_zalenium"><a class="anchor" href="#_starting_zalenium"></a>Starting Zalenium</h3>
+<div class="paragraph">
+<p>You can start a Zalenium server using the following commands (see the <a href="https://opensource.zalando.com/zalenium/#try-it">Zalenium Documentation</a> for more details or for the latest version of these instructions):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># Pull docker-selenium
+docker pull elgalu/selenium
+
+# Pull Zalenium
+docker pull dosel/zalenium
+
+# Run it!
+docker run --rm -ti --name zalenium -p 4444:4444 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /tmp/videos:/home/seluser/videos -e WAIT_FOR_AVAILABLE_NODES=false \
+  --privileged dosel/zalenium start --desiredContainers 4</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should end up seeing an output like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>08:42:05.272 [main] INFO  org.openqa.grid.web.Hub - Selenium Grid hub is up and running
+08:42:05.272 [main] INFO  org.openqa.grid.web.Hub - Nodes should register to http://172.17.0.2:4445/grid/register/
+08:42:05.272 [main] INFO  org.openqa.grid.web.Hub - Clients should connect to http://172.17.0.2:4445/wd/hub
+Selenium Hub started!
+Sauce Labs not enabled...
+Browser Stack not enabled...
+TestingBot not enabled...
+Zalenium is now ready!</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can see if the Zalenium server is running correctly by checking out the <a href="http://localhost:4444/grid/console">Grid Console</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_your_serenity_tests"><a class="anchor" href="#_configuring_your_serenity_tests"></a>Configuring your Serenity tests</h3>
+<div class="paragraph">
+<p>To run your tests on the Selenium grid, you now just need to use the remote driver instead of the usual one. For example, in your <code>serenity.conf</code> file, you can configure your tests to run on the Zalenium server using Chrome like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hocon hljs" data-lang="hocon">webdriver {
+  driver = remote
+  remote {
+      url="http://localhost:4444/wd/hub"
+      driver=chrome
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you are using the <code>serenity.properties</code> file, the configuration would look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">webdriver.driver = remote
+webdriver.remote.url = "http://localhost:4444/wd/hub"
+webdriver.remote.driver = chrome</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Zalenium even has a <a href="http://localhost:4444/dashboard/#">Dashboard</a> where you can see a recording of the tests you executed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_advanced_zalenium_integration"><a class="anchor" href="#_advanced_zalenium_integration"></a>Advanced Zalenium Integration</h3>
+<div class="paragraph">
+<p>Serenity also supports more advanced integration with Zalenium, including the ability to pass custom capabilities to the Zalenium server, and displaying the test results correctly. You can enable these features by adding the <code>serenity-zalenium</code> dependency to your project. If you are using Maven, you would add the following dependency:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;net.serenity-bdd&lt;/groupId&gt;
+    &lt;artifactId&gt;serenity-zalenium&lt;/artifactId&gt;
+    &lt;version&gt;${serenity.version}&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And in Gradle, you would add the equivalent dependency like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">testCompile 'net.serenity-bdd:serenity-zalenium:${serenity.version}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you add this dependency, unsuccessful tests (those with an outcome of failed, broken or compromised) will be marked as failures in Zalenium.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-hacon hljs" data-lang="hacon">zalenium {
+    screenResolution = "1280x720"
+    idleTimeout = 150
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
