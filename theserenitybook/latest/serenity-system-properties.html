@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Serenity System Properties and Configuration :: The Serenity BDD Book</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="shortcut icon" type="image/x-icon" href="../../_/img/favicon.ico">
 <link rel="apple-touch-icon" sizes="57x57" href="../../_/img/apple-icon-57x57.png">
@@ -64,7 +64,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="theserenitybook" data-version="2.3.8">
+<div class="nav-container" data-component="theserenitybook" data-version="2.4.48">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -260,14 +260,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">The Serenity Book</span>
-    <span class="version">2.3.8</span>
+    <span class="version">2.4.48</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">The Serenity Book</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">2.3.8</a>
+          <a href="index.html">2.4.48</a>
         </li>
       </ul>
     </li>
@@ -768,13 +768,13 @@ For alternative behaviour, you can set this value to <code>DisplayedElementLocat
 <div class="sect2">
 <h3 id="_tags"><a class="anchor" href="#_tags"></a>tags</h3>
 <div class="paragraph">
-<p>Comma separated list of tags. If provided, only JUnit classes and/or methods with tags in this list will be executed. For example,</p>
+<p>"or" separated list of tags. If provided, only JUnit classes and/or methods with tags in this list will be executed. For example,</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre>mvn verify -Dtags="iteration:I1"
 
-mvn verify -Dtags="color:red,flavor:strawberry"</pre>
+mvn verify -Dtags="color:red or flavor:strawberry"</pre>
 </div>
 </div>
 </div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Writing User-centric tests using Serenity Screenplay :: The Serenity BDD Book</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="shortcut icon" type="image/x-icon" href="../../_/img/favicon.ico">
 <link rel="apple-touch-icon" sizes="57x57" href="../../_/img/apple-icon-57x57.png">
@@ -64,7 +64,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="theserenitybook" data-version="2.3.8">
+<div class="nav-container" data-component="theserenitybook" data-version="2.4.48">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -260,14 +260,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">The Serenity Book</span>
-    <span class="version">2.3.8</span>
+    <span class="version">2.4.48</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">The Serenity Book</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">2.3.8</a>
+          <a href="index.html">2.4.48</a>
         </li>
       </ul>
     </li>
@@ -465,7 +465,7 @@ public class AddNewTodos {
 <p>Actors need to be able to do things to perform their assigned tasks. So we give our actors “abilities”, a bit like the superpowers of a super-hero, but in more mundane. If this is a web test, for example, we need James to be able to browse the web using a browser.</p>
 </div>
 <div class="paragraph">
-<p>Serenity BDD plays well with Selenium WebDriver, and is happy to manage the browser lifecycle for you. All you need to do is to use the @Managed annotation with a WebDriver member variable, as shown here:</p>
+<p>Serenity BDD plays well with Selenium WebDriver, and is happy to manage the browser lifecycle for you. All you need to do is to use the <code>@Managed</code> annotation with a WebDriver member variable, as shown here:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -545,7 +545,7 @@ WebDriver hisBrowser;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Let’s break it down to understand what is going on. At the heart of the Screenplay Pattern, an actor performs a sequence of tasks. In Serenity, this mechanism is implemented in the Actor class using a variation of the Command Pattern, where the actor executes each task by invoking a special method called performAs() on the corresponding Task object (see <a href="#fig-journey-command-pattern">The actor invokes the <code>performAs()</code> method on a sequence of tasks</a>).</p>
+<p>Let’s break it down to understand what is going on. At the heart of the Screenplay Pattern, an actor performs a sequence of tasks. In Serenity, this mechanism is implemented in the <code>Actor</code> class using a variation of the Command Pattern, where the actor executes each task by invoking a special method called <code>performAs()</code> on the corresponding <code>Task</code> object (see <a href="#fig-journey-command-pattern">The actor invokes the <code>performAs()</code> method on a sequence of tasks</a>).</p>
 </div>
 <div id="fig-journey-command-pattern" class="imageblock">
 <div class="content">
@@ -554,13 +554,13 @@ WebDriver hisBrowser;</code></pre>
 <div class="title">Figure 4. The actor invokes the <code>performAs()</code> method on a sequence of tasks</div>
 </div>
 <div class="paragraph">
-<p>Tasks are just objects that implement the <code>Task</code> interface, and need to implement the <code>performAs(actor)</code> method. In fact, you can think of any Task class as basically a <code>performAs()</code> method alongside a supporting cast of helper methods.</p>
+<p>Tasks are just objects that implement the <code>Task</code> interface, and need to implement the <code>performAs(actor)</code> method. In fact, you can think of any <code>Task</code> class as basically a <code>performAs()</code> method alongside a supporting cast of helper methods.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_tasks_can_be_created_using_annotated_fields_or_builders"><a class="anchor" href="#_tasks_can_be_created_using_annotated_fields_or_builders"></a>Tasks can be created using annotated fields or builders</h3>
 <div class="paragraph">
-<p>To do its reporting magic, Serenity BDD needs to instrument the task and action objects used during the tests. The simplest way to do arrange this is to let Serenity create it for you, just like any other Serenity step library, using the @Steps annotation. In the following code snippet, Serenity will instantiate the openTheApplication field for you, so that James can use it to open the application:</p>
+<p>To do its reporting magic, Serenity BDD needs to instrument the task and action objects used during the tests. The simplest way to arrange this is to let Serenity create it for you, just like any other Serenity step library, using the <code>@Steps</code> annotation. In the following code snippet, Serenity will instantiate the <code>openTheApplication</code> field for you, so that James can use it to open the application:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -628,7 +628,7 @@ james.attemptsTo(openTheApplication);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The actual implementation uses pre-defined <code>Action</code> classes (such as <code>Enter</code> and <code>Hit `shown here) that come with Serenity.  `Action</code> classes are very similar to <code>Task</code> classes, except that they focus on interacting directly with the application. Serenity provides a small number of basic Action classes for core UI interactions such as entering field values, clicking on elements, or selecting values from drop-down lists. You can find these in the <code>net.serenitybdd.screenplay.actions</code> package. In practice, these provide a convenient and readable DSL that let you describe common low-level UI interactions needed to perform a task.</p>
+<p>The actual implementation uses pre-defined <code>Action</code> classes (such as <code>Enter</code> and <code>Hit</code> shown here) that come with Serenity. <code>Action</code> classes are very similar to <code>Task</code> classes, except that they focus on interacting directly with the application. Serenity provides a small number of basic <code>Action</code> classes for core UI interactions such as entering field values, clicking on elements, or selecting values from drop-down lists. You can find these in the <code>net.serenitybdd.screenplay.actions</code> package. In practice, these provide a convenient and readable DSL that let you describe common low-level UI interactions needed to perform a task.</p>
 </div>
 <div class="paragraph">
 <p>For example, the UI Action to enter the text defined in the <code>thingToDo</code> field into the input field with an ID value of “new-todo” would look like this:</p>
@@ -639,7 +639,7 @@ james.attemptsTo(openTheApplication);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>However, hard-coding the CSS selector could lead to duplication. A better practice would be to refactor the selector into a simple Page Object class, like this one:</p>
+<p>However, hard-coding the CSS selector could lead to duplication. A better practice would be to refactor the selector into a simple <em>Page Object</em> class, like this one:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -649,7 +649,7 @@ james.attemptsTo(openTheApplication);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Alternatively, we could use the Serenity Target class to associate a meaningful label with a CSS selector. These labels appear in the test reports and make them more readable:</p>
+<p>Alternatively, we could use the Serenity <code>Target</code> class to associate a meaningful label with a CSS selector. These labels appear in the test reports and make them more readable:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -659,7 +659,7 @@ james.attemptsTo(openTheApplication);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>@Step</code> annotation on the performAs() method is used to provide information about how the task will appear in the test reports:</p>
+<p>The <code>@Step</code> annotation on the <code>performAs()</code> method is used to provide information about how the task will appear in the test reports:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -668,8 +668,7 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Any member variables can be referred to in the @Step annotation by name using the hash (‘#’) prefix (like "#thingToDo" in the example). You can also reference the actor itself using the special
-"{0} placeholder. The end result is a blow-by-blow account of how each business task was performed (see <a href="#fig-journey-action-report">Test reports show details about both tasks and UI interactions</a>).</p>
+<p>Any member variables can be referred to in the <code>@Step</code> annotation by name using the hash (‘#’) prefix (like "#thingToDo" in the example). You can also reference the actor itself using the special "{0} placeholder. The end result is a blow-by-blow account of how each business task was performed (see <a href="#fig-journey-action-report">Test reports show details about both tasks and UI interactions</a>).</p>
 </div>
 <div id="fig-journey-action-report" class="imageblock">
 <div class="content">
@@ -681,7 +680,7 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 <div class="sect2">
 <h3 id="_action_classes_can_access_the_serenity_webdriver_integration"><a class="anchor" href="#_action_classes_can_access_the_serenity_webdriver_integration"></a>Action classes can access the Serenity WebDriver integration</h3>
 <div class="paragraph">
-<p>You can also write your own <code>Action</code> classes. If the actor has the <code>BrowseTheWeb</code> ability, the Action class can integrate with the Serenity WebDriver support in several ways.</p>
+<p>You can also write your own <code>Action</code> classes. If the actor has the <code>BrowseTheWeb</code> ability, the <code>Action</code> class can integrate with the Serenity WebDriver support in several ways.</p>
 </div>
 <div class="paragraph">
 <p>One approach is to use the <code>BrowseTheWeb</code> class to access the WebDriver instance associated with an actor. To do this, you use the <code>BrowseTheWeb.as(theActor)</code> method, as shown here:</p>
@@ -698,7 +697,7 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 <div class="sect2">
 <h3 id="_tasks_can_be_used_as_building_blocks_by_other_tasks"><a class="anchor" href="#_tasks_can_be_used_as_building_blocks_by_other_tasks"></a>Tasks can be used as building blocks by other tasks</h3>
 <div class="paragraph">
-<p>It is easy to reuse tasks in other, higher level tasks. For example, the sample project uses a AddTodoItems task to add a number of todo items to the list, like this:</p>
+<p>It is easy to reuse tasks in other, higher level tasks. For example, the sample project uses a <code>AddTodoItems</code> task to add a number of todo items to the list, like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -706,7 +705,7 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This task is defined using the AddATodoItem class, as shown here:</p>
+<p>This task is defined using the <code>AddATodoItem</code> class, as shown here:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -745,7 +744,7 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 <p>From a testing perspective, the third step is where the real value lies – this is where we check that the application does what it is supposed to do.</p>
 </div>
 <div class="paragraph">
-<p>In a traditional Serenity test, we would write an assertion using a library like Hamcrest or AssertJ to check an outcome against an expected value. Using the Serenity Screenplay Pattern, we express assertions using a flexible, fluent API quite similar to the one used for Tasks and Actions. In the test shown above, the assertion looks like this:</p>
+<p>In a traditional Serenity test, we would write an assertion using a library like Hamcrest or AssertJ to check an outcome against an expected value. Using the Serenity Screenplay Pattern, we express assertions using a flexible, fluent API quite similar to the one used for `Task`s and `Action`s. In the test shown above, the assertion looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -762,7 +761,7 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 <div class="title">Figure 6. A Serenity Screenplay Pattern assertion</div>
 </div>
 <div class="paragraph">
-<p>As you might expect, this code checks a value retrieved from the application (the items displayed on the screen) against an expected value (described by a Hamcrest expression). However, rather than passing an actual value, we pass a Question object. The role of a Question object is to answer a precise question about the state of the application, from the point of view of the actor, and typically using the abilities of the actor to do so.</p>
+<p>As you might expect, this code checks a value retrieved from the application (the items displayed on the screen) against an expected value (described by a Hamcrest expression). However, rather than passing an actual value, we pass a <code>Question</code> object. The role of a <code>Question</code> object is to answer a precise question about the state of the application, from the point of view of the actor, and typically using the abilities of the actor to do so.</p>
 </div>
 </div>
 <div class="sect2">
@@ -821,13 +820,13 @@ public &lt;T extends Actor&gt; void performAs(T actor) {...}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The Question object here is defined by the <code>TheRemainingItemCount</code> class.  This class has one very precise responsibility: to read the number in the remaining item count text displayed at the bottom of the todo list.</p>
+<p>The <code>Question</code> object here is defined by the <code>TheRemainingItemCount</code> class.  This class has one very precise responsibility: to read the number in the remaining item count text displayed at the bottom of the todo list.</p>
 </div>
 <div class="paragraph">
-<p>The static <code>value()`</code> method is a simple factory method that returns a new instance of the <code>TheRemainingItemCount</code> class.  This is simply to make the code read more fluently.</p>
+<p>The static <code>value()</code> method is a simple factory method that returns a new instance of the <code>TheRemainingItemCount</code> class.  This is simply to make the code read more fluently.</p>
 </div>
 <div class="paragraph">
-<p><code>Question</code> objects are similar to <code>Task</code> and <code>Action</code> objects. However, instead of the <code>performAs()</code> used for Tasks and Actions, a Question class needs to implement the <code>answeredBy(actor)</code> method, and return a result of a specified type. The <code>TheRemainingItemCount</code> class is configured to return an Integer. Since it will be querying the web interface, we can extend the WebQuestion class to give us access to the powerful Serenity WebDriver API.</p>
+<p><code>Question</code> objects are similar to <code>Task</code> and <code>Action</code> objects. However, instead of the <code>performAs()</code> used for <code>Task`s and `Action`s, a `Question</code> class needs to implement the <code>answeredBy(actor)</code> method, and return a result of a specified type. The <code>TheRemainingItemCount</code> class is configured to return an <code>Integer</code>. Since it will be querying the web interface, we can extend the <code>WebQuestion</code> class to give us access to the powerful Serenity WebDriver API.</p>
 </div>
 <div class="listingblock">
 <div class="content">

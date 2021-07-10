@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Screenplay Selenium Webdriver tasks :: The Serenity BDD Book</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="shortcut icon" type="image/x-icon" href="../../_/img/favicon.ico">
 <link rel="apple-touch-icon" sizes="57x57" href="../../_/img/apple-icon-57x57.png">
@@ -64,7 +64,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="theserenitybook" data-version="2.3.8">
+<div class="nav-container" data-component="theserenitybook" data-version="2.4.48">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -260,14 +260,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">The Serenity Book</span>
-    <span class="version">2.3.8</span>
+    <span class="version">2.4.48</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">The Serenity Book</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">2.3.8</a>
+          <a href="index.html">2.4.48</a>
         </li>
       </ul>
     </li>
@@ -624,7 +624,7 @@ public class TheUserName implements Question&lt;String&gt; {
 <p>Here we use <code>BrowseTheWeb.as(actor)</code> to get the Serenity WebDriver API for the actor&#8217;s webdriver instance, which gives access to the full range of Serenity Page Object methods.</p>
 </div>
 <div class="paragraph">
-<p>We could also use a Target to locate the user name, which we could store in a separate Page Compenent class:</p>
+<p>We could also use a Target to locate the user name, which we could store in a separate Page Component class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -649,7 +649,7 @@ public class TheUserName implements Question&lt;String&gt; {
 </div>
 </div>
 <div class="paragraph">
-<p>Alternatively, we could write this class as a factory, and use a lambda expression instead of a fully blown Qeustion class:</p>
+<p>Alternatively, we could write this class as a factory, and use a lambda expression instead of a fully blown <code>Question</code> class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -695,10 +695,11 @@ public class TheUserName implements Question&lt;String&gt; {
 }</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_reading_numbers"><a class="anchor" href="#_reading_numbers"></a>Reading numbers</h4>
+</div>
+<div class="sect2">
+<h3 id="_reading_numbers"><a class="anchor" href="#_reading_numbers"></a>Reading numbers</h3>
 <div class="paragraph">
-<p>This would not be a very strong use case by itself. But the <code>Text</code> class makes it easy to do type conversions in a very readable way. For example, if we wanted to read an Integer value rather than a String, we can use the <code>asInteger()</code> method in the place of <code>asString()</code>. This might lead to a factory class like the following:</p>
+<p>This would not be a very strong use case by itself. But the <code>Text</code> class makes it easy to do type conversions in a very readable way. For example, if we wanted to read an <code>Integer</code> value rather than a <code>String</code>, we can use the <code>asInteger()</code> method in the place of <code>asString()</code>. This might lead to a factory class like the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -719,8 +720,8 @@ public class TheUserName implements Question&lt;String&gt; {
 <p>You can also use <code>asLong()</code>, <code>asDouble()</code>, <code>asFloat()</code> and <code>asBigDecimal()</code> to convert the value to other numerical types.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_reading_lists"><a class="anchor" href="#_reading_lists"></a>Reading lists</h4>
+<div class="sect2">
+<h3 id="_reading_lists"><a class="anchor" href="#_reading_lists"></a>Reading lists</h3>
 <div class="paragraph">
 <p>We can also return a list of values located by a given target, with the <code>asList()</code> method, illustrated in the following example:</p>
 </div>
@@ -739,8 +740,8 @@ public class DisplayedItems implements Question&lt;List&lt;String&gt;&gt; {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_reading_dates"><a class="anchor" href="#_reading_dates"></a>Reading dates</h4>
+<div class="sect2">
+<h3 id="_reading_dates"><a class="anchor" href="#_reading_dates"></a>Reading dates</h3>
 <div class="paragraph">
 <p>You can convert a retrieved value to a <code>LocalDate</code> using the <code>asLocalDate()</code> method, e.g.</p>
 </div>
@@ -752,8 +753,8 @@ public class DisplayedItems implements Question&lt;List&lt;String&gt;&gt; {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_reading_enums"><a class="anchor" href="#_reading_enums"></a>Reading enums</h4>
+<div class="sect2">
+<h3 id="_reading_enums"><a class="anchor" href="#_reading_enums"></a>Reading enums</h3>
 <div class="paragraph">
 <p>It is often convenient to convert displayed values directly to enums. You can do this by using the <code>asEnum()</code> method. For example, suppose we have the following enum class:</p>
 </div>
@@ -785,8 +786,8 @@ public class DisplayedItems implements Question&lt;List&lt;String&gt;&gt; {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_reading_off_screen_text"><a class="anchor" href="#_reading_off_screen_text"></a>Reading off-screen text</h4>
+<div class="sect2">
+<h3 id="_reading_off_screen_text"><a class="anchor" href="#_reading_off_screen_text"></a>Reading off-screen text</h3>
 <div class="paragraph">
 <p>The WebDriver <code>getText()</code> method may fail in certain cases if the element being read is not visible on the screen. For example, if you have a long list, elements below the bottom of the screen may not be accessible.
 To get around this issue, you can scroll to the element before retrieving the text, but this can be slow and not always reliable.</p>
@@ -796,7 +797,7 @@ To get around this issue, you can scroll to the element before retrieving the te
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>@Subject("the displayed todo items")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Subject("the displayed todo items")
 public class DisplayedItems implements Question&lt;List&lt;String&gt;&gt; {
 
     @Override
@@ -805,8 +806,7 @@ public class DisplayedItems implements Question&lt;List&lt;String&gt;&gt; {
                 .viewedBy(actor)
                 .asList();
     }
-}</pre>
-</div>
+}</code></pre>
 </div>
 </div>
 </div>
@@ -835,7 +835,7 @@ public class DisplayedItems implements Question&lt;List&lt;String&gt;&gt; {
 <div class="sect2">
 <h3 id="_reading_from_dropdown_lists"><a class="anchor" href="#_reading_from_dropdown_lists"></a>Reading from dropdown lists</h3>
 <div class="paragraph">
-<p>You can read the selected value or values from a dropdown list using either the <code>SelectedValue</code> or <code>SelectedVisibleTextValue</code> class. For example, imagine our registration form had an age dropdown, with integer values. We could reead the selected value as follows:</p>
+<p>You can read the selected value or values from a dropdown list using either the <code>SelectedValue</code> or <code>SelectedVisibleTextValue</code> class. For example, imagine our registration form had an age dropdown, with integer values. We could read the selected value as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -945,7 +945,7 @@ public class DisplayedItems implements Question&lt;List&lt;String&gt;&gt; {
 <p>To check the state of an element, you first need to convert the locator used to locate the element into a <code>Question</code> about the state of the element. This locator can be a <code>Target</code>, a <code>By</code> locator, or an XPath or CSS expression.</p>
 </div>
 <div class="paragraph">
-<p>To convert a locator to a Question about the element&#8217;s state, we use the <code>WebElementQuestion</code> class. This class has three static DSL methods, which are all equivalent (you just use the one that reads the most fluently):</p>
+<p>To convert a locator to a <code>Question</code> about the element&#8217;s state, we use the <code>WebElementQuestion</code> class. This class has three static DSL methods, which are all equivalent (you just use the one that reads the most fluently):</p>
 </div>
 <div class="ulist">
 <ul>
