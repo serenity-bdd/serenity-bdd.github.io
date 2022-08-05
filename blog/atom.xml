@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://serenity-bdd.github.io/blog</id>
+    <title>Serenity BDD Users Manual Blog</title>
+    <updated>2021-11-27T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://serenity-bdd.github.io/blog"/>
+    <subtitle>Serenity BDD Users Manual Blog</subtitle>
+    <icon>https://serenity-bdd.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[What's New In Serenity 3.1.0]]></title>
+        <id>whats-new-in-serenity-3.1.0</id>
+        <link href="https://serenity-bdd.github.io/blog/whats-new-in-serenity-3.1.0"/>
+        <updated>2021-11-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Serenity 3.1.0]]></summary>
+        <author>
+            <name>John Ferguson Smart</name>
+            <uri>https://github.com/wakaleo</uri>
+        </author>
+    </entry>
+</feed>
