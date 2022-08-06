@@ -16,7 +16,6 @@ const config = {
   trailingSlash: false,
   organizationName: 'serenity-bdd', // Usually your GitHub org/user name.
   projectName: 'documentation', // Usually your repo name.
-  editUrl: 'https://github.com/serenity-bdd/serenity-bdd.github.io/blob/master'
 
   presets: [
     [
@@ -26,7 +25,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/serenity-bdd/documentation/',
+          editUrl: 'https://github.com/serenity-bdd/serenity-bdd.github.io/blob/master'
         },
         blog: {
           showReadingTime: true,
