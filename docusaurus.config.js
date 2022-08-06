@@ -16,6 +16,7 @@ const config = {
   trailingSlash: false,
   organizationName: 'serenity-bdd', // Usually your GitHub org/user name.
   projectName: 'documentation', // Usually your repo name.
+  editUrl: 'https://github.com/serenity-bdd/serenity-bdd.github.io/blob/master'
 
   presets: [
     [
