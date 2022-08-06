@@ -30,7 +30,7 @@ All of the standard WebDriver browsers are supported:
 
 When you run a WebDriver test against almost any driver, you need an OS-specific binary file to act as an intermediary between your test and the browser you want to manipulate. The main drivers, and where you can download them from, are listed below:
 
-| Browser | Driver | Location | System Property | 
+| Browser | Driver | Location | System Property |
 | ------- | ------ | -------- | --------------- |
 | Chrome | chromedriver | http://chromedriver.chromium.org | webdriver.chrome.driver |
 | Firefox | geckodriver | https://github.com/mozilla/geckodriver/releases | webdriver.gecko.driver |
@@ -40,11 +40,11 @@ When you run a WebDriver test against almost any driver, you need an OS-specific
 
 ### Automatic driver downloads
 
-Serenity integrates with [WebDriverManager](https://bonigarcia.dev/webdrivermanager/) to automatically download and install the appropriate driver binaries for the specified driver. 
+Serenity integrates with [WebDriverManager](https://bonigarcia.dev/webdrivermanager/) to automatically download and install the appropriate driver binaries for the specified driver.
 
 ### Configuring driver binaries by hand
 
-If you cannot or do not want to download the WebDriver binaries automatically using WebDriverManager (for example, if you are in a corporate network which does not have access to the WebDriverManager binaries), you can download the binaries and configure them directly in the `serenity.conf` file. 
+If you cannot or do not want to download the WebDriver binaries automatically using WebDriverManager (for example, if you are in a corporate network which does not have access to the WebDriverManager binaries), you can download the binaries and configure them directly in the `serenity.conf` file.
 
 In this case you need to either have the correct driver binary on your system path, or provide the path to the binary using the system property shown in the table above. For example, your serenity.conf file might contain the following:
 
@@ -55,7 +55,7 @@ webdriver.gecko.driver=/path/to/my/geckodriver
 However, adding a system path to your serenity.properties file is poor practice, as it means your tests will only run if the specified directory and binary exists, and that you are running the tests on the correct operating system. This obviously makes little sense if you are running your tests both locally, and on a CI environment.
 
 A more robust approach is to have your drivers in your source code, but have different drivers per OS. Serenity allows you to pass driver-specific properties to a driver, as long as they are prefixed with drivers._os_. For example, the following line will configure the webdriver.chrome.driver if you are running your tests under windows.
- 
+
 ```hocon
 drivers {
   windows {
