@@ -1,0 +1,18 @@
+.sponsors {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.sponsorsLogo {
+  height: 200px;
+  width: 200px;
+}
+
+.sponsorsTitle {
+  font-weight: normal;
+  text-align: center;
+  font-size: 3.5em;
+  padding: 1em;
+}
