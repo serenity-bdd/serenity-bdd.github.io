@@ -27,8 +27,7 @@ export default function LegacyLink404() {
                         Please use the header links to get to the latest content.
                     </p>
                     <p>
-                        If there is anything missing in the new docs, let us know or add it yourself to the new
-                        documentation
+                        If there is anything missing in the new documentation, please let us know or add it yourself.
                     </p>
                     <p>
                         Legacy source might be found at <a
