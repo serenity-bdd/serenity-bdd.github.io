@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const path = require('path')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -140,6 +141,21 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+
+  plugins: [
+    [
+      path.resolve(__dirname, 'plugin/dynamic-routes'),
+      { // this is the options object passed to the plugin
+        routes: [
+          { // using Route schema from react-router
+            path: '/theserenitybook/latest',
+            exact: false, // this is needed for sub-routes to match!
+            component: "/src/components/LegacyLink404"
+          }
+        ]
+      }
+    ],
+  ],
 };
 
 module.exports = config;
