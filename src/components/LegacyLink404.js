@@ -5,7 +5,9 @@ import {useLocation} from '@docusaurus/router';
 
 export default function LegacyLink404() {
     const location = useLocation()
-    const legacySource = location.pathname.split("/").reduce((a, b) => b).replace("html", "adoc")
+    const legacySource =
+        "https://github.com/serenity-bdd/the-serenity-book/tree/master/modules/ROOT/pages/" +
+        location.pathname.split("/").reduce((a, b) => b).replace("html", "adoc")
     return (
         <Layout
             title={`404`}
@@ -22,13 +24,15 @@ export default function LegacyLink404() {
                 }}>
                     <h1>404 legacy url</h1>
                     <p>
-                      Please use the header links to get to the latest content.
+                        Please use the header links to get to the latest content.
                     </p>
                     <p>
-                        If there is anything missing from the old docs, let us know or add it yourself to the new documentation
+                        If there is anything missing in the new docs, let us know or add it yourself to the new
+                        documentation
                     </p>
                     <p>
-                        Legacy source might be found at <a href={"https://github.com/serenity-bdd/the-serenity-book/tree/master/modules/ROOT/pages/" + legacySource}>https://github.com/serenity-bdd/the-serenity-book/tree/master/modules/ROOT/pages/{legacySource}</a>
+                        Legacy source might be found at <a
+                        href={legacySource}>{legacySource}</a>
                     </p>
                 </div>
             </div>
