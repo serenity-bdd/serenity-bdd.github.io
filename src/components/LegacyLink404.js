@@ -1,12 +1,13 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {useLocation} from '@docusaurus/router';
 
 
 export default function LegacyLink404() {
     const location = useLocation()
-    const {siteConfig} = useDocusaurusContext();
+    const legacySource =
+        "https://github.com/serenity-bdd/the-serenity-book/tree/master/modules/ROOT/pages/" +
+        location.pathname.split("/").reduce((a, b) => b).replace("html", "adoc")
     return (
         <Layout
             title={`404`}
@@ -18,19 +19,22 @@ export default function LegacyLink404() {
             }}>
                 <div style={{
                     margin: "auto",
-                    width: "400px",
+                    width: "600px",
                     paddingTop: "4rem"
                 }}>
                     <h1>404 legacy url</h1>
                     <p>
-                        {location.pathname}{location.hash}
+                        Please use the header links to get to the latest content.
                     </p>
                     <p>
-                        currently unsupported, you can find the old docs sources <a href="https://github.com/serenity-bdd/the-serenity-book/tree/master/modules/ROOT/pages">here</a>. if you miss something, let us know or add it yourself to the new documentation
+                        If there is anything missing in the new documentation, please let us know or add it yourself.
+                    </p>
+                    <p>
+                        Legacy source might be found at <a
+                        href={legacySource}>{legacySource}</a>
                     </p>
                 </div>
             </div>
-
         </Layout>
     );
 }
