@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 
 # Your First Web Test
-In this tutorial you'll write your very first Serenity BDD test, using JUnit 5 and Selenium. We'll start out simple, then explore some of the features that make Serenity BDD rather special. So lets get started!
+In this tutorial you'll write your very first Serenity BDD test, using JUnit 5 and Selenium. We'll start out simple, then explore some of the features that make Serenity BDD rather special. So let's get started!
 
 ## Pre-requisites
 To run this tutorial, you will need a few things installed on your machine:
@@ -16,10 +16,10 @@ To run this tutorial, you will need a few things installed on your machine:
 We will be using the **[Serenity BDD with JUnit and Screenplay](https://github.com/serenity-bdd/serenity-junit-screenplay-starter)** template project to get a simple project up and running quickly.
 
 :::note
-We'll be using a fairly conventional test automation style in this tutorial, using action classes and page objects. In the next tutorial we'll see how to do all this using the Screenplay Pattern.
+We'll be using a fairly conventional test automation style in this tutorial, using action classes and page objects. In the next tutorial, we'll see how to do all this using the Screenplay Pattern.
 :::
 
-Go to the [project template page on Githuib](https://github.com/serenity-bdd/serenity-junit-screenplay-starter) and click on [Use This Template](https://github.com/serenity-bdd/serenity-junit-screenplay-starter/generate).
+Go to the [project template page on Github](https://github.com/serenity-bdd/serenity-junit-screenplay-starter) and click on [Use This Template](https://github.com/serenity-bdd/serenity-junit-screenplay-starter/generate).
 
 ![](img/junit-template.png)
 
@@ -28,7 +28,7 @@ Go to the [project template page on Githuib](https://github.com/serenity-bdd/ser
 Let's start with a simple test. We will run a simple search for the keyword "Cucumber" on the DuckDuckGo search engine:
 ![](img/duckduckgo.png)
 
-First of all, we create a new package for our DuckDuckGo tests. The Serenity test reports mirror the directory structure we use to organise our tests, so it helps to make the structure and the package name meaningful.
+First of all, we create a new package for our DuckDuckGo tests. The Serenity test reports mirror the directory structure we use to organize our tests, so it helps to make the structure and the package name meaningful.
 
 ![](img/initial-directory-structure.png)
 
@@ -55,7 +55,7 @@ class WhenSearchingByKeyword {
 
 :::caution
 There are a few things to note here:
-  - The `@ExtendWith` annotation tells JUnit that this test uses Serenity - don't forget this annnotation or your test won't be recognised as a Serenity test
+  - The `@ExtendWith` annotation tells JUnit that this test uses Serenity - don't forget this annotation or your test won't be recognised as a Serenity test
   - The `@Test` annotation uses the `org.junit.jupiter.api.Test` class, from JUnit 5. Be careful not to get this mixed up with the JUnit 4 annotation of the same name (`org.junit.Test`), otherwise your test won't run.
 :::
 
@@ -104,9 +104,9 @@ public class NavigateActions extends UIInteractions {
 
 A UI Interactions class is a class containing methods that can interact with a web page. When we extend the `UIInteractions` class, Serenity will automatically inject the `@Managed` WebDriver instance we saw earlier whenever we use an instance of this class in our tests.
 
-The `UIInteractions` class gives you access to a range of methods that you can use to interact with the page. For example, as we can see in this example, the `openUrl()` method id used to open a page at a specified URL.
+The `UIInteractions` class gives you access to a range of methods that you can use to interact with the page. For example, as we can see in this example, the `openUrl()` method is used to open a page at a specified URL.
 
-Next, lets move on to the second action, where we need to search for a specific term. Create a new class called `SearchActions`, and make it extend the `UIInteractions` class.
+Next, let's move on to the second action, where we need to search for a specific term. Create a new class called `SearchActions`, and make it extend the `UIInteractions` class.
 
 ```java
 import net.serenitybdd.core.steps.UIInteractions;
@@ -133,9 +133,9 @@ The third step of our test is to read the title of the search results sidebar an
 
 ![](img/result-module-title.png)
 
-We can do this with a Page Component object. Page Components (which extend the `PageComponent` class) are similar to action classes, but focus on reading information from a particular part of a web page, rather than modelling user interactions.
+We can do this with a Page Component object. Page Components (which extend the `PageComponent` class) are similar to action classes, but focus on reading information from a particular part of a web page, rather than modeling user interactions.
 
-To read the title of the sidebar in this screen, create a new class called `SearchResultSidebar` with the following code:
+To read the title of the sidebar on this screen, create a new class called `SearchResultSidebar` with the following code:
 
 ```java
 import net.serenitybdd.core.pages.PageComponent;
@@ -184,9 +184,9 @@ class WhenSearchingByKeyword {
 
 We now have a working test. You can run it from within your IDE, or by running `mvn verify` on the command line.
 
-However there is one more step we can do. Serenity BDD is a living documentation tool, which means it aims to document not only what tests are executed, but how they are executed.
+However, there is one more step we can do. Serenity BDD is a living documentation tool, which means it aims to document not only what tests are executed, but how they are executed.
 
-We can control how Serenity reports each method in a `UIInteractions` class using the `@Step` annotatation. When you place a `@Step` annotation on a `UIInteractions` method, this method will appear in the Serenity reports whenever it is called.
+We can control how Serenity reports each method in a `UIInteractions` class using the `@Step` annotation. When you place a `@Step` annotation on a `UIInteractions` method, this method will appear in the Serenity reports whenever it is called.
 
 Let's see how it works. Update the `NaviagateActions` and `SearchActions` classes to include the `@Step` annotations like this:
 
@@ -233,7 +233,7 @@ void theKeywordShouldAppearInTheResultsSidebar() {
 
 ## Generating the reports
 
-Let's run the tests and see what the reports look like. Delete the `wikipedia` package (we don't need the sample tests any more), and run `mvn verify` from the command line. You should see an output along the following lines:
+Let's run the tests and see what the reports look like. Delete the `wikipedia` package (we don't need the sample tests anymore), and run `mvn verify` from the command line. You should see an output along the following lines:
 
 ```bash
 $ mvn verify
