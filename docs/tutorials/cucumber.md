@@ -7,7 +7,7 @@ sidebar_position: 4
 
 ## Objectives
 At the end of this tutorial, you would have completed the following activities.
-1. Write your first **specification by example** using Gherkin language in a `.feature` file for the well-known [TodoMVC](http://todomvc.com) project
+1. Write your first **specification by example** using [Gherkin](https://cucumber.io/docs/gherkin/reference/) language in a `.feature` file for the well-known [TodoMVC](http://todomvc.com) project
 2. Make the specification (the `.feature` file from Step 1 above) executable using Serenity BDD and Cucumber with Screenplay pattern
 3. Create a **living documentation** that also serves as a test report and a progress report
 
@@ -20,7 +20,7 @@ To run this tutorial, you will need a few things installed on your machine:
 
 ## Creating your project
 
-The quickest way to start a new Serenity BDD with Cucumber project is to clone the starter project. For this tutorial, We will be using the **[Serenity BDD with Cucumber and Screenplay](https://github.com/serenity-bdd/serenity-cucumber-starter)** template project, which uses Serenity BDD and Cucumber 6.x.
+The quickest way to start a new Serenity BDD with [Cucumber](https://cucumber.io/) project is to clone the starter project. For this tutorial, We will be using the **[Serenity BDD with Cucumber and Screenplay](https://github.com/serenity-bdd/serenity-cucumber-starter)** template project, which uses Serenity BDD and Cucumber 6.x.
 
 This project comes with a sample feature file already implemented for our reference.  For now, we are going to ignore that and start writing a new feature file from scratch.
 
