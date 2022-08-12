@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # Your First Screenplay Scenario
 
-The Screenplay Pattern is a way to write clean, readable, scalable test automation modelled around the user. 
+The Screenplay Pattern is a way to write clean, readable, scalable test automation modeled around the user. 
 
 Screenplay builds on good software engineering principles such as the Single Responsibility Principle, the Open-Closed Principle, and effective use of Layers of Abstraction. It encourages good testing habits and well-designed test suites that are easy to read, easy to maintain and easy to extend, enabling teams to write more robust and more reliable automated tests more effectively.
 
@@ -13,15 +13,15 @@ In this section, we will show you how to write your first Screenplay scenario us
 
 ![](img/journey-todo-app.png)
 
-## Prerequesites
+## Pre-requisites
 To run this tutorial, you will need a few things installed on your machine:
 * **Java**: Serenity BDD is a Java library, so you'll need a recent JDK installed. JDK 1.8 or higher should be fine.
 * **A Java IDE**: You'll also need a Java Development Environment such as IntelliJ or Eclipse (and a working knowledge of Java).
-* **Git**: We'll be using a starter project on Github, and the sample code for this project lives on Github too, so I'll be assuming you have a basic understanding of Git.
+* **Git**: We'll be using a starter project on Github, and the sample code for this project lives on Github too, so I'll be assuming you have a basic understanding of Git.  You will also need a Git client installed on your computer.
 
 ## Introducing the Screenplay Pattern
 
-The goal of the Screenplay pattern is to help you write cleaner, more readable, more maintainable test automation code for any domain. With Screenplay, your tests use an intuative, readable style like the following:
+The goal of the Screenplay pattern is to help you write cleaner, more readable, more maintainable test automation code for any domain. With Screenplay, your tests use an intuitive, readable style like the following:
 ```java
         wendy.attemptsTo(
                 Navigate.toTheHomePage(),
@@ -30,7 +30,7 @@ The goal of the Screenplay pattern is to help you write cleaner, more readable, 
         );
 ```
 
-As you can see here, Screenplay uses a user-centric model, where we describe _actors_ who interact with an application in various ways to perform _tasks_ that help them acheive their goals. Actors have _abilities_, such as the ability to interact with a web browser or query a database, that help them perform these tasks. Actors can also answer _questions_ about the state of the system, so that we can check whether a feature is behaving the way we would expect it to.
+As you can see here, Screenplay uses a user-centric model, where we describe _actors_ who interact with an application in various ways to perform _tasks_ that help them achieve their goals. Actors have _abilities_, such as the ability to interact with a web browser or query a database, that help them perform these tasks. Actors can also answer _questions_ about the state of the system, so that we can check whether a feature is behaving the way we would expect it to.
 
 ![](img/screenplay-model.svg)
 
@@ -49,7 +49,7 @@ We will use some simple conventions to organise our test classes, based on the s
 
 ![](img/screenplay-directory-layout.png)
 
-Our test code will be stored in two folders, underneath `src/test/java/todomvc`. The first directory, `features`, will contain our test classes. The second, `screenplay`, will contain our Screenplay classes. Screenplay classes are designed to be highly modular and reusable, and often appear in many tests, so it makes sense to keep them separate from the tests themselves.
+Our test code will be stored in two folders, underneath `src/test/java/todomvc`. The first directory named `features` will contain our test classes. The second, `screenplay`, will contain our Screenplay classes. Screenplay classes are designed to be highly modular and reusable, and often appear in many tests, so it makes sense to keep them separate from the tests themselves.
 
 Serenity organises JUnit test results based on the package structure we use, so we need to tell it the name of the root package where our tests will live. We do this in the `serenity.conf` file in the `src/test/resources` folder. Open this file and add the following line:
 
@@ -60,7 +60,7 @@ serenity.test.root = todomvc.features
 ## Writing your first scenario
 
 ### Creating the test case 
-For our first scenario, we will simply add a todo item (say, "Buy some milk") to an empty list. 
+For our first scenario, we will simply add a 'to do' item (say, "Buy some milk") to an empty list. 
 
 Start by creating a new empty test case under the `src/test/java/todomvc/features` package like this:
 
@@ -82,11 +82,11 @@ class AddNewTodos {
 }
 ```
 
-The `@ExtendWith(SerenityJUnit5Extension.class)` line indicates that this is a Serenity BDD test.
+The line `@ExtendWith(SerenityJUnit5Extension.class)` indicates that this is a Serenity BDD test.
 
 ### Introducing the actor
 
-Screenplay uses an actor-centric approch, where our tests describe _actors_, who represent actual users of our application, and the actions they perform. 
+Screenplay uses an actor-centric approach, where our tests describe _actors_, who represent actual users of our application, and the actions they perform. 
 
 In a Serenity BDD JUnit test, we can use the `@CastMember` annotation to declare an actor like this:
 
@@ -108,7 +108,7 @@ An example of a simple Interaction is the `Open.url()` interaction, which opens 
 Open.url("https://todomvc.com/examples/angularjs/#/")
 ```
 
-In our "add a todo item to an empty list" test, the first step will be for Toby to open the browser on the TodoMVC application home page. We can do this withe the following code:
+In our "add a todo item to an empty list" test, the first step will be for Toby to open the browser on the TodoMVC application home page. We can do this with the following code:
 
 ```java
 @Test
@@ -126,13 +126,13 @@ The next thing we need to do is to enter a value into the input field on the Tod
 
 ![](img/todomvc-input.png)
 
-To enter a value into a field, we can use the `Enter` interaction class. This field can be located using a CSS locator like _".new-todo". So to enter the value into this field, we can use the following interaction:
+To enter a value into a field, we can use the `Enter` interaction class. This field can be located using a CSS locator like _".new-todo"_. So to enter the value into this field, we can use the following interaction:
 
 ```java
 Enter.theValue("Buy some milk").into(".new-todo")
 ```
 
-There is no submit button on this form - to add the item to the list we need to click on the _RETURN_ key. We can do this by adding the `thenHit()` method, like this:
+There is no submit button on this form. To add the item to the list, we need to press the _RETURN_ key. We can do this by adding the `thenHit()` method, like this:
 
 ```java
 Enter.theValue("Buy some milk").into(".new-todo").thenHit(Keys.RETURN)
@@ -166,7 +166,7 @@ Text.ofEach(".todo-list li")
 
 A question does nothing by itself - just as we need an actor to perform an interaction, we also need an actor to ask a question. 
 
-One way we do this is to use the `asksFor() method, like this:
+One way we do this is to use the `asksFor()` method, like this:
 
 ```java
         var todos = toby.asksFor(Text.ofEach(".todo-list label"));
@@ -245,11 +245,11 @@ $ mvn verify
 [INFO] ------------------------------------------------------------------------
 ```
 
-Now open the `index.html` file in the `target/site/serenity` directory, and navigate to the Test Results tab. Open up the "Add a todo item to an empty list" scenario. Notice how the report renders the actor's actions almost word-for-word:
+Now open the `index.html` file in the `target/site/serenity` directory using a web browser, and navigate to the Test Results tab. Open up the "Add a todo item to an empty list" scenario. Notice how the report renders the actor's actions almost word-for-word:
 
 ![](img/screenplay-report-1.png)
 
 
 ## Conclusion
 
-You have now seen just a little of the power of the Screenplay pattern. To learn more about what you can do with the Screenplay pattern, check out [the full Screenplay Documentation](../screenplay/screenplay_fundamentals)
+You have now seen just a little of the power of the Screenplay pattern. To learn more about what you can do with the Screenplay pattern, check out [the full Screenplay Documentation](../screenplay/screenplay_fundamentals).
