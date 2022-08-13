@@ -316,7 +316,7 @@ In both cases, this data is recorded with the test, and appears in the test resu
 ![Adding evidence to a test result](img/requirements-adding-evidence.png)
 
 
-# Common Requirements Structures
+## Common Requirements Structures
 The exact organisation varies from project to project, but some common structures include:
 
 * Capabilities > Features
@@ -327,17 +327,17 @@ The exact organisation varies from project to project, but some common structure
 
 A two-level requirements hierarchy works well for most projects. A small project (for example, a micro-service) might need only a short list of features. Only very large or complex projects would typically need three or more levels.
 
-## Goals, Capabilities and Features
+### Goals, Capabilities and Features
 
 The aim of any software project is to help our stakeholders achieve their _goals_ by providing them with _capabilities_. In BDD, a _Capability_ is something that allows users to do something that they couldn't do previously, or to do something that they could do previously, but do it more efficiently. A capability is technology-agnostic: it does not commit to a particular solution or implementation. An example of a capability might be the ability to pay online with a credit card.
 
 A _Feature_ is a concrete solution or implementation that delivers a capability. Some possible features that deliver the capability we mentioned earlier might be to pay via PayPal, via Stripe or to pay by integrating with a merchant banking platform.
 
-## Themes and Epics
+### Themes and Epics
 
 In Scrum, an _Epic_ is simply a big user story, one that can't be delivered in a sprint. A _Theme_ is just another way to group related User Stories, though many teams use Themes as groups of related epics. (Another way to implement the original idea of themes in Serenity BDD is to use tags).
 
-## User Stories
+### User Stories
 User Stories are commonly used in Agile as a way to organise work, but they are not always very useful when it comes to Living Documentation. This is because they reflect how a feature was sliced up when it was built. But once a feature is delivered, no one cares how it was broken down during the development phase - all that matters is what was delivered. That's why Cucumber prefers to group scenarios in Feature Files (which describe a feature). For this reason, User Stories are generally considered to be not a great way to structure living documentation. (Note that JBehave still uses the older convention of "Story Files", which were meant to contain the acceptance criteria of a given story).
 
 ## Configuring your requirements structure in Serenity BDD
@@ -364,7 +364,7 @@ Requirements configuration applies to the container levels, not to the feature o
 
 :::
 
-## Requirements Hierarchies for JUnit Tests
+### Requirements Hierarchies for JUnit Tests
 
 Many teams write automated acceptance tests with Serenity BDD using JUnit. The Screenplay Pattern in particular makes it easy to write highly maintainable tests using a business-readable DSL that produces excellent living documentation.
 
@@ -393,7 +393,7 @@ serenity.test.root=com.acme.myapp.specs
 
 In this case, the Serenity living documentation will treat the JUnit test cases ("Adding New Items", "Deleting Items" etc.) as Stories, and the packages directly underneath the `com.acme.myapp.specs` package ("Multiple Todo Lists", "Sharing Lists" etc.) as Features.
 
-## Requirements Hierarchies for Cucumber
+### Requirements Hierarchies for Cucumber
 
 When you use Cucumber, Serenity expects your feature files to be stored in the `src/test/resources/features` directory. Your requirements hierarchy goes directly underneath this directory:
 
@@ -413,7 +413,7 @@ src
 
 When Cucumber is used with the default configuration, the feature files always represent Features, and the directories containing the features represent Capabilities. A Feature is typically bigger than a user story, and can contain the acceptance criteria (scenarios) from several user stories.
 
-## Requirements Hierarchies for JBehave
+### Requirements Hierarchies for JBehave
 
 When you use JBehave, Serenity expects your Story files to be stored in the `src/test/resources/stories` directory. Your requirements hierarchy goes directly underneath this directory:
 
