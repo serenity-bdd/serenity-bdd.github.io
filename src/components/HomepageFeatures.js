@@ -26,7 +26,7 @@ const FeatureList = [
     Svg: require('./img/icon_3.svg').default,
     description: (
       <>
-        Serenity BDD provides powerful living documentation and test resporting that gives meaningful feedback to testers, business folk, and the team as a whole. Serenity tells you not only what tests have been executed, but more importantly, what requirements have been tested.
+        Serenity BDD provides powerful living documentation and test reporting that gives meaningful feedback to testers, business folks, and the team as a whole. Serenity tells you not only what tests have been executed, but more importantly, what requirements have been tested.
       </>
     ),
   },
@@ -35,7 +35,7 @@ const FeatureList = [
     Svg: require('./img/icon_4.svg').default,
     description: (
       <>
-        Serenity supports both UI and API testing, and integrates seemlessly with standard industry tools such as Selenium 4 and RestAssured.
+        Serenity supports both UI and API testing, and integrates seamlessly with standard industry tools such as Selenium 4 and RestAssured.
       </>
     ),
   },
