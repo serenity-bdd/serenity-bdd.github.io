@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Running Serenity tests from the command line
 
-You typically run Serenity as part of the build process (either locally or on a CI server). In addition to the `webdriver.driver` option discussed about, you can also pass a number of parameters in as system properties to customize the way the tests are run. You can also place these files in a Properties file called `serenity.properties`, in your project root directory.
+You typically run Serenity as part of the build process (either locally or on a CI server). In addition to the `webdriver.driver` option discussed [here](/docs/guide/driver_config), you can also pass a number of parameters in as system properties to customize the way the tests are run. You can also place these files in a Properties file called `serenity.properties`, in your project root directory.
 
 The full list is shown here:
 
@@ -304,7 +304,7 @@ If this property equal to true you will find colorful output:
 ### serenity.include.actor.name.in.consequences
 Set to true to show actor names in the "then" steps. Especially useful when you have multiple actors in a test
 
-// FIXME move FF profile to extended driver info pages?
+[FIXME move FF profile to extended driver info pages?]:#
 ## Providing your own Firefox profile
 
 If you need to configure your own customized Firefox profile, you can do this by using the Serenity.useFirefoxProfile() method before you start your tests. For example:
