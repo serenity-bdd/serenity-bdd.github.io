@@ -121,8 +121,8 @@ import net.serenitybdd.core.steps.UIInteractions;
 
 public class SearchActions extends UIInteractions {
     public void byKeyword(String keyword) {
-      $("#search_form_input_homepage").sendKeys(keyword);
-      $(".search__button").click();      
+      $("#searchbox_input").sendKeys(keyword);
+      $(".searchbox_searchButton__F5Bwq.iconButton_button__6x_9C").click();      
     }
 }
 ```
@@ -142,7 +142,7 @@ import net.serenitybdd.core.pages.PageComponent;
 
 public class SearchResultSidebar extends PageComponent {
     public String heading() {
-        return $(".module__title").getText();
+        return $(".module__title.js-about-item-title").getText();
     }
 }
 ```
@@ -195,7 +195,7 @@ import net.serenitybdd.core.steps.UIInteractions;
 import net.thucydides.core.annotations.Step;
 
 public class NavigateActions extends UIInteractions {
-    @Step("Navigate to the home page")
+    @Step("Navigate to the search page")
     public void toTheDuckDuckGoSearchPage() {
         openUrl("https://duckduckgo.com/");
     }
