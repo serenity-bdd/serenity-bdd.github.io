@@ -208,6 +208,7 @@ webdriver {
 Some of the more commonly used Chrome startup arguments include:
 
 | Argument               | Usage |
+| ---------------------- | ------|
 | start-maximized        | Opens Chrome in maximize mode |
 | incognito              | Opens Chrome in incognito mode |
 | headless               | Opens Chrome in headless mode |
