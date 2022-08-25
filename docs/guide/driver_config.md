@@ -247,14 +247,14 @@ webdriver {
 ```
 
 ### Blocking popup-windows
-By default, ChromeDriver configures Chrome to allow pop-up windows. If you want to block pop-ups (i.e., restore the normal Chrome behavior when it is not controlled by ChromeDriver), you can use the `excludedSwitches` option as follows:
+By default, ChromeDriver configures Chrome to allow pop-up windows. If you want to block pop-ups (i.e., restore the normal Chrome behavior when it is not controlled by ChromeDriver), you can use the `excludeSwitches` option as follows:
 
 ```hocon
 webdriver {
   capabilities {
     ...
     "goog:chromeOptions" {
-      excludedSwitches = ["disable-popup-blocking"]
+      excludeSwitches = ["disable-popup-blocking"]
     }
   }
 }
