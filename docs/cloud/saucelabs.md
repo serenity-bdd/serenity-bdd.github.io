@@ -9,7 +9,7 @@ The `serenity-saucelabs` plugin provides seamless integration with the [SauceLab
 
 ## Adding the SauceLabs plugin
 
-To add the integrated support for LambdaTest to your project, you will need to add the `serenity-saucelabs` dependency to your project dependencies. For Mavenm, you would add the following:
+To add the integrated support for SauceLabs to your project, you will need to add the `serenity-saucelabs` dependency to your project dependencies. For Mavenm, you would add the following:
 ```xml
     <dependency>
         <groupId>net.serenity-bdd</groupId>
@@ -52,7 +52,7 @@ webdriver {
 The Serenity SauceLabs plugin will be invoked if Serenity can find a `"sauce:options"` section in your `serenity.conf` file, or if you specify a `remote.webdriver.url` that points to a SauceLabs server. If you have no Saucelabs-specific capabilities, simply set the `sauce.active` property to true like this:
 
 ```hocon
-lambdatest {
+sauce {
   active = true
 }
 ```
