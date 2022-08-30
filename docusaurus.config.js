@@ -75,7 +75,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'http://expansion.serenity-dojo.com',
+            href: 'https://www.serenity-dojo.com/',
             label: 'Serenity BDD Coaching',
             position: 'right',
           },
