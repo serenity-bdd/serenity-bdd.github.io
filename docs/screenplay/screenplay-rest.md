@@ -58,14 +58,14 @@ When you test a REST API, it is convenient to be able to use the same tests agai
 
 For example, in this chapter, we will be demonstrating the features of `serenity-screenplay-rest` using the [ResReq](https://reqres.in) application (see below). If you have a reliable internet connection, you can run your tests against the live ResReq server at https://reqres.in/api/. Or if you are running the ResReq server locally, you would access endpoints at http://localhost:5000/api.
 
----
+
 **The ResReq test application**
 
 The [ResReq](https://reqres.in) application is an open source application written by [Ben Howdle](http://benhowdle.im/) that makes it easy to experiment with REST APIs. It is hosted on Digital Ocean, where you can access it online at https://reqres.in/api/. Alternatively, you can also download the application from the project's [repository on Github](https://github.com/benhowdle89/reqres), and run it locally. When you run the application on your own machine, the REST API will be available at http://localhost:5000/api.
 
----
 
-=== Reading from the Serenity config file
+
+### Reading from the Serenity config file
 
 In Serenity BDD, you can define the base URL for your REST API directly in the `serenity.properties` or `serenity.conf` file for your project.
 Here is an example from a `serenity.conf` file:
@@ -84,7 +84,7 @@ theRestApiBaseUrl = environmentVariables.optionalProperty("restapi.baseurl")
                                         .orElse("https://reqres.in/api");
 ```
 
-=== Setting the API Url from the command line
+### Setting the API Url from the command line
 
 You can override the default URL defined this way simply by providing a system property on the command line, like this:
 
