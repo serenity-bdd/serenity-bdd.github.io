@@ -457,7 +457,7 @@ you make assertions about whether an element is displayed or disabled.
 | isDisplayed        | `Ensure.that(FIRST_NAME).isDisplayed()`         |
 | isDisabled         | `Ensure.that(FIRST_NAME).isDisabled()`          |
 | isEnabled          | `Ensure.that(FIRST_NAME).isEnabled()`           |
-+--------------------+-------------------------------------------------+
+
 
 # Checking text content and field values
 
@@ -495,8 +495,7 @@ the following:
 
 | Assertion          | Example     |
 | -----------        | ----------- |
-| value              | `Ensure.that(FIRST_NAME).value().isEqualTo("Joe |
-|                    | ")`                                             |
+| value              | `Ensure.that(FIRST_NAME).value().isEqualTo("Joe")`                                             |
 | text               | `Ensure.that(DESCRIPTION).text().isNotEmpty()`  |
 | textContent        | `Ensure.that(DESCRIPTION).textContent().isNotEmpty()`  |
 | attribute          | `Ensure.that(FIRST_NAME).attribute("title").isEqualTo("First name")`|
@@ -504,7 +503,7 @@ the following:
 | selectedVisibleText | `Ensure.that(COLORS).selectedVisibleText().isEqualTo("Green")`   |
 | hasCssClass        | `Ensure.that(COLORS).hasCssClass("color-list")` |
 | containsElements   | `Ensure.that(RESULT_LIST).containsElements(".result-details")`|
-+--------------------+-------------------------------------------------+
+
 
 All of these methods allow you to make all of the String assertions we
 saw earlier.
@@ -534,7 +533,7 @@ The main conversion methods include:
 | asADate            | `Ensure.that(CURRENT_DATE).value().asADate().isEqualTo(expectedLocalDate)`  |
 | asATime            | `Ensure.that(CURRENT_TIME).value().asATime().isEqualTo(expectedLocalTime)` |
 | asABoolean         | `Ensure.that(SOME_FLAG).value().asABoolean().is True()`   |
-+--------------------+-------------------------------------------------+
+
 
 If a date or time value uses as non-standard format, we can pass a
 format string to the `asADate()` or `asATime()` methods:
@@ -590,7 +589,7 @@ The main methods defined in the `TheMatchingElement` class include:
 | containsText       | `Ensure.thatTheSetOf(RESULTS).anyMatch(containsText("Red"))`  |
 | containsOnlyText   | `Ensure.thatTheSetOf(RESULTS).anyMatch(containsOnlyText("Red Car"))`    |
 | containsElementsLo | `Ensure.thatTheSetOf(RESULTS).anyMatch(containsElementsLocatedBy(".model"))`  |
-+--------------------+-------------------------------------------------+
+
 
 We can also make assertions about collections of matching values or the
 text contents of matching elements. We can do this using the
