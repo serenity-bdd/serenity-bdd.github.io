@@ -65,7 +65,7 @@ const config = {
           },
           {to: 'blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://johnfergusonsmart.com/serenity-bdd-mentoring/',
+            href: 'https://by2kx88fp4k.typeform.com/to/aOGRBzJw',
             label: 'Get Support',
             position: 'right',
           },
