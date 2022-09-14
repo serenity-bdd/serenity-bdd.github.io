@@ -70,13 +70,13 @@ const config = {
             position: 'right',
           },
           {
-            href: 'http://expansion.serenity-dojo.com',
+            href: 'https://expansion.serenity-dojo.com/courses/testing-web-applications-with-serenity-bdd',
             label: 'Learn Serenity BDD Online',
             position: 'right',
           },
           {
             href: 'https://www.serenity-dojo.com/',
-            label: 'Serenity BDD Coaching',
+            label: 'BDD And Test Automation Coaching',
             position: 'right',
           },
         ],
