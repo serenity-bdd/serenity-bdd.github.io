@@ -65,7 +65,7 @@ const config = {
           },
           {to: 'blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://by2kx88fp4k.typeform.com/to/aOGRBzJw',
+            href: 'https://by2kx88fp4k.typeform.com/to/sNP1tzno',
             label: 'Get Support',
             position: 'right',
           },
@@ -188,5 +188,4 @@ const config = {
     ],
   ],
 };
-
 module.exports = config;
