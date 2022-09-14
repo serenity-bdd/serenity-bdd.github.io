@@ -31,7 +31,7 @@ public void list_all_users() {
 }
 ```
 
-Serenity Screenplay uses http://rest-assured.io[Rest-Assured] to interact with rest endpoints, and to query the responses. Rest-Assured provides us with a simple but extremely powerful Java DSL that allows us to test and virtually any kind of REST end point. Its highly readable code is also an ideal fit for Screenplay.
+Serenity Screenplay uses [Rest-Assured](https://rest-assured.io) to interact with rest endpoints, and to query the responses. Rest-Assured provides us with a simple but extremely powerful Java DSL that allows us to test and virtually any kind of REST end point. Its highly readable code is also an ideal fit for Screenplay.
 
 ## Setting up your project
 
@@ -56,16 +56,16 @@ testCompile "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}"
 
 When you test a REST API, it is convenient to be able to use the same tests against different environments. You may want to run your tests against a server running on your local machine, against a QA server, or even against a production box. And you don't want to have to change your tests whenever you test against a different environment.
 
-For example, in this chapter, we will be demonstrating the features of `serenity-screenplay-rest` using the https://reqres.in[ResReq] application (see below). If you have a reliable internet connection, you can run your tests against the live ResReq server at https://reqres.in/api/. Or if you are running the ResReq server locally, you would access endpoints at http://localhost:5000/api.
+For example, in this chapter, we will be demonstrating the features of `serenity-screenplay-rest` using the [ResReq](https://reqres.in) application (see below). If you have a reliable internet connection, you can run your tests against the live ResReq server at https://reqres.in/api/. Or if you are running the ResReq server locally, you would access endpoints at http://localhost:5000/api.
 
----
+
 **The ResReq test application**
 
-The https://reqres.in[ResReq] application is an open source application written by http://benhowdle.im/[Ben Howdle] that makes it easy to experiment with REST APIs. It is hosted on Digital Ocean, where you can access it online at https://reqres.in/api/. Alternatively, you can also download the application from the project's https://github.com/benhowdle89/reqres[repository on Github], and run it locally. When you run the application on your own machine, the REST API will be available at http://localhost:5000/api.
+The [ResReq](https://reqres.in) application is an open source application written by [Ben Howdle](http://benhowdle.im/) that makes it easy to experiment with REST APIs. It is hosted on Digital Ocean, where you can access it online at https://reqres.in/api/. Alternatively, you can also download the application from the project's [repository on Github](https://github.com/benhowdle89/reqres), and run it locally. When you run the application on your own machine, the REST API will be available at http://localhost:5000/api.
 
----
 
-=== Reading from the Serenity config file
+
+### Reading from the Serenity config file
 
 In Serenity BDD, you can define the base URL for your REST API directly in the `serenity.properties` or `serenity.conf` file for your project.
 Here is an example from a `serenity.conf` file:
@@ -84,7 +84,7 @@ theRestApiBaseUrl = environmentVariables.optionalProperty("restapi.baseurl")
                                         .orElse("https://reqres.in/api");
 ```
 
-=== Setting the API Url from the command line
+### Setting the API Url from the command line
 
 You can override the default URL defined this way simply by providing a system property on the command line, like this:
 
@@ -94,7 +94,7 @@ mvn verify -Drestapi.baseurl=http://localhost:5000/api
 
 ### Configuring the base API URL in Maven
 
-If you are using Maven, a more convenient approach may be to use http://maven.apache.org/guides/introduction/introduction-to-profiles.html[Maven Profiles].
+If you are using Maven, a more convenient approach may be to use [Maven Profiles](http://maven.apache.org/guides/introduction/introduction-to-profiles.html).
 In your `pom.xml` file, you define up different Maven profiles for each environment, and set the `restapi.baseurl` property accordingly:
 
 ```xml
@@ -156,7 +156,7 @@ In Screenplay, tests describe behaviour in terms of _actors_, who achieve their 
 These tasks usually involve _interacting_ with the application in some way.
 And to perform these tasks, we give the actors various _abilities_.
 
-The `CallAnApi` ability gives actors the ability to interact with a REST web service using http://rest-assured.io[Rest-Assured].
+The `CallAnApi` ability gives actors the ability to interact with a REST web service using [Rest-Assured](https://rest-assured.io).
 This includes both invoking REST end-points and querying the results.
 
 ```java
@@ -231,7 +231,7 @@ In this case, we use the `Get` interaction class, which comes bundled with `sere
 
 Next we check the response using the `seeThatResponse` method.
 This method takes a Lambda expression and allows us to access the full RestAssured API.
-In particular, we can use http://static.javadoc.io/io.restassured/json-path/3.1.0/io/restassured/path/json/JsonPath.html[jsonPath] expressions to query the JSON structure we receive.
+In particular, we can use [jsonPath](http://static.javadoc.io/io.restassured/json-path/3.1.0/io/restassured/path/json/JsonPath.html) expressions to query the JSON structure we receive.
 
 
 ### Retrieving objects
