@@ -69,15 +69,23 @@ const config = {
             label: 'Get Support',
             position: 'right',
           },
-          {
-            href: 'https://expansion.serenity-dojo.com/courses/testing-web-applications-with-serenity-bdd',
-            label: 'Learn Serenity BDD Online',
-            position: 'right',
-          },
-          {
-            href: 'https://www.serenity-dojo.com/',
-            label: 'BDD And Test Automation Coaching',
-            position: 'right',
+        {type: 'dropdown',
+         label: 'Learn Serenity BDD',
+         position: 'right',
+           items: [
+            {
+              href: 'https://expansion.serenity-dojo.com/courses/testing-web-applications-with-serenity-bdd',
+              label: 'Serenity BDD Online Training'
+            },
+            {
+              href: 'http://learnbdd.com/requirements-discovery-training',
+              label: 'BDD Requirements Discovery Training'
+            },
+            {
+              href: 'https://www.serenity-dojo.com/',
+              label: 'BDD And Test Automation Coaching'
+            },
+             ]
           },
         ],
       },
