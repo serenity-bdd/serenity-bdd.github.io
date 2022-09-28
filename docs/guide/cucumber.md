@@ -44,7 +44,7 @@ The directory structure will be used to build the Serenity requirements hierarch
 ![](img/cucumber-requirements-hierarchy.png)
 
 
-# Filtering test exeuction in Cucumber
+# Filtering test execution in Cucumber
 
 The simplest way to control which scenarios you want to execute is to use tags and the `cucumber.filter.tags` command line option. For example, to run only scenarios or features annotated with `@smoke`, you would run the following command:
 ```
