@@ -30,7 +30,7 @@ You can add your [BrowserStack credentials](https://www.browserstack.com/account
 * `BROWSERSTACK_USER` - BrowserStack user name
 * `BROWSERSTACK_KEY`- BrowserStack access key
 
-Alternatively, you can define your username and accesskey using the `lt.user` and `lt.key` properties respectively in your `serenity.conf` file:
+Alternatively, you can define your username and accesskey using the `browserstack.user` and `browserstack.key` properties respectively in your `serenity.conf` file:
 
 ```hocon
 browserstack.user=myuser
