@@ -9,7 +9,7 @@ The `serenity-saucelabs` plugin provides seamless integration with the [SauceLab
 
 ## Adding the SauceLabs plugin
 
-To add the integrated support for SauceLabs to your project, you will need to add the `serenity-saucelabs` dependency to your project dependencies. For Mavenm, you would add the following:
+To add the integrated support for SauceLabs to your project, you will need to add the `serenity-saucelabs` dependency to your project dependencies. For Maven, you would add the following:
 ```xml
     <dependency>
         <groupId>net.serenity-bdd</groupId>
@@ -26,7 +26,7 @@ And for Gradle:
 ## Specifying your SauceLabs credentials and grid URL
 Next, you will need a [SauceLabs account](https://saucelabs.com/pricing). 
 
-Next you will need to configure your SauceLabs credentials (if you are logged on to the Saucelabs Dashboard [you can find these on this page]. The simplest way to do thiss is to define the following system properties:
+Next you will need to configure your SauceLabs credentials (if you are logged on to the Saucelabs Dashboard [you can find these on this page]. The simplest way to do this is to define the following system properties:
 * `SAUCE_USERNAME`- SauceLabs user name
 * `SAUCE_ACCESS_KEY` - SauceLabs access key
 
