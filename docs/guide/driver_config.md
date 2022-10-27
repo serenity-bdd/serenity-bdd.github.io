@@ -34,7 +34,7 @@ When you run a WebDriver test against almost any driver, you need an OS-specific
 | ------- | ------ | -------- | --------------- |
 | Chrome | chromedriver | http://chromedriver.chromium.org | webdriver.chrome.driver |
 | Firefox | geckodriver | https://github.com/mozilla/geckodriver/releases | webdriver.gecko.driver |
-| Microsoft Edge | msedgedriver | https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/ | webdriver.ie.driver |
+| Microsoft Edge | msedgedriver | https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/ | webdriver.edge.driver |
 | Internet Explorer | IEDriverServer | https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver | webdriver.ie.driver |
 
 
