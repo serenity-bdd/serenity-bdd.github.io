@@ -4,9 +4,16 @@
         <title>Serenity BDD Users Manual Blog</title>
         <link>https://serenity-bdd.github.io/blog</link>
         <description>Serenity BDD Users Manual Blog</description>
-        <lastBuildDate>Sat, 27 Nov 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 07 Nov 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[Serenity 3.4.1 Is Out!]]></title>
+            <link>https://serenity-bdd.github.io/blog/serenity-3.4.1-release</link>
+            <guid>serenity-3.4.1-release</guid>
+            <pubDate>Mon, 07 Nov 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Serenity 3.4.1]]></description>
+        </item>
         <item>
             <title><![CDATA[What's New In Serenity 3.1.0]]></title>
             <link>https://serenity-bdd.github.io/blog/whats-new-in-serenity-3.1.0</link>
