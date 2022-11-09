@@ -12,11 +12,11 @@ Serenity BDD is one of the most popular Java test automation libraries, and for 
 
 If you are writing automated web tests in Java, using Serenity BDD correctly can reduce the amount of code you need to write by well over 50%, slashing the amount of code you need to maintain yourself. Serenity BDD produces powerful test reports that you can use both as as evidence of your testing activities and documentation of your application. And with over a million downloads a month, regular releases and a vibrant open source community, it's a solid bet for your test automation framework!
 
-In this article, we look at some of the new features in Serenity BDD version 3.1.0.
+In this article, we look at some of the new features in Serenity BDD version 3.4.2.
 
 <!--truncate-->
 ## Selenium 4.6.0 Integration
-Serenity 3.4.1 integrates with [Selenium 4.6.0](https://www.selenium.dev/blog/2022/selenium-4-6-0-released/), which includes a number of new features. One of the more interesting is it's ability to automatically download the correct driver binaries for whatever browser you are using. Serenity currently does this using WebDriverManager, but as this feature is now build into Selenium, the Serenity WebDriverManager integration is now disabled by default and will be removed in a future version.
+Serenity 3.4.2 integrates with [Selenium 4.6.0](https://www.selenium.dev/blog/2022/selenium-4-6-0-released/), which includes a number of new features. One of the more interesting is it's ability to automatically download the correct driver binaries for whatever browser you are using. Serenity currently does this using WebDriverManager, but as this feature is now build into Selenium, the Serenity WebDriverManager integration is now disabled by default and will be removed in a future version.
 
 ## Improved Reporting For Data-Driven Tests
 
