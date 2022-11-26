@@ -1,7 +1,7 @@
 ---
 id: reports_custom_info
 title: Custom Fields in Reports
-sidebar_position: 4
+sidebar_position: 5
 ---
 ## Custom Field Reporting
 

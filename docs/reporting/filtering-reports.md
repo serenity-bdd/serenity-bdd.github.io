@@ -1,7 +1,7 @@
 ---
 id: filtering_reports
 title: Filtering Execution and Reports with Tags
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 Serenity BDD makes it easy to get both a broad overview of your test results and functional coverage.

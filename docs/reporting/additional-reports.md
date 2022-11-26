@@ -1,7 +1,7 @@
 ---
 id: additional_reports
 title: Additional Reports
-sidebar_position: 3
+sidebar_position: 4
 ---
 In addition to the standard HTML reports, Serenity provides additional reports for more specific usages. These include
 

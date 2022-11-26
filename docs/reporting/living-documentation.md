@@ -1,7 +1,7 @@
 ---
 id: living_documentation
 title: Living Documentation
-sidebar_position: 1
+sidebar_position: 2
 ---
 ## What is Living documentation?
 
