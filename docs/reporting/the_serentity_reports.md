@@ -112,3 +112,22 @@ The Test Results tab lists the actual test results:
 
 For data-driven tests and scenario outlines, each row of data is reported as a separate test result, and marked by a table icon to indicate that it is a data-driven test result. 
 
+## Errors and Tags
+
+The last section of the report lists the most frequent causes of test failures:
+
+![Errors and tags](img/tags.png)
+
+This section also mentions which the features containing the most failing tests. You can see which tests fail for a given reason by clicking on the corresponding _error_ tag just below this section.
+
+It also lists the tags appearing in the features. You can exclude tags you don't want to appear in this section (for example, technical tags) using the `serenity.report.exclude.tags` property, e.g.
+```
+serenity {
+    report {
+        exclude.tags = "resetappstate,singlebrowser,manual"
+    }
+}
+```
+
+
+
