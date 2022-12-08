@@ -260,6 +260,19 @@ webdriver {
 }
 ```
 
+### Configuring Chrome extensions
+
+You can define Chrome extensions to be used by using the `extensions` property in the `goog:chromeOptions` section, e.g.
+```hocon
+webdriver {
+  capabilities {
+    ...
+    "goog:chromeOptions" {
+      extensions = [src/test/resources/sample-extensions/custom-curser-extension.crx, src/test/resources/sample-extensions/dark-reader-extension.crx]
+  }
+}
+```
+
 
 ### Configuring Chrome preferences
 
