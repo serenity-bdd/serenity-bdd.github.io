@@ -421,10 +421,10 @@ Selenium 4 introduced support for Shadow DOM elements, and Serenity BDD adds enh
     </div>
 ```
 
-To find the first input element inside a single-level shadow DOM, you need to provide the locator for the nested elementand the locator for the shadow host element:
+To find the first input element inside a single-level shadow DOM, you need to provide the locator for the nested element and the locator for the shadow host element:
 
 ```java
- ("#shadowedInput","#shadow-host")
+ ByShadow.cssSelector("#shadowedInput","#shadow-host")
 ```
 
 To find the input element inside the nested shadow DOM, you need to provide the locator for the shadowed element, as well as the list of parent shadow dom locators, from top to bottom:
