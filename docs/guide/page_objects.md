@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Interacting with Web Pages
 
-Serenity integrates smoothly with Selenium WebDriver and manages details such as setting up the driver and maintaining the driver instance. It also provides a number of enhancements to standard Selenium. 
+Serenity integrates smoothly with Selenium WebDriver and manages details such as setting up the driver and maintaining the driver instance. It also provides a number of enhancements to standard Selenium.
 
 ## Page Objects
 
@@ -67,7 +67,7 @@ public class FindAJobPage extends PageObject {
 }
 ```
 
-You can use an even more fluent style of expressing the implementation steps by using methods like `find`, `findBy`  and `then`.
+You can use an even more fluent style of expressing the implementation steps by using methods like `find`, `findBy` and `then`.
 
 For example, you can use webdriver `By` finders with element name, id, css selector or xpath selector as follows:
 
@@ -89,7 +89,7 @@ findBy("//div[@id='dataTable']").getValue(); //xpath selector
 
 ## Using pages in a step library
 
-When you need to use a page object in one of your steps, you just need to declare a variable of type PageObject in your step library,  e.g.
+When you need to use a page object in one of your steps, you just need to declare a variable of type PageObject in your step library, e.g.
 
 ```java
 FindAJobPage page;
@@ -367,6 +367,7 @@ If you just want to check if the element is present though not necessarily visib
 ```java
 waitForRenderedElementsToBePresent(By.xpath("//h2[.='A title that is not immediately visible']"));
 ```
+
 or its more expressive flavour, `waitForPresenceOf` which takes a css or xpath selector as argument.
 
 ```java
@@ -412,26 +413,25 @@ Selenium 4 introduced support for Shadow DOM elements, and Serenity BDD adds enh
     <div id="shadow-host">
       #shadow-root
       <input id="shadowedInput"/>
- 
+
       <div id="nested-shadow-host">
           #shadow-root
           <input id="nestedShadowedInput"/>
       </div>
     </div>
 ```
- 
-To find the first input element inside a single-level shadow DOM, you need to provide the locator for the nested elementand the locator for the shadow host element:
+
+To find the first input element inside a single-level shadow DOM, you need to provide the locator for the nested element and the locator for the shadow host element:
 
 ```java
- ("#shadowedInput","#shadow-host")
+ ByShadow.cssSelector("#shadowedInput","#shadow-host")
 ```
 
- To find the input element inside the nested shadow DOM, you need to provide the locator for the shadowed element, as well as the list of parent shadow dom locators, rom top to bottom:
- 
- ```java
- ByShadow.cssSelector("#shadowedInput","#shadow-host", "#inner-shadow-host")
- ```
+To find the input element inside the nested shadow DOM, you need to provide the locator for the shadowed element, as well as the list of parent shadow dom locators, from top to bottom:
 
+```java
+ByShadow.cssSelector("#nestedShadowedInput","#shadow-host", "#nested-shadow-host")
+```
 
 ## Working with timeouts
 
@@ -441,7 +441,7 @@ But hard-coded waits are evil. They slow down your test suite, and cause them to
 
 ### Implicit Waits
 
-The first way you can manage how WebDriver handles tardy fields is to use the  `webdriver.timeouts.implicitlywait` property. This determines how long, in milliseconds, WebDriver will wait if an element it tries to access is not present on the page. To quote the WebDriver documentation:
+The first way you can manage how WebDriver handles tardy fields is to use the `webdriver.timeouts.implicitlywait` property. This determines how long, in milliseconds, WebDriver will wait if an element it tries to access is not present on the page. To quote the WebDriver documentation:
 
 “An implicit wait is to tell WebDriver to poll the DOM for a certain amount of time when trying to find an element or elements if they are not immediately available.”
 
@@ -502,13 +502,14 @@ The `SmartElementLocatorFactory` uses the default implicit wait, or the `timeout
 
 In rare cases, you may need to customise this behaviour. To do this, you can use the `serenity.locator.factory` property to use one of the following alternative locator factories:
 
-  * `AjaxElementLocatorFactory`: A WebDriver locator factory more suitable for Ajax applications. According to the WebDriver docs, this locator factory will return _an element locator that will wait for the specified number of seconds for an element to appear, rather than failing instantly if it's not present. This works by polling the UI on a regular basis. The element returned will be present on the DOM, but may not actually be visible._
+- `AjaxElementLocatorFactory`: A WebDriver locator factory more suitable for Ajax applications. According to the WebDriver docs, this locator factory will return _an element locator that will wait for the specified number of seconds for an element to appear, rather than failing instantly if it's not present. This works by polling the UI on a regular basis. The element returned will be present on the DOM, but may not actually be visible._
 
-  * `DefaultElementLocatorFactory`: the default WebDriver locator factory
+- `DefaultElementLocatorFactory`: the default WebDriver locator factory
 
 If you use the `AjaxElementLocatorFactory`, you can use the `webdriver.timeouts.implicitlywait` parameter is to specify the number of seconds to wait. If no value is specified, the default wait will be 5 seconds.
 
 ### Explicit Timeouts
+
 You can also programatically wait until an element is in a particular state. This is more flexible and useful when you need to wait for extra time in a specific situation. For example, we could wait until a field becomes visible:
 
 ```java
@@ -575,7 +576,6 @@ List<WebElementFacade> currencies = withTimeoutOf(5, TimeUnit.SECONDS)
                               .thenFindAll(".currency-code");
 ```
 
-
 ## Executing Javascript
 
 There are times when you may find it useful to execute a little Javascript directly within the browser to get the job done. You can use the `evaluateJavascript()` method of the `PageObject` class to do this. For example, you might need to evaluate an expression and use the result in your tests. The following command will evaluate the document title and return it to the calling Java code:
@@ -597,7 +597,6 @@ And, if you are familiar with JQuery, you can also invoke JQuery expressions:
 ```
 
 This is often a useful strategy if you need to trigger events such as mouse-overs that are not currently supported by the WebDriver API.
-
 
 ## Uploading files
 
@@ -627,9 +626,9 @@ In the rest of this section, we will study some examples based on tests for the 
 
 We will use some imaginary regression tests for this site to illustrate how the Serenity matchers can be used to write more expressive tests. The first scenario we will consider is simply searching for an artifact by name, and making sure that only artifacts matching this name appear in the results list. We might express this acceptance criteria informally in the following way:
 
- * Give that the developer is on the search page,
- * And the developer searches for artifacts called 'Serenity'
- * Then the developer should see at least 16 Serenity artifacts, each with a unique artifact Id
+- Give that the developer is on the search page,
+- And the developer searches for artifacts called 'Serenity'
+- Then the developer should see at least 16 Serenity artifacts, each with a unique artifact Id
 
 In JUnit, a Serenity test for this scenario might look like the one:
 
@@ -665,11 +664,11 @@ public class WhenSearchingForArtifacts {
 
 Let's see how the test in this class is implemented. The `should_find_the_right_number_of_artifacts()` test could be expressed as follows:
 
- . When we open the search page
+. When we open the search page
 
- . And we search for artifacts containing the word 'Serenity'
+. And we search for artifacts containing the word 'Serenity'
 
- . Then we should see a list of artifacts where each Group ID starts with "net.Serenity", each Artifact ID is unique, and that there are at least 16 such entries displayed.
+. Then we should see a list of artifacts where each Group ID starts with "net.Serenity", each Artifact ID is unique, and that there are at least 16 such entries displayed.
 
 The implementation of these steps is illustrated here:
 
@@ -865,7 +864,6 @@ You can also read tables without headers (i.e., `<th>` elements) by specifying y
                              .readRowsFrom(page.table_with_no_headings);
 ```
 
-
 You can also use the HtmlTable class to select particular rows within a table to work with. For example, another test scenario for the Maven Search page involves clicking on an artifact and displaying the details for that artifact. The test for this might look something like this:
 
 ```java
@@ -943,9 +941,10 @@ withTimeoutOf(5, SECONDS).waitForPresenceOf(By.cssSelector("#colors a"))
 ```
 
 Alternatively, you can use the `serenity.webdriver.collection_loading_strategy` property to define how Serenity loads collections of web elements when using the `@FindBy` and `@FindAll` annotations. There are three options:
- * Optimistic
- * Pessimistic (default)
- * Paranoid
+
+- Optimistic
+- Pessimistic (default)
+- Paranoid
 
 Optimistic will only wait until the field is defined. This is the native Selenium behaviour.
 
@@ -1034,7 +1033,6 @@ The last thing you need to do is to tell Serenity what package it needs to look 
 `serenity.extension.packages=com.acme.myserenityextensions`
 
 You can find an example of how these classes are implemented in a real-world use case in the [serenity-browserstack](https://github.com/serenity-bdd/serenity-core/tree/master/serenity-browserstack/src/main/java/net/serenitybdd/browserstack) module on Github.
-
 
 ### Custom WebDriver implementations
 

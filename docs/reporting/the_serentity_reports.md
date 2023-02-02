@@ -48,6 +48,7 @@ serenity{
     durations = "1,2,4,8,15,30,60"
   }
 }
+```
 
 Serenity distinguishes between more general _Test Scenarios_, and more specific _Test Cases_.
 
