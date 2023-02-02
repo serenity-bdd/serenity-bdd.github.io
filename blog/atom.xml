@@ -2,11 +2,18 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://serenity-bdd.github.io/blog</id>
     <title>Serenity BDD Users Manual Blog</title>
-    <updated>2022-11-07T00:00:00.000Z</updated>
+    <updated>2023-02-02T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://serenity-bdd.github.io/blog"/>
     <subtitle>Serenity BDD Users Manual Blog</subtitle>
     <icon>https://serenity-bdd.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[How To Configure Chrome In Serenity BDD]]></title>
+        <id>How To Configure Chrome In Serenity BDD</id>
+        <link href="https://serenity-bdd.github.io/blog/2023/02/02/index"/>
+        <updated>2023-02-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[These days Selenium is moving at a neck-breaking pace, and there are quite a few small changes coming through in the driver configuration options. And since Serenity BDD has many shortcuts to handle these options, it's worth knowing what has changed, what won't work any more, and what you need to update.]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Serenity 3.4.1 Is Out!]]></title>
         <id>serenity-3.4.1-release</id>
