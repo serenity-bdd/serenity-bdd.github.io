@@ -9,7 +9,7 @@ LambdaTest is a cloud platform for test execution and test orchestration. With L
 
 The `serenity-lambdatest` plugin provides seamless integration with the [LambdaTest](https://www.lambdatest.com/) online test automation platform. 
 
-## Adding the Lambdatest plugin
+## Adding the LambdaTest plugin
 
 To add the integrated support for LambdaTest to your project, you will need to add the `serenity-lambdatest` dependency to your project dependencies. For Maven, you would add the following:
 ```xml
