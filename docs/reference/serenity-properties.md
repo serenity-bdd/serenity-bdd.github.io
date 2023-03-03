@@ -187,7 +187,7 @@ By default, Serenity BDD will read requirements from the directory structure tha
 ### serenity.annotated.requirements.dir
 Use this property if you need to completely override the location of requirements for the Annotated Provider. This is recommended if you use File System and Annotated provider simultaneously. The default value is stories.
 
-### serenity.requirements.types
+### serenity.requirement.types
 The hierarchy of requirement types. This is the list of requirement types to be used when reading requirements from the file system and when organizing the reports. It is a comma-separated list of tags.The default value is: capability, feature.
 
 ### serenity.requirement.exclusions
