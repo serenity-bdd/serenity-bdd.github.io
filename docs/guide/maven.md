@@ -161,6 +161,51 @@ If you want to generate the Serenity reports whenever you run `mvn verify`, you 
             <phase>post-integration-test</phase>
             <goals>
                 <goal>aggregate</goal>
+                <goal>check</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+By default, the `aggregate` goal will NOT fail the build if there are test failures - it will simply generate the reports. This way you can aggregate multiple report sets and then check for failures at the end using `mvn serenity:check`.
+
+## Checking Gherkin feature files
+
+Some errors in Gherkin feature files can cause the Serenity reports to behave unpredictably. For this reason, the following rules should be followed when working with Cucumber and Serenity:
+  - Scenario names should be unique within a feature file
+  - Scenario, Rule and Feature names should not be blank
+  - Feature names should be unique wherever possible. In particular features with the same name, inside directories with identical names, will not appear correctly in the Serenity reports.
+
+  You can check these rules before you run the full test by calling the `check-gherkin` goal, e.g.
+
+```
+mvn serenity:check-gherkin  
+```
+
+You can ensure that your feature files are correctly configured before kicking off your tests by binding the `check-gherkin` goal to the `process-test-resources` lifecycle phase, as shown here:
+
+```
+<plugin>
+    <groupId>net.serenity-bdd.maven.plugins</groupId>
+    <artifactId>serenity-maven-plugin</artifactId>
+    <version>${serenity.version}</version>
+    <configuration>
+      <tags>${tags}</tags>
+    </configuration>
+    <executions>
+        <execution>
+            <id>check-feature-files</id>
+            <phase>process-test-resources</phase>
+            <goals>
+                <goal>check-gherkin</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>serenity-reports</id>
+            <phase>post-integration-test</phase>
+            <goals>
+                <goal>aggregate</goal>
             </goals>
         </execution>
     </executions>

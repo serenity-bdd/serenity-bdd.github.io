@@ -7,7 +7,7 @@ sidebar_position: 2
 
 LambdaTest is a cloud platform for test execution and test orchestration. With LambdaTest, Serenity users can extend their automation test coverage of their web and mobile apps on 3000+ real devices, browsers, and operating systems.
 
-The `serenity-lambdatest` plugin provides seamless integration with the [LambdaTest](https://www.lambdatest.com/) online test automation platform. 
+The `serenity-lambdatest` plugin provides seamless integration with the [LambdaTest](https://www.lambdatest.com/?utm_source=serenity_bdd&utm_medium=sponsor&utm_campaign=serenity_bdd&utm_term=sk&utm_content=homepage) online test automation platform. 
 
 ## Adding the LambdaTest plugin
 
@@ -26,9 +26,9 @@ And for Gradle:
 ```
 
 ## Specifying your LambdaTest credentials and grid URL
-Next, you will need a [LambdaTest account](https://accounts.lambdatest.com/register) (If you don't already have one you can set up a free lifetime account to experiment). 
+Next, you will need a [LambdaTest account](https://accounts.lambdatest.com/register?utm_source=serenity_bdd&utm_medium=sponsor&utm_campaign=serenity_bdd&utm_term=sk&utm_content=homepage) (If you don't already have one you can set up a free lifetime account to experiment). 
 
-You can add your [LambdaTest credentials](https://www.lambdatest.com/support/docs/using-environment-variables-for-authentication-credentials/) in two ways. The simplest is to define the following system properties:
+You can add your [LambdaTest credentials](https://www.lambdatest.com/support/docs/using-environment-variables-for-authentication-credentials?utm_source=serenity_bdd&utm_medium=sponsor&utm_campaign=serenity_bdd&utm_term=sk&utm_content=homepage) in two ways. The simplest is to define the following system properties:
 * `LT_USERNAME` - LambdaTest user name
 * `LT_ACCESS_KEY`- LambdaTest access key
 
@@ -69,7 +69,7 @@ lambdatest {
 
 ## Defining LambdaTest Capabilities
 
-You can specify the operating system and browser you want to run your tests on by customising the [Selenium Capabilities](https://www.lambdatest.com/support/docs/selenium-automation-capabilities/) in your `serenity.conf` file. You do this in the `"LT:Options"` section of the `serenity.conf` file, e.g.
+You can specify the operating system and browser you want to run your tests on by customising the [Selenium Capabilities](https://www.lambdatest.com/support/docs/selenium-automation-capabilities?utm_source=serenity_bdd&utm_medium=sponsor&utm_campaign=serenity_bdd&utm_term=sk&utm_content=homepage) in your `serenity.conf` file. You do this in the `"LT:Options"` section of the `serenity.conf` file, e.g.
 
 ```hocon
     webdriver {
@@ -107,7 +107,7 @@ These properties will be placed in the `LT:Options` capability.
 
 :::tip
 
-LambdaTest provides a convenient [Capabilities Generator](https://www.lambdatest.com/capabilities-generator/) that gives an idea of what options are available.
+LambdaTest provides a convenient [Capabilities Generator](https://www.lambdatest.com/capabilities-generator?utm_source=serenity_bdd&utm_medium=sponsor&utm_campaign=serenity_bdd&utm_term=sk&utm_content=homepage) that gives an idea of what options are available.
 
 :::
 

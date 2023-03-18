@@ -12,7 +12,7 @@ const SponsorList = [
   {
     title: 'LambdaTest',
     logo: 'img/sponsors/lambda-test.png',
-    link: 'https://www.lambdatest.com/',
+    link: '?utm_source=serenity_bdd&utm_medium=sponsor&utm_campaign=serenity_bdd&utm_term=sk&utm_content=homepage',
     description: 'Perform Automated and Live Interactive Cross Browser Testing on 3000+ Real Browsers and Operating Systems Online.'
   },
   {
