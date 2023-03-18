@@ -84,10 +84,11 @@ The following steps are necessary to activate the parallel execution:
 ```
 2. Create a file named `junit-platform.properties` under `test/resources`
 ```
- cucumber.execution.parallel.enabled=true
- cucumber.execution.parallel.config.strategy=fixed
- cucumber.execution.parallel.config.fixed.parallelism=10
- cucumber.plugin=io.cucumber.core.plugin.SerenityReporterParallel
+cucumber.execution.parallel.enabled=true
+cucumber.execution.parallel.config.strategy=fixed
+cucumber.execution.parallel.config.fixed.parallelism=4
+cucumber.execution.parallel.config.fixed.max-pool-size=4
+cucumber.plugin=io.cucumber.core.plugin.SerenityReporterParallel
 ```
 More informations about the meaning of the properties can be found in [Cucumber JUnit Platform Engine Documentation](https://github.com/cucumber/cucumber-jvm/tree/main/cucumber-junit-platform-engine)
 
