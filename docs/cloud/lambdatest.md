@@ -7,7 +7,7 @@ sidebar_position: 2
 
 LambdaTest is a cloud platform for test execution and test orchestration. With LambdaTest, Serenity users can extend their automation test coverage of their web and mobile apps on 3000+ real devices, browsers, and operating systems.
 
-The `serenity-lambdatest` plugin provides seamless integration with the [LambdaTest](https://www.lambdatest.com/?utm_source=serenity_bdd&utm_medium=sponsor&utm_campaign=serenity_bdd&utm_term=sk&utm_content=homepage) online test automation platform. 
+The `serenity-lambdatest` plugin provides seamless integration with the [LambdaTest](https://www.lambdatest.com?utm_source=serenity_bdd&utm_medium=website) online test automation platform. 
 
 ## Adding the LambdaTest plugin
 
