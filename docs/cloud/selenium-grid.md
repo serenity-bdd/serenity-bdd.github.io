@@ -9,7 +9,7 @@ sidebar_position: 1
 
 Selenium Grid 4 takes advantage of a number of new technologies in order to facilitate scaling up while allowing local execution.
 
-You can also use Serenity to run your WebDriver tests on a remote machine, such as a Selenium Grid or a remote service such as provided by [BrowserStack](https://www.browserstack.com) or [LambdaTest](https://www.lambdatest.com/). This allows you to run your web tests against a variety of different browsers and operating systems, and also benefit from faster test execution when running the tests in parallel. We will look at how to do this in detail later on in the chapter.
+You can also use Serenity to run your WebDriver tests on a remote machine, such as a Selenium Grid or a remote service such as provided by [BrowserStack](https://www.browserstack.com) or [LambdaTest](https://www.lambdatest.com?utm_source=serenity_bdd&utm_medium=website). This allows you to run your web tests against a variety of different browsers and operating systems, and also benefit from faster test execution when running the tests in parallel. We will look at how to do this in detail later on in the chapter.
 
 ## Running Selenium Grid locally
 The simplest way to start with Selenium Grid is to run a standalone instance on your local machine. This allows you to make sure your Serenity configuration has been correctly set up to use the Selenim grid. 
