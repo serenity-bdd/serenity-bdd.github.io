@@ -110,6 +110,6 @@ selenoid {
 If you use serenity.properties:
 ```properties
 
-selenoid.options.videoDatePrefixFormat=https://s3.amazonaws.com/my-bucket
+selenoid.options.videoLinkPrefix=https://s3.amazonaws.com/my-bucket
 
 ```
