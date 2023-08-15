@@ -65,7 +65,7 @@ const config = {
           },
           {to: 'blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://by2kx88fp4k.typeform.com/to/sNP1tzno',
+            href: 'https://www.serenity-dojo.com/serenity-bdd-enterprise-support',
             label: 'Get Support',
             position: 'right',
           },

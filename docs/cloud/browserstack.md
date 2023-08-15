@@ -49,33 +49,29 @@ webdriver {
 
 If the `webdriver.remote.url` property is not defined, Serenity will use these values to build one for you if the BrowserStack plugin is active (see below).
 
-## Activating the BrowserStack plugin
-The Serenity BrowserStack plugin will be invoked if Serenity can find a `"bstack:options"` section in your `serenity.conf` file, or if you specify a `remote.webdriver.url` that points to a BrowserStack server. If you have no BrowserStack-specific capabilities, simply set the `browserstack.active` property to true like this:
-
-```hocon
-browserstack {
-  active = true
-}
-```
-
 ## Defining BrowserStack Capabilities
 You can specify the operating system and browser you want to run your tests on by customising the [Selenium Capabilities](https://www.browserstack.com/automate/capabilities) in your `serenity.conf` file. You do this in the `"bstack:options"` section of the `serenity.conf` file, e.g.
 
 ```hocon
-    webdriver {
-      driver = "remote"
-      capabilities {
-        browserName = "Chrome"
-        browserVersion = "latest"
-        "bstack:options" {
-          os = "Windows"
-          osVersion = "11"
-          resolution = "1920x1200"
-          seleniumVersion = "4.1.2"
-          video = true
-        }
-      }
+webdriver {
+  driver = "remote"
+  capabilities {
+    browserName = "Chrome"
+    #
+    # Any BrowserStack-specific options go in the 'bstack:options' section
+    #
+    "bstack:options" {
+      os = "Windows"
+      osVersion = "11"
+      browserVersion = "latest"
+      local = false
+      resolution = "1920x1200"
+      seleniumVersion = "4.6.0"
+      video = true
+      idleTimeout = 300 // Make sure to set this to a high number if running tests in parallel
     }
+  }
+}
 ```
 
-The BrowserStack test name will be assigned automatically. 
+If you're running the tests in parallel, make sure to set the idleTimeout value to a high number (longer than the total duration of your tests). This will prevent the BrowserStack connection from timing out before it's updated with the test results.
