@@ -25,3 +25,11 @@ For example:
 - Replace `net.thucydides.core.util.EnvironmentVariables` with `net.thucydides.core.util.EnvironmentVariables`
 
 This release also includes support for Selenium 4.11.0, a number of bug fixes, and improved support of reporting step durations for parallel tests.
+
+# Guice is no longer used
+
+Serenity stopped using Guice in version 3.9.8. This has no impact on most test scripts, but if you are using internal classes such as `net.thucydides.core.guice.Injectors` classes to retrieve objects such as `EnvironmentVariables`, this will no longer work. In Serenity 4.0.0 or higher, to retrieve the current environment variables, use the `net.serenitybdd.core.di.SerenityInfrastructure` class as shown here:
+
+```java
+EnvironmentVariables environmentVariables = SerenityInfrastructure.getEnvironmentVariables();
+```
