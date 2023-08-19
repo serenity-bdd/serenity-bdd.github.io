@@ -40,7 +40,7 @@ When you run a WebDriver test against almost any driver, you need an OS-specific
 
 ### Automatic driver downloads
 
-Serenity integrates with [WebDriverManager](https://bonigarcia.dev/webdrivermanager/) to automatically download and install the appropriate driver binaries for the specified driver.
+By default, Selenium automatically downloads and installs the appropriate driver binaries for the specified driver.
 
 ### Configuring driver binaries by hand
 
@@ -353,6 +353,65 @@ webdriver {
         "javascript.options.showInConsole": false
       },
       log {"level": "info"},
+    }
+  }
+}
+```
+
+# Configuring multiple environments
+
+You can configure multiple driver configurations by using the `environments` section, as shown below. Then simply set the `environment` system property to the corresponding environment to use these settings, e.g.
+
+```
+mvn clean verify -Denvironment=chrome
+```
+
+A sample environments section is shown here:
+
+```
+environments {
+  chrome {
+    webdriver {
+      driver = chrome
+      autodownload = true
+      capabilities {
+        browserName = "chrome"
+        acceptInsecureCerts = true
+        "goog:chromeOptions" {
+          args = ["test-type", "ignore-certificate-errors", "headless", "--window-size=1000,800"
+            "incognito", "disable-infobars", "disable-gpu", "disable-default-apps", "disable-popup-blocking"]
+        }
+      }
+    }
+  }
+  edge {
+    webdriver {
+      capabilities {
+        browserName = "MicrosoftEdge"
+        "ms:edgeOptions" {
+          args = ["test-type", "ignore-certificate-errors", "headless",
+            "incognito", "disable-infobars", "disable-gpu", "disable-default-apps", "disable-popup-blocking"]
+        }
+      }
+    }
+  }
+  firefox {
+    webdriver {
+      capabilities {
+        browserName = "firefox"
+        pageLoadStrategy = "normal"
+        acceptInsecureCerts = true
+        unhandledPromptBehavior = "dismiss"
+        strictFileInteractability = true
+
+        "moz:firefoxOptions" {
+          args = ["-headless"],
+          prefs {
+            "javascript.options.showInConsole": false
+          },
+          log {"level": "info"},
+        }
+      }
     }
   }
 }
