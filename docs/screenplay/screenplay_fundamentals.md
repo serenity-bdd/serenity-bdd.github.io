@@ -246,7 +246,7 @@ We need to assign a cast to the stage at the start of each scenario; we can do t
 OnStage.setTheStage(new OnlineCast());
 ```
 
-Once we have set the stage, we can obtain an actor with a given name using the `OnState.theActorCalled()` method, like this:
+Once we have set the stage, we can obtain an actor with a given name using the `OnStage.theActorCalled()` method, like this:
 ```java
 Actor toby = OnStage.theActorCalled("Toby");
 ```
