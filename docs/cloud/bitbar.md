@@ -5,6 +5,8 @@ sidebar_position: 5
 ---
 # Serenity BDD BitBar Integration
 
+BitBar is the cloud for all your testing needs. With BitBar, Serenity users have instant access to scale their cross-browser tests to real iOS and Android devices, as well as the latest and most popular browsers on macOS, Windows, and Linux.
+
 The `serenity-bitbar` plugin ensures seamless integration with the [BitBar](https://BitBar.com/) online test automation platform.
 
 ## Adding the BitBar plugin
