@@ -121,8 +121,8 @@ import net.serenitybdd.core.steps.UIInteractions;
 
 public class SearchActions extends UIInteractions {
     public void byKeyword(String keyword) {
-      $("#search_form_input_homepage").sendKeys(keyword);
-      $(".search__button").click();      
+      $("#searchbox_input").sendKeys(keyword);
+      $("button[type='submit']").click();      
     }
 }
 ```
@@ -188,7 +188,7 @@ However, there is one more step we can do. Serenity BDD is a living documentatio
 
 We can control how Serenity reports each method in a `UIInteractions` class using the `@Step` annotation. When you place a `@Step` annotation on a `UIInteractions` method, this method will appear in the Serenity reports whenever it is called.
 
-Let's see how it works. Update the `NaviagateActions` and `SearchActions` classes to include the `@Step` annotations like this:
+Let's see how it works. Update the `NavigateActions` and `SearchActions` classes to include the `@Step` annotations like this:
 
 ```java
 import net.serenitybdd.core.steps.UIInteractions;
@@ -208,8 +208,8 @@ import net.thucydides.core.annotations.Step;
 public class SearchActions extends UIInteractions {
     @Step("Search for '{0}'")
     public void byKeyword(String keyword) {
-        $("#search_form_input_homepage").sendKeys(keyword);
-        $(".search__button").click();
+        $("#searchbox_input").sendKeys(keyword);
+        $("button[type='submit']").click();
     }
 }
 ```
