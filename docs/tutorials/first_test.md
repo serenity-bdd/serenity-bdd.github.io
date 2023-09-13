@@ -122,7 +122,7 @@ import net.serenitybdd.core.steps.UIInteractions;
 public class SearchActions extends UIInteractions {
     public void byKeyword(String keyword) {
       $("#searchbox_input").sendKeys(keyword);
-      $(".search__button").click();      
+      $("button[type='submit']").click();      
     }
 }
 ```
@@ -209,7 +209,7 @@ public class SearchActions extends UIInteractions {
     @Step("Search for '{0}'")
     public void byKeyword(String keyword) {
         $("#searchbox_input").sendKeys(keyword);
-        $(".search__button").click();
+        $("button[type='submit']").click();
     }
 }
 ```
