@@ -115,3 +115,19 @@ sysinfo {
 The corresponding Build Info screen is shown below:
 
 ![Customised Build Info details](img/build-info.png)
+
+## Defining build info programmatically
+
+You can also use the `BuildInfo` class to add information to the Build Info page programmatically. Simply define the section, and add as many property name/value pairs as you want. You can see an example here:
+
+```java
+BuildInfo.section("Toggles").setProperty("toggle-custom-ads-v2", "on");
+BuildInfo.section("Toggles").setProperty("toggle-user-feedback", "on");
+
+BuildInfo.section("Versions").setProperty("game-history-service", "1.2.3");
+BuildInfo.section("Versions").setProperty("player-service", "3.4.5");
+BuildInfo.section("Versions").setProperty("related-products-service", "2.3.4");
+```
+
+![Customised Build Info details](img/custom-build-info.png)
+
