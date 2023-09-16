@@ -22,7 +22,7 @@ java -jar selenium-server-<version>.jar standalone
 
 This will start up the local instance of the Selenium Grid server. You can check out the dashboard on [http://localhost:4444/ui](http://localhost:4444/ui).
 
-You can cofigure your tests to run against this server by setting three properties:
+You can configure your tests to run against this server by setting three properties:
  - Set the `webdriver.driver` property to `remote` 
  - Set the `webdriver.remote.url` property to the address of your Selenium Grid instance (http://localhost:4444 by default)
  - Set the `webdriver.remote.driver` property to the name of the driver you want to run (e.g. "chrome")
@@ -37,7 +37,7 @@ webdriver {
  }
 ```
 
-You can also provide additional properties about the target brower or environment, including:
+You can also provide additional properties about the target browser or environment, including:
 - `webdriver.remote.browser.version`: What version of the remote browser to use
 - `webdriver.remote.os`: What operating system the tests should be run on.
 
