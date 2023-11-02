@@ -13,13 +13,13 @@ To run this tutorial, you will need a few things installed on your machine:
 
 ## Creating Your First Serenity BDD Project
 
-We will be using the **[Serenity BDD with JUnit and Screenplay](https://github.com/serenity-bdd/serenity-junit-screenplay-starter)** template project to get a simple project up and running quickly.
+We will be using the **[Serenity BDD with JUnit](https://github.com/serenity-bdd/serenity-junit-screenplay-starter)** template project to get a simple project up and running quickly.
 
 :::note
 We'll be using a fairly conventional test automation style in this tutorial, using action classes and page objects. In the next tutorial, we'll see how to do all this using the Screenplay Pattern.
 :::
 
-Go to the [project template page on Github](https://github.com/serenity-bdd/serenity-junit-screenplay-starter) and click on [Use This Template](https://github.com/serenity-bdd/serenity-junit-screenplay-starter/generate).
+Go to the [project template page on Github](https://github.com/serenity-bdd/serenity-junit-pageobjects-starter) and click on [Use This Template](https://github.com/serenity-bdd/serenity-junit-pageobjects-starter/generate).
 
 ![](img/junit-template.png)
 
@@ -64,6 +64,12 @@ There are a few things to note here:
 Next, let's add the code Serenity will need to work. First of all, since this will be a web test, we need to add a WebDriver field. Serenity manages the WebDriver lifecycle for us (it even downloads the WebDriver binaries for us), so all we need to do is to declare a `WebDriver` field, and annotate it with the `@Managed` annotation. In the code below, I've also added the `driver` attribute and the `options` attribute to ensure the browser opens in headless mode:
 
 ```java
+import net.serenitybdd.annotations.Managed;
+import net.serenitybdd.junit5.SerenityJUnit5Extension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.WebDriver;
+
 @ExtendWith(SerenityJUnit5Extension.class)
 class WhenSearchingByKeyword {
 
@@ -118,11 +124,11 @@ Now add a method to search by a given keyword, called `byKeyword`, which will do
 
 ```java
 import net.serenitybdd.core.steps.UIInteractions;
+import org.openqa.selenium.Keys;
 
 public class SearchActions extends UIInteractions {
     public void byKeyword(String keyword) {
-      $("#search_form_input_homepage").sendKeys(keyword);
-      $(".search__button").click();      
+      $("#searchbox_input").sendKeys(keyword, Keys.ENTER);
     }
 }
 ```
@@ -142,7 +148,7 @@ import net.serenitybdd.core.pages.PageComponent;
 
 public class SearchResultSidebar extends PageComponent {
     public String heading() {
-        return $(".module__title").getText();
+        return $("[data-testid=about] h2").getText();
     }
 }
 ```
@@ -191,8 +197,8 @@ We can control how Serenity reports each method in a `UIInteractions` class usin
 Let's see how it works. Update the `NaviagateActions` and `SearchActions` classes to include the `@Step` annotations like this:
 
 ```java
+import net.serenitybdd.annotations.Step;
 import net.serenitybdd.core.steps.UIInteractions;
-import net.thucydides.core.annotations.Step;
 
 public class NavigateActions extends UIInteractions {
     @Step("Navigate to the home page")
@@ -201,15 +207,17 @@ public class NavigateActions extends UIInteractions {
     }
 }
 ```
+
 ```java
+import net.serenitybdd.annotations.Step;
 import net.serenitybdd.core.steps.UIInteractions;
-import net.thucydides.core.annotations.Step;
+import org.openqa.selenium.Keys;
 
 public class SearchActions extends UIInteractions {
+
     @Step("Search for '{0}'")
     public void byKeyword(String keyword) {
-        $("#search_form_input_homepage").sendKeys(keyword);
-        $(".search__button").click();
+      $("#searchbox_input").sendKeys(keyword, Keys.ENTER);
     }
 }
 ```
