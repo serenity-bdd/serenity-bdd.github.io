@@ -1,18 +1,16 @@
 # Running Cucumber scenarios with Serenity
 
-To run Cucumber scenarios with Serenity, you need to create a Junit 4 test runner class and use `@RunWith` annotation in with the `CucumberWithSerenity` class, like this:
+To run Cucumber scenarios with Serenity, you need to create a Junit 5 test runner class like this:
 
 ```java
-import io.cucumber.junit.CucumberOptions;
-import net.serenitybdd.cucumber.CucumberWithSerenity;
-import org.junit.runner.RunWith;
-
-@RunWith(CucumberWithSerenity.class)
-@CucumberOptions(
-        plugin = {"pretty"},
-        features = "src/test/resources/features"
-)
-public class AcceptanceTestSuite {}
+   import org.junit.platform.suite.api.IncludeEngines;
+   import org.junit.platform.suite.api.SelectClasspathResource;
+   import org.junit.platform.suite.api.Suite;
+   
+   @Suite
+   @IncludeEngines("cucumber")
+   @SelectClasspathResource("/features")
+   public class CucumberTestSuite {}
 ```
 
 Note that you need to specify at least the `features` attribute, to define the directory containing your feature files.
