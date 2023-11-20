@@ -311,7 +311,7 @@ webdriver {
 
 You can also configure the Chrome logging preferences using the `goog:loggingPrefs` option.
 
-## Condiguring Microsoft Edge
+## Configuring Microsoft Edge
 
 Microsoft Edge is a Chromium driver, so the configuration is very similar to Chrome. The main difference is the use of `"ms:edgeOptions'"` instead of `"goog:chromeOptions"`. A typical configuration is shown below:
 
