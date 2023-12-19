@@ -6,7 +6,7 @@ const SponsorList = [
   {
     title: 'BrowserStack',
     logo: 'img/sponsors/browserstack.png',
-    link: 'https://www.browserstack.com/',
+    link: 'https://www.browserstack.com/automate?utm_source=serenity-bdd&utm_medium=partnered',
     description: 'Give your users a seamless experience by testing on 3000+ real devices and browsers. Don\'t compromise with emulators and simulators.'
   },
   {
