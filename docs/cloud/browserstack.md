@@ -5,7 +5,7 @@ sidebar_position: 3
 ---
 # Introduction
 
-[Browserstack](https://www.browserstack.com/) is an online platform that allows you to run cross-browser tests in parallel at scale. In this section, we will see how it integrates with Serenity.
+[Browserstack](https://www.browserstack.com/automate?utm_source=serenity&utm_medium=partnered) is an online platform that allows you to run cross-browser tests in parallel at scale. In this section, we will see how it integrates with Serenity.
 
 ## Adding the Browserstack plugin to your project
 
@@ -24,7 +24,7 @@ Or in Gradle:
 ```
 
 ## Specifying your BrowserStack credentials and grid URL
-Next, you will need a [BrowserStack account](https://www.browserstack.com/pricing). 
+Next, you will need a [BrowserStack account](https://www.browserstack.com/pricing).
 
 You can add your [BrowserStack credentials](https://www.browserstack.com/accounts/settings) in two ways. The simplest is to define the following system properties:
 * `BROWSERSTACK_USER` - BrowserStack user name

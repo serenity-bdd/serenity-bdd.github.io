@@ -5,14 +5,14 @@ sidebar_position: 1
 ---
 # Introduction
 
-[Selenium Grid](https://www.selenium.dev/documentation/grid/) allows the execution of WebDriver scripts on remote machines (virtual or real) by routing commands sent by the client to remote browser instances. It aims to provide an easy way to run tests in parallel on multiple machines. 
+[Selenium Grid](https://www.selenium.dev/documentation/grid/) allows the execution of WebDriver scripts on remote machines (virtual or real) by routing commands sent by the client to remote browser instances. It aims to provide an easy way to run tests in parallel on multiple machines.
 
 Selenium Grid 4 takes advantage of a number of new technologies in order to facilitate scaling up while allowing local execution.
 
-You can also use Serenity to run your WebDriver tests on a remote machine, such as a Selenium Grid or a remote service such as provided by [BrowserStack](https://www.browserstack.com) or [LambdaTest](https://www.lambdatest.com?utm_source=serenity_bdd&utm_medium=website). This allows you to run your web tests against a variety of different browsers and operating systems, and also benefit from faster test execution when running the tests in parallel. We will look at how to do this in detail later on in the chapter.
+You can also use Serenity to run your WebDriver tests on a remote machine, such as a Selenium Grid or a remote service such as provided by [BrowserStack](https://www.browserstack.com/automate?utm_source=serenity&utm_medium=partnered) or [LambdaTest](https://www.lambdatest.com?utm_source=serenity_bdd&utm_medium=website). This allows you to run your web tests against a variety of different browsers and operating systems, and also benefit from faster test execution when running the tests in parallel. We will look at how to do this in detail later on in the chapter.
 
 ## Running Selenium Grid locally
-The simplest way to start with Selenium Grid is to run a standalone instance on your local machine. This allows you to make sure your Serenity configuration has been correctly set up to use the Selenim grid. 
+The simplest way to start with Selenium Grid is to run a standalone instance on your local machine. This allows you to make sure your Serenity configuration has been correctly set up to use the Selenim grid.
 
 To try this own, download the latest `selenium-server` jar file from [the Selenium website](https://www.selenium.dev/downloads/). Then start up the server with the following command:
 
@@ -23,7 +23,7 @@ java -jar selenium-server-<version>.jar standalone
 This will start up the local instance of the Selenium Grid server. You can check out the dashboard on [http://localhost:4444/ui](http://localhost:4444/ui).
 
 You can configure your tests to run against this server by setting three properties:
- - Set the `webdriver.driver` property to `remote` 
+ - Set the `webdriver.driver` property to `remote`
  - Set the `webdriver.remote.url` property to the address of your Selenium Grid instance (http://localhost:4444 by default)
  - Set the `webdriver.remote.driver` property to the name of the driver you want to run (e.g. "chrome")
 
@@ -51,9 +51,3 @@ You can also pass the usual driver-specific capabilities to the remote browser, 
 ```
 mvn verify -Dwebdriver.remote.url=http://localhost:4444/wd/hub -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run"
 ```
-
-
-
-
-
-
