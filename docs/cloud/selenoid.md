@@ -7,6 +7,8 @@ sidebar_position: 1
 
 [Selenoid](https://aerokube.com/selenoid/latest/) Selenoid is a powerful Golang implementation of original Selenium hub code. It is using Docker to launch browsers. Please refer to GitHub repository if you need source code.
 
+The simplest way to configure the driver you want to use is in your project's `serenity.conf` file (which you will find in `src/test/resources` folder).
+Refer to [Driver Config](https://serenity-bdd.github.io/docs/guide/driver_config)
 
 You can configure your tests to run against this server by setting two properties:
 
@@ -16,100 +18,100 @@ You can configure your tests to run against this server by setting two propertie
 ```conf
 webdriver {
   driver = remote
-  remote {
-    url="http://localhost:4444/wd/hub"
+  remote.url = "http://localhost:4444/wd/hub"
   }
  }
 ```
 
 You can also provide additional properties about the target browser or environment, including:
-- `selenoid.browserName`:  property to the name of the driver you want to run (e.g. "chrome")
-- `selenoid.browserVersion`: What version of the remote browser to use (e.g. "93")
+- `browserName`:  property to the name of the driver you want to run (e.g. "chrome")
+- `browserVersion`: What version of the remote browser to use (e.g. "93")
 
 ``` conf
 
-selenoid {
-  browserName = "chrome"
-  browserVersion = "93"
-}
-
-```
-
-Must set above four configurations to use selenoid, For example:
-``` conf
 webdriver {
   driver = remote
-  remote {
-    url="http://localhost:4444/wd/hub"
+  remote.url = "http://localhost:4444/wd/hub"
+  capabilities {
+    browserName = "chrome"
+    browserVersion = "93"
   }
- }
-
-selenoid {
-  browserName = "chrome"
-  browserVersion = "93"
 }
+
 ```
+
 If you use serenity.properties:
 ```properties
 
 webdriver.driver = remote
 webdriver.remote.url = http://localhost:4444/wd/hub
-selenoid.browserVersion=93.0
-selenoid.browserName=chrome
+webdriver.capabilities.browserVersion=93.0
+webdriver.capabilities.browserName=chrome
 
 ```
 
-
-you can also provide additional properties about the selenoid options.
-For example:
-
+Example with multiple environments for Selenoid and Local browser:
 ``` conf
-
-selenoid {
-  browserName = "chrome"
-  browserVersion = "93"
-  platformName = linux
-  "selenoid:options" {
-    enableVNC = true
-    enableVideo = true
-    enableLog = true
-    videoDatePrefixFormat = yyyy-MM-dd-HH-mm-ss
-    screenResolution=1280x1000x24
-    args = ["test-type", "no-sandbox", "ignore-certificate-errors", "--window-size=1000,800",
-      "incognito", "disable-infobars", "disable-gpu", "disable-default-apps", "disable-popup-blocking"]
-  }
-}
-```
-
-If you use serenity.properties:
-
-```properties
-selenoid.browserVersion=93.0
-selenoid.browserName=chrome
-selenoid.platformName=linux
-
-selenoid.options.enableVNC=true
-selenoid.options.enableVideo=true
-selenoid.options.enableLog=true
-selenoid.options.videoDatePrefixFormat=yyyy-MM-dd-HH-mm-ss
-
-selenoid.options.screenResolution=1280x1000x24
-```
-
-If you save vide to AWS s3 and you want to link the video to report you can use 
-
-```conf
-selenoid {
-  "selenoid:options" {
-    videoLinkPrefix="https://s3.amazonaws.com/my-bucket"
-  }
+serenity {
+  project.name = "Project with Remote(selenoid) and Local browsers"
+  console.colors = true
+  logging = VERBOSE
+  take.screenshots = AFTER_EACH_STEP
 }
 
+environment = selenoid
+
+environments {
+  selenoid {
+    webdriver {
+      driver = remote
+      remote.url = "http://localhost:4444/wd/hub"
+      capabilities {
+        browserName = "chrome"
+        browserVersion = "118.0"
+        "selenoid:options" {
+            enableVNC = true
+            enableVideo = false
+            sessionTimeout = 10m
+            timeZone = America/Los_Angeles
+          }
+        "goog:chromeOptions" {
+            args = ["--remote-allow-origins=*", "disable-gpu", "disable-setuid-sandbox", "disable-dev-shm-usage"]
+            prefs {
+              profile.profile_default_content_settings.popups = 0
+              profile.default_content_setting_values.notifications = 1
+             }
+          }
+        timeouts {
+           #script = 30000
+           #pageLoad = 300000
+           implicit = 5000
+         }
+      }
+    }
+  }
+  local {
+    webdriver {
+      driver = chrome
+      capabilities {
+        "goog:chromeOptions" {
+            args = ["--remote-allow-origins=*", "disable-gpu", "disable-setuid-sandbox", "disable-dev-shm-usage"]
+            prefs {
+              profile.profile_default_content_settings.popups = 0
+              profile.default_content_setting_values.notifications = 1
+             }
+          }
+        timeouts {
+           #script = 30000
+           #pageLoad = 300000
+           implicit = 5000
+         }
+      }
+    }
+  }
+}
+
 ```
 
-If you use serenity.properties:
-```properties
-
-selenoid.options.videoLinkPrefix=https://s3.amazonaws.com/my-bucket
-
-```
+You can run tests on specific environment via comman line.
+`mvn clean verify -Denvironment=selenoid` 
