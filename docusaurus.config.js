@@ -65,7 +65,7 @@ const config = {
           },
           {to: 'blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://www.serenity-dojo.com/serenity-bdd-enterprise-support',
+            href: 'https://www.serenitydojo.academy/serenity-bdd-support-packages',
             label: 'Get Support',
             position: 'right',
           },
@@ -78,8 +78,8 @@ const config = {
               label: 'Serenity BDD Online Training'
             },
             {
-              href: 'http://learnbdd.com/requirements-discovery-training',
-              label: 'BDD Requirements Discovery Training'
+              href: 'https://expansion.serenity-dojo.com/courses/testing-web-applications-with-serenity-bdd',
+              label: 'BDD and Requirements Discovery Training'
             },
             {
               href: 'https://www.serenity-dojo.com/',
@@ -123,7 +123,7 @@ const config = {
               },
               {
                 label: 'Personalised Serenity BDD Coaching',
-                href: 'https://www.serenity-dojo.com/apply',
+                href: 'https://www.serenity-dojo.com',
               }
             ],
           },
