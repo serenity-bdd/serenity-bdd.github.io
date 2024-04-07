@@ -87,3 +87,19 @@ If you have already run the full set of tests, you can also produce a filtered a
 ```bash
 mvn serenity:aggregate -Dtags=sprint-2
 ```
+
+## Using tags with Cucumber and JUnit 5
+
+When running Cucumber tests with JUnit 5, you can use the `FILTER_TAGS_PROPERTY_NAME` configuration property to manage the tags for a specific test runner:
+
+```java
+@ConfigurationParameter(key = FILTER_TAGS_PROPERTY_NAME, value = "@smoke-test and @filtering")
+public class CucumberTestSuite {
+}
+```
+
+Alternatively, from the command line, you can use the `tags` command line property as shown here (note that with Cucumber 7, you don't need the '@' symbol for the tags when specifying tags on the command line):
+
+```
+mvn clean verify -Dtags="smoke-test or filtering"
+```
