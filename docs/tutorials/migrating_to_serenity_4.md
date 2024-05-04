@@ -93,7 +93,7 @@ If you are using internal Serenity classes, you may need to modify the relevant 
 |                               | net.thucydides.core.annotations.*            | net.serenitybdd.annotations.* |
 |                               | Other net.thucydides.core.*                  | net.thucydides.model.*  |
 
-For example, you may need to replace `net.thucydides.core.util.EnvironmentVariables` with `net.thucydides.core.util.EnvironmentVariables`
+For example, you may need to replace `net.thucydides.core.util.EnvironmentVariables` with `net.thucydides.model.util.EnvironmentVariables`
 
 
 ## Step 5: Test Your Changes
