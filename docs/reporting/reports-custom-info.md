@@ -65,6 +65,15 @@ We can set this value from the command line as shown here:
 mvn serenity:aggregate -DHOST=$HOST -Denvironment=INT5
 ```
 
+#### Using default values
+If an environment variable doesn't exist, you can have specify a fallback value.
+
+```
+report.customfields.user = ${USER:-Unknown}
+report.customfields.host = ${HOST:-} # Blank instead of the literal characters "${HOST}"
+```
+The mechanism behind the substitution: [Apache Commons `StringSubstitutor`](https://commons.apache.org/proper/commons-text/apidocs/org/apache/commons/text/StringSubstitutor.html)
+
 ### Ordering the custom properties
 
 By default, the fields will appear in an arbitrary order. You can force the fields to appear in a pre-determined order using the `report.customfields.order` field:
