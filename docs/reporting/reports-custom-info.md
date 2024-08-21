@@ -44,10 +44,6 @@ mvn serenity:aggregate -DHOST=$HOST
 
 ### Overriding property values
 
-[[custom-report-fields-with-provided-values]]
-.You can pass system properties from the command line
-image::custom-reports-with-provided-property.png[]
-
 You can of course pass in other properties, to override the ones in your `serenity.properties` file. Here we override the application version:
 
 ```bash
