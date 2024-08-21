@@ -66,7 +66,7 @@ mvn serenity:aggregate -DHOST=$HOST -Denvironment=INT5
 ```
 
 #### Using default values
-If an environment variable doesn't exist, you can have specify a fallback value.
+If an environment variable doesn't exist, you can specify a fallback value.
 
 ```
 report.customfields.user = ${USER:-Unknown}
