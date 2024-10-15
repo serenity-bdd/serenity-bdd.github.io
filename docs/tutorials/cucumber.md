@@ -182,7 +182,8 @@ package starter.helpers;
 
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.screenplay.targets.Target;
-import net.thucydides.core.annotations.DefaultUrl;
+import net.serenitybdd.annotations.DefaultUrl;
+
 
 @DefaultUrl("https://todomvc.com/examples/angularjs/#/")
 public class TodoListPage extends PageObject {
