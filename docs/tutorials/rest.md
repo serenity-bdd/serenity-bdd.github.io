@@ -219,6 +219,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapperType;
+import static net.serenitybdd.rest.SerenityRest.given;
 import net.serenitybdd.core.steps.UIInteractions;
 
 
@@ -288,6 +289,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapperType;
+import static net.serenitybdd.rest.SerenityRest.then;
+import static net.serenitybdd.rest.SerenityRest.when;
+import static net.serenitybdd.rest.SerenityRest.given;
 import net.serenitybdd.core.steps.UIInteractions;
 import org.hamcrest.Matchers;
 
