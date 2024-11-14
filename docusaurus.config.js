@@ -7,7 +7,7 @@ const path = require('path')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Serenity BDD Users Manual',
+  title: 'Serenity BDD User Manual',
   tagline: 'Automated Acceptance Testing With Style',
   url: 'https://serenity-bdd.github.io',
   baseUrl: '/',
