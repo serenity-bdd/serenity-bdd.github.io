@@ -32,6 +32,10 @@ export default function Home() {
       title={`Welcome`}
       description="Serenity BDD is a modern automated test framework that makes writing high quality acceptance tests easier and faster">
       <HomepageHeader />
+
+      {/* Render the Black Friday banner below the header */} 
+      <div dangerouslySetInnerHTML={{ __html: siteConfig.customFields.blackFridayBanner }} />
+      
       <main>
         <HomepageFeatures />
         {/* <Testimonials /> */}
