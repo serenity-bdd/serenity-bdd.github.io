@@ -32,8 +32,8 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
     color: white;
     text-align: center;
     padding: 20px 0;
-    font-weight: bold;
-    font-size: 24px;
+    font-weight: 900;
+    font-size: 32;
     position: relative;
     width: 100%;
 }
