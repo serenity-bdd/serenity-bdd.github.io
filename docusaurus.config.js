@@ -21,7 +21,7 @@ const config = {
   customFields: {
     blackFridayBanner: `
       <div class="large-black-friday-banner">
-        BLACK FRIDAY SPECIAL<br/>
+        BLACK FRIDAY SPECIAL - 70% OFF!<br/>
         <a href="https://www.udemy.com/course/serenity-bdd-web-testing/?couponCode=FB3BE1F01CEC50B2D9CB" target="_blank" style="color: white; text-decoration: underline;">Become a Serenity BDD Expert with Our Definitive Udemy Course!</a>
       </div>
     `,
