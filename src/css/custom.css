@@ -27,11 +27,17 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.sales-banner {
+.large-black-friday-banner {
     background-color: red;
     color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 24px;
+    position: relative;
+    width: 100%;
+}
+
+.hero__subtitle + .large-black-friday-banner {
+    margin-top: 0;
 }
