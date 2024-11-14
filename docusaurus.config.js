@@ -171,13 +171,6 @@ const config = {
   
         //... other Algolia params
       },
-      announcementBar: {
-        id: 'black-friday-sale', // Any unique ID
-        content: '<div class="black-friday-banner">BLACK FRIDAY SALE - <a href="https://www.udemy.com/course/serenity-bdd-web-testing/?referralCode=3E5878CF6F4676EF507B" target="_blank" style="color: white; text-decoration: underline;">70% OFF THE SERENITY BDD COURSE ON UDEMY</a></div>',
-      backgroundColor: '#FF0000', // Optional, you can specify background color here
-      textColor: '#FFFFFF', // Optional, text color here
-      isCloseable: true, // Optional, if you want the banner to be closable
-      },
     }),
 
   plugins: [
