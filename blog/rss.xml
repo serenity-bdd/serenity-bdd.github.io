@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>Serenity BDD Users Manual Blog</title>
+        <title>Serenity BDD User Manual Blog</title>
         <link>https://serenity-bdd.github.io/blog</link>
-        <description>Serenity BDD Users Manual Blog</description>
+        <description>Serenity BDD User Manual Blog</description>
         <lastBuildDate>Thu, 02 Feb 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>

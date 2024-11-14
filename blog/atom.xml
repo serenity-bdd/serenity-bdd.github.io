@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://serenity-bdd.github.io/blog</id>
-    <title>Serenity BDD Users Manual Blog</title>
+    <title>Serenity BDD User Manual Blog</title>
     <updated>2023-02-02T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://serenity-bdd.github.io/blog"/>
-    <subtitle>Serenity BDD Users Manual Blog</subtitle>
+    <subtitle>Serenity BDD User Manual Blog</subtitle>
     <icon>https://serenity-bdd.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[How To Configure Chrome In Serenity BDD]]></title>
