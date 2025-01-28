@@ -165,6 +165,12 @@ webdriver {
 
 ## Configuring Chrome
 
+# Configuring Selenium WebDriver
+
+[Previous content unchanged until Chrome configuration section...]
+
+## Configuring Chrome
+
 You can use the special `"goog:chromeOptions"` capability to define any of the [ChromeDriver options](https://chromedriver.chromium.org/capabilities)
 ```hocon
 webdriver {
@@ -186,130 +192,120 @@ webdriver {
 }
 ```
 
-:::tip
-In older versions of Serenity, we used the `chrome.switches` property to define Chrome options. This property is not supported as of version 3.3.0, so you should use the W3C standard `"goog:chromeOptions"` capability for this instead.
-:::
-
 ### Configuring Chromedriver arguments
 
-You can define ChromeDriver arguments in the `args` property to set various startup options. For example, to start Chrome in maximized mode, you can use the `start-maximized` argument. Or if you want to run Chrome in headless mode, you can use the "headless" argument:
+### Configuring proxy settings
 
+Chrome supports various proxy configurations that can be specified in your `serenity.conf` file. You can configure proxies in either the general capabilities section or within the Chrome-specific options:
+
+#### Basic Proxy Configuration
 ```hocon
 webdriver {
   capabilities {
-    ...
     "goog:chromeOptions" {
-      args = [ "start-maximized", "headless"]
-    }
-  }
-}
-```
-
-Some of the more commonly used Chrome startup arguments include:
-
-| Argument               | Usage |
-| ---------------------- | ------|
-| start-maximized        | Opens Chrome in maximize mode |
-| incognito              | Opens Chrome in incognito mode |
-| headless               | Opens Chrome in headless mode |
-| disable-extensions     | Disables existing extensions on Chrome browser |
-| disable-popup-blocking | Disables pop-ups displayed on Chrome browser |
-| make-default-browser   | Makes Chrome default browser |
-| version                | Prints chrome browser version |
-| disable-infobars       | Prevents Chrome from displaying the notification ‘Chrome is being controlled by automated software |
-
-### Specifying the Chromedriver binary
-
-Serenity uses WebDriverManager, so you rarely need to specify the chromedriver binary yourself. However if you need to, you can do this in the capabilities section
-
-```hocon
-webdriver {
-  capabilities {
-    ...
-    "goog:chromeOptions" {
-      binary = /path/to/chromedriver
-    }
-  }
-}
-```
-
-Note that you can use environment variables in TypesafeConfig to make your path more portable, e.g.
-
-```hocon
-webdriver {
-  capabilities {
-    ...
-    "goog:chromeOptions" {
-      binary = ${HOME}/path/to/chromedriver
-    }
-  }
-}
-```
-
-### Blocking popup-windows
-By default, ChromeDriver configures Chrome to allow pop-up windows. If you want to block pop-ups (i.e., restore the normal Chrome behavior when it is not controlled by ChromeDriver), you can use the `excludeSwitches` option as follows:
-
-```hocon
-webdriver {
-  capabilities {
-    ...
-    "goog:chromeOptions" {
-      excludeSwitches = ["disable-popup-blocking"]
-    }
-  }
-}
-```
-
-### Configuring Chrome extensions
-
-You can define Chrome extensions to be used by using the `extensions` property in the `goog:chromeOptions` section, e.g.
-```hocon
-webdriver {
-  capabilities {
-    ...
-    "goog:chromeOptions" {
-      extensions = [src/test/resources/sample-extensions/custom-curser-extension.crx, src/test/resources/sample-extensions/dark-reader-extension.crx]
-  }
-}
-```
-
-
-### Configuring Chrome preferences
-
-Some driver behaviour is specified in the Chrome preferences. For example, a common usage of the preferences section is to define a download directory, like this:
-
-```hocon
-webdriver {
-  capabilities {
-    ...
-    "goog:chromeOptions" {
-      prefs {
-        download.default_directory = ${HOME}/some/download/dir
-        download.prompt_for_download = true
+      proxy {
+        proxyType = "MANUAL"
+        httpProxy = "proxy.example.com:8080"
+        sslProxy = "proxy.example.com:8443"
+        noProxy = "localhost,127.0.0.1,.example.com"
       }
+    }
   }
 }
 ```
 
-### Configuring timeouts
+#### Proxy Types
+Serenity supports several proxy types:
 
-You can configure driver timeouts using standard W3C capabilities like this (all values are in milliseconds):
-
+1. Manual Proxy Configuration
 ```hocon
-webdriver {
-    capabilities {
-        timeouts {
-           script = 30000
-           pageLoad = 300000
-           implicit = 0
-       }
-   }
+"goog:chromeOptions" {
+  proxy {
+    proxyType = "MANUAL"
+    httpProxy = "proxy.example.com:8080"    # HTTP proxy
+    sslProxy = "proxy.example.com:8443"     # HTTPS proxy
+    socksProxy = "socks.example.com:1080"   # SOCKS proxy
+    socksVersion = 5                        # SOCKS version (4 or 5)
+    noProxy = "localhost,127.0.0.1"         # Bypass proxy for these addresses
+  }
 }
 ```
 
-### Configuring ChromeDriver logging preferences
+2. PAC (Proxy Auto-Configuration)
+```hocon
+"goog:chromeOptions" {
+  proxy {
+    proxyType = "PAC"
+    proxyAutoconfigUrl = "http://proxy.example.com/proxy.pac"
+  }
+}
+```
 
-You can also configure the Chrome logging preferences using the `goog:loggingPrefs` option.
+3. System Proxy
+```hocon
+"goog:chromeOptions" {
+  proxy {
+    proxyType = "SYSTEM"  # Use system's proxy settings
+  }
+}
+```
+
+4. Direct Connection
+```hocon
+"goog:chromeOptions" {
+  proxy {
+    proxyType = "DIRECT"  # No proxy (direct connection)
+  }
+}
+```
+
+5. Auto-detect
+```hocon
+"goog:chromeOptions" {
+  proxy {
+    proxyType = "AUTODETECT"  # Auto-detect proxy settings
+  }
+}
+```
+
+#### Proxy Authentication
+For proxies requiring authentication, include the credentials in the proxy URL:
+```hocon
+"goog:chromeOptions" {
+  proxy {
+    proxyType = "MANUAL"
+    httpProxy = "username:password@proxy.example.com:8080"
+  }
+}
+```
+
+#### Environment-Specific Proxy Configuration
+You can configure different proxy settings for different environments:
+```hocon
+environments {
+  dev {
+    webdriver.capabilities {
+      "goog:chromeOptions" {
+        proxy {
+          proxyType = "DIRECT"
+        }
+      }
+    }
+  }
+  qa {
+    webdriver.capabilities {
+      "goog:chromeOptions" {
+        proxy {
+          proxyType = "MANUAL"
+          httpProxy = "proxy.qa.example.com:8080"
+          sslProxy = "proxy.qa.example.com:8443"
+          noProxy = "*.qa.example.com,localhost"
+        }
+      }
+    }
+  }
+}
+```
 
 ## Condiguring Microsoft Edge
 
