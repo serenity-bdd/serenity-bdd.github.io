@@ -27,17 +27,77 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.large-black-friday-banner {
-    background-color: red;
-    color: white;
+/* Training Section Styles */
+.training-section {
+    background-color: var(--ifm-color-primary-lightest);
+    padding: 60px 0;
     text-align: center;
-    padding: 20px 0;
-    font-weight: 900;
-    font-size: 32px;
-    position: relative;
-    width: 100%;
 }
 
-.hero__subtitle + .large-black-friday-banner {
-    margin-top: 0;
+html[data-theme='dark'] .training-section {
+    background-color: rgba(48, 188, 148, 0.1);
+}
+
+.training-section__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--ifm-color-primary-darkest);
+}
+
+html[data-theme='dark'] .training-section__title {
+    color: var(--ifm-color-primary-lightest);
+}
+
+.training-section__courses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.training-course {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+html[data-theme='dark'] .training-course {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.training-course:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.training-course__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--ifm-color-primary-darkest);
+}
+
+html[data-theme='dark'] .training-course__title {
+    color: var(--ifm-color-primary-lightest);
+}
+
+.training-course__description {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+html[data-theme='dark'] .training-course__description {
+    color: #ccc;
+}
+
+.training-course__button {
+    margin-top: auto;
 }
