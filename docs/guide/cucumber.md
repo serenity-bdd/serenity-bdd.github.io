@@ -1,5 +1,9 @@
 # Running Cucumber scenarios with Serenity
 
+:::tip Comprehensive Cucumber Guide Available
+For a complete, in-depth guide on using Cucumber with Serenity BDD and JUnit 5, including configuration options, best practices, and troubleshooting, see the dedicated [Cucumber with JUnit 5](/docs/cucumber/cucumber-junit5) section.
+:::
+
 To run Cucumber scenarios with Serenity, you need to create a Junit 5 test runner class like this:
 
 ```java

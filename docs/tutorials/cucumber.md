@@ -5,6 +5,10 @@ sidebar_position: 4
 
 # Getting Started With Cucumber using Serenity BDD and Screenplay
 
+:::tip Comprehensive Cucumber Guide Available
+This tutorial focuses on getting started with Cucumber and Screenplay. For comprehensive coverage of Cucumber configuration, JUnit 5 integration, parallel execution, and advanced topics, see the [Cucumber with JUnit 5](/docs/cucumber/cucumber-junit5) section.
+:::
+
 ## Objectives
 At the end of this tutorial, you would have completed the following activities.
 1. Write your first **specification by example** using [Gherkin](https://cucumber.io/docs/gherkin/reference/) language in a `.feature` file for the well-known [TodoMVC](http://todomvc.com) project
