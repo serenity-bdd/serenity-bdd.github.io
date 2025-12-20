@@ -340,9 +340,9 @@ test {
 
 ### 1. Choose the Right Strategy
 
-- **Small test suites** (<50 scenarios): Fixed strategy with 2-4 threads
+- **Small test suites** (&lt;50 scenarios): Fixed strategy with 2-4 threads
 - **Medium test suites** (50-200 scenarios): Dynamic strategy with factor 1.0
-- **Large test suites** (>200 scenarios): Dynamic strategy with factor 0.75-1.0
+- **Large test suites** (&gt;200 scenarios): Dynamic strategy with factor 0.75-1.0
 
 ### 2. Optimize Scenario Design
 

@@ -48,7 +48,7 @@ public class WhenInjectingSpringDependencies {
 }
 ```
 
-### In Spring Boot <1.3
+### In Spring Boot &lt;1.3
 
 use the `@ContextConfiguration` annotation to define the configuration file or files to use. Then you can inject dependencies as you would with an ordinary Spring integration test, using the usual Spring annotations such as `@Autowired` or `@Resource`. For example, suppose we are using the following Spring configuration file, called ‘config.xml’:
 

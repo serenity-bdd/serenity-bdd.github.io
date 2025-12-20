@@ -20,7 +20,7 @@ What browser do you want your tests to run in, for example firefox, chrome, phan
 Set to `false` if you don't want Serenity to automatically download driver binaries for local runs.
 
 ### webdriver.provided_type
-If using a provided driver, what type is it. The implementation class needs to be defined in the webdriver.provided.{type} system property.
+If using a provided driver, what type is it. The implementation class needs to be defined in the `webdriver.provided.{type}` system property.
 
 ### webdriver.base.url
 The default starting URL for the application, and base URL for relative paths.

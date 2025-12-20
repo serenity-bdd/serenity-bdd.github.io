@@ -436,7 +436,7 @@ test {
 
 ### 1. Choose the Right Strategy
 
-**Small test suites** (<30 tests):
+**Small test suites** (&lt;30 tests):
 ```properties
 junit.jupiter.execution.parallel.config.strategy=fixed
 junit.jupiter.execution.parallel.config.fixed.parallelism=2
@@ -448,7 +448,7 @@ junit.jupiter.execution.parallel.config.strategy=dynamic
 junit.jupiter.execution.parallel.config.dynamic.factor=1.0
 ```
 
-**Large test suites** (>100 tests):
+**Large test suites** (&gt;100 tests):
 ```properties
 junit.jupiter.execution.parallel.config.strategy=dynamic
 junit.jupiter.execution.parallel.config.dynamic.factor=0.75
