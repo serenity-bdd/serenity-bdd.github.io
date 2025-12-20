@@ -18,21 +18,9 @@ You can add Serenity BDD to an existing Maven project by adding the correspondin
 </dependency>
 ```
 
-You will also need a test runner, which will usually be either JUnit 4, JUnit 5 or Cucumber.
+You will also need a test runner, which will usually be either JUnit 5 (recommended) or Cucumber. Note that JUnit 4 is deprecated as of Serenity 5.0.0.
 
-## Serenity JUnit 4 Dependencies
-To use JUnit 4 you will need the following dependency:
-
-```
-<dependency>
-    <groupId>net.serenity-bdd</groupId>
-    <artifactId>serenity-junit</artifactId>
-    <version>${serenity.version}</version>
-    <scope>test</scope>
-</dependency>
-```
-
-## Serenity JUnit 5 Dependencies
+## Serenity JUnit 5 Dependencies (Recommended)
 To use JUnit 5 you will need the following dependency:
 
 ```
@@ -60,6 +48,23 @@ You will also need the JUnit 5 dependencies, e.g.
 </dependency>
 ```
 
+## Serenity JUnit 4 Dependencies (Deprecated)
+
+:::warning JUnit 4 Deprecated
+JUnit 4 support is deprecated as of Serenity 5.0.0 and will be removed in Serenity 6.0.0. Please migrate to JUnit 5 (see above).
+:::
+
+If you're still using JUnit 4, you will need the following dependency:
+
+```
+<dependency>
+    <groupId>net.serenity-bdd</groupId>
+    <artifactId>serenity-junit</artifactId>
+    <version>${serenity.version}</version>
+    <scope>test</scope>
+</dependency>
+```
+
 ## Serenity Cucumber Dependencies
 
 For Cucumber you will need the following dependency:
@@ -75,27 +80,9 @@ For Cucumber you will need the following dependency:
 
 Since Serenity relies on a specific version of the Cucumber APIs, we recommend using the same version of the Cucumber libraries.
 
-Cucumber requires a test runner, either JUnit 4 or JUnit 5.
+Cucumber requires a test runner, preferably JUnit 5 (JUnit 4 is deprecated).
 
-## Cucumber with JUnit 4 Dependencies
-To use JUnit 4 you will need the following dependency:
-
-```
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-junit</artifactId>
-    <version>${cucumber.version}</version>
-    <scope>test</scope>
-</dependency>
-<dependency>
-    <groupId>org.junit.platform</groupId>
-    <artifactId>junit-vintage-engine</artifactId>
-    <version>${junit5.version}</version>
-    <scope>test</scope>
-</dependency>
-```
-
-## Cucumber with JUnit 5 Dependencies
+## Cucumber with JUnit 5 Dependencies (Recommended)
 To use JUnit 5 you will need the following dependency:
 
 ```
@@ -115,6 +102,28 @@ To use JUnit 5 you will need the following dependency:
 
 See cucumber-junit-platform-engine documentation on using junit-platform-suite to pilot cucumber: https://github.com/cucumber/cucumber-jvm/tree/main/junit-platform-engine#suites-with-different-configurations, and https://github.com/serenity-bdd/serenity-cucumber-starter for a running example.
 
+## Cucumber with JUnit 4 Dependencies (Deprecated)
+
+:::warning JUnit 4 Deprecated
+JUnit 4 Cucumber runners are deprecated as of Serenity 5.0.0 and will be removed in Serenity 6.0.0. Please migrate to JUnit 5 (see above).
+:::
+
+If you're still using JUnit 4 with Cucumber, you will need the following dependency:
+
+```
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>${cucumber.version}</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.junit.platform</groupId>
+    <artifactId>junit-vintage-engine</artifactId>
+    <version>${junit5.version}</version>
+    <scope>test</scope>
+</dependency>
+```
 
 ## Screenplay
 If you are using the Screenplay pattern, you will also need the Screenplay dependencies:

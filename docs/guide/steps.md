@@ -24,28 +24,28 @@ And the second can be broken into three steps:
 - Make the member fly 10000 km
 - Check that the member has a status of Silver
 
-We could express these tests using Serenity in JUnit as follows:
+We could express these tests using Serenity in JUnit 5 as follows:
 
 ```java
 package flyer;
 
-import net.serenitybdd.junit.runners.SerenityRunner;
+import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import net.thucydides.core.annotations.Steps;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import flyer.steps.TravellerEarningStatusPoints;
 
 import static flyer.Status.Bronze;
 import static flyer.Status.Silver;
 
 @ExtendWith(SerenityJUnit5Extension.class)
-public class WhenEarningFrequentFlyerPoints {
+class WhenEarningFrequentFlyerPoints {
 
     @Steps
     TravellerEarningStatusPoints tracy;
 
     @Test
-    public void members_should_start_with_Bronze_status() {
+    void members_should_start_with_Bronze_status() {
         // GIVEN
         tracy.joins_the_frequent_flyer_program();
 
@@ -54,7 +54,7 @@ public class WhenEarningFrequentFlyerPoints {
     }
 
     @Test
-    public void earn_silver_after_10000_kilometers() {
+    void earn_silver_after_10000_kilometers() {
         // GIVEN
         tracy.joins_the_frequent_flyer_program();
 
@@ -66,6 +66,10 @@ public class WhenEarningFrequentFlyerPoints {
     }
 }
 ```
+
+:::note JUnit 4 Deprecated
+If you're still using JUnit 4 with `@RunWith(SerenityRunner.class)`, note that JUnit 4 support is deprecated as of Serenity 5.0.0 and will be removed in Serenity 6.0.0. Please migrate to JUnit 5 using `@ExtendWith(SerenityJUnit5Extension.class)` as shown above.
+:::
 
 Notice how the second test reuses step methods used in the first to perform a slightly different test. This is a typical example of the way we reuse steps in similar tests, in order to avoid duplicated code and make the code easier to maintain.
 

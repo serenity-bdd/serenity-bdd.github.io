@@ -77,8 +77,12 @@ Add the following content to the file:
 ```properties
 cucumber.execution.parallel.enabled=true
 cucumber.execution.parallel.config.strategy=dynamic
-cucumber.plugin=io.cucumber.core.plugin.SerenityReporterParallel
+cucumber.plugin=net.serenitybdd.cucumber.core.plugin.SerenityReporterParallel
 ```
+
+:::note Breaking Change in Serenity 5.0.0
+The Cucumber plugin path changed from `io.cucumber.core.plugin.*` to `net.serenitybdd.cucumber.core.plugin.*` in Serenity 5.0.0. Make sure to use the updated path shown above.
+:::
 
 These properties enable parallel execution and configure it to use a dynamic strategy, along with the Serenity reporter for parallel execution.
 

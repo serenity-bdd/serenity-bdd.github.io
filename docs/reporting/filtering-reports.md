@@ -20,18 +20,18 @@ Scenario: Buyer orders a coffee
   Then Cathy should receive the order
 ```
 
-Tagging also works with JUnit test, as illustrated here:
+Tagging also works with JUnit 5 tests, as illustrated here:
 
 ```java
-@RunWith(SerenityRunner.class)
-public class WhenAddingNumbers {
+@ExtendWith(SerenityJUnit5Extension.class)
+class WhenAddingNumbers {
 
     @Steps
     MathWizSteps michael;
 
     @Test
     @WithTag("release:sprint-2")
-    public void addingSums() {
+    void addingSums() {
         // Given
         michael.startsWith(1);
 
@@ -42,11 +42,16 @@ public class WhenAddingNumbers {
         michael.shouldHave(3);
     }
 
+    @Test
     @WithTagsValuesOf({"Reporting", "release:sprint-3"})
-    public void testWithMultipleTags() {
+    void testWithMultipleTags() {
     }
 }
 ```
+
+:::note JUnit 4 Deprecated
+If you're using JUnit 4 with `@RunWith(SerenityRunner.class)`, note that JUnit 4 support is deprecated as of Serenity 5.0.0 and will be removed in Serenity 6.0.0. Please migrate to JUnit 5.
+:::
 
 ## Running Scenarios by tags
 

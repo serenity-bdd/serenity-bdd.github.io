@@ -86,8 +86,12 @@ cucumber.execution.parallel.enabled=true
 cucumber.execution.parallel.config.strategy=fixed
 cucumber.execution.parallel.config.fixed.parallelism=4
 cucumber.execution.parallel.config.fixed.max-pool-size=4
-cucumber.plugin=io.cucumber.core.plugin.SerenityReporterParallel
+cucumber.plugin=net.serenitybdd.cucumber.core.plugin.SerenityReporterParallel
 ```
+
+:::note Breaking Change in Serenity 5.0.0
+The Cucumber plugin path changed from `io.cucumber.core.plugin.*` to `net.serenitybdd.cucumber.core.plugin.*` in Serenity 5.0.0. Make sure to update your configuration files.
+:::
 More informations about the meaning of the properties can be found in [Cucumber JUnit Platform Engine Documentation](https://github.com/cucumber/cucumber-jvm/tree/main/cucumber-junit-platform-engine)
 
 3. Configure the classpath location of the scenarios to be executed in a Java class placed in a package under `test/java`

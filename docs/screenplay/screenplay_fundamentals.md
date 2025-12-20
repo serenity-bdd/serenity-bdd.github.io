@@ -39,22 +39,9 @@ Running a Screenplay test in JUnit 4 and JUnit 5 is no different to any other Se
         </dependency>
 ```
 
-Next, use the `SerenityRunner` class in your test class, like this:
+### Screenplay and JUnit 5 (Recommended)
 
-```java
-import net.serenitybdd.junit.runners.SerenityRunner;
-import org.junit.Test;
-
-@RunWith(SerenityRunner.class)
-public class AddNewTodos {
-
-    @Test
-    public void addToEmptyList() {...}
-}
-```
-
-### Screenplay and JUnit 5
-For JUnit 5, just add the following dependency to your project (this will also support legacy JUnit 4 tests):
+For JUnit 5, add the following dependency to your project:
 ```xml
         <dependency>
             <groupId>net.serenity-bdd</groupId>
@@ -89,6 +76,26 @@ class AddNewTodos {
 }
 ```
 
+### Screenplay and JUnit 4 (Deprecated)
+
+:::warning JUnit 4 Deprecated
+JUnit 4 support is deprecated as of Serenity 5.0.0 and will be removed in Serenity 6.0.0. Please migrate to JUnit 5 (see above).
+:::
+
+If you're still using JUnit 4, use the `SerenityRunner` class in your test class, like this:
+
+```java
+import net.serenitybdd.junit.runners.SerenityRunner;
+import org.junit.Test;
+
+@RunWith(SerenityRunner.class)
+public class AddNewTodos {
+
+    @Test
+    public void addToEmptyList() {...}
+}
+```
+
 ### Screenplay and Cucumber
 
 To run a Screenplay scenario with Cucumber and Serenity, you just need the standard Screenplay dependencies along with the `serenity-cucumber` dependency, as shown below:
@@ -113,7 +120,32 @@ To run a Screenplay scenario with Cucumber and Serenity, you just need the stand
         </dependency>
 ```
 
-There is no difference when running the Cucumber scenarios either - you simply use the same JUnit 4 runner class as you would for a normal Serenity Cucumber scenario:
+#### With JUnit 5 (Recommended)
+
+For JUnit 5, use the `@Suite` annotation with the Cucumber JUnit Platform Engine:
+
+```java
+import org.junit.platform.suite.api.*;
+
+import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
+
+@Suite
+@IncludeEngines("cucumber")
+@SelectClasspathResource("features")
+@ConfigurationParameter(
+    key = PLUGIN_PROPERTY_NAME,
+    value = "net.serenitybdd.cucumber.core.plugin.SerenityReporterParallel"
+)
+class TestSuite {}
+```
+
+#### With JUnit 4 (Deprecated)
+
+:::warning JUnit 4 Deprecated
+JUnit 4 Cucumber runners are deprecated as of Serenity 5.0.0 and will be removed in Serenity 6.0.0. Please migrate to JUnit 5 (see above).
+:::
+
+For JUnit 4, you would use:
 
 ```java
 import io.cucumber.junit.CucumberOptions;

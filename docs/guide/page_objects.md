@@ -630,7 +630,7 @@ We will use some imaginary regression tests for this site to illustrate how the 
 - And the developer searches for artifacts called 'Serenity'
 - Then the developer should see at least 16 Serenity artifacts, each with a unique artifact Id
 
-In JUnit, a Serenity test for this scenario might look like the one:
+In JUnit 5, a Serenity test for this scenario might look like the one:
 
 ```java
 ...
@@ -641,17 +641,17 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 
-@RunWith(SerenityRunner.class)
-public class WhenSearchingForArtifacts {
+@ExtendWith(SerenityJUnit5Extension.class)
+class WhenSearchingForArtifacts {
 
     @Managed
     WebDriver driver;
 
     @Steps
-    public DeveloperSteps developer;
+    DeveloperSteps developer;
 
     @Test
-    public void should_find_the_right_number_of_artifacts() {
+    void should_find_the_right_number_of_artifacts() {
         developer.opens_the_search_page();
         developer.searches_for("Serenity");
         developer.should_see_artifacts_where(the("GroupId", startsWith("net.thucydides")),
@@ -661,6 +661,10 @@ public class WhenSearchingForArtifacts {
     }
 }
 ```
+
+:::note JUnit 4 Deprecated
+If you're still using JUnit 4 with `@RunWith(SerenityRunner.class)`, note that JUnit 4 support is deprecated as of Serenity 5.0.0 and will be removed in Serenity 6.0.0. Please migrate to JUnit 5 using `@ExtendWith(SerenityJUnit5Extension.class)`.
+:::
 
 Let's see how the test in this class is implemented. The `should_find_the_right_number_of_artifacts()` test could be expressed as follows:
 
@@ -954,7 +958,7 @@ Paranoid will wait until all of the elements are displayed. This can be slow for
 
 ## Working with fixture methods
 
-When a UI step fails in a Serenity test, the WebDriver instance is disabled for the rest of the test. This avoids unnecessary waits as the test steps through the subsequent steps (which it needs to do to document the test steps). The exception to this rule is in the case of fixture methods, such as methods annotated with the `@After` annotation in JUnit or Cucumber.
+When a UI step fails in a Serenity test, the WebDriver instance is disabled for the rest of the test. This avoids unnecessary waits as the test steps through the subsequent steps (which it needs to do to document the test steps). The exception to this rule is in the case of fixture methods, such as methods annotated with the `@AfterEach` annotation in JUnit 5 (or `@After` in JUnit 4) or Cucumber.
 
 In these methods, the WebDriver instance can be used normally. In addition to the known JUnit and Cucumber annotations, any annotation starting with the word `After` will be considered a fixture method.
 
@@ -966,8 +970,8 @@ AdminSteps asAdministrator;
 
 ...
 
-@After
-public void deleteUserAccounts() {
+@AfterEach
+void deleteUserAccounts() {
     asAdministrator.deleteAllCustomerAccounts();
 }
 ```
