@@ -7,7 +7,23 @@ sidebar_position: 3
 
 Maven is the recommended build tool for Serenity BDD.
 
-You can add Serenity BDD to an existing Maven project by adding the corresponding dependencies to your `pom.xml` file. All Serenity BDD projects need the following core dependency:
+You can add Serenity BDD to an existing Maven project by adding the corresponding dependencies to your `pom.xml` file.
+
+## Recommended Versions
+
+First, define the recommended versions in your properties section:
+
+```xml
+<properties>
+    <serenity.version>5.0.1</serenity.version>
+    <junit5.version>6.0.1</junit5.version>
+    <cucumber.version>7.33.0</cucumber.version>
+</properties>
+```
+
+## Core Dependencies
+
+All Serenity BDD projects need the following core dependency:
 
 ```
 <dependency>
