@@ -15,7 +15,7 @@ First, define the recommended versions in your properties section:
 
 ```xml
 <properties>
-    <serenity.version>5.0.1</serenity.version>
+    <serenity.version>5.0.2</serenity.version>
     <junit5.version>6.0.1</junit5.version>
     <cucumber.version>7.33.0</cucumber.version>
 </properties>
