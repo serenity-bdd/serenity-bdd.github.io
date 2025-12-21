@@ -17,7 +17,7 @@ At the end of this tutorial, you would have completed the following activities.
 
 ## Pre-requisites
 To run this tutorial, you will need a few things installed on your machine:
-* **Java**: Serenity BDD is a Java library, so you'll need a recent JDK installed. JDK 1.8 or higher should be fine.
+* **Java**: Serenity BDD is a Java library, so you'll need a recent JDK installed. JDK 17 or higher should be fine.
 * **Maven**: You will need Maven 3 or higher installed in your computer.  This acts as a build tool that also downloads the dependencies while building.
 * **A Java IDE**: You'll also need a Java Development Environment such as IntelliJ or Eclipse (and a working knowledge of Java).
 * **Git**: We'll be using a starter project on Github, and the sample code for this project lives on Github too, so I'll be assuming you have a basic understanding of Git.

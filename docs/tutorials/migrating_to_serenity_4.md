@@ -5,10 +5,10 @@ sidebar_position: 5
 # Migrating From Serenity BDD 3.x to Serenity BDD 4.x
 
 ## Introduction
-Serenity BDD 4.0.0 is a significant update that aligns with modern testing libraries by supporting Java 11. This major release includes changes to package structures, reflecting adjustments in the module structure for Java 11. If you are migrating from Serenity 3.x to Serenity 4.x, this tutorial will guide you through the necessary steps to make your project compatible with the latest version.
+Serenity BDD 4.0.0 is a significant update that aligns with modern testing libraries by supporting JDK 17. This major release includes changes to package structures, reflecting adjustments in the module structure for JDK 17. If you are migrating from Serenity 3.x to Serenity 4.x, this tutorial will guide you through the necessary steps to make your project compatible with the latest version.
 
-## Step 1: Ensure Java 11 Compatibility
-Make sure your project is compatible with Java 11, as Serenity BDD 4.x requires it as a minimum version. If you are using Maven, update your project's `pom.xml` file to include the `maven-compiler-plugin` configured for Java 11. Here's an example:
+## Step 1: Ensure JDK 17 Compatibility
+Make sure your project is compatible with JDK 17, as Serenity BDD 4.x requires it as a minimum version. If you are using Maven, update your project's `pom.xml` file to include the `maven-compiler-plugin` configured for JDK 17. Here's an example:
 
 ```xml
 <plugin>
@@ -22,7 +22,7 @@ Make sure your project is compatible with Java 11, as Serenity BDD 4.x requires 
 </plugin>
 ```
 
-If your project uses Gradle, you'll need to specify the Java version in your `build.gradle` file to ensure compatibility with Java 11. Here's an example:
+If your project uses Gradle, you'll need to specify the Java version in your `build.gradle` file to ensure compatibility with JDK 17. Here's an example:
 
 ```groovy
 plugins {
@@ -102,6 +102,6 @@ After making these changes, run your test suite to verify that everything is wor
 - **Test Execution:** Confirm that all your tests are being executed as expected, without any missing or failing tests that previously succeeded.
 
 ## Conclusion
-Migrating to Serenity BDD 4.x involves updating package references to align with the new Java 11 module structure. Follow the steps above, and consult the official Serenity BDD documentation for additional information or support.
+Migrating to Serenity BDD 4.x involves updating package references to align with the new JDK 17 module structure. Follow the steps above, and consult the official Serenity BDD documentation for additional information or support.
 
 Remember to thoroughly test your updated project, particularly focusing on the requirements hierarchy and test execution, to ensure that the migration has been successful.
