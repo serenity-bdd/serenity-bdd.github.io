@@ -24,7 +24,7 @@
       },
       "repositoryUrl": {
         "url": "https://github.com/serenity-bdd/serenity-core",
-        "wellKnown": ""
+        "wellKnown": "https://github.com/serenity-bdd/serenity-core/blob/main/.well-known/funding-manifest-urls"
       },
       "licenses": [
         "spdx:Apache-2.0"
