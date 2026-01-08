@@ -78,3 +78,5 @@ Notice how the test reads like a specification - no CSS selectors, no low-level 
 ## Getting Started
 
 Ready to start? Head to the [Getting Started](playwright_getting_started) guide to set up your first Serenity Playwright project.
+
+For a complete worked example, check out the [TodoMVC Tutorial](playwright_tutorial_todomvc) which walks through building a full test suite step by step.

@@ -26,7 +26,7 @@ Add the following dependencies to your `pom.xml`:
 <properties>
     <serenity.version>5.1.0</serenity.version>
     <playwright.version>1.57.0</playwright.version>
-    <junit.version>5.11.0</junit.version>
+    <junit.version>6.0.1</junit.version>
 </properties>
 
 <dependencies>
@@ -299,6 +299,7 @@ You'll see a rich HTML report with:
 
 ## Next Steps
 
+- Follow the [TodoMVC Tutorial](playwright_tutorial_todomvc) for a complete worked example
 - Learn about [Page Objects](playwright_page_objects) for maintainable test architecture
 - Explore [Step Libraries](playwright_step_libraries) for better reporting
 - Review [Configuration Options](playwright_configuration) for customization
