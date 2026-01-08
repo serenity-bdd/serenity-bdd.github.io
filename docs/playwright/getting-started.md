@@ -25,7 +25,7 @@ Add the following dependencies to your `pom.xml`:
 ```xml
 <properties>
     <serenity.version>5.1.0</serenity.version>
-    <playwright.version>1.52.0</playwright.version>
+    <playwright.version>1.57.0</playwright.version>
     <junit.version>5.11.0</junit.version>
 </properties>
 
@@ -299,7 +299,7 @@ You'll see a rich HTML report with:
 
 ## Next Steps
 
-- Learn about [Page Objects](page-objects) for maintainable test architecture
-- Explore [Step Libraries](step-libraries) for better reporting
-- Review [Configuration Options](configuration) for customization
-- Check out [Best Practices](best-practices) for production-ready tests
+- Learn about [Page Objects](playwright_page_objects) for maintainable test architecture
+- Explore [Step Libraries](playwright_step_libraries) for better reporting
+- Review [Configuration Options](playwright_configuration) for customization
+- Check out [Best Practices](playwright_best_practices) for production-ready tests

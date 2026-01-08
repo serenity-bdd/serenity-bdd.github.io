@@ -77,4 +77,4 @@ Notice how the test reads like a specification - no CSS selectors, no low-level 
 
 ## Getting Started
 
-Ready to start? Head to the [Getting Started](getting-started) guide to set up your first Serenity Playwright project.
+Ready to start? Head to the [Getting Started](playwright_getting_started) guide to set up your first Serenity Playwright project.
