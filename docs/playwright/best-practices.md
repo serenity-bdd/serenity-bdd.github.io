@@ -136,6 +136,68 @@ void cleanup() {
 }
 ```
 
+### Extract Common Setup into a Base Class
+
+To reduce boilerplate across test classes, create a base class that handles Playwright lifecycle:
+
+```java
+public abstract class SerenityPlaywrightTest {
+
+    protected Playwright playwright;
+    protected Browser browser;
+    protected Page page;
+
+    @BeforeEach
+    void setUpPlaywright() {
+        playwright = Playwright.create();
+        browser = playwright.chromium().launch(
+                new BrowserType.LaunchOptions().setHeadless(true)
+        );
+        page = browser.newPage();
+        PlaywrightSerenity.registerPage(page);
+    }
+
+    @AfterEach
+    void tearDownPlaywright() {
+        PlaywrightSerenity.unregisterPage(page);
+        if (page != null) page.close();
+        if (browser != null) browser.close();
+        if (playwright != null) playwright.close();
+    }
+}
+```
+
+Test classes then extend this base and just wire up their step libraries:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@DisplayName("When adding todos")
+class WhenAddingTodosTest extends SerenityPlaywrightTest {
+
+    @Steps
+    TodoSteps todo;
+
+    @BeforeEach
+    void setUp() {
+        todo.setPage(page);  // Wire step library to the page
+    }
+
+    @Test
+    void shouldAddTodoItem() {
+        todo.openApplication();
+        todo.addTodo("Buy milk");
+
+        assertThat(todo.visibleTodoCount()).isEqualTo(1);
+    }
+}
+```
+
+This pattern:
+- **Centralizes lifecycle management** - Changes to browser setup only need to happen in one place
+- **Ensures proper cleanup** - The base class guarantees resources are released
+- **Reduces test class boilerplate** - Each test class focuses on test logic
+- **Makes the `page` accessible** - Protected field is available to all subclasses
+
 ## Locator Strategies
 
 ### Prefer Resilient Locators
