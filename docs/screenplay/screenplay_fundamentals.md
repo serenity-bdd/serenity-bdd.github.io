@@ -333,7 +333,7 @@ The `OnStage` class also recognises pronouns - when an expression such as "he ad
 You can define your own list of pronouns using the `screenplay.pronouns` Serenity property in the `serenity.conf` file, e.g.
 
 ```conf
-screenplay.pronouns=il,elle,ils,elles,son,sa,leur,leurs
+screenplay.pronouns="il,elle,ils,elles,son,sa,leur,leurs"
 ```
 
 #### Casts and Abilities
