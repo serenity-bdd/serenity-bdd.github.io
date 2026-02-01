@@ -554,21 +554,31 @@ class AuthenticationTestSuite {}
 
 ### Common Issues
 
-**1. "No tests found"**
+**1. JUnit 5 tests not running alongside Cucumber tests**
+
+If you have both JUnit 5 tests and Cucumber tests in your project, but only Cucumber tests are being discovered and run, this is likely because Cucumber's `cucumber.features` property causes other discovery selectors to be ignored. You'll see a warning like:
+
+```
+WARNING: Discovering tests using the cucumber.features property. Other discovery selectors are ignored!
+```
+
+The solution is to configure separate Maven Failsafe executions for JUnit and Cucumber tests. See [Running JUnit 5 and Cucumber Tests Together](/docs/guide/maven#running-junit-5-and-cucumber-tests-together) for the full configuration.
+
+**2. "No tests found"**
 - Ensure `@Suite` and `@IncludeEngines("cucumber")` are present
 - Check that feature files are in the correct location
 - Verify step definitions are in the glue path
 
-**2. "Step undefined"**
+**3. "Step undefined"**
 - Implement the missing step definition
 - Check the glue configuration points to your step definitions package
 - Ensure step regex/expressions match
 
-**3. "Plugin not found"**
+**4. "Plugin not found"**
 - Verify you're using the correct plugin path: `net.serenitybdd.cucumber.core.plugin.SerenityReporterParallel`
 - Check Serenity dependencies are included
 
-**4. "Tests not running in parallel"**
+**5. "Tests not running in parallel"**
 - Ensure parallel configuration is in `junit-platform.properties`
 - Use `SerenityReporterParallel` (not `SerenityReporter`)
 - Check JUnit Platform configuration

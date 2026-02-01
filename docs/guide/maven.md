@@ -169,6 +169,97 @@ If you are using the Screenplay pattern, you will also need the Screenplay depen
 </dependency>
 ```
 
+## Running Tests with Maven Failsafe
+
+Serenity tests are integration tests and should be run using the Maven Failsafe plugin. The basic configuration is straightforward:
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-failsafe-plugin</artifactId>
+    <version>3.5.2</version>
+    <configuration>
+        <includes>
+            <include>**/*Test.java</include>
+        </includes>
+    </configuration>
+    <executions>
+        <execution>
+            <goals>
+                <goal>integration-test</goal>
+                <goal>verify</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+### Running JUnit 5 and Cucumber Tests Together
+
+If your project contains both JUnit 5 tests and Cucumber tests, you may encounter a problem where only Cucumber tests are discovered and run. This happens because when Cucumber uses the `cucumber.features` property (either via `@ConfigurationParameter` or `junit-platform.properties`), it causes other JUnit Platform discovery selectors to be ignored.
+
+You'll see a warning like this:
+
+```
+WARNING: TestEngine with ID 'cucumber' encountered a non-critical issue during test discovery:
+Discovering tests using the cucumber.features property. Other discovery selectors are ignored!
+```
+
+**The solution** is to configure separate Failsafe executions for JUnit 5 and Cucumber tests:
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-failsafe-plugin</artifactId>
+    <version>3.5.2</version>
+    <executions>
+        <!-- Execution for JUnit Jupiter tests (excludes Cucumber) -->
+        <execution>
+            <id>junit-tests</id>
+            <goals>
+                <goal>integration-test</goal>
+            </goals>
+            <configuration>
+                <includes>
+                    <include>**/*Test.java</include>
+                </includes>
+                <excludes>
+                    <exclude>**/CucumberTestSuite.java</exclude>
+                </excludes>
+            </configuration>
+        </execution>
+        <!-- Execution for Cucumber tests -->
+        <execution>
+            <id>cucumber-tests</id>
+            <goals>
+                <goal>integration-test</goal>
+            </goals>
+            <configuration>
+                <includes>
+                    <include>**/CucumberTestSuite.java</include>
+                </includes>
+            </configuration>
+        </execution>
+        <!-- Verify phase (runs once after all tests) -->
+        <execution>
+            <id>verify</id>
+            <goals>
+                <goal>verify</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+This configuration:
+- Runs JUnit Jupiter tests first (all `*Test.java` files except the Cucumber suite)
+- Runs Cucumber tests separately via the `CucumberTestSuite` class
+- Runs the verify goal once at the end to check for failures
+
+:::tip Naming Convention
+Adjust the `<include>` and `<exclude>` patterns to match your test class naming conventions. For example, if your Cucumber suite is named `CucumberIT.java`, update the patterns accordingly.
+:::
+
 ## The Serenity Maven Plugin
 
 If you want to generate the Serenity reports whenever you run `mvn verify`, you can use the `serenity-maven-plugin` to do that:
