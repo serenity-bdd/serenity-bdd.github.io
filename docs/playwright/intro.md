@@ -30,9 +30,13 @@ Combined with Serenity BDD, you get:
 - **Living Documentation** - Tests that document how your application works
 - **Page Source Capture** - HTML snapshots for debugging failed tests
 
-## Architecture Overview
+## Two Approaches: Page Objects or Screenplay
 
-The recommended architecture for Serenity Playwright tests follows a three-layer pattern:
+Serenity Playwright supports two architectural approaches:
+
+### Page Object Pattern (Traditional)
+
+The classic three-layer pattern familiar to most test automation engineers:
 
 ```
 Test Class (business scenarios)
@@ -45,9 +49,29 @@ This separation ensures:
 - **Step Libraries** provide Serenity's rich reporting with `@Step` annotations
 - **Page Objects** encapsulate all locator strategies and page-specific logic
 
-## Quick Example
+### Screenplay Pattern (Modern)
 
-Here's a taste of what Serenity Playwright tests look like:
+The Screenplay Pattern is a more modern, actor-centric approach:
+
+```
+Test Class (business scenarios)
+    └── Actor performs Tasks and asks Questions
+          └── Tasks use Targets to interact with the UI
+```
+
+With Screenplay:
+- **Actors** represent users with abilities (like browsing the web)
+- **Tasks** express high-level actions in business language
+- **Questions** query the state of the application
+- **Targets** define UI elements using Playwright selectors
+
+Both approaches integrate seamlessly with Serenity's reporting.
+
+## Quick Examples
+
+### Page Object Approach
+
+Here's what a Page Object-based Serenity Playwright test looks like:
 
 ```java
 @ExtendWith(SerenityJUnit5Extension.class)
@@ -73,10 +97,39 @@ class SearchTest {
 }
 ```
 
-Notice how the test reads like a specification - no CSS selectors, no low-level Playwright API calls, just clear business language.
+### Screenplay Approach
+
+Here's the same test using the Screenplay Pattern:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+class SearchTest {
+
+    Actor researcher;
+
+    @BeforeEach
+    void setup() {
+        researcher = Actor.named("Researcher");
+        researcher.can(BrowseTheWebWithPlaywright.usingTheDefaultConfiguration());
+    }
+
+    @Test
+    void shouldSearchForATerm() {
+        researcher.attemptsTo(
+            Open.url("https://en.wikipedia.org"),
+            SearchFor.term("Playwright"),
+            Ensure.that(ThePageTitle.displayed()).contains("Playwright")
+        );
+    }
+}
+```
+
+Both approaches read like specifications - no CSS selectors or low-level Playwright API calls, just clear business language.
 
 ## Getting Started
 
 Ready to start? Head to the [Getting Started](playwright_getting_started) guide to set up your first Serenity Playwright project.
 
-For a complete worked example, check out the [TodoMVC Tutorial](playwright_tutorial_todomvc) which walks through building a full test suite step by step.
+For a complete worked example:
+- **Page Object approach**: Check out the [TodoMVC Tutorial](playwright_tutorial_todomvc) which walks through building a full test suite step by step
+- **Screenplay approach**: See the [Screenplay with Playwright](playwright_screenplay) guide for the actor-centric pattern with comprehensive examples
