@@ -607,7 +607,7 @@ A complete working example is available in the [serenity-playwright-todomvc-demo
 
 ## See Also
 
-- [Screenplay Pattern with Playwright](./screenplay) - Core Screenplay concepts
-- [Tutorial: Screenplay with TodoMVC](./screenplay-tutorial) - Building a test suite from scratch
+- [Screenplay Pattern with Playwright](playwright_screenplay) - Core Screenplay concepts
+- [Tutorial: Screenplay with TodoMVC](playwright_screenplay_tutorial) - Building a test suite from scratch
 - [Cucumber Configuration Reference](/docs/cucumber/configuration-reference) - All Cucumber options
 - [Parallel Execution](/docs/cucumber/parallel-execution) - Running tests in parallel
