@@ -107,7 +107,10 @@ Actor toby = Actor.named("Toby");
 toby.can(BrowseTheWebWithPlaywright.usingTheDefaultConfiguration());
 ```
 
-The ability manages the Playwright browser lifecycle automatically - it creates the browser, context, and page on demand and cleans up when the test completes.
+The ability manages the Playwright browser lifecycle automatically:
+- Creates the browser, context, and page on demand
+- **Automatically cleans up** when the test completes (no explicit teardown needed)
+- Subscribes to Serenity's test lifecycle events for seamless resource management
 
 ### Tasks
 
@@ -250,10 +253,7 @@ class WhenAddingTodosTest {
         toby.can(BrowseTheWebWithPlaywright.usingTheDefaultConfiguration());
     }
 
-    @AfterEach
-    void tearDown() {
-        BrowseTheWebWithPlaywright.as(toby).tearDown();
-    }
+    // No @AfterEach needed - cleanup happens automatically!
 
     @Test
     @DisplayName("should add a single todo item")
@@ -814,10 +814,8 @@ class WhenManagingTodosTest {
         toby.can(BrowseTheWebWithPlaywright.usingTheDefaultConfiguration());
     }
 
-    @AfterEach
-    void tearDown() {
-        BrowseTheWebWithPlaywright.as(toby).tearDown();
-    }
+    // No @AfterEach needed - BrowseTheWebWithPlaywright automatically
+    // cleans up browser resources when the test finishes
 
     @Test
     @DisplayName("should add and complete todos")

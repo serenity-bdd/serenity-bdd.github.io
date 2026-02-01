@@ -79,7 +79,6 @@ package todomvc.screenplay;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.playwright.abilities.BrowseTheWebWithPlaywright;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class ScreenplayPlaywrightTest {
@@ -92,12 +91,14 @@ public abstract class ScreenplayPlaywrightTest {
         toby.can(BrowseTheWebWithPlaywright.usingTheDefaultConfiguration());
     }
 
-    @AfterEach
-    void tearDownPlaywright() {
-        BrowseTheWebWithPlaywright.as(toby).tearDown();
-    }
+    // No @AfterEach needed - BrowseTheWebWithPlaywright automatically
+    // cleans up browser resources when the test finishes
 }
 ```
+
+:::tip Automatic Cleanup
+The `BrowseTheWebWithPlaywright` ability subscribes to Serenity's test lifecycle events and automatically closes the browser, context, and page when each test completes. You don't need to write any teardown code!
+:::
 
 ### Step 2: Define UI Targets
 
