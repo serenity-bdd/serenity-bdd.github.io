@@ -10,7 +10,7 @@
 
 
 <link rel="search" type="application/opensearchdescription+xml" title="Serenity BDD User Manual" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.17a8be6c.css">
-<script src="/assets/js/runtime~main.25589b49.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ebf34767.js" defer="defer"></script>
 <script src="/assets/js/main.c478ed8b.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -169,24 +169,28 @@
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="troubleshooting">Troubleshooting<a href="#troubleshooting" class="hash-link" aria-label="Direct link to Troubleshooting" title="Direct link to Troubleshooting" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="common-issues">Common Issues<a href="#common-issues" class="hash-link" aria-label="Direct link to Common Issues" title="Direct link to Common Issues" translate="no">​</a></h3>
-<p><strong>1. &quot;No tests found&quot;</strong></p>
+<p><strong>1. JUnit 5 tests not running alongside Cucumber tests</strong></p>
+<p>If you have both JUnit 5 tests and Cucumber tests in your project, but only Cucumber tests are being discovered and run, this is likely because Cucumber&#x27;s <code>cucumber.features</code> property causes other discovery selectors to be ignored. You&#x27;ll see a warning like:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">WARNING: Discovering tests using the cucumber.features property. Other discovery selectors are ignored!</span><br></span></code></pre></div></div>
+<p>The solution is to configure separate Maven Failsafe executions for JUnit and Cucumber tests. See <a class="" href="/docs/guide/maven#running-junit-5-and-cucumber-tests-together">Running JUnit 5 and Cucumber Tests Together</a> for the full configuration.</p>
+<p><strong>2. &quot;No tests found&quot;</strong></p>
 <ul>
 <li class="">Ensure <code>@Suite</code> and <code>@IncludeEngines(&quot;cucumber&quot;)</code> are present</li>
 <li class="">Check that feature files are in the correct location</li>
 <li class="">Verify step definitions are in the glue path</li>
 </ul>
-<p><strong>2. &quot;Step undefined&quot;</strong></p>
+<p><strong>3. &quot;Step undefined&quot;</strong></p>
 <ul>
 <li class="">Implement the missing step definition</li>
 <li class="">Check the glue configuration points to your step definitions package</li>
 <li class="">Ensure step regex/expressions match</li>
 </ul>
-<p><strong>3. &quot;Plugin not found&quot;</strong></p>
+<p><strong>4. &quot;Plugin not found&quot;</strong></p>
 <ul>
 <li class="">Verify you&#x27;re using the correct plugin path: <code>net.serenitybdd.cucumber.core.plugin.SerenityReporterParallel</code></li>
 <li class="">Check Serenity dependencies are included</li>
 </ul>
-<p><strong>4. &quot;Tests not running in parallel&quot;</strong></p>
+<p><strong>5. &quot;Tests not running in parallel&quot;</strong></p>
 <ul>
 <li class="">Ensure parallel configuration is in <code>junit-platform.properties</code></li>
 <li class="">Use <code>SerenityReporterParallel</code> (not <code>SerenityReporter</code>)</li>
