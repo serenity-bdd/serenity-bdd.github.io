@@ -987,6 +987,266 @@ alice.attemptsTo(
 // View with: npx playwright show-trace trace.zip
 ```
 
+## Quick Reference Tables
+
+### All Interactions
+
+The following tables provide a complete reference of all available Playwright Screenplay interactions.
+
+#### Element Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `Click.on(target)` | Click on an element | `Click.on("#submit")` |
+| `DoubleClick.on(target)` | Double-click on an element | `DoubleClick.on("#item")` |
+| `RightClick.on(target)` | Right-click (context menu) on an element | `RightClick.on("#file")` |
+| `Hover.over(target)` | Move mouse over an element | `Hover.over("#menu")` |
+| `Focus.on(target)` | Set focus to an element | `Focus.on("#search")` |
+
+#### Text Input Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `Enter.theValue(text).into(target)` | Type text into a field | `Enter.theValue("john@test.com").into("#email")` |
+| `Clear.field(target)` | Clear an input field | `Clear.field("#search")` |
+| `Press.key(key)` | Press a keyboard key | `Press.key("Enter")` |
+| `Press.key(combo)` | Press a key combination | `Press.key("Control+a")` |
+| `Press.keys(keys...)` | Press multiple keys in sequence | `Press.keys("Tab", "Tab", "Enter")` |
+
+#### Checkbox & Radio Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `Check.checkbox(target)` | Check a checkbox | `Check.checkbox("#agree")` |
+| `Uncheck.checkbox(target)` | Uncheck a checkbox | `Uncheck.checkbox("#newsletter")` |
+
+#### Dropdown Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `SelectFromOptions.byVisibleText(text).from(target)` | Select by visible text | `SelectFromOptions.byVisibleText("Red").from("#color")` |
+| `SelectFromOptions.byValue(value).from(target)` | Select by value attribute | `SelectFromOptions.byValue("red").from("#color")` |
+| `SelectFromOptions.byIndex(index).from(target)` | Select by index (0-based) | `SelectFromOptions.byIndex(2).from("#color")` |
+| `DeselectFromOptions.byValue(value).from(target)` | Deselect by value | `DeselectFromOptions.byValue("red").from("#colors")` |
+| `DeselectFromOptions.byVisibleText(text).from(target)` | Deselect by visible text | `DeselectFromOptions.byVisibleText("Red").from("#colors")` |
+| `DeselectFromOptions.byIndex(index).from(target)` | Deselect by index | `DeselectFromOptions.byIndex(0).from("#colors")` |
+| `DeselectFromOptions.all().from(target)` | Deselect all options | `DeselectFromOptions.all().from("#colors")` |
+
+#### Scrolling Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `Scroll.to(target)` | Scroll element into view | `Scroll.to("#footer")` |
+| `Scroll.to(target).andAlignToTop()` | Scroll with top alignment | `Scroll.to("#section").andAlignToTop()` |
+| `Scroll.to(target).andAlignToCenter()` | Scroll with center alignment | `Scroll.to("#section").andAlignToCenter()` |
+| `Scroll.to(target).andAlignToBottom()` | Scroll with bottom alignment | `Scroll.to("#section").andAlignToBottom()` |
+| `Scroll.toTop()` | Scroll to page top | `Scroll.toTop()` |
+| `Scroll.toBottom()` | Scroll to page bottom | `Scroll.toBottom()` |
+| `Scroll.by(deltaX, deltaY)` | Scroll by pixel amount | `Scroll.by(0, 500)` |
+| `Scroll.toPosition(x, y)` | Scroll to absolute position | `Scroll.toPosition(0, 1000)` |
+
+#### Drag and Drop Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `Drag.from(source).to(target)` | Drag from source to target | `Drag.from("#item").to("#dropzone")` |
+| `Drag.the(source).onto(target)` | Alternative fluent syntax | `Drag.the("#card").onto("#column")` |
+
+#### Navigation Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `Navigate.to(url)` | Navigate to a URL | `Navigate.to("https://example.com")` |
+| `Navigate.toTheBaseUrl()` | Navigate to configured base URL | `Navigate.toTheBaseUrl()` |
+
+#### Frame & Window Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `Switch.toFrame(nameOrId)` | Switch to iframe by name/ID | `Switch.toFrame("payment-iframe")` |
+| `Switch.toFrame(target)` | Switch to iframe by Target | `Switch.toFrame(PAYMENT_FRAME)` |
+| `Switch.toMainFrame()` | Switch back to main frame | `Switch.toMainFrame()` |
+| `Switch.toNewWindow()` | Switch to new window/tab | `Switch.toNewWindow()` |
+| `CloseCurrentWindow.now()` | Close current window | `CloseCurrentWindow.now()` |
+
+#### File Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `Upload.file(path).to(target)` | Upload a file | `Upload.file(Paths.get("doc.pdf")).to("#upload")` |
+| `WaitForDownload.whilePerforming(action)` | Wait for download during action | `WaitForDownload.whilePerforming(Click.on("#download"))` |
+| `WaitForDownload...andSaveTo(path)` | Save download to path | `WaitForDownload.whilePerforming(...).andSaveTo(path)` |
+
+#### JavaScript Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `Evaluate.javascript(script)` | Execute JavaScript | `Evaluate.javascript("window.scrollTo(0,0)")` |
+
+#### Wait Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `WaitUntil.the(target).isVisible()` | Wait for element visibility | `WaitUntil.the("#modal").isVisible()` |
+| `WaitUntil.the(target).isNotVisible()` | Wait for element to hide | `WaitUntil.the("#spinner").isNotVisible()` |
+| `WaitUntil.the(target).isHidden()` | Wait for element to be hidden | `WaitUntil.the("#loading").isHidden()` |
+| `WaitUntil...forNoMoreThan(duration)` | Set custom timeout | `WaitUntil.the("#data").isVisible().forNoMoreThan(Duration.ofSeconds(10))` |
+
+#### Network Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `InterceptNetwork.requestsTo(pattern).andRespondWith(options)` | Mock response with options | `InterceptNetwork.requestsTo("**/api/**").andRespondWith(...)` |
+| `InterceptNetwork.requestsTo(pattern).andRespondWithJson(status, data)` | Mock JSON response | `InterceptNetwork.requestsTo("**/users").andRespondWithJson(200, users)` |
+| `InterceptNetwork.requestsTo(pattern).andHandle(handler)` | Custom request handler | `InterceptNetwork.requestsTo("**/api/**").andHandle(route -> ...)` |
+| `InterceptNetwork.requestsTo(pattern).andAbort()` | Block requests | `InterceptNetwork.requestsTo("**/analytics/**").andAbort()` |
+| `RemoveRoutes.all()` | Remove all route handlers | `RemoveRoutes.all()` |
+| `RemoveRoutes.forUrl(pattern)` | Remove routes for pattern | `RemoveRoutes.forUrl("**/api/**")` |
+
+#### Device & Environment Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `EmulateDevice.device(name)` | Emulate a device | `EmulateDevice.device("iPhone 14")` |
+| `EmulateDevice.withViewport(width, height)` | Set custom viewport | `EmulateDevice.withViewport(375, 812)` |
+| `EmulateDevice...andDeviceScaleFactor(factor)` | Set device scale | `EmulateDevice.withViewport(375, 812).andDeviceScaleFactor(2)` |
+| `EmulateDevice...asMobile()` | Add mobile user agent | `EmulateDevice.withViewport(375, 812).asMobile()` |
+| `SetGeolocation.to(lat, lng)` | Set geolocation | `SetGeolocation.to(51.5074, -0.1278)` |
+| `SetGeolocation.to(lat, lng).withAccuracy(m)` | Set geolocation with accuracy | `SetGeolocation.to(40.7128, -74.0060).withAccuracy(100)` |
+| `SetGeolocation.toNewYork()` | Set to New York | `SetGeolocation.toNewYork()` |
+| `SetGeolocation.toLondon()` | Set to London | `SetGeolocation.toLondon()` |
+| `SetGeolocation.toTokyo()` | Set to Tokyo | `SetGeolocation.toTokyo()` |
+| `SetGeolocation.toSanFrancisco()` | Set to San Francisco | `SetGeolocation.toSanFrancisco()` |
+| `SetGeolocation.toSydney()` | Set to Sydney | `SetGeolocation.toSydney()` |
+| `SetGeolocation.toParis()` | Set to Paris | `SetGeolocation.toParis()` |
+| `SetGeolocation.clear()` | Clear geolocation | `SetGeolocation.clear()` |
+| `GrantPermissions.for_(permissions...)` | Grant browser permissions | `GrantPermissions.for_("geolocation", "camera")` |
+| `ClearPermissions.all()` | Clear all permissions | `ClearPermissions.all()` |
+
+#### Clock Control Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `ControlClock.install()` | Install fake clock | `ControlClock.install()` |
+| `ControlClock.setTo(instant)` | Set clock to specific time | `ControlClock.setTo(Instant.parse("2024-01-15T10:30:00Z"))` |
+| `ControlClock.advanceBy(duration)` | Advance clock | `ControlClock.advanceBy(Duration.ofHours(2))` |
+| `ControlClock.resume()` | Resume normal time flow | `ControlClock.resume()` |
+
+#### Debugging & Tracing Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `StartTracing.withScreenshots()` | Start trace with screenshots | `StartTracing.withScreenshots()` |
+| `StartTracing...andSnapshots()` | Include DOM snapshots | `StartTracing.withScreenshots().andSnapshots()` |
+| `StartTracing...andSources()` | Include source files | `StartTracing.withScreenshots().andSources()` |
+| `StartTracing...named(name)` | Set trace name | `StartTracing.withScreenshots().named("login-test")` |
+| `StopTracing.andSaveTo(path)` | Stop and save trace | `StopTracing.andSaveTo(Paths.get("trace.zip"))` |
+| `CaptureConsoleMessages.duringTest()` | Start capturing console | `CaptureConsoleMessages.duringTest()` |
+
+#### PDF Generation Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `GeneratePDF.ofCurrentPage().andSaveTo(path)` | Generate PDF | `GeneratePDF.ofCurrentPage().andSaveTo(Paths.get("page.pdf"))` |
+| `GeneratePDF...withFormat(format)` | Set paper format | `GeneratePDF.ofCurrentPage().withFormat("A4")` |
+| `GeneratePDF...inLandscape()` | Use landscape orientation | `GeneratePDF.ofCurrentPage().inLandscape()` |
+| `GeneratePDF...withMargins(t, r, b, l)` | Set margins | `GeneratePDF.ofCurrentPage().withMargins("1cm", "1cm", "1cm", "1cm")` |
+| `GeneratePDF...printBackground()` | Include background graphics | `GeneratePDF.ofCurrentPage().printBackground()` |
+| `GeneratePDF...displayHeaderAndFooter()` | Show header/footer | `GeneratePDF.ofCurrentPage().displayHeaderAndFooter()` |
+
+#### Visual Testing Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `CompareScreenshot.ofPage().againstBaseline(name)` | Compare full page | `CompareScreenshot.ofPage().againstBaseline("home.png")` |
+| `CompareScreenshot.of(target).againstBaseline(name)` | Compare element | `CompareScreenshot.of("#card").againstBaseline("card.png")` |
+| `CompareScreenshot...withThreshold(threshold)` | Set diff threshold | `CompareScreenshot.ofPage().againstBaseline("x.png").withThreshold(0.01)` |
+| `CompareScreenshot...withMask(targets...)` | Mask dynamic elements | `CompareScreenshot.ofPage().againstBaseline("x.png").withMask("#time")` |
+
+---
+
+### All Questions
+
+The following tables provide a complete reference of all available Playwright Screenplay questions.
+
+#### Element State Questions
+
+| Question | Return Type | Description | Example |
+|----------|-------------|-------------|---------|
+| `Presence.of(target)` | `Boolean` | Element exists in DOM | `actor.asksFor(Presence.of("#modal"))` |
+| `Absence.of(target)` | `Boolean` | Element not present | `actor.asksFor(Absence.of("#error"))` |
+| `Visibility.of(target)` | `Boolean` | Element is visible | `actor.asksFor(Visibility.of("#popup"))` |
+| `Enabled.of(target)` | `Boolean` | Element is enabled | `actor.asksFor(Enabled.of("#submit"))` |
+| `SelectedStatus.of(target)` | `Boolean` | Checkbox/radio is selected | `actor.asksFor(SelectedStatus.of("#agree"))` |
+
+#### Element Content Questions
+
+| Question | Return Type | Description | Example |
+|----------|-------------|-------------|---------|
+| `Text.of(target)` | `String` | Get element text content | `actor.asksFor(Text.of("#title"))` |
+| `Text.ofEach(target)` | `List<String>` | Get text of all matching elements | `actor.asksFor(Text.ofEach(".item"))` |
+| `Value.of(target)` | `String` | Get input field value | `actor.asksFor(Value.of("#email"))` |
+| `Attribute.of(target).named(attr)` | `String` | Get attribute value | `actor.asksFor(Attribute.of("#link").named("href"))` |
+| `CSSValue.of(target).named(prop)` | `String` | Get CSS property value | `actor.asksFor(CSSValue.of("#box").named("color"))` |
+
+#### Page Information Questions
+
+| Question | Return Type | Description | Example |
+|----------|-------------|-------------|---------|
+| `CurrentUrl.ofThePage()` | `String` | Get current page URL | `actor.asksFor(CurrentUrl.ofThePage())` |
+| `PageTitle.ofThePage()` | `String` | Get page title | `actor.asksFor(PageTitle.ofThePage())` |
+
+#### Download Questions
+
+| Question | Return Type | Description | Example |
+|----------|-------------|-------------|---------|
+| `DownloadedFile.suggestedFilename()` | `String` | Get suggested filename | `actor.asksFor(DownloadedFile.suggestedFilename())` |
+| `DownloadedFile.url()` | `String` | Get download URL | `actor.asksFor(DownloadedFile.url())` |
+| `DownloadedFile.path()` | `Path` | Get download file path | `actor.asksFor(DownloadedFile.path())` |
+| `DownloadedFile.failure()` | `String` | Get failure reason (null if success) | `actor.asksFor(DownloadedFile.failure())` |
+| `DownloadedFile.download()` | `Download` | Get Playwright Download object | `actor.asksFor(DownloadedFile.download())` |
+
+#### Console Message Questions
+
+| Question | Return Type | Description | Example |
+|----------|-------------|-------------|---------|
+| `ConsoleMessages.all()` | `List<String>` | Get all console messages | `actor.asksFor(ConsoleMessages.all())` |
+| `ConsoleMessages.errors()` | `List<String>` | Get console errors | `actor.asksFor(ConsoleMessages.errors())` |
+| `ConsoleMessages.warnings()` | `List<String>` | Get console warnings | `actor.asksFor(ConsoleMessages.warnings())` |
+| `ConsoleMessages.logs()` | `List<String>` | Get console logs | `actor.asksFor(ConsoleMessages.logs())` |
+| `ConsoleMessages.info()` | `List<String>` | Get console info messages | `actor.asksFor(ConsoleMessages.info())` |
+| `ConsoleMessages.containing(text)` | `List<String>` | Get messages containing text | `actor.asksFor(ConsoleMessages.containing("error"))` |
+| `ConsoleMessages.count()` | `Integer` | Get total message count | `actor.asksFor(ConsoleMessages.count())` |
+| `ConsoleMessages.errorCount()` | `Integer` | Get error count | `actor.asksFor(ConsoleMessages.errorCount())` |
+| `ConsoleMessages.allCaptured()` | `List<CapturedConsoleMessage>` | Get full message objects | `actor.asksFor(ConsoleMessages.allCaptured())` |
+
+#### Accessibility Questions
+
+| Question | Return Type | Description | Example |
+|----------|-------------|-------------|---------|
+| `AccessibilitySnapshot.ofThePage()` | `String` | Get page accessibility tree | `actor.asksFor(AccessibilitySnapshot.ofThePage())` |
+| `AccessibilitySnapshot.of(target)` | `String` | Get element accessibility tree | `actor.asksFor(AccessibilitySnapshot.of("#nav"))` |
+| `AccessibilitySnapshot.allWithRole(role)` | `List<String>` | Get elements by ARIA role | `actor.asksFor(AccessibilitySnapshot.allWithRole(AriaRole.BUTTON))` |
+
+---
+
+### UI Element Factories
+
+Factory classes for locating common UI elements.
+
+| Factory | Methods | Example |
+|---------|---------|---------|
+| `Button` | `withText(text)`, `withNameOrId(id)`, `withAriaLabel(label)`, `containingText(text)`, `locatedBy(selector)` | `Button.withText("Submit")` |
+| `InputField` | `withNameOrId(id)`, `withPlaceholder(text)`, `withLabel(label)`, `withAriaLabel(label)`, `locatedBy(selector)` | `InputField.withPlaceholder("Email")` |
+| `Link` | `withText(text)`, `containingText(text)`, `withTitle(title)`, `locatedBy(selector)` | `Link.withText("Learn more")` |
+| `Checkbox` | `withLabel(label)`, `withNameOrId(id)`, `withValue(value)`, `locatedBy(selector)` | `Checkbox.withLabel("I agree")` |
+| `RadioButton` | `withLabel(label)`, `withNameOrId(id)`, `withValue(value)`, `locatedBy(selector)` | `RadioButton.withValue("express")` |
+| `Dropdown` | `withLabel(label)`, `withNameOrId(id)`, `locatedBy(selector)` | `Dropdown.withLabel("Country")` |
+| `Label` | `withText(text)`, `withExactText(text)`, `forFieldId(id)`, `locatedBy(selector)` | `Label.forFieldId("email")` |
+| `Image` | `withAltText(alt)`, `withSrc(src)`, `withSrcContaining(text)`, `locatedBy(selector)` | `Image.withAltText("Logo")` |
+
+---
+
 ## Migration from WebDriver
 
 When migrating from `serenity-screenplay-webdriver`:
