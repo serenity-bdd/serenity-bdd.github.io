@@ -624,6 +624,193 @@ alice.attemptsTo(RemoveRoutes.all());
 alice.attemptsTo(RemoveRoutes.forUrl("**/api/**"));
 ```
 
+## API Testing Integration
+
+:::info New in 5.2.2
+API testing integration was added in Serenity BDD 5.2.2.
+:::
+
+Make API requests that share the browser's session context (cookies, authentication). This enables hybrid UI + API testing scenarios where you can set up data via API, perform UI actions, and verify state through API calls.
+
+### Basic API Requests
+
+```java
+import net.serenitybdd.screenplay.playwright.interactions.api.APIRequest;
+import net.serenitybdd.screenplay.playwright.questions.api.LastAPIResponse;
+
+// Initialize browser context first (required for API requests)
+alice.attemptsTo(Open.url("about:blank"));
+
+// GET request
+alice.attemptsTo(
+    APIRequest.get("https://api.example.com/users/1")
+);
+
+// POST request with JSON body
+alice.attemptsTo(
+    APIRequest.post("https://api.example.com/users")
+        .withJsonBody(Map.of(
+            "name", "John Doe",
+            "email", "john@example.com"
+        ))
+);
+
+// PUT request
+alice.attemptsTo(
+    APIRequest.put("https://api.example.com/users/1")
+        .withJsonBody(Map.of("name", "Jane Doe"))
+);
+
+// PATCH request
+alice.attemptsTo(
+    APIRequest.patch("https://api.example.com/users/1")
+        .withJsonBody(Map.of("status", "active"))
+);
+
+// DELETE request
+alice.attemptsTo(
+    APIRequest.delete("https://api.example.com/users/1")
+);
+
+// HEAD request
+alice.attemptsTo(
+    APIRequest.head("https://api.example.com/users/1")
+);
+```
+
+### Request Configuration
+
+```java
+// Add custom headers
+alice.attemptsTo(
+    APIRequest.get("https://api.example.com/data")
+        .withHeader("Authorization", "Bearer token123")
+        .withHeader("X-Custom-Header", "value")
+);
+
+// Add query parameters
+alice.attemptsTo(
+    APIRequest.get("https://api.example.com/search")
+        .withQueryParam("q", "test")
+        .withQueryParam("limit", "10")
+);
+
+// Set content type
+alice.attemptsTo(
+    APIRequest.post("https://api.example.com/data")
+        .withBody("<xml>data</xml>")
+        .withContentType("application/xml")
+);
+
+// Set timeout
+alice.attemptsTo(
+    APIRequest.get("https://api.example.com/slow")
+        .withTimeout(30000)  // 30 seconds
+);
+
+// Fail on non-2xx status codes
+alice.attemptsTo(
+    APIRequest.get("https://api.example.com/data")
+        .failOnStatusCode(true)
+);
+```
+
+### Querying Responses
+
+```java
+// Get status code
+int status = alice.asksFor(LastAPIResponse.statusCode());
+
+// Check if response is OK (2xx)
+boolean isOk = alice.asksFor(LastAPIResponse.ok());
+
+// Get response body as string
+String body = alice.asksFor(LastAPIResponse.body());
+
+// Parse JSON response as Map
+Map<String, Object> json = alice.asksFor(LastAPIResponse.jsonBody());
+
+// Parse JSON array response as List
+List<Map<String, Object>> items = alice.asksFor(LastAPIResponse.jsonBodyAsList());
+
+// Get response headers
+Map<String, String> headers = alice.asksFor(LastAPIResponse.headers());
+String contentType = alice.asksFor(LastAPIResponse.header("Content-Type"));
+
+// Get final URL (after redirects)
+String url = alice.asksFor(LastAPIResponse.url());
+```
+
+### Hybrid UI + API Testing
+
+API requests automatically share cookies with the browser context:
+
+```java
+@Test
+void shouldUseAuthenticatedSession() {
+    // Login via UI
+    alice.attemptsTo(
+        Navigate.to("https://myapp.com/login"),
+        Enter.theValue("user@example.com").into("#email"),
+        Enter.theValue("password").into("#password"),
+        Click.on(Button.withText("Login"))
+    );
+
+    // API calls now include authentication cookies
+    alice.attemptsTo(
+        APIRequest.get("https://myapp.com/api/profile")
+    );
+
+    // Verify authenticated API response
+    Map<String, Object> profile = alice.asksFor(LastAPIResponse.jsonBody());
+    assertThat(profile.get("email")).isEqualTo("user@example.com");
+}
+```
+
+### API Calls in Serenity Reports
+
+API requests made via `APIRequest` are automatically recorded in Serenity reports, similar to RestAssured. The reports show:
+- HTTP method and URL
+- Request headers and body
+- Response status code
+- Response headers and body
+
+This provides full visibility into API interactions during test execution.
+
+### Complete Example
+
+```java
+@Test
+void shouldCreateAndVerifyUser() {
+    alice.attemptsTo(Open.url("about:blank"));
+
+    // Create user via API
+    alice.attemptsTo(
+        APIRequest.post("https://jsonplaceholder.typicode.com/users")
+            .withJsonBody(Map.of(
+                "name", "Test User",
+                "email", "test@example.com",
+                "username", "testuser"
+            ))
+    );
+
+    // Verify creation
+    assertThat(alice.asksFor(LastAPIResponse.statusCode())).isEqualTo(201);
+
+    Map<String, Object> createdUser = alice.asksFor(LastAPIResponse.jsonBody());
+    assertThat(createdUser.get("name")).isEqualTo("Test User");
+    assertThat(createdUser.get("id")).isNotNull();
+
+    // Fetch the created user
+    String userId = String.valueOf(((Double) createdUser.get("id")).intValue());
+    alice.attemptsTo(
+        APIRequest.get("https://jsonplaceholder.typicode.com/users/" + userId)
+    );
+
+    assertThat(alice.asksFor(LastAPIResponse.statusCode())).isEqualTo(200);
+}
+```
+
 ## Handling Downloads
 
 Wait for and handle file downloads:
@@ -680,6 +867,190 @@ List<String> apiErrors = alice.asksFor(ConsoleMessages.containing("API error"));
 // Get message counts
 int totalCount = alice.asksFor(ConsoleMessages.count());
 int errorCount = alice.asksFor(ConsoleMessages.errorCount());
+
+// Clear captured messages between test phases
+alice.attemptsTo(CaptureConsoleMessages.clear());
+```
+
+## Network Request Capture
+
+:::info New in 5.2.2
+Network request capture was added in Serenity BDD 5.2.2.
+:::
+
+Capture and analyze all network requests made during tests. This is useful for debugging, verifying API calls made by the frontend, and detecting failed requests.
+
+```java
+import net.serenitybdd.screenplay.playwright.interactions.CaptureNetworkRequests;
+import net.serenitybdd.screenplay.playwright.interactions.CaptureNetworkRequests.CapturedRequest;
+import net.serenitybdd.screenplay.playwright.questions.NetworkRequests;
+
+// Start capturing network requests
+alice.attemptsTo(CaptureNetworkRequests.duringTest());
+
+// Perform actions that trigger network requests
+alice.attemptsTo(Navigate.to("https://example.com"));
+
+// Query all captured requests
+List<CapturedRequest> allRequests = alice.asksFor(NetworkRequests.all());
+int requestCount = alice.asksFor(NetworkRequests.count());
+
+// Filter by HTTP method
+List<CapturedRequest> getRequests = alice.asksFor(NetworkRequests.withMethod("GET"));
+List<CapturedRequest> postRequests = alice.asksFor(NetworkRequests.withMethod("POST"));
+
+// Filter by URL
+List<CapturedRequest> apiRequests = alice.asksFor(
+    NetworkRequests.toUrlContaining("/api/")
+);
+
+// Filter by glob pattern
+List<CapturedRequest> cssRequests = alice.asksFor(
+    NetworkRequests.matching("**/*.css")
+);
+
+// Find failed requests (4xx, 5xx, or network errors)
+List<CapturedRequest> failedRequests = alice.asksFor(NetworkRequests.failed());
+int failedCount = alice.asksFor(NetworkRequests.failedCount());
+
+// Find client errors (4xx)
+List<CapturedRequest> clientErrors = alice.asksFor(NetworkRequests.clientErrors());
+
+// Find server errors (5xx)
+List<CapturedRequest> serverErrors = alice.asksFor(NetworkRequests.serverErrors());
+
+// Clear captured requests between test phases
+alice.attemptsTo(CaptureNetworkRequests.clear());
+```
+
+### CapturedRequest Properties
+
+Each `CapturedRequest` contains:
+
+| Property | Description |
+|----------|-------------|
+| `getUrl()` | The request URL |
+| `getMethod()` | HTTP method (GET, POST, etc.) |
+| `getResourceType()` | Resource type (document, xhr, fetch, stylesheet, etc.) |
+| `getRequestHeaders()` | Map of request headers |
+| `getStatus()` | Response status code (or null if pending/failed) |
+| `getStatusText()` | Response status text |
+| `getFailureText()` | Failure reason for network errors |
+| `isFailed()` | True if request failed (4xx, 5xx, or network error) |
+| `isClientError()` | True if 4xx status |
+| `isServerError()` | True if 5xx status |
+
+### Example: Verifying API Calls
+
+```java
+@Test
+void shouldMakeCorrectApiCalls() {
+    alice.attemptsTo(
+        CaptureNetworkRequests.duringTest(),
+        Navigate.to("https://myapp.com"),
+        Click.on(Button.withText("Load Data"))
+    );
+
+    // Verify the expected API call was made
+    List<CapturedRequest> apiCalls = alice.asksFor(
+        NetworkRequests.toUrlContaining("/api/data")
+    );
+
+    assertThat(apiCalls).hasSize(1);
+    assertThat(apiCalls.get(0).getMethod()).isEqualTo("GET");
+    assertThat(apiCalls.get(0).getStatus()).isEqualTo(200);
+}
+```
+
+## Failure Evidence Capture
+
+:::info New in 5.2.2
+Automatic failure evidence capture was added in Serenity BDD 5.2.2.
+:::
+
+When a test fails, Serenity Playwright automatically captures diagnostic information and attaches it to the report. This makes debugging test failures much easier.
+
+### Automatic Evidence Collection
+
+When console message or network request capture is enabled, the following evidence is automatically collected on test failure:
+
+- **Page Information**: Current URL and page title
+- **Console Errors**: All `console.error()` and `console.warn()` messages
+- **Failed Network Requests**: Requests that returned 4xx/5xx status or network errors
+
+This evidence is attached to the Serenity report as "Playwright Failure Evidence".
+
+### Enabling Evidence Capture
+
+Simply enable console and/or network capture at the start of your tests:
+
+```java
+@BeforeEach
+void setup() {
+    alice = Actor.named("Alice")
+        .whoCan(BrowseTheWebWithPlaywright.usingTheDefaultConfiguration());
+
+    // Enable capture for failure evidence
+    alice.attemptsTo(
+        CaptureConsoleMessages.duringTest(),
+        CaptureNetworkRequests.duringTest()
+    );
+}
+```
+
+### Programmatic Access to Evidence
+
+You can also query evidence programmatically for assertions or custom reporting:
+
+```java
+import net.serenitybdd.screenplay.playwright.evidence.PlaywrightFailureEvidence;
+
+// Get console errors
+List<String> consoleErrors = PlaywrightFailureEvidence.getConsoleErrors(alice);
+
+// Get failed network requests
+List<String> failedRequests = PlaywrightFailureEvidence.getFailedRequests(alice);
+
+// Use in assertions
+assertThat(consoleErrors).isEmpty();
+assertThat(failedRequests).isEmpty();
+```
+
+### Example: Detecting JavaScript Errors
+
+```java
+@Test
+void pageShouldNotHaveJavaScriptErrors() {
+    alice.attemptsTo(
+        CaptureConsoleMessages.duringTest(),
+        Navigate.to("https://myapp.com"),
+        Click.on(Button.withText("Submit"))
+    );
+
+    // Verify no JavaScript errors occurred
+    List<String> errors = alice.asksFor(ConsoleMessages.errors());
+    assertThat(errors)
+        .describedAs("JavaScript errors on page")
+        .isEmpty();
+}
+```
+
+### Example: Detecting Failed API Calls
+
+```java
+@Test
+void allApiCallsShouldSucceed() {
+    alice.attemptsTo(
+        CaptureNetworkRequests.duringTest(),
+        Navigate.to("https://myapp.com/dashboard")
+    );
+
+    // Verify no API calls failed
+    List<CapturedRequest> failedRequests = alice.asksFor(NetworkRequests.failed());
+    assertThat(failedRequests)
+        .describedAs("Failed network requests")
+        .isEmpty();
+}
 ```
 
 ## Accessibility Testing
@@ -858,6 +1229,157 @@ Trace options:
 - `andSnapshots()` - Include DOM snapshots
 - `andSources()` - Include source files
 - `named(String)` - Set trace name
+
+## Session State Persistence
+
+:::info New in 5.2.2
+Session state persistence was added in Serenity BDD 5.2.2.
+:::
+
+Save and restore browser session state (cookies, localStorage, sessionStorage) to speed up tests and share authenticated sessions.
+
+### Saving Session State
+
+```java
+import net.serenitybdd.screenplay.playwright.interactions.SaveSessionState;
+
+// Save to a specific path
+Path sessionPath = Paths.get("target/sessions/authenticated.json");
+alice.attemptsTo(
+    SaveSessionState.toPath(sessionPath)
+);
+
+// Save to default location with a name
+// Saves to: target/playwright/session-state/{name}.json
+alice.attemptsTo(
+    SaveSessionState.toFile("admin-session")
+);
+```
+
+### Restoring Session State
+
+```java
+import net.serenitybdd.screenplay.playwright.interactions.RestoreSessionState;
+
+// Restore from a specific path
+alice.attemptsTo(
+    RestoreSessionState.fromPath(Paths.get("target/sessions/authenticated.json"))
+);
+
+// Restore from default location
+alice.attemptsTo(
+    RestoreSessionState.fromFile("admin-session")
+);
+```
+
+### Use Case: Reusing Authenticated Sessions
+
+A common pattern is to log in once and reuse the session across multiple tests:
+
+```java
+public class AuthenticationSetup {
+
+    private static final Path SESSION_FILE = Paths.get("target/sessions/logged-in.json");
+
+    @BeforeAll
+    static void setupAuthenticatedSession() {
+        Actor setup = Actor.named("Setup")
+            .whoCan(BrowseTheWebWithPlaywright.usingTheDefaultConfiguration());
+
+        setup.attemptsTo(
+            Navigate.to("https://myapp.com/login"),
+            Enter.theValue("admin@example.com").into("#email"),
+            Enter.theValue("password123").into("#password"),
+            Click.on(Button.withText("Login")),
+
+            // Save the authenticated session
+            SaveSessionState.toPath(SESSION_FILE)
+        );
+
+        setup.wrapUp();
+    }
+}
+
+// In your tests
+@Test
+void shouldAccessDashboard() {
+    alice.attemptsTo(
+        // Restore the pre-authenticated session
+        RestoreSessionState.fromPath(SESSION_FILE),
+
+        // Navigate directly to protected page
+        Navigate.to("https://myapp.com/dashboard")
+    );
+
+    // User is already logged in!
+    assertThat(alice.asksFor(Text.of("h1"))).isEqualTo("Dashboard");
+}
+```
+
+### Session State Contents
+
+The saved session state is a JSON file containing:
+- **Cookies**: All cookies for the browser context
+- **Origins**: localStorage and sessionStorage data for each origin
+
+This allows you to:
+- Skip login steps in tests (faster execution)
+- Share authentication across test classes
+- Create session fixtures for different user roles
+- Test session expiration and refresh scenarios
+
+### Example: Multiple User Roles
+
+```java
+public class SessionFixtures {
+
+    public static void createAdminSession() {
+        // Login as admin and save session
+        Actor admin = createActor();
+        admin.attemptsTo(
+            Navigate.to("https://myapp.com/login"),
+            Enter.theValue("admin@example.com").into("#email"),
+            Enter.theValue("adminpass").into("#password"),
+            Click.on(Button.withText("Login")),
+            SaveSessionState.toFile("admin-session")
+        );
+        admin.wrapUp();
+    }
+
+    public static void createUserSession() {
+        // Login as regular user and save session
+        Actor user = createActor();
+        user.attemptsTo(
+            Navigate.to("https://myapp.com/login"),
+            Enter.theValue("user@example.com").into("#email"),
+            Enter.theValue("userpass").into("#password"),
+            Click.on(Button.withText("Login")),
+            SaveSessionState.toFile("user-session")
+        );
+        user.wrapUp();
+    }
+}
+
+// In admin tests
+@Test
+void adminShouldSeeAdminPanel() {
+    alice.attemptsTo(
+        RestoreSessionState.fromFile("admin-session"),
+        Navigate.to("https://myapp.com/admin")
+    );
+    assertThat(alice.asksFor(Presence.of("#admin-panel"))).isTrue();
+}
+
+// In user tests
+@Test
+void userShouldNotSeeAdminPanel() {
+    alice.attemptsTo(
+        RestoreSessionState.fromFile("user-session"),
+        Navigate.to("https://myapp.com/admin")
+    );
+    assertThat(alice.asksFor(Text.of("h1"))).isEqualTo("Access Denied");
+}
+```
 
 ## PDF Generation
 
@@ -1142,6 +1664,36 @@ The following tables provide a complete reference of all available Playwright Sc
 | `StartTracing...named(name)` | Set trace name | `StartTracing.withScreenshots().named("login-test")` |
 | `StopTracing.andSaveTo(path)` | Stop and save trace | `StopTracing.andSaveTo(Paths.get("trace.zip"))` |
 | `CaptureConsoleMessages.duringTest()` | Start capturing console | `CaptureConsoleMessages.duringTest()` |
+| `CaptureConsoleMessages.clear()` | Clear captured messages | `CaptureConsoleMessages.clear()` |
+| `CaptureNetworkRequests.duringTest()` | Start capturing network | `CaptureNetworkRequests.duringTest()` |
+| `CaptureNetworkRequests.clear()` | Clear captured requests | `CaptureNetworkRequests.clear()` |
+
+#### Session State Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `SaveSessionState.toPath(path)` | Save session to specific path | `SaveSessionState.toPath(Paths.get("session.json"))` |
+| `SaveSessionState.toFile(name)` | Save session to default location | `SaveSessionState.toFile("admin-session")` |
+| `RestoreSessionState.fromPath(path)` | Restore session from path | `RestoreSessionState.fromPath(Paths.get("session.json"))` |
+| `RestoreSessionState.fromFile(name)` | Restore session from default location | `RestoreSessionState.fromFile("admin-session")` |
+
+#### API Request Interactions
+
+| Interaction | Description | Example |
+|-------------|-------------|---------|
+| `APIRequest.get(url)` | Make GET request | `APIRequest.get("https://api.example.com/users")` |
+| `APIRequest.post(url)` | Make POST request | `APIRequest.post("https://api.example.com/users")` |
+| `APIRequest.put(url)` | Make PUT request | `APIRequest.put("https://api.example.com/users/1")` |
+| `APIRequest.patch(url)` | Make PATCH request | `APIRequest.patch("https://api.example.com/users/1")` |
+| `APIRequest.delete(url)` | Make DELETE request | `APIRequest.delete("https://api.example.com/users/1")` |
+| `APIRequest.head(url)` | Make HEAD request | `APIRequest.head("https://api.example.com/users/1")` |
+| `APIRequest...withJsonBody(object)` | Set JSON request body | `APIRequest.post(url).withJsonBody(Map.of("name", "John"))` |
+| `APIRequest...withBody(string)` | Set string request body | `APIRequest.post(url).withBody("<xml>data</xml>")` |
+| `APIRequest...withHeader(name, value)` | Add request header | `APIRequest.get(url).withHeader("Authorization", "Bearer token")` |
+| `APIRequest...withQueryParam(name, value)` | Add query parameter | `APIRequest.get(url).withQueryParam("page", "1")` |
+| `APIRequest...withContentType(type)` | Set Content-Type | `APIRequest.post(url).withContentType("application/xml")` |
+| `APIRequest...withTimeout(ms)` | Set request timeout | `APIRequest.get(url).withTimeout(30000)` |
+| `APIRequest...failOnStatusCode(boolean)` | Fail on non-2xx status | `APIRequest.get(url).failOnStatusCode(true)` |
 
 #### PDF Generation Interactions
 
@@ -1227,6 +1779,33 @@ The following tables provide a complete reference of all available Playwright Sc
 | `AccessibilitySnapshot.ofThePage()` | `String` | Get page accessibility tree | `actor.asksFor(AccessibilitySnapshot.ofThePage())` |
 | `AccessibilitySnapshot.of(target)` | `String` | Get element accessibility tree | `actor.asksFor(AccessibilitySnapshot.of("#nav"))` |
 | `AccessibilitySnapshot.allWithRole(role)` | `List<String>` | Get elements by ARIA role | `actor.asksFor(AccessibilitySnapshot.allWithRole(AriaRole.BUTTON))` |
+
+#### Network Request Questions
+
+| Question | Return Type | Description | Example |
+|----------|-------------|-------------|---------|
+| `NetworkRequests.all()` | `List<CapturedRequest>` | Get all captured requests | `actor.asksFor(NetworkRequests.all())` |
+| `NetworkRequests.count()` | `Integer` | Get total request count | `actor.asksFor(NetworkRequests.count())` |
+| `NetworkRequests.withMethod(method)` | `List<CapturedRequest>` | Filter by HTTP method | `actor.asksFor(NetworkRequests.withMethod("POST"))` |
+| `NetworkRequests.toUrlContaining(text)` | `List<CapturedRequest>` | Filter by URL substring | `actor.asksFor(NetworkRequests.toUrlContaining("/api/"))` |
+| `NetworkRequests.matching(pattern)` | `List<CapturedRequest>` | Filter by glob pattern | `actor.asksFor(NetworkRequests.matching("**/*.js"))` |
+| `NetworkRequests.failed()` | `List<CapturedRequest>` | Get failed requests | `actor.asksFor(NetworkRequests.failed())` |
+| `NetworkRequests.failedCount()` | `Integer` | Get failed request count | `actor.asksFor(NetworkRequests.failedCount())` |
+| `NetworkRequests.clientErrors()` | `List<CapturedRequest>` | Get 4xx errors | `actor.asksFor(NetworkRequests.clientErrors())` |
+| `NetworkRequests.serverErrors()` | `List<CapturedRequest>` | Get 5xx errors | `actor.asksFor(NetworkRequests.serverErrors())` |
+
+#### API Response Questions
+
+| Question | Return Type | Description | Example |
+|----------|-------------|-------------|---------|
+| `LastAPIResponse.statusCode()` | `Integer` | Get response status code | `actor.asksFor(LastAPIResponse.statusCode())` |
+| `LastAPIResponse.ok()` | `Boolean` | Check if status is 2xx | `actor.asksFor(LastAPIResponse.ok())` |
+| `LastAPIResponse.body()` | `String` | Get response body as string | `actor.asksFor(LastAPIResponse.body())` |
+| `LastAPIResponse.jsonBody()` | `Map<String, Object>` | Parse JSON response as Map | `actor.asksFor(LastAPIResponse.jsonBody())` |
+| `LastAPIResponse.jsonBodyAsList()` | `List<Map<String, Object>>` | Parse JSON array response | `actor.asksFor(LastAPIResponse.jsonBodyAsList())` |
+| `LastAPIResponse.headers()` | `Map<String, String>` | Get all response headers | `actor.asksFor(LastAPIResponse.headers())` |
+| `LastAPIResponse.header(name)` | `String` | Get specific header | `actor.asksFor(LastAPIResponse.header("Content-Type"))` |
+| `LastAPIResponse.url()` | `String` | Get final URL (after redirects) | `actor.asksFor(LastAPIResponse.url())` |
 
 ---
 
