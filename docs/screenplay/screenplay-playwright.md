@@ -872,6 +872,109 @@ int errorCount = alice.asksFor(ConsoleMessages.errorCount());
 alice.attemptsTo(CaptureConsoleMessages.clear());
 ```
 
+### Checking for Console Errors
+
+:::info New in 5.2.2
+`CheckConsole` was added in Serenity BDD 5.2.2.
+:::
+
+Use `CheckConsole` to automatically fail tests when JavaScript errors or warnings occur. This is the recommended way to ensure your application doesn't have console errors during user flows:
+
+```java
+import net.serenitybdd.screenplay.playwright.interactions.CheckConsole;
+
+// Start capturing, then check for errors at the end of the flow
+alice.attemptsTo(
+    CaptureConsoleMessages.duringTest(),
+
+    // Perform user actions
+    Navigate.to("https://myapp.com/checkout"),
+    Enter.theValue("4111111111111111").into("#card-number"),
+    Click.on(Button.withText("Pay")),
+
+    // Fail the test if any JavaScript errors occurred
+    CheckConsole.forErrors()
+);
+```
+
+#### CheckConsole Options
+
+| Method | Description |
+|--------|-------------|
+| `CheckConsole.forErrors()` | Fail if any console errors are found |
+| `CheckConsole.forWarnings()` | Fail if any console warnings are found |
+| `CheckConsole.forErrorsAndWarnings()` | Fail if any errors OR warnings are found |
+
+#### Report-Only Mode
+
+Sometimes you want to document console issues without failing the test (e.g., for known issues or when monitoring error trends):
+
+```java
+// Report errors to Serenity but don't fail the test
+alice.attemptsTo(
+    CheckConsole.forErrors().andReportOnly()
+);
+```
+
+When errors are found, they are automatically attached to the Serenity report as evidence, whether the test fails or not.
+
+### Reporting Console Messages
+
+:::info New in 5.2.2
+`ReportConsoleMessages` was added in Serenity BDD 5.2.2.
+:::
+
+Use `ReportConsoleMessages` to explicitly add captured console messages to the Serenity report:
+
+```java
+import net.serenitybdd.screenplay.playwright.interactions.ReportConsoleMessages;
+
+alice.attemptsTo(
+    CaptureConsoleMessages.duringTest(),
+
+    // ... perform actions ...
+
+    // Report errors and warnings to Serenity
+    ReportConsoleMessages.errorsAndWarnings()
+);
+```
+
+#### ReportConsoleMessages Options
+
+| Method | Description |
+|--------|-------------|
+| `ReportConsoleMessages.all()` | Report all console messages |
+| `ReportConsoleMessages.errors()` | Report only errors |
+| `ReportConsoleMessages.warnings()` | Report only warnings |
+| `ReportConsoleMessages.errorsAndWarnings()` | Report errors and warnings |
+
+### Example: Complete Console Error Checking
+
+Here's a typical pattern for ensuring no JavaScript errors occur during a critical user flow:
+
+```java
+@Test
+void checkoutFlowShouldHaveNoJavaScriptErrors() {
+    alice.attemptsTo(
+        // Start capturing at the beginning
+        CaptureConsoleMessages.duringTest(),
+
+        // Complete the checkout flow
+        Navigate.to("https://myapp.com/cart"),
+        Click.on(Button.withText("Checkout")),
+        Enter.theValue("john@example.com").into(InputField.withLabel("Email")),
+        Enter.theValue("4111111111111111").into(InputField.withLabel("Card Number")),
+        Click.on(Button.withText("Place Order")),
+
+        // Verify order confirmation
+        WaitFor.theElement(".order-confirmation").toBeVisible(),
+
+        // Fail the test if any JavaScript errors occurred during the flow
+        CheckConsole.forErrors()
+    );
+}
+```
+
 ## Network Request Capture
 
 :::info New in 5.2.2
@@ -1665,6 +1768,13 @@ The following tables provide a complete reference of all available Playwright Sc
 | `StopTracing.andSaveTo(path)` | Stop and save trace | `StopTracing.andSaveTo(Paths.get("trace.zip"))` |
 | `CaptureConsoleMessages.duringTest()` | Start capturing console | `CaptureConsoleMessages.duringTest()` |
 | `CaptureConsoleMessages.clear()` | Clear captured messages | `CaptureConsoleMessages.clear()` |
+| `CheckConsole.forErrors()` | Fail if console errors found | `CheckConsole.forErrors()` |
+| `CheckConsole.forWarnings()` | Fail if console warnings found | `CheckConsole.forWarnings()` |
+| `CheckConsole.forErrorsAndWarnings()` | Fail if errors or warnings found | `CheckConsole.forErrorsAndWarnings()` |
+| `CheckConsole...andReportOnly()` | Report without failing | `CheckConsole.forErrors().andReportOnly()` |
+| `ReportConsoleMessages.all()` | Report all console messages | `ReportConsoleMessages.all()` |
+| `ReportConsoleMessages.errors()` | Report console errors | `ReportConsoleMessages.errors()` |
+| `ReportConsoleMessages.errorsAndWarnings()` | Report errors and warnings | `ReportConsoleMessages.errorsAndWarnings()` |
 | `CaptureNetworkRequests.duringTest()` | Start capturing network | `CaptureNetworkRequests.duringTest()` |
 | `CaptureNetworkRequests.clear()` | Clear captured requests | `CaptureNetworkRequests.clear()` |
 
