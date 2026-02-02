@@ -11,7 +11,7 @@ Data-driven testing allows you to run the same test logic with multiple sets of 
 ## Prerequisites
 
 - Java 17 or higher
-- Serenity BDD 5.0.2 or higher
+- Serenity BDD 5.2.2 or higher
 - JUnit 5 6.0.1 or higher (for JUnit examples)
 - Cucumber 7.33.0 or higher (for Cucumber examples)
 
