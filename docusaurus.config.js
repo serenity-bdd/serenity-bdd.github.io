@@ -107,6 +107,16 @@ const config = {
           {
             type: 'localeDropdown',
             position: 'right',
+            dropdownItemsAfter: [
+              {
+                type: 'html',
+                value: '<hr style="margin: 0.3rem 0;">',
+              },
+              {
+                href: 'https://github.com/serenity-bdd/serenity-bdd.github.io/tree/master/i18n',
+                label: '🌐 Help translate',
+              },
+            ],
           },
         ],
       },
