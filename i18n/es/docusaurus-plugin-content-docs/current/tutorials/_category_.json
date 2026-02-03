@@ -1,0 +1,8 @@
+{
+  "label": "Tutoriales",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Tutoriales paso a paso para comenzar con Serenity BDD."
+  }
+}

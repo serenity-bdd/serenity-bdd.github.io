@@ -19,6 +19,22 @@ const config = {
   organizationName: 'serenity-bdd', // Usually your GitHub org/user name.
   projectName: 'documentation', // Usually your repo name.
 
+  // Internationalization configuration
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        htmlLang: 'en-US',
+      },
+      es: {
+        label: 'Español',
+        htmlLang: 'es-CO',
+      },
+    },
+  },
+
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -87,6 +103,10 @@ const config = {
               label: 'BDD And Test Automation Coaching'
             },
              ]
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right',
           },
         ],
       },

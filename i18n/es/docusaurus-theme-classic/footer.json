@@ -1,0 +1,50 @@
+{
+  "title.Docs": {
+    "message": "Documentación",
+    "description": "The title of the footer column with title=Docs"
+  },
+  "title.Community": {
+    "message": "Comunidad",
+    "description": "The title of the footer column with title=Community"
+  },
+  "title.Learn Serenity BDD": {
+    "message": "Aprende Serenity BDD",
+    "description": "The title of the footer column with title=Learn Serenity BDD"
+  },
+  "title.More": {
+    "message": "Más",
+    "description": "The title of the footer column with title=More"
+  },
+  "link.item.label.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label of footer link with label=Tutorial"
+  },
+  "link.item.label.Gitter": {
+    "message": "Gitter",
+    "description": "The label of footer link with label=Gitter"
+  },
+  "link.item.label.Stack Overflow": {
+    "message": "Stack Overflow",
+    "description": "The label of footer link with label=Stack Overflow"
+  },
+  "link.item.label.The Serenity Dojo Training Library": {
+    "message": "Biblioteca de Capacitación Serenity Dojo",
+    "description": "The label of footer link with label=The Serenity Dojo Training Library"
+  },
+  "link.item.label.Personalised Serenity BDD Coaching": {
+    "message": "Coaching Personalizado de Serenity BDD",
+    "description": "The label of footer link with label=Personalised Serenity BDD Coaching"
+  },
+  "link.item.label.Blog": {
+    "message": "Blog",
+    "description": "The label of footer link with label=Blog"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub"
+  },
+  "copyright": {
+    "message": "Copyright © {year} Serenity Dojo Ltd.",
+    "description": "The footer copyright"
+  }
+}

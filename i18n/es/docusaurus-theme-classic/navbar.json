@@ -1,0 +1,38 @@
+{
+  "title": {
+    "message": "Inicio",
+    "description": "The title in the navbar"
+  },
+  "item.label.Tutorials": {
+    "message": "Tutoriales",
+    "description": "Navbar item with label Tutorials"
+  },
+  "item.label.User Manual": {
+    "message": "Manual de Usuario",
+    "description": "Navbar item with label User Manual"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Get Support": {
+    "message": "Obtener Soporte",
+    "description": "Navbar item with label Get Support"
+  },
+  "item.label.Learn Serenity BDD": {
+    "message": "Aprende Serenity BDD",
+    "description": "Navbar dropdown with label Learn Serenity BDD"
+  },
+  "item.label.Serenity BDD Online Training": {
+    "message": "Capacitación Online de Serenity BDD",
+    "description": "Navbar item with label Serenity BDD Online Training"
+  },
+  "item.label.BDD and Requirements Discovery Training": {
+    "message": "Capacitación en BDD y Descubrimiento de Requisitos",
+    "description": "Navbar item with label BDD and Requirements Discovery Training"
+  },
+  "item.label.BDD And Test Automation Coaching": {
+    "message": "Coaching en BDD y Automatización de Pruebas",
+    "description": "Navbar item with label BDD And Test Automation Coaching"
+  }
+}
