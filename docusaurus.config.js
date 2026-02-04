@@ -113,7 +113,7 @@ const config = {
                 value: '<hr style="margin: 0.3rem 0;">',
               },
               {
-                href: 'https://github.com/serenity-bdd/serenity-bdd.github.io/tree/master/i18n',
+                href: 'https://github.com/serenity-bdd/serenity-bdd.github.io/issues/69',
                 label: '🌐 Help translate',
               },
             ],
