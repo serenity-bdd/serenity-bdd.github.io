@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import Translate, {translate} from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
@@ -14,11 +15,21 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <h1 className="hero__title">
+          <Translate id="homepage.title" description="The homepage title">
+            Serenity BDD User Manual
+          </Translate>
+        </h1>
+        <p className="hero__subtitle">
+          <Translate id="homepage.tagline" description="The homepage tagline">
+            Automated Acceptance Testing With Style
+          </Translate>
+        </p>
         <div className={styles.buttons}>
           <Link className="button button--secondary" to="docs/tutorials/first_test">
-            Write Your First Serenity BDD Test in under 10 min ⏱️
+            <Translate id="homepage.cta" description="The homepage call to action button">
+              Write Your First Serenity BDD Test in under 10 min ⏱️
+            </Translate>
           </Link>
         </div>
       </div>

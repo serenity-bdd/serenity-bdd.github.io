@@ -1,0 +1,68 @@
+{
+  "homepage.title": {
+    "message": "Manual de Usuario de Serenity BDD",
+    "description": "The homepage title"
+  },
+  "homepage.tagline": {
+    "message": "Pruebas de Aceptación Automatizadas con Estilo",
+    "description": "The homepage tagline"
+  },
+  "homepage.cta": {
+    "message": "Escribe tu Primera Prueba con Serenity BDD en menos de 10 min ⏱️",
+    "description": "The homepage call to action button"
+  },
+  "training.sectionTitle": {
+    "message": "Capacitación en Serenity BDD"
+  },
+  "training.webAutomation.title": {
+    "message": "Automatización Efectiva de Pruebas Web con Serenity BDD y Selenium"
+  },
+  "training.webAutomation.description": {
+    "message": "Aprende a escribir automatización de pruebas de alta calidad y fácil mantenimiento para tus aplicaciones web con 50% menos código usando Serenity BDD."
+  },
+  "training.masteryArchives.title": {
+    "message": "Los Archivos de Maestría en Automatización de Pruebas"
+  },
+  "training.masteryArchives.description": {
+    "message": "Perfecciona tus habilidades en Serenity BDD y Automatización con más de 500 horas de grabaciones de codificación en vivo dirigidas por expertos sobre problemas del mundo real (40% de descuento, solo $21 por mes)."
+  },
+  "training.learnMore": {
+    "message": "Más Información"
+  },
+  "features.bringTeam.title": {
+    "message": "Une a tu Equipo"
+  },
+  "features.bringTeam.description": {
+    "message": "No seas un tester solitario escribiendo scripts en una esquina, crea frameworks de automatización de pruebas que todo tu equipo disfrute usar."
+  },
+  "features.automateScale.title": {
+    "message": "Automatiza a Escala"
+  },
+  "features.automateScale.description": {
+    "message": "Escribe código de automatización limpio, de alta calidad y fácil de mantener que escala con tu suite de pruebas, para que dediques tu tiempo a escribir nuevos escenarios, no a corregir los existentes."
+  },
+  "features.reporting.title": {
+    "message": "Reporta lo que Realmente Importa"
+  },
+  "features.reporting.description": {
+    "message": "Serenity BDD proporciona documentación viva poderosa y reportes de pruebas que dan retroalimentación significativa a testers, personas de negocio y al equipo en general. Serenity te dice no solo qué pruebas se han ejecutado, sino más importante, qué requisitos se han probado."
+  },
+  "features.multiPlatform.title": {
+    "message": "Prueba UI, API y Móvil"
+  },
+  "features.multiPlatform.description": {
+    "message": "Serenity soporta pruebas tanto de UI como de API, e integra perfectamente con herramientas estándar de la industria como Selenium 4 y RestAssured."
+  },
+  "features.integrate.title": {
+    "message": "Integra con tus bibliotecas favoritas de automatización"
+  },
+  "features.integrate.description": {
+    "message": "Automatiza especificaciones ejecutables con herramientas BDD como Cucumber, o escribe código de pruebas limpio y mantenible con reportes legibles para el negocio en JUnit 4 o 5."
+  },
+  "features.bestPractices.title": {
+    "message": "Aplica Mejores Prácticas"
+  },
+  "features.bestPractices.description": {
+    "message": "Usa Page Object convencionales y reduce la cantidad de código necesario en un 50% comparado con implementaciones tradicionales, o prueba patrones de diseño más modernos como Action Classes o el Screenplay Pattern, y escribe código escalable y fácil de mantener adaptado a tu dominio."
+  }
+}
