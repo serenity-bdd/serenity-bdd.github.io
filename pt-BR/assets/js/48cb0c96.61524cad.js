@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkserenity_users_guide=globalThis.webpackChunkserenity_users_guide||[]).push([[1634],{7541(e){e.exports=JSON.parse('{"metadata":{"permalink":"/pt-BR/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":3,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);

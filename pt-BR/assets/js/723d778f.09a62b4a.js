@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkserenity_users_guide=globalThis.webpackChunkserenity_users_guide||[]).push([[6621],{3598(e){e.exports=JSON.parse('{"authors":[{"name":"John Ferguson Smart","title":"Creator of Serenity BDD","url":"https://github.com/wakaleo","imageURL":"https://avatars.githubusercontent.com/u/55986","key":"wakaleo","page":null,"count":2}]}')}}]);
