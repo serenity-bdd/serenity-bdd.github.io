@@ -6,8 +6,9 @@ sidebar_position: 7
 
 # Elementos de Página de Serenity
 
-## Introduccion
-En la mayoria de los frameworks de automatizacion de pruebas basados en Selenium, los selectores CSS o XPath se usan comúnmente para localizar elementos en una página.
+## Introducción
+En la mayoría de los frameworks...
+ de automatizacion de pruebas basados en Selenium, los selectores CSS o XPath se usan comúnmente para localizar elementos en una página.
 Serenity BDD proporciona una forma más sencilla de interactuar con componentes de UI comunes, que puede evitar la necesidad de usar expresiones XPath o CSS.
 
 Por ejemplo, el siguiente código HTML ilustra algunas formas diferentes de representar un botón:
