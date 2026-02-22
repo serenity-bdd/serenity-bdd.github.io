@@ -112,6 +112,15 @@ The ability manages the Playwright browser lifecycle automatically:
 - **Automatically cleans up** when the test completes (no explicit teardown needed)
 - Subscribes to Serenity's test lifecycle events for seamless resource management
 
+If you're already using `@UsePlaywright` to manage the browser lifecycle, you can wrap the injected `Page` instead of creating a new browser:
+
+```java
+// In a @UsePlaywright test, the Page is injected as a parameter
+toby.can(BrowseTheWebWithPlaywright.withPage(page));
+```
+
+See [Using `@UsePlaywright` with Screenplay](#using-useplaywright-with-screenplay) for details.
+
 ### Tasks
 
 **Tasks** represent high-level actions that an actor performs. They express _what_ the actor does in business terms:
@@ -435,6 +444,54 @@ actor.attemptsTo(
 ```
 
 ## Advanced Features
+
+### Using `@UsePlaywright` with Screenplay
+
+If you're already using Playwright's `@UsePlaywright` annotation for lifecycle management, you can have Screenplay actors reuse the same browser session instead of creating a separate one. The `BrowseTheWebWithPlaywright.withPage(Page)` factory method wraps an externally-provided `Page`, so both `@UsePlaywright` and Screenplay share a single browser instance.
+
+```java
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.junit.UsePlaywright;
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.playwright.abilities.BrowseTheWebWithPlaywright;
+import net.serenitybdd.screenplay.playwright.interactions.Open;
+import net.serenitybdd.screenplay.playwright.assertions.Ensure;
+import org.junit.jupiter.api.*;
+
+@UsePlaywright
+@DisplayName("TodoMVC with @UsePlaywright")
+class WhenUsingPlaywrightWithScreenplayTest {
+
+    Actor toby;
+
+    @BeforeEach
+    void setUp(Page page) {
+        toby = Actor.named("Toby");
+        toby.can(BrowseTheWebWithPlaywright.withPage(page));
+    }
+
+    @Test
+    void should_add_a_todo(Page page) {
+        toby.attemptsTo(
+            Open.url("https://todomvc.com/examples/react/dist/"),
+            Ensure.thatThePageTitle().containsIgnoringCase("TodoMVC")
+        );
+
+        // The Screenplay actor uses the same browser as @UsePlaywright
+        assert BrowseTheWebWithPlaywright.as(toby).getCurrentPage() == page;
+    }
+}
+```
+
+Key points about `withPage()`:
+- **Shared browser session** — the actor reuses the `Page`, `BrowserContext`, and `Browser` that `@UsePlaywright` created, avoiding a duplicate browser process.
+- **No resource conflicts** — on teardown, Screenplay only unregisters its internal references. It does _not_ close the `Page`, `BrowserContext`, `Browser`, or `Playwright` instance, since `@UsePlaywright` owns their lifecycle.
+- **Full Screenplay support** — all built-in interactions (`Open`, `Click`, `Enter`, `Ensure`, etc.), questions, cookie management, and screenshot capture work exactly as they do with `usingTheDefaultConfiguration()`.
+- **Failure evidence** — screenshots and failure evidence (console errors, failed network requests) are still captured for Serenity reports.
+
+:::tip When to use `withPage()`
+Use `withPage(page)` when an external framework (like `@UsePlaywright`) already manages the Playwright lifecycle and you want Screenplay actors to work with that existing session. If you don't use `@UsePlaywright`, stick with `BrowseTheWebWithPlaywright.usingTheDefaultConfiguration()` — it handles everything automatically.
+:::
 
 ### Direct Playwright API Access
 
