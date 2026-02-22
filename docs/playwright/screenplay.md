@@ -452,12 +452,17 @@ If you're already using Playwright's `@UsePlaywright` annotation for lifecycle m
 ```java
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.junit.UsePlaywright;
+import net.serenitybdd.junit5.SerenityJUnit5Extension;
+import net.serenitybdd.playwright.junit5.SerenityPlaywrightExtension;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.playwright.abilities.BrowseTheWebWithPlaywright;
 import net.serenitybdd.screenplay.playwright.interactions.Open;
 import net.serenitybdd.screenplay.playwright.assertions.Ensure;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
 @UsePlaywright
 @DisplayName("TodoMVC with @UsePlaywright")
 class WhenUsingPlaywrightWithScreenplayTest {
@@ -482,6 +487,25 @@ class WhenUsingPlaywrightWithScreenplayTest {
     }
 }
 ```
+
+Three annotations work together here:
+
+| Annotation | Purpose |
+|-----------|---------|
+| `@ExtendWith(SerenityJUnit5Extension.class)` | Serenity BDD reporting and step injection |
+| `@ExtendWith(SerenityPlaywrightExtension.class)` | Registers Playwright pages with Serenity for automatic screenshots |
+| `@UsePlaywright` | Manages the full Playwright lifecycle (Playwright, Browser, BrowserContext, Page) |
+
+:::tip Using @SerenityPlaywright
+You can use `@SerenityPlaywright` as a shorthand for both Serenity extensions:
+```java
+@SerenityPlaywright
+@UsePlaywright
+class WhenUsingPlaywrightWithScreenplayTest {
+    // ...
+}
+```
+:::
 
 Key points about `withPage()`:
 - **Shared browser session** — the actor reuses the `Page`, `BrowserContext`, and `Browser` that `@UsePlaywright` created, avoiding a duplicate browser process.

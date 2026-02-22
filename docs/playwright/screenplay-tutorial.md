@@ -100,6 +100,31 @@ public abstract class ScreenplayPlaywrightTest {
 The `BrowseTheWebWithPlaywright` ability subscribes to Serenity's test lifecycle events and automatically closes the browser, context, and page when each test completes. You don't need to write any teardown code!
 :::
 
+:::info Alternative: Using `@UsePlaywright`
+If you prefer to use Playwright's `@UsePlaywright` annotation for browser lifecycle management, you can wrap the injected `Page` instead:
+
+```java
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.junit.UsePlaywright;
+import net.serenitybdd.playwright.junit5.SerenityPlaywrightExtension;
+
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright
+public abstract class ScreenplayPlaywrightTest {
+
+    protected Actor toby;
+
+    @BeforeEach
+    void setUpPlaywright(Page page) {
+        toby = Actor.named("Toby");
+        toby.can(BrowseTheWebWithPlaywright.withPage(page));
+    }
+}
+```
+
+The `SerenityPlaywrightExtension` registers Playwright pages with Serenity for automatic screenshot capture. This shares a single browser instance between `@UsePlaywright` and Screenplay, instead of creating two separate browsers. See [Using @UsePlaywright with Screenplay](#using-useplaywright-with-screenplay) at the end of this tutorial for a full walkthrough.
+:::
+
 ### Step 2: Define UI Targets
 
 Create a class to hold all UI element locators:
@@ -738,6 +763,110 @@ class WhenDeletingTodosScreenplayTest extends ScreenplayPlaywrightTest {
     }
 }
 ```
+
+## Using `@UsePlaywright` with Screenplay
+
+Throughout this tutorial, we used `BrowseTheWebWithPlaywright.usingTheDefaultConfiguration()` — which creates and manages its own Playwright browser. But if your project already uses Playwright's `@UsePlaywright` annotation (for example, to share browser configuration or integrate with Playwright's built-in test fixtures), you can adapt the Screenplay tests to reuse that browser session.
+
+### Updating the Base Test Class
+
+Replace `usingTheDefaultConfiguration()` with `withPage(page)`, and add the `@UsePlaywright` and `SerenityPlaywrightExtension` annotations:
+
+```java
+package todomvc.screenplay;
+
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.junit.UsePlaywright;
+import net.serenitybdd.junit5.SerenityJUnit5Extension;
+import net.serenitybdd.playwright.junit5.SerenityPlaywrightExtension;
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.playwright.abilities.BrowseTheWebWithPlaywright;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+@ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright
+public abstract class ScreenplayPlaywrightTest {
+
+    protected Actor toby;
+
+    @BeforeEach
+    void setUpPlaywright(Page page) {
+        toby = Actor.named("Toby");
+        toby.can(BrowseTheWebWithPlaywright.withPage(page));
+    }
+}
+```
+
+Three annotations work together:
+
+| Annotation | Purpose |
+|-----------|---------|
+| `@ExtendWith(SerenityJUnit5Extension.class)` | Serenity BDD reporting and step injection |
+| `@ExtendWith(SerenityPlaywrightExtension.class)` | Registers Playwright pages with Serenity for automatic screenshots |
+| `@UsePlaywright` | Manages the full Playwright lifecycle (Playwright, Browser, BrowserContext, Page) |
+
+:::tip Using @SerenityPlaywright
+You can replace both `@ExtendWith` annotations with the shorthand `@SerenityPlaywright`:
+```java
+@SerenityPlaywright
+@UsePlaywright
+public abstract class ScreenplayPlaywrightTest {
+    // ...
+}
+```
+:::
+
+That's it. All the tasks, questions, targets, and test classes from this tutorial work unchanged — the only difference is how the actor's ability is created.
+
+### What Changes
+
+| | `usingTheDefaultConfiguration()` | `withPage(page)` |
+|---|---|---|
+| **Browser lifecycle** | Managed by Screenplay | Managed by `@UsePlaywright` |
+| **Browser instance** | New browser per actor | Reuses `@UsePlaywright` browser |
+| **Teardown** | Closes browser, context, page | Only unregisters from Serenity |
+| **Tasks & Questions** | Work normally | Work normally |
+| **Screenshots & reports** | Captured automatically | Captured automatically |
+
+### Custom Playwright Options
+
+With `@UsePlaywright`, you can customize browser options by implementing `OptionsFactory`:
+
+```java
+import com.microsoft.playwright.*;
+import com.microsoft.playwright.junit.Options;
+import com.microsoft.playwright.junit.OptionsFactory;
+
+public class CustomOptions implements OptionsFactory {
+
+    @Override
+    public Options getOptions() {
+        return new Options()
+            .setLaunchOptions(new BrowserType.LaunchOptions().setHeadless(true))
+            .setContextOptions(new Browser.NewContextOptions()
+                .setViewportSize(1920, 1080)
+                .setLocale("en-US"));
+    }
+}
+```
+
+Then reference it in your tests:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright(CustomOptions.class)
+public abstract class ScreenplayPlaywrightTest {
+    // ...same as above
+}
+```
+
+### When to Use Which Approach
+
+- **`usingTheDefaultConfiguration()`** — simplest setup; ideal when Screenplay is your only test framework and you don't need Playwright's JUnit integration features.
+- **`withPage(page)`** — use when you already have `@UsePlaywright` tests and want to add Screenplay actors to them, or when you need Playwright's built-in fixtures (tracing, video recording, custom options) alongside Screenplay.
 
 ## Key Takeaways
 
