@@ -216,19 +216,80 @@ public class WikipediaSteps {
 
 ### Step 3: Write the Test
 
-Create a test class:
+The recommended approach uses Playwright's `@UsePlaywright` annotation to manage the browser lifecycle automatically, combined with Serenity extensions for reporting:
 
 ```java
 package com.example;
 
 import com.example.steps.WikipediaSteps;
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.junit.Options;
+import com.microsoft.playwright.junit.OptionsFactory;
+import com.microsoft.playwright.junit.UsePlaywright;
 import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
-import net.serenitybdd.playwright.PlaywrightSerenity;
+import net.serenitybdd.playwright.junit5.SerenityPlaywrightExtension;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.util.Arrays;
+
+@ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright(WikipediaSearchTest.ChromeOptions.class)
+class WikipediaSearchTest {
+
+    @Steps
+    WikipediaSteps wikipedia;
+
+    // OptionsFactory configures how Playwright launches the browser
+    public static class ChromeOptions implements OptionsFactory {
+        @Override
+        public Options getOptions() {
+            return new Options()
+                .setHeadless(true)
+                .setLaunchOptions(
+                    new BrowserType.LaunchOptions()
+                        .setArgs(Arrays.asList("--no-sandbox", "--disable-gpu"))
+                );
+        }
+    }
+
+    @Test
+    @DisplayName("Should search Wikipedia successfully")
+    void shouldSearchWikipedia(Page page) {
+        wikipedia.openWikipedia(page);
+        wikipedia.searchFor(page, "Playwright");
+        wikipedia.verifyTitleContains(page, "Playwright");
+    }
+}
+```
+
+With this approach:
+- **`@UsePlaywright`** creates and manages the Playwright instance, Browser, BrowserContext, and Page automatically
+- **`SerenityPlaywrightExtension`** intercepts the Page and registers it with Serenity for screenshot capture
+- **`SerenityJUnit5Extension`** handles `@Steps` injection and Serenity reporting
+- The `Page` is injected as a method parameter — no manual setup or teardown needed
+
+:::tip Using @SerenityPlaywright
+You can use the `@SerenityPlaywright` meta-annotation as a shorthand for both Serenity extensions:
+
+```java
+@SerenityPlaywright
+@UsePlaywright(ChromeOptions.class)
+class WikipediaSearchTest {
+    // ...
+}
+```
+
+This is equivalent to adding both `@ExtendWith(SerenityJUnit5Extension.class)` and `@ExtendWith(SerenityPlaywrightExtension.class)`.
+:::
+
+### Alternative: Manual Lifecycle Management
+
+If you need full control over the browser lifecycle, you can manage Playwright directly:
+
+```java
 @ExtendWith(SerenityJUnit5Extension.class)
 class WikipediaSearchTest {
 

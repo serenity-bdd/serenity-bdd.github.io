@@ -71,31 +71,27 @@ Both approaches integrate seamlessly with Serenity's reporting.
 
 ### Page Object Approach
 
-Here's what a Page Object-based Serenity Playwright test looks like:
+Here's what a Page Object-based Serenity Playwright test looks like, using Playwright's `@UsePlaywright` annotation to manage the browser lifecycle:
 
 ```java
 @ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright(ChromeHeadlessOptions.class)
 class SearchTest {
 
     @Steps
     WikipediaSteps wikipedia;
 
-    private Page page;
-
-    @BeforeEach
-    void setup() {
-        page = browser.newPage();
-        PlaywrightSerenity.registerPage(page);
-    }
-
     @Test
-    void shouldSearchForATerm() {
+    void shouldSearchForATerm(Page page) {
         wikipedia.openWikipedia(page);
         wikipedia.searchFor(page, "Playwright");
         wikipedia.verifyTitleContains(page, "Playwright");
     }
 }
 ```
+
+The `@UsePlaywright` annotation handles the full browser lifecycle — creating and closing `Playwright`, `Browser`, `BrowserContext`, and `Page` instances automatically. The `SerenityPlaywrightExtension` registers the `Page` with Serenity for screenshot capture at each step.
 
 ### Screenplay Approach
 

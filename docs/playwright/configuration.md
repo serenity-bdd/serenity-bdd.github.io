@@ -81,7 +81,136 @@ Run with a specific environment:
 mvn verify -Denvironment=staging
 ```
 
-## Playwright Configuration
+## Playwright Configuration with @UsePlaywright
+
+The recommended way to configure Playwright is with the `@UsePlaywright` annotation and an `OptionsFactory` class. This approach lets Playwright manage the full browser lifecycle while you declaratively specify the configuration.
+
+### OptionsFactory
+
+Create an `OptionsFactory` implementation to configure browser options:
+
+```java
+public class ChromeHeadlessOptions implements OptionsFactory {
+    @Override
+    public Options getOptions() {
+        return new Options()
+            .setHeadless(true)
+            .setLaunchOptions(
+                new BrowserType.LaunchOptions()
+                    .setArgs(Arrays.asList("--no-sandbox", "--disable-extensions", "--disable-gpu"))
+            )
+            .setTestIdAttribute("data-test");
+    }
+}
+```
+
+Then use it in your test class:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright(ChromeHeadlessOptions.class)
+class MyTest {
+    // Page is injected automatically
+    @Test
+    void myTest(Page page) { ... }
+}
+```
+
+### Available Options
+
+The `Options` class provides a fluent API for all Playwright configuration:
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `headless` | `Boolean` | Whether to run the browser in headless mode |
+| `browserName` | `String` | `"chromium"`, `"firefox"`, or `"webkit"` |
+| `channel` | `String` | Browser channel (e.g. `"chrome"`, `"msedge"`) |
+| `baseUrl` | `String` | Base URL for `page.navigate()` with relative paths |
+| `deviceName` | `String` | Device emulation name (e.g. `"iPhone 13"`) |
+| `testIdAttribute` | `String` | Custom test ID attribute (default: `"data-testid"`) |
+| `ignoreHTTPSErrors` | `Boolean` | Whether to ignore HTTPS errors |
+| `launchOptions` | `BrowserType.LaunchOptions` | Full launch options (args, timeout, slowMo, etc.) |
+| `contextOptions` | `Browser.NewContextOptions` | Context options (viewport, locale, geolocation, etc.) |
+| `trace` | `Options.Trace` | Tracing: `OFF`, `ON`, or `RETAIN_ON_FAILURE` |
+| `outputDir` | `Path` | Directory for test artifacts |
+
+### Common OptionsFactory Examples
+
+#### Chrome with Custom Viewport
+
+```java
+public class ChromeDesktopOptions implements OptionsFactory {
+    @Override
+    public Options getOptions() {
+        return new Options()
+            .setHeadless(true)
+            .setChannel("chrome")
+            .setContextOptions(
+                new Browser.NewContextOptions()
+                    .setViewportSize(1920, 1080)
+                    .setLocale("en-US")
+                    .setTimezoneId("America/New_York")
+            );
+    }
+}
+```
+
+#### Firefox
+
+```java
+public class FirefoxOptions implements OptionsFactory {
+    @Override
+    public Options getOptions() {
+        return new Options()
+            .setBrowserName("firefox")
+            .setHeadless(true);
+    }
+}
+```
+
+#### Mobile Device Emulation
+
+```java
+public class MobileOptions implements OptionsFactory {
+    @Override
+    public Options getOptions() {
+        return new Options()
+            .setDeviceName("iPhone 13")
+            .setHeadless(true);
+    }
+}
+```
+
+#### With Tracing Enabled
+
+```java
+public class TracingOptions implements OptionsFactory {
+    @Override
+    public Options getOptions() {
+        return new Options()
+            .setHeadless(true)
+            .setTrace(Options.Trace.RETAIN_ON_FAILURE);
+    }
+}
+```
+
+### Lifecycle with @UsePlaywright
+
+When using `@UsePlaywright`, Playwright manages the following lifecycle automatically:
+
+| Resource | Scope | Details |
+|----------|-------|---------|
+| `Playwright` | Per thread | Created once, shared across tests in the same thread |
+| `Browser` | Per test class | Created once per class, closed after all tests in the class |
+| `BrowserContext` | Per test method | Fresh context for each test, providing isolation |
+| `Page` | Per test method | Fresh page for each test |
+
+The `Page`, `BrowserContext`, `Browser`, and `Playwright` objects can all be injected as method parameters in `@BeforeEach` and `@Test` methods.
+
+## Manual Playwright Configuration
+
+If you need full control over the browser lifecycle (e.g. for custom context management or multi-tab testing), you can manage Playwright directly.
 
 ### Browser Options
 
@@ -267,7 +396,31 @@ junit.jupiter.execution.parallel.config.fixed.parallelism = 4
 
 ### Thread-Safe Browser Management
 
-For parallel tests, each test needs its own browser context:
+When using `@UsePlaywright`, parallel execution is handled automatically — Playwright stores all resources in `ThreadLocal` variables, so each thread gets its own isolated Playwright, Browser, BrowserContext, and Page:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright(ChromeHeadlessOptions.class)
+class ParallelTest {
+
+    @Steps MySteps steps;
+
+    @Test
+    void testOne(Page page) {
+        // Each test gets its own isolated BrowserContext and Page
+        steps.doSomething(page);
+    }
+
+    @Test
+    void testTwo(Page page) {
+        // Safe to run in parallel - no shared state
+        steps.doSomethingElse(page);
+    }
+}
+```
+
+If managing the lifecycle manually, use `ThreadLocal` for thread safety:
 
 ```java
 @ExtendWith(SerenityJUnit5Extension.class)

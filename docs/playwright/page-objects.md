@@ -311,6 +311,35 @@ public class CheckoutSteps {
 }
 ```
 
+### Initializing Page Objects with @UsePlaywright
+
+When using `@UsePlaywright`, Page Objects are typically initialized in a `@BeforeEach` method with the injected `Page`:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright(ChromeHeadlessOptions.class)
+class CheckoutTest {
+
+    @Steps CheckoutSteps checkout;
+    @Steps ProductSteps products;
+
+    @BeforeEach
+    void setUp(Page page) {
+        checkout = new CheckoutSteps(page);
+        products = new ProductSteps(page);
+    }
+
+    @Test
+    void shouldCompleteCheckout(Page page) {
+        products.selectProduct("Laptop Pro");
+        checkout.enterShippingAddress(address);
+        checkout.completeOrder();
+        checkout.verifyOrderConfirmationDisplayed();
+    }
+}
+```
+
 ## Best Practices
 
 ### 1. One Page Object Per Page/View

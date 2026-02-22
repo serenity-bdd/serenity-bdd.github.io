@@ -64,10 +64,12 @@ public class ShoppingCartSteps {
 
 ### Using Step Libraries in Tests
 
-Inject step libraries using the `@Steps` annotation:
+Inject step libraries using the `@Steps` annotation. When combined with `@UsePlaywright`, the `Page` is injected as a method parameter — no manual lifecycle management needed:
 
 ```java
 @ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright(ChromeHeadlessOptions.class)
 class ShoppingTest {
 
     @Steps
@@ -79,10 +81,8 @@ class ShoppingTest {
     @Steps
     CheckoutSteps checkout;
 
-    private Page page;
-
     @Test
-    void shouldCompleteAPurchase() {
+    void shouldCompleteAPurchase(Page page) {
         products.browseCategory(page, "Electronics");
         products.selectProduct(page, "Laptop Pro");
         cart.addProductToCart(page, "Laptop Pro");
@@ -92,6 +92,8 @@ class ShoppingTest {
     }
 }
 ```
+
+The `@UsePlaywright` annotation manages the Playwright, Browser, BrowserContext, and Page lifecycle automatically, while `SerenityPlaywrightExtension` registers the Page with Serenity for screenshot capture.
 
 ## The @Step Annotation
 
@@ -180,7 +182,7 @@ void shouldNavigateBetweenPages() {
 ```
 
 :::caution
-When using `getCurrentPage()`, ensure you've registered the page with `PlaywrightSerenity.registerPage(page)` before calling any steps.
+When using `getCurrentPage()`, ensure the page has been registered with Serenity. This happens automatically when using `@UsePlaywright` with `SerenityPlaywrightExtension`, or you can register manually with `PlaywrightSerenity.registerPage(page)`.
 :::
 
 ## Screenshot Capture
