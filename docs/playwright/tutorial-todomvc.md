@@ -121,10 +121,11 @@ Create `src/test/java/todomvc/tests/WhenAddingTodosTest.java`:
 ```java
 package todomvc.tests;
 
-import com.microsoft.playwright.*;
+import com.microsoft.playwright.Page;
 import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
-import net.serenitybdd.playwright.PlaywrightSerenity;
+import net.serenitybdd.playwright.junit5.SerenityPlaywrightExtension;
+import com.microsoft.playwright.junit.UsePlaywright;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import todomvc.steps.TodoSteps;
@@ -132,33 +133,17 @@ import todomvc.steps.TodoSteps;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright
 @DisplayName("When adding todos")
 class WhenAddingTodosTest {
-
-    private Playwright playwright;
-    private Browser browser;
-    private Page page;
 
     @Steps
     TodoSteps todo;
 
     @BeforeEach
-    void setUp() {
-        playwright = Playwright.create();
-        browser = playwright.chromium().launch(
-            new BrowserType.LaunchOptions().setHeadless(true)
-        );
-        page = browser.newPage();
-        PlaywrightSerenity.registerPage(page);
+    void setUp(Page page) {
         todo.setPage(page);
-    }
-
-    @AfterEach
-    void tearDown() {
-        PlaywrightSerenity.unregisterPage(page);
-        if (page != null) page.close();
-        if (browser != null) browser.close();
-        if (playwright != null) playwright.close();
     }
 
     @Test
@@ -171,6 +156,16 @@ class WhenAddingTodosTest {
     }
 }
 ```
+
+Three annotations work together here:
+
+| Annotation | Purpose |
+|-----------|---------|
+| `@ExtendWith(SerenityJUnit5Extension.class)` | Integrates Serenity BDD reporting and step injection |
+| `@ExtendWith(SerenityPlaywrightExtension.class)` | Registers Playwright pages with Serenity for automatic screenshots |
+| `@UsePlaywright` | Manages the full Playwright lifecycle (Playwright, Browser, BrowserContext, Page) |
+
+With `@UsePlaywright`, you don't need to create or close `Playwright`, `Browser`, or `Page` yourself. JUnit 5 injects a fresh `Page` into your `@BeforeEach` and `@Test` methods automatically, and cleans everything up when the test finishes.
 
 This test won't compile yet—we need to create the step library and page object. But notice we've defined exactly what we need:
 - `openApplication()` - navigate to the app
@@ -361,7 +356,7 @@ public List<String> getVisibleTodoTexts() {
 
 ## Iteration 4: Extract a Base Test Class
 
-We're about to create more test classes, and they'll all need the same Playwright setup. Let's extract that into a base class.
+We're about to create more test classes, and they'll all need the same annotations. Let's extract them into a base class. While we're at it, we'll configure the browser to run in headless mode using an `OptionsFactory`.
 
 ### Create the Base Class
 
@@ -370,40 +365,43 @@ Create `src/test/java/todomvc/tests/SerenityPlaywrightTest.java`:
 ```java
 package todomvc.tests;
 
-import com.microsoft.playwright.*;
-import net.serenitybdd.playwright.PlaywrightSerenity;
-import org.junit.jupiter.api.*;
+import com.microsoft.playwright.BrowserType;
+import com.microsoft.playwright.junit.Options;
+import com.microsoft.playwright.junit.OptionsFactory;
+import com.microsoft.playwright.junit.UsePlaywright;
+import net.serenitybdd.junit5.SerenityJUnit5Extension;
+import net.serenitybdd.playwright.junit5.SerenityPlaywrightExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.util.Arrays;
+
+@ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright(SerenityPlaywrightTest.ChromeHeadlessOptions.class)
 public abstract class SerenityPlaywrightTest {
 
-    protected Playwright playwright;
-    protected Browser browser;
-    protected Page page;
-
-    @BeforeEach
-    void setUpPlaywright() {
-        playwright = Playwright.create();
-        browser = playwright.chromium().launch(
-            new BrowserType.LaunchOptions().setHeadless(true)
-        );
-        page = browser.newPage();
-        PlaywrightSerenity.registerPage(page);
-    }
-
-    @AfterEach
-    void tearDownPlaywright() {
-        PlaywrightSerenity.unregisterPage(page);
-        if (page != null) page.close();
-        if (browser != null) browser.close();
-        if (playwright != null) playwright.close();
+    public static class ChromeHeadlessOptions implements OptionsFactory {
+        @Override
+        public Options getOptions() {
+            return new Options()
+                    .setHeadless(true)
+                    .setLaunchOptions(
+                            new BrowserType.LaunchOptions()
+                                    .setArgs(Arrays.asList(
+                                        "--no-sandbox",
+                                        "--disable-extensions",
+                                        "--disable-gpu"))
+                    );
+        }
     }
 }
 ```
 
+The `@UsePlaywright` annotation accepts an `OptionsFactory` class to configure browser options. By passing `ChromeHeadlessOptions.class`, every test that extends this base class will run in headless Chromium with the specified launch arguments. Since `@UsePlaywright` is `@Inherited`, all three annotations are inherited by subclasses.
+
 ### Simplify the Test Class
 
 ```java
-@ExtendWith(SerenityJUnit5Extension.class)
 @DisplayName("When adding todos")
 class WhenAddingTodosTest extends SerenityPlaywrightTest {
 
@@ -411,7 +409,7 @@ class WhenAddingTodosTest extends SerenityPlaywrightTest {
     TodoSteps todo;
 
     @BeforeEach
-    void setUp() {
+    void setUp(Page page) {
         todo.setPage(page);
     }
 
@@ -429,7 +427,7 @@ class WhenAddingTodosTest extends SerenityPlaywrightTest {
 }
 ```
 
-Much cleaner! Each test class now focuses purely on test logic.
+Much cleaner! The base class handles all annotations and browser configuration. Each test class focuses purely on test logic—no lifecycle boilerplate, no manual cleanup.
 
 ## Iteration 5: Testing Completion
 
@@ -440,7 +438,6 @@ Now let's create a new test class for completing todos.
 Create `src/test/java/todomvc/tests/WhenCompletingTodosTest.java`:
 
 ```java
-@ExtendWith(SerenityJUnit5Extension.class)
 @DisplayName("When completing todos")
 class WhenCompletingTodosTest extends SerenityPlaywrightTest {
 
@@ -448,7 +445,7 @@ class WhenCompletingTodosTest extends SerenityPlaywrightTest {
     TodoSteps todo;
 
     @BeforeEach
-    void setUp() {
+    void setUp(Page page) {
         todo.setPage(page);
     }
 
@@ -570,11 +567,11 @@ After several iterations, your project will look like:
 ```
 src/test/java/todomvc/
 ├── pages/
-│   └── TodoMvcPage.java         # Grows with each iteration
+│   └── TodoMvcPage.java            # Grows with each iteration
 ├── steps/
-│   └── TodoSteps.java           # Grows with each iteration
+│   └── TodoSteps.java              # Grows with each iteration
 └── tests/
-    ├── SerenityPlaywrightTest.java  # Extracted in iteration 4
+    ├── SerenityPlaywrightTest.java  # Base class with @UsePlaywright
     ├── WhenAddingTodosTest.java
     ├── WhenCompletingTodosTest.java
     ├── WhenEditingTodosTest.java    # Added later
@@ -589,6 +586,7 @@ src/test/java/todomvc/
 | **Start with a test** | Tests drive what code you write |
 | **Add only what you need** | No speculative code that may never be used |
 | **Extract when patterns emerge** | Base class came after we saw duplication |
+| **Let `@UsePlaywright` manage the lifecycle** | No manual Playwright/Browser/Page setup or teardown |
 | **Steps return data** | Tests make assertions, keeping steps reusable |
 | **Private locators** | Encapsulation makes changes easier |
 
