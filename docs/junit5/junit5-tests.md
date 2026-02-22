@@ -36,8 +36,8 @@ Add the following to your `pom.xml`:
 
 ```xml
 <properties>
-    <serenity.version>5.2.2</serenity.version>
-    <junit.version>6.0.1</junit.version>
+    <serenity.version>5.2.4</serenity.version>
+    <junit.version>6.0.3</junit.version>
 </properties>
 
 <dependencies>
@@ -95,12 +95,12 @@ For Gradle, add to your `build.gradle`:
 
 ```groovy
 dependencies {
-    testImplementation "net.serenity-bdd:serenity-junit5:5.2.2"
-    testImplementation "net.serenity-bdd:serenity-screenplay:5.2.2"
-    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:5.2.2"
+    testImplementation "net.serenity-bdd:serenity-junit5:5.2.4"
+    testImplementation "net.serenity-bdd:serenity-screenplay:5.2.4"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:5.2.4"
 
-    testImplementation "org.junit.jupiter:junit-jupiter-api:6.0.1"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:6.0.1"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:6.0.3"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:6.0.3"
 
     testImplementation "org.assertj:assertj-core:3.24.2"
 }

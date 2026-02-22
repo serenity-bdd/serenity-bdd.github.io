@@ -32,12 +32,41 @@ Add the following dependency to your project:
 
 ### The BrowseTheWebWithPlaywright Ability
 
-To use Playwright with Screenplay, actors need the `BrowseTheWebWithPlaywright` ability:
+To use Playwright with Screenplay, actors need the `BrowseTheWebWithPlaywright` ability. The recommended approach is to use Playwright's `@UsePlaywright` annotation, which manages the browser lifecycle automatically:
 
 ```java
+import net.serenitybdd.junit5.SerenityJUnit5Extension;
+import net.serenitybdd.playwright.junit5.SerenityPlaywrightExtension;
+import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.playwright.abilities.BrowseTheWebWithPlaywright;
 import com.microsoft.playwright.*;
 
+@ExtendWith(SerenityJUnit5Extension.class)
+@ExtendWith(SerenityPlaywrightExtension.class)
+@UsePlaywright(ChromeHeadlessOptions.class)
+class MyScreenplayTest {
+
+    Actor alice;
+
+    @BeforeEach
+    void setUp(Page page) {
+        alice = Actor.named("Alice");
+        alice.can(BrowseTheWebWithPlaywright.withPage(page));
+    }
+}
+```
+
+The `withPage(Page)` factory method wraps a `@UsePlaywright`-managed page. Screenplay reuses the existing browser — no duplicate browser instance is created. On teardown, Screenplay only unregisters the page; it does **not** close the Page, BrowserContext, Browser, or Playwright instance.
+
+:::tip `@SerenityPlaywright` shorthand
+You can use the `@SerenityPlaywright` meta-annotation as a shorthand for both `@ExtendWith(SerenityJUnit5Extension.class)` and `@ExtendWith(SerenityPlaywrightExtension.class)`.
+:::
+
+#### Alternative: Manual Lifecycle Management
+
+If you need full control over the browser lifecycle, you can manage it manually:
+
+```java
 Playwright playwright = Playwright.create();
 Browser browser = playwright.chromium().launch();
 
@@ -47,10 +76,28 @@ alice.can(BrowseTheWebWithPlaywright.using(browser));
 
 ### Configuration
 
-You can configure Playwright behavior using environment variables or programmatically:
+When using `@UsePlaywright`, configure browser options with an `OptionsFactory`:
 
 ```java
-// Launch with options
+public class ChromeHeadlessOptions implements OptionsFactory {
+    @Override
+    public Options getOptions() {
+        return new Options()
+                .setHeadless(true)
+                .setLaunchOptions(
+                        new BrowserType.LaunchOptions()
+                                .setArgs(Arrays.asList(
+                                    "--no-sandbox",
+                                    "--disable-extensions",
+                                    "--disable-gpu"))
+                );
+    }
+}
+```
+
+For manual lifecycle management, configure programmatically:
+
+```java
 BrowserType.LaunchOptions options = new BrowserType.LaunchOptions()
     .setHeadless(false)
     .setSlowMo(100);
@@ -1089,9 +1136,9 @@ Simply enable console and/or network capture at the start of your tests:
 
 ```java
 @BeforeEach
-void setup() {
-    alice = Actor.named("Alice")
-        .whoCan(BrowseTheWebWithPlaywright.usingTheDefaultConfiguration());
+void setup(Page page) {
+    alice = Actor.named("Alice");
+    alice.can(BrowseTheWebWithPlaywright.withPage(page));
 
     // Enable capture for failure evidence
     alice.attemptsTo(
@@ -1965,22 +2012,29 @@ When migrating from `serenity-screenplay-webdriver`:
 ## Complete Example
 
 ```java
+import com.microsoft.playwright.Page;
+import net.serenitybdd.annotations.SerenityPlaywright;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.playwright.abilities.BrowseTheWebWithPlaywright;
 import net.serenitybdd.screenplay.playwright.interactions.*;
 import net.serenitybdd.screenplay.playwright.questions.*;
 import net.serenitybdd.screenplay.playwright.ui.*;
+import com.microsoft.playwright.junit.UsePlaywright;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ShoppingCartTest {
+@SerenityPlaywright
+@UsePlaywright
+class ShoppingCartTest {
 
-    Actor alice = Actor.named("Alice");
+    Actor alice;
 
     @BeforeEach
-    void setup() {
-        Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch();
-        alice.can(BrowseTheWebWithPlaywright.using(browser));
+    void setup(Page page) {
+        alice = Actor.named("Alice");
+        alice.can(BrowseTheWebWithPlaywright.withPage(page));
     }
 
     @Test
