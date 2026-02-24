@@ -294,6 +294,40 @@ class ShoppingCartTests {
 }
 ```
 
+### Organizando testes com @Feature e @Story
+
+Você pode usar as anotações `@Feature` e `@Story` para organizar seus testes em uma hierarquia de requisitos nos relatórios do Serenity. Isso oferece controle explícito sobre como os testes aparecem na Documentação Viva, independentemente da estrutura de pacotes:
+
+```java
+import net.serenitybdd.annotations.Feature;
+import net.serenitybdd.annotations.Story;
+
+@ExtendWith(SerenityJUnit5Extension.class)
+@Feature("Shopping Cart")
+@Story("Add item to cart")
+@DisplayName("When adding items to the shopping cart")
+class WhenAddingItemsTest {
+
+    @Test
+    @DisplayName("Should add a single item")
+    void addSingleItem() { /* ... */ }
+
+    @Test
+    @DisplayName("Should update quantity for duplicate items")
+    void updateQuantityForDuplicates() { /* ... */ }
+}
+```
+
+Quando `@Story` não está presente, o valor de `@DisplayName` é usado como nome da story na hierarquia de requisitos. Isso significa que você pode escrever:
+
+```java
+@Feature("Shopping Cart")
+@DisplayName("Add item to cart")  // Usado como nome da story
+class WhenAddingItemsTest { /* ... */ }
+```
+
+Consulte [Requisitos Baseados em Anotações](/docs/guide/annotation-requirements) para um guia completo cobrindo a hierarquia `@Epic` > `@Feature` > `@Story`, herança e migração de anotações baseadas em classes.
+
 ### Testes Aninhados
 
 Organize testes relacionados com `@Nested`:

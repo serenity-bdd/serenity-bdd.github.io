@@ -368,7 +368,11 @@ La configuración de requisitos aplica a los niveles de contenedor, no a los arc
 
 Muchos equipos escriben pruebas de aceptación automatizadas con Serenity BDD usando JUnit. El Screenplay Pattern en particular hace fácil escribir pruebas altamente mantenibles usando un DSL legible para el negocio que produce excelente documentación viva.
 
-Las pruebas de aceptación JUnit deben organizarse en una estructura de paquetes que refleje tu jerarquía de requisitos. Ten en cuenta que esto significa que pueden no reflejar la estructura de paquetes en tu aplicación, como se hace usualmente para pruebas unitarias y de integración.
+Hay dos formas de definir la jerarquía de requisitos para pruebas JUnit:
+
+#### Jerarquía Basada en Paquetes
+
+Las pruebas de aceptación JUnit pueden organizarse en una estructura de paquetes que refleje tu jerarquía de requisitos. Ten en cuenta que esto significa que pueden no reflejar la estructura de paquetes en tu aplicación, como se hace usualmente para pruebas unitarias y de integración.
 
 Una jerarquía simple de dos niveles se ilustra aquí:
 ```
@@ -392,6 +396,20 @@ serenity.test.root=com.acme.myapp.specs
 ```
 
 En este caso, la documentación viva de Serenity tratará los casos de prueba JUnit ("Adding New Items", "Deleting Items", etc.) como Historias, y los paquetes directamente debajo del paquete `com.acme.myapp.specs` ("Multiple Todo Lists", "Sharing Lists", etc.) como Features.
+
+#### Jerarquía Basada en Anotaciones
+
+A partir de Serenity 5.2.5, también puedes definir la jerarquía de requisitos directamente usando las anotaciones `@Epic`, `@Feature` y `@Story` en tus clases de prueba:
+
+```java
+@Feature("Managing Todos")
+@Story("Complete todo items")
+class WhenCompletingTodosTest {
+    // ...
+}
+```
+
+Esto crea una jerarquía de requisitos basada en los valores de las anotaciones en lugar de la estructura de paquetes. Consulta [Requisitos Basados en Anotaciones](/docs/guide/annotation-requirements) para una guía completa con ejemplos.
 
 ### Jerarquías de Requisitos para Cucumber
 

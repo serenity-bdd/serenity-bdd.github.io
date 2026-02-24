@@ -368,7 +368,11 @@ A configuração de requisitos se aplica aos níveis de contêiner, não aos arq
 
 Muitas equipes escrevem testes de aceitação automatizados com Serenity BDD usando JUnit. O Screenplay Pattern em particular facilita escrever testes altamente manuteníveis usando uma DSL legível por negócio que produz excelente documentação viva.
 
-Os testes de aceitação JUnit devem ser organizados em uma estrutura de pacotes que reflita sua hierarquia de requisitos. Observe que isso significa que eles podem não refletir a estrutura de pacotes na sua aplicação, como geralmente é feito para testes unitários e de integração.
+Existem duas formas de definir a hierarquia de requisitos para testes JUnit:
+
+#### Hierarquia Baseada em Pacotes
+
+Os testes de aceitação JUnit podem ser organizados em uma estrutura de pacotes que reflita sua hierarquia de requisitos. Observe que isso significa que eles podem não refletir a estrutura de pacotes na sua aplicação, como geralmente é feito para testes unitários e de integração.
 
 Uma hierarquia simples de dois níveis é ilustrada aqui:
 ```
@@ -392,6 +396,20 @@ serenity.test.root=com.acme.myapp.specs
 ```
 
 Neste caso, a documentação viva do Serenity tratará os casos de teste JUnit ("Adding New Items", "Deleting Items" etc.) como Stories, e os pacotes diretamente abaixo do pacote `com.acme.myapp.specs` ("Multiple Todo Lists", "Sharing Lists" etc.) como Features.
+
+#### Hierarquia Baseada em Anotações
+
+A partir do Serenity 5.2.5, você também pode definir a hierarquia de requisitos diretamente usando as anotações `@Epic`, `@Feature` e `@Story` nas suas classes de teste:
+
+```java
+@Feature("Managing Todos")
+@Story("Complete todo items")
+class WhenCompletingTodosTest {
+    // ...
+}
+```
+
+Isso cria uma hierarquia de requisitos baseada nos valores das anotações em vez da estrutura de pacotes. Consulte [Requisitos Baseados em Anotações](/docs/guide/annotation-requirements) para um guia completo com exemplos.
 
 ### Hierarquias de Requisitos para Cucumber
 

@@ -368,7 +368,11 @@ Requirements configuration applies to the container levels, not to the feature o
 
 Many teams write automated acceptance tests with Serenity BDD using JUnit. The Screenplay Pattern in particular makes it easy to write highly maintainable tests using a business-readable DSL that produces excellent living documentation.
 
-JUnit acceptance tests should be organised in a package structure that reflects your requirements hierarchy. Note that this means that they may not reflect the package structure in your application, as is usually done for unit and integration tests.
+There are two ways to define the requirements hierarchy for JUnit tests:
+
+#### Package-Based Hierarchy
+
+JUnit acceptance tests can be organised in a package structure that reflects your requirements hierarchy. Note that this means that they may not reflect the package structure in your application, as is usually done for unit and integration tests.
 
 A simple two-level hierarchy is illustrated here:
 ```
@@ -392,6 +396,20 @@ serenity.test.root=com.acme.myapp.specs
 ```
 
 In this case, the Serenity living documentation will treat the JUnit test cases ("Adding New Items", "Deleting Items" etc.) as Stories, and the packages directly underneath the `com.acme.myapp.specs` package ("Multiple Todo Lists", "Sharing Lists" etc.) as Features.
+
+#### Annotation-Based Hierarchy
+
+Starting with Serenity 5.2.5, you can also define the requirements hierarchy directly using the `@Epic`, `@Feature`, and `@Story` annotations on your test classes:
+
+```java
+@Feature("Managing Todos")
+@Story("Complete todo items")
+class WhenCompletingTodosTest {
+    // ...
+}
+```
+
+This creates a requirements hierarchy based on the annotation values rather than the package structure. See [Annotation-Based Requirements](/docs/guide/annotation-requirements) for a comprehensive guide with examples.
 
 ### Requirements Hierarchies for Cucumber
 
