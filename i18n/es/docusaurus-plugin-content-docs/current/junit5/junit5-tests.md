@@ -381,6 +381,43 @@ class AuthenticationTests {
 }
 ```
 
+#### Clases Anidadas y Anotaciones de Requisitos
+
+Las clases `@Nested` heredan las anotaciones `@Epic`, `@Feature` y `@Story` de su clase contenedora. Esto te permite definir la funcionalidad una vez en la clase externa y asignar historias individuales a cada clase anidada:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@Feature("User Authentication")
+class AuthenticationTests {
+
+    @Nested
+    @Story("Login")
+    class WhenLoggingIn {
+        @Test
+        void shouldSucceedWithValidCredentials() { /* ... */ }
+    }
+
+    @Nested
+    @Story("Logout")
+    class WhenLoggingOut {
+        @Test
+        void shouldClearSession() { /* ... */ }
+    }
+}
+```
+
+Esto produce la jerarquía de requisitos:
+
+```
+User Authentication (feature)
+├── Login (story)
+│   └── Should succeed with valid credentials
+└── Logout (story)
+    └── Should clear session
+```
+
+Consulta [Requisitos Basados en Anotaciones](/docs/guide/annotation-requirements#heredando-anotaciones-en-clases-nested-de-junit-5) para los detalles completos sobre la herencia de anotaciones con clases anidadas.
+
 ## Pruebas parametrizadas
 
 ### Pruebas parametrizadas simples

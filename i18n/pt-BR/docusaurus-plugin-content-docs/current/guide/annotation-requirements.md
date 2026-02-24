@@ -282,6 +282,117 @@ abstract class BaseTest { }
 class SpecificTest extends BaseTest { }
 ```
 
+## Herdando Anotações em Classes @Nested do JUnit 5
+
+Ao usar classes internas `@Nested` do JUnit 5, as anotações da classe envolvente (externa) são herdadas pela classe aninhada. Esta é uma forma natural de definir a funcionalidade ou épico uma vez na classe externa e depois definir histórias individuais em cada classe aninhada:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@Feature("Product Catalog")
+class ProductCatalogTests {
+
+    @Nested
+    @Story("Searching by keyword")
+    class WhenSearchingByKeyword {
+
+        @Test
+        void shouldFindProductsByName() { /* ... */ }
+
+        @Test
+        void shouldReturnEmptyResultsForUnknownKeyword() { /* ... */ }
+    }
+
+    @Nested
+    @Story("Browsing by category")
+    class WhenBrowsingByCategory {
+
+        @Test
+        void shouldListProductsInCategory() { /* ... */ }
+    }
+}
+```
+
+Isso produz a seguinte hierarquia no relatório de requisitos:
+
+```
+Product Catalog (feature)
+├── Searching by keyword (story)
+│   ├── Should find products by name
+│   └── Should return empty results for unknown keyword
+└── Browsing by category (story)
+    └── Should list products in category
+```
+
+### Hierarquia Completa de Três Níveis com Classes Aninhadas
+
+Você pode combinar `@Epic` e `@Feature` na classe externa com `@Story` nas classes aninhadas para a hierarquia completa:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@Epic("E-Commerce Platform")
+@Feature("Shopping Cart")
+class ShoppingCartTests {
+
+    @Nested
+    @Story("Add item to cart")
+    class WhenAddingItems {
+        @Test
+        void shouldAddSingleItem() { /* ... */ }
+    }
+
+    @Nested
+    @Story("Remove item from cart")
+    class WhenRemovingItems {
+        @Test
+        void shouldRemoveSelectedItem() { /* ... */ }
+    }
+}
+```
+
+Isso produz:
+
+```
+E-Commerce Platform (epic)
+└── Shopping Cart (feature)
+    ├── Add item to cart (story)
+    │   └── Should add single item
+    └── Remove item from cart (story)
+        └── Should remove selected item
+```
+
+### Sobrescrevendo Anotações em Classes Aninhadas
+
+Se uma classe aninhada redefine uma anotação que já está presente na classe externa, a anotação da classe aninhada tem precedência:
+
+```java
+@Feature("Product Catalog")
+class ProductTests {
+
+    @Nested
+    @Feature("Checkout")  // Sobrescreve "Product Catalog"
+    @Story("Express checkout")
+    class WhenUsingExpressCheckout { /* ... */ }
+}
+```
+
+### Usando @DisplayName como Nome da História em Classes Aninhadas
+
+Quando uma classe aninhada não tem anotação `@Story`, seu `@DisplayName` é usado como nome da história, assim como para classes de nível superior:
+
+```java
+@Feature("Product Catalog")
+class ProductCatalogTests {
+
+    @Nested
+    @DisplayName("Searching by keyword")  // Usado como nome da história
+    class WhenSearchingByKeyword { /* ... */ }
+}
+```
+
+:::tip Classes aninhadas vs classes de teste separadas
+Use classes `@Nested` quando quiser agrupar histórias relacionadas sob uma única classe externa e compartilhar código de configuração. Use classes de teste separadas de nível superior quando as histórias forem mais independentes. Ambas as abordagens produzem a mesma hierarquia de requisitos nos relatórios.
+:::
+
 ## Anotações vs Requisitos Baseados em Pacotes
 
 Os requisitos baseados em anotações **substituem** a hierarquia padrão baseada em pacotes para a classe de teste anotada. Isso significa que você pode misturar ambas as abordagens no mesmo projeto:

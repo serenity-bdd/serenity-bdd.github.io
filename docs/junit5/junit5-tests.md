@@ -381,6 +381,43 @@ class AuthenticationTests {
 }
 ```
 
+#### Nested Classes and Requirements Annotations
+
+`@Nested` classes inherit `@Epic`, `@Feature`, and `@Story` annotations from their enclosing class. This lets you define the feature once on the outer class and assign individual stories to each nested class:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@Feature("User Authentication")
+class AuthenticationTests {
+
+    @Nested
+    @Story("Login")
+    class WhenLoggingIn {
+        @Test
+        void shouldSucceedWithValidCredentials() { /* ... */ }
+    }
+
+    @Nested
+    @Story("Logout")
+    class WhenLoggingOut {
+        @Test
+        void shouldClearSession() { /* ... */ }
+    }
+}
+```
+
+This produces the requirements hierarchy:
+
+```
+User Authentication (feature)
+├── Login (story)
+│   └── Should succeed with valid credentials
+└── Logout (story)
+    └── Should clear session
+```
+
+See [Annotation-Based Requirements](/docs/guide/annotation-requirements#inheriting-annotations-in-junit-5-nested-classes) for the full details on annotation inheritance with nested classes.
+
 ## Parameterized Tests
 
 ### Simple Parameterized Tests

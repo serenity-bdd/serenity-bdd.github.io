@@ -282,6 +282,117 @@ abstract class BaseTest { }
 class SpecificTest extends BaseTest { }
 ```
 
+## Heredando Anotaciones en Clases @Nested de JUnit 5
+
+Al usar clases internas `@Nested` de JUnit 5, las anotaciones de la clase contenedora (externa) son heredadas por la clase anidada. Esta es una forma natural de definir la funcionalidad o épica una sola vez en la clase externa y luego definir historias individuales en cada clase anidada:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@Feature("Product Catalog")
+class ProductCatalogTests {
+
+    @Nested
+    @Story("Searching by keyword")
+    class WhenSearchingByKeyword {
+
+        @Test
+        void shouldFindProductsByName() { /* ... */ }
+
+        @Test
+        void shouldReturnEmptyResultsForUnknownKeyword() { /* ... */ }
+    }
+
+    @Nested
+    @Story("Browsing by category")
+    class WhenBrowsingByCategory {
+
+        @Test
+        void shouldListProductsInCategory() { /* ... */ }
+    }
+}
+```
+
+Esto produce la siguiente jerarquía en el informe de requisitos:
+
+```
+Product Catalog (feature)
+├── Searching by keyword (story)
+│   ├── Should find products by name
+│   └── Should return empty results for unknown keyword
+└── Browsing by category (story)
+    └── Should list products in category
+```
+
+### Jerarquía Completa de Tres Niveles con Clases Anidadas
+
+Puedes combinar `@Epic` y `@Feature` en la clase externa con `@Story` en las clases anidadas para la jerarquía completa:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@Epic("E-Commerce Platform")
+@Feature("Shopping Cart")
+class ShoppingCartTests {
+
+    @Nested
+    @Story("Add item to cart")
+    class WhenAddingItems {
+        @Test
+        void shouldAddSingleItem() { /* ... */ }
+    }
+
+    @Nested
+    @Story("Remove item from cart")
+    class WhenRemovingItems {
+        @Test
+        void shouldRemoveSelectedItem() { /* ... */ }
+    }
+}
+```
+
+Esto produce:
+
+```
+E-Commerce Platform (epic)
+└── Shopping Cart (feature)
+    ├── Add item to cart (story)
+    │   └── Should add single item
+    └── Remove item from cart (story)
+        └── Should remove selected item
+```
+
+### Sobrescribiendo Anotaciones en Clases Anidadas
+
+Si una clase anidada redefine una anotación que ya está presente en la clase externa, la anotación de la clase anidada tiene prioridad:
+
+```java
+@Feature("Product Catalog")
+class ProductTests {
+
+    @Nested
+    @Feature("Checkout")  // Sobrescribe "Product Catalog"
+    @Story("Express checkout")
+    class WhenUsingExpressCheckout { /* ... */ }
+}
+```
+
+### Usando @DisplayName como Nombre de Historia en Clases Anidadas
+
+Cuando una clase anidada no tiene anotación `@Story`, su `@DisplayName` se usa como nombre de historia, igual que para las clases de nivel superior:
+
+```java
+@Feature("Product Catalog")
+class ProductCatalogTests {
+
+    @Nested
+    @DisplayName("Searching by keyword")  // Se usa como nombre de historia
+    class WhenSearchingByKeyword { /* ... */ }
+}
+```
+
+:::tip Clases anidadas vs clases de prueba separadas
+Usa clases `@Nested` cuando quieras agrupar historias relacionadas bajo una sola clase externa y compartir código de configuración. Usa clases de prueba separadas de nivel superior cuando las historias sean más independientes. Ambos enfoques producen la misma jerarquía de requisitos en los informes.
+:::
+
 ## Anotaciones vs Requisitos Basados en Paquetes
 
 Los requisitos basados en anotaciones **sobrescriben** la jerarquía basada en paquetes por defecto para la clase de prueba anotada. Esto significa que puedes mezclar ambos enfoques en el mismo proyecto:

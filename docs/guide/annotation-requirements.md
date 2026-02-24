@@ -282,6 +282,117 @@ abstract class BaseTest { }
 class SpecificTest extends BaseTest { }
 ```
 
+## Inheriting Annotations in JUnit 5 @Nested Classes
+
+When using JUnit 5 `@Nested` inner classes, annotations on the enclosing (outer) class are inherited by the nested class. This is a natural way to define the feature or epic once on the outer class and then define individual stories in each nested class:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@Feature("Product Catalog")
+class ProductCatalogTests {
+
+    @Nested
+    @Story("Searching by keyword")
+    class WhenSearchingByKeyword {
+
+        @Test
+        void shouldFindProductsByName() { /* ... */ }
+
+        @Test
+        void shouldReturnEmptyResultsForUnknownKeyword() { /* ... */ }
+    }
+
+    @Nested
+    @Story("Browsing by category")
+    class WhenBrowsingByCategory {
+
+        @Test
+        void shouldListProductsInCategory() { /* ... */ }
+    }
+}
+```
+
+This produces the following hierarchy in the requirements report:
+
+```
+Product Catalog (feature)
+├── Searching by keyword (story)
+│   ├── Should find products by name
+│   └── Should return empty results for unknown keyword
+└── Browsing by category (story)
+    └── Should list products in category
+```
+
+### Full Three-Level Hierarchy with Nested Classes
+
+You can combine `@Epic` and `@Feature` on the outer class with `@Story` on nested classes for the full hierarchy:
+
+```java
+@ExtendWith(SerenityJUnit5Extension.class)
+@Epic("E-Commerce Platform")
+@Feature("Shopping Cart")
+class ShoppingCartTests {
+
+    @Nested
+    @Story("Add item to cart")
+    class WhenAddingItems {
+        @Test
+        void shouldAddSingleItem() { /* ... */ }
+    }
+
+    @Nested
+    @Story("Remove item from cart")
+    class WhenRemovingItems {
+        @Test
+        void shouldRemoveSelectedItem() { /* ... */ }
+    }
+}
+```
+
+This produces:
+
+```
+E-Commerce Platform (epic)
+└── Shopping Cart (feature)
+    ├── Add item to cart (story)
+    │   └── Should add single item
+    └── Remove item from cart (story)
+        └── Should remove selected item
+```
+
+### Overriding Annotations in Nested Classes
+
+If a nested class redefines an annotation that is already present on the outer class, the nested class annotation takes precedence:
+
+```java
+@Feature("Product Catalog")
+class ProductTests {
+
+    @Nested
+    @Feature("Checkout")  // Overrides "Product Catalog"
+    @Story("Express checkout")
+    class WhenUsingExpressCheckout { /* ... */ }
+}
+```
+
+### Using @DisplayName as Story Name in Nested Classes
+
+When a nested class has no `@Story` annotation, its `@DisplayName` is used as the story name, just as it is for top-level classes:
+
+```java
+@Feature("Product Catalog")
+class ProductCatalogTests {
+
+    @Nested
+    @DisplayName("Searching by keyword")  // Used as the story name
+    class WhenSearchingByKeyword { /* ... */ }
+}
+```
+
+:::tip Nested classes vs separate test classes
+Use `@Nested` classes when you want to group related stories under a single outer class and share setup code. Use separate top-level test classes when the stories are more independent. Both approaches produce the same requirements hierarchy in the reports.
+:::
+
 ## Annotations vs Package-Based Requirements
 
 Annotation-based requirements **override** the default package-based hierarchy for the annotated test class. This means you can mix both approaches in the same project:
