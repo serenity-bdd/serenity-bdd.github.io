@@ -399,7 +399,7 @@ In this case, the Serenity living documentation will treat the JUnit test cases 
 
 #### Annotation-Based Hierarchy
 
-Starting with Serenity 5.3.0, you can also define the requirements hierarchy directly using the `@Epic`, `@Feature`, and `@Story` annotations on your test classes:
+Starting with Serenity 5.3.1, you can also define the requirements hierarchy directly using the `@Epic`, `@Feature`, and `@Story` annotations on your test classes:
 
 ```java
 @Feature("Managing Todos")

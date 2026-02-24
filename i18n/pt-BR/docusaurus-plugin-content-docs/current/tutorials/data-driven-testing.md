@@ -11,7 +11,7 @@ Testes orientados a dados permitem que voce execute a mesma logica de teste com 
 ## Pre-requisitos
 
 - Java 17 ou superior
-- Serenity BDD 5.3.0 ou superior
+- Serenity BDD 5.3.1 ou superior
 - JUnit 5 6.0.1 ou superior (para exemplos JUnit)
 - Cucumber 7.33.0 ou superior (para exemplos Cucumber)
 

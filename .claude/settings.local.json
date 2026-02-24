@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(jar tf:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(cd:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(cat:*)",
+      "Bash(gh issue:*)",
+      "Bash(export:*)",
+      "WebSearch",
+      "WebFetch(domain:cve.circl.lu)",
+      "WebFetch(domain:www.cvedetails.com)",
+      "WebFetch(domain:nvd.nist.gov)",
+      "Bash(echo gh not installed:*)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:allurereport.org)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:sarkershantonu.github.io)",
+      "WebFetch(domain:qameta.io)"
+    ]
+  }
+}

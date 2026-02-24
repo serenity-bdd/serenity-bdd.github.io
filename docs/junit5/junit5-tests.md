@@ -36,7 +36,7 @@ Add the following to your `pom.xml`:
 
 ```xml
 <properties>
-    <serenity.version>5.3.0</serenity.version>
+    <serenity.version>5.3.1</serenity.version>
     <junit.version>6.0.3</junit.version>
 </properties>
 
@@ -95,9 +95,9 @@ For Gradle, add to your `build.gradle`:
 
 ```groovy
 dependencies {
-    testImplementation "net.serenity-bdd:serenity-junit5:5.3.0"
-    testImplementation "net.serenity-bdd:serenity-screenplay:5.3.0"
-    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:5.3.0"
+    testImplementation "net.serenity-bdd:serenity-junit5:5.3.1"
+    testImplementation "net.serenity-bdd:serenity-screenplay:5.3.1"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:5.3.1"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:6.0.3"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:6.0.3"
