@@ -8,7 +8,7 @@ sidebar_position: 7
 
 O Serenity BDD organiza os resultados dos testes em uma _hierarquia de requisitos_, que fornece a estrutura para os relatórios de Documentação Viva. Por padrão, essa hierarquia é derivada da estrutura de pacotes (para testes JUnit) ou da estrutura de diretórios (para arquivos de feature do Cucumber).
 
-A partir do Serenity 5.2.5, você pode definir a hierarquia de requisitos diretamente usando **anotações** nas suas classes de teste. Isso fornece uma forma simples, explícita e declarativa de organizar seus testes em uma estrutura significativa, sem precisar depender de convenções de nomenclatura de pacotes.
+A partir do Serenity 5.3.0, você pode definir a hierarquia de requisitos diretamente usando **anotações** nas suas classes de teste. Isso fornece uma forma simples, explícita e declarativa de organizar seus testes em uma estrutura significativa, sem precisar depender de convenções de nomenclatura de pacotes.
 
 ## A Hierarquia de Requisitos
 

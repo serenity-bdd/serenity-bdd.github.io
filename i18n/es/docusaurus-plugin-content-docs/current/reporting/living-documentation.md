@@ -399,7 +399,7 @@ En este caso, la documentación viva de Serenity tratará los casos de prueba JU
 
 #### Jerarquía Basada en Anotaciones
 
-A partir de Serenity 5.2.5, también puedes definir la jerarquía de requisitos directamente usando las anotaciones `@Epic`, `@Feature` y `@Story` en tus clases de prueba:
+A partir de Serenity 5.3.0, también puedes definir la jerarquía de requisitos directamente usando las anotaciones `@Epic`, `@Feature` y `@Story` en tus clases de prueba:
 
 ```java
 @Feature("Managing Todos")

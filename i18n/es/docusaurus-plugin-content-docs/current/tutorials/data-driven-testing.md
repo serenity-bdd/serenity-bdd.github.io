@@ -11,7 +11,7 @@ Las pruebas basadas en datos te permiten ejecutar la misma lógica de prueba con
 ## Prerrequisitos
 
 - Java 17 o superior
-- Serenity BDD 5.2.2 o superior
+- Serenity BDD 5.3.0 o superior
 - JUnit 5 6.0.1 o superior (para ejemplos de JUnit)
 - Cucumber 7.33.0 o superior (para ejemplos de Cucumber)
 

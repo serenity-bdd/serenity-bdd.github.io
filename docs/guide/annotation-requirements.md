@@ -8,7 +8,7 @@ sidebar_position: 7
 
 Serenity BDD organises test results into a _requirements hierarchy_, which provides the structure for the Living Documentation reports. By default, this hierarchy is derived from the package structure (for JUnit tests) or from the directory structure (for Cucumber feature files).
 
-Starting with Serenity 5.2.5, you can define the requirements hierarchy directly using **annotations** on your test classes. This provides a simple, explicit, and declarative way to organise your tests into a meaningful structure, without having to rely on package naming conventions.
+Starting with Serenity 5.3.0, you can define the requirements hierarchy directly using **annotations** on your test classes. This provides a simple, explicit, and declarative way to organise your tests into a meaningful structure, without having to rely on package naming conventions.
 
 ## The Requirements Hierarchy
 

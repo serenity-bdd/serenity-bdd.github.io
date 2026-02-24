@@ -399,7 +399,7 @@ Neste caso, a documentação viva do Serenity tratará os casos de teste JUnit (
 
 #### Hierarquia Baseada em Anotações
 
-A partir do Serenity 5.2.5, você também pode definir a hierarquia de requisitos diretamente usando as anotações `@Epic`, `@Feature` e `@Story` nas suas classes de teste:
+A partir do Serenity 5.3.0, você também pode definir a hierarquia de requisitos diretamente usando as anotações `@Epic`, `@Feature` e `@Story` nas suas classes de teste:
 
 ```java
 @Feature("Managing Todos")
