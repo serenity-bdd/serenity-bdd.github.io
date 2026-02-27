@@ -583,7 +583,9 @@ Configure opções do navegador Playwright via propriedades do sistema ou progra
 # serenity.properties
 playwright.browsertype=chromium
 playwright.headless=true
-playwright.slowMo=100
+playwright.channel=chrome
+playwright.baseurl=https://staging.example.com
+playwright.slowmo=200
 ```
 
 Ou programaticamente com opções de lançamento explicitas:
@@ -621,7 +623,7 @@ actor.can(
 );
 ```
 
-As propriedades do Serenity (`playwright.headless`, `playwright.browsertype`) são usadas como valores padrão quando a opção correspondente não esta definida no factory.
+As propriedades do Serenity (`playwright.headless`, `playwright.browsertype`, `playwright.channel`, `playwright.baseurl`, `playwright.slowmo`) são usadas como valores padrão quando a opção correspondente não esta definida no factory.
 
 ### Configuração de Captura de Tela
 

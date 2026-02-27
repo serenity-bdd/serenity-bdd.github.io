@@ -517,6 +517,9 @@ target/site/serenity/index.html
 # Browser settings
 playwright.browsertype=chromium
 playwright.headless=true
+playwright.channel=chrome
+playwright.baseurl=https://staging.example.com
+playwright.slowmo=200
 
 # Screenshot settings
 serenity.take.screenshots=FOR_FAILURES

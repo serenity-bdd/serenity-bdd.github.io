@@ -254,6 +254,35 @@ Run with visible browser:
 mvn verify -Dplaywright.headless=false
 ```
 
+### Serenity Playwright Properties
+
+The following properties can be set in `serenity.properties`, `serenity.conf`, or as `-D` system property flags. They act as fallbacks — values set programmatically (via `Options`, `LaunchOptions`, or `NewContextOptions`) always take precedence.
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `playwright.browsertype` | `String` | Browser engine: `"chromium"`, `"firefox"`, or `"webkit"` |
+| `playwright.headless` | `Boolean` | Whether to run the browser in headless mode |
+| `playwright.channel` | `String` | Browser channel (e.g. `"chrome"`, `"msedge"`) |
+| `playwright.baseurl` | `String` | Base URL for `page.navigate()` with relative paths |
+| `playwright.slowmo` | `Double` | Slows down Playwright operations by the given milliseconds |
+| `playwright.tracing` | `Boolean` | Enable Playwright tracing for the trace viewer |
+
+Example using command-line flags:
+
+```bash
+mvn verify -Dplaywright.channel=chrome -Dplaywright.baseurl=https://staging.example.com -Dplaywright.slowmo=200
+```
+
+Or in `serenity.properties`:
+
+```properties
+playwright.browsertype=chromium
+playwright.headless=false
+playwright.channel=chrome
+playwright.baseurl=https://staging.example.com
+playwright.slowmo=200
+```
+
 ### Browser Context Options
 
 Configure browser context for each test:

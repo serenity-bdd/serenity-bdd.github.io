@@ -125,6 +125,35 @@ Execute com navegador visível:
 mvn verify -Dplaywright.headless=false
 ```
 
+### Propriedades do Serenity para Playwright
+
+As seguintes propriedades podem ser configuradas em `serenity.properties`, `serenity.conf`, ou como flags `-D` de propriedades do sistema. Elas atuam como valores padrão — valores configurados programaticamente (via `Options`, `LaunchOptions`, ou `NewContextOptions`) sempre têm prioridade.
+
+| Propriedade | Tipo | Descrição |
+|-------------|------|-----------|
+| `playwright.browsertype` | `String` | Motor do navegador: `"chromium"`, `"firefox"`, ou `"webkit"` |
+| `playwright.headless` | `Boolean` | Se o navegador executa em modo headless |
+| `playwright.channel` | `String` | Canal do navegador (ex. `"chrome"`, `"msedge"`) |
+| `playwright.baseurl` | `String` | URL base para `page.navigate()` com caminhos relativos |
+| `playwright.slowmo` | `Double` | Desacelera as operações do Playwright pelos milissegundos dados |
+| `playwright.tracing` | `Boolean` | Habilita o tracing do Playwright para o visualizador de traces |
+
+Exemplo usando flags de linha de comando:
+
+```bash
+mvn verify -Dplaywright.channel=chrome -Dplaywright.baseurl=https://staging.example.com -Dplaywright.slowmo=200
+```
+
+Ou em `serenity.properties`:
+
+```properties
+playwright.browsertype=chromium
+playwright.headless=false
+playwright.channel=chrome
+playwright.baseurl=https://staging.example.com
+playwright.slowmo=200
+```
+
 ### Opções de Contexto do Navegador
 
 Configure o contexto do navegador para cada teste:

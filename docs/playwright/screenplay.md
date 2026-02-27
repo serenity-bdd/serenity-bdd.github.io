@@ -664,7 +664,9 @@ Configure Playwright browser options via system properties or programmatically:
 # serenity.properties
 playwright.browsertype=chromium
 playwright.headless=true
-playwright.slowMo=100
+playwright.channel=chrome
+playwright.baseurl=https://staging.example.com
+playwright.slowmo=200
 ```
 
 Or programmatically with explicit launch options:
@@ -702,7 +704,7 @@ actor.can(
 );
 ```
 
-Serenity properties (`playwright.headless`, `playwright.browsertype`) are used as fallbacks when the corresponding option is not set in the factory.
+Serenity properties (`playwright.headless`, `playwright.browsertype`, `playwright.channel`, `playwright.baseurl`, `playwright.slowmo`) are used as fallbacks when the corresponding option is not set in the factory.
 
 ### Screenshot Configuration
 
