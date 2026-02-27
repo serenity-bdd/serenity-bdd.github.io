@@ -24,7 +24,7 @@ Todos los ejemplos usan APIs de prueba públicas reales que puedes usar para pra
 
 ```xml
 <properties>
-    <serenity.version>5.3.1</serenity.version>
+    <serenity.version>5.3.3</serenity.version>
 </properties>
 
 <dependencies>
@@ -74,10 +74,10 @@ Todos los ejemplos usan APIs de prueba públicas reales que puedes usar para pra
 
 ```groovy
 dependencies {
-    testImplementation "net.serenity-bdd:serenity-core:5.3.1"
-    testImplementation "net.serenity-bdd:serenity-rest-assured:5.3.1"
-    testImplementation "net.serenity-bdd:serenity-screenplay-rest:5.3.1"
-    testImplementation "net.serenity-bdd:serenity-junit5:5.3.1"
+    testImplementation "net.serenity-bdd:serenity-core:5.3.3"
+    testImplementation "net.serenity-bdd:serenity-rest-assured:5.3.3"
+    testImplementation "net.serenity-bdd:serenity-screenplay-rest:5.3.3"
+    testImplementation "net.serenity-bdd:serenity-junit5:5.3.3"
     testImplementation "io.rest-assured:json-schema-validator:5.3.2"
 }
 ```

@@ -32,7 +32,7 @@ Agrega las siguientes dependencias a tu `pom.xml`:
 
 ```xml
 <properties>
-    <serenity.version>5.3.1</serenity.version>
+    <serenity.version>5.3.3</serenity.version>
     <cucumber.version>7.33.0</cucumber.version>
     <junit.version>6.0.1</junit.version>
 </properties>
@@ -70,7 +70,7 @@ Para Gradle, agrega a tu `build.gradle`:
 
 ```groovy
 dependencies {
-    testImplementation "net.serenity-bdd:serenity-cucumber:5.3.1"
+    testImplementation "net.serenity-bdd:serenity-cucumber:5.3.3"
     testImplementation "io.cucumber:cucumber-junit-platform-engine:7.33.0"
     testImplementation "org.junit.platform:junit-platform-suite:6.0.1"
 }

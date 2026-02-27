@@ -24,7 +24,7 @@ Adicione as seguintes dependências ao seu `pom.xml`:
 
 ```xml
 <properties>
-    <serenity.version>5.1.0</serenity.version>
+    <serenity.version>5.3.3</serenity.version>
     <playwright.version>1.57.0</playwright.version>
     <junit.version>6.0.1</junit.version>
 </properties>

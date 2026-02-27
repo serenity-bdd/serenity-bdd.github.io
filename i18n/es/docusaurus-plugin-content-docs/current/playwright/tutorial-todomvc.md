@@ -34,7 +34,7 @@ Primero, crea un proyecto Maven con estas dependencias en `pom.xml`:
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <serenity.version>5.1.0</serenity.version>
+        <serenity.version>5.3.3</serenity.version>
         <playwright.version>1.57.0</playwright.version>
     </properties>
 
