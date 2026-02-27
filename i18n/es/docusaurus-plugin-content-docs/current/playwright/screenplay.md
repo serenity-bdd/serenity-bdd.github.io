@@ -586,7 +586,7 @@ playwright.headless=true
 playwright.slowMo=100
 ```
 
-O programaticamente:
+O programaticamente con opciones de lanzamiento explicitas:
 
 ```java
 actor.can(
@@ -595,6 +595,33 @@ actor.can(
         .withBrowserType("firefox")
 );
 ```
+
+### Uso de un OptionsFactory
+
+Si ya tienes un `OptionsFactory` de Playwright (por ejemplo, el mismo que usas con `@UsePlaywright`), puedes reutilizarlo con Screenplay a traves de `withOptions(OptionsFactory)`. Esto aplica el conjunto completo de Options: tipo de navegador, opciones de lanzamiento, opciones de contexto, `testIdAttribute`, `wsEndpoint`, etc.:
+
+```java
+public class ChromeHeadlessOptions implements OptionsFactory {
+    @Override
+    public Options getOptions() {
+        return new Options()
+            .setHeadless(true)
+            .setChannel("chrome")
+            .setContextOptions(
+                new Browser.NewContextOptions()
+                    .setViewportSize(1920, 1080)
+            )
+            .setTestIdAttribute("data-test");
+    }
+}
+
+// En la configuracion del test
+actor.can(
+    BrowseTheWebWithPlaywright.withOptions(new ChromeHeadlessOptions())
+);
+```
+
+Las propiedades de Serenity (`playwright.headless`, `playwright.browsertype`) se utilizan como valores por defecto cuando la opcion correspondiente no esta definida en el factory.
 
 ### Configuracion de capturas de pantalla
 
