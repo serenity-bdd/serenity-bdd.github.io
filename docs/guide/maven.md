@@ -9,13 +9,64 @@ Maven is the recommended build tool for Serenity BDD.
 
 You can add Serenity BDD to an existing Maven project by adding the corresponding dependencies to your `pom.xml` file.
 
-## Recommended Versions
+## Using the Serenity BDD BOM (Recommended)
 
-First, define the recommended versions in your properties section:
+The simplest way to manage Serenity BDD dependencies is to use the **Bill of Materials (BOM)**. The BOM ensures that all Serenity modules use the same version, so you don't need to specify version numbers on each individual dependency.
+
+Add the BOM to your `<dependencyManagement>` section:
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-bom</artifactId>
+            <version>5.3.6</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+
+Then declare your Serenity dependencies **without version tags**:
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>net.serenity-bdd</groupId>
+        <artifactId>serenity-core</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>net.serenity-bdd</groupId>
+        <artifactId>serenity-junit5</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>net.serenity-bdd</groupId>
+        <artifactId>serenity-screenplay-webdriver</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>net.serenity-bdd</groupId>
+        <artifactId>serenity-ensure</artifactId>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+```
+
+:::tip Upgrading
+When a new version of Serenity BDD is released, you only need to update the single version number in the BOM import. All module versions will be updated automatically.
+:::
+
+## Managing Versions Manually
+
+If you prefer not to use the BOM, you can manage versions manually by defining them in your properties section:
 
 ```xml
 <properties>
-    <serenity.version>5.3.3</serenity.version>
+    <serenity.version>5.3.6</serenity.version>
     <junit5.version>6.0.3</junit5.version>
     <cucumber.version>7.34.2</cucumber.version>
 </properties>
@@ -327,3 +378,242 @@ You can ensure that your feature files are correctly configured before kicking o
     </executions>
 </plugin>
 ```
+
+## Complete Example: JUnit 5 with BOM
+
+Here is a complete `pom.xml` for a Serenity BDD project using JUnit 5, the Screenplay pattern, and the BOM:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>my-serenity-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <serenity.version>5.3.6</serenity.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-bom</artifactId>
+                <version>${serenity.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Serenity core and JUnit 5 runner -->
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Screenplay pattern -->
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-screenplay</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-screenplay-webdriver</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-ensure</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.2</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>${serenity.version}</version>
+                <executions>
+                    <execution>
+                        <id>serenity-reports</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+## Complete Example: Cucumber with BOM
+
+Here is a complete `pom.xml` for a Serenity BDD project using Cucumber, JUnit 5, and the BOM:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>my-serenity-cucumber-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <serenity.version>5.3.6</serenity.version>
+        <cucumber.version>7.34.2</cucumber.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-bom</artifactId>
+                <version>${serenity.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Serenity core and Cucumber integration -->
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-cucumber</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Screenplay pattern -->
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-screenplay</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-screenplay-webdriver</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-ensure</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Cucumber JUnit 5 runner -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.2</version>
+                <configuration>
+                    <includes>
+                        <include>**/CucumberTestSuite.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>${serenity.version}</version>
+                <executions>
+                    <execution>
+                        <id>serenity-reports</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+## Available BOM Modules
+
+The `serenity-bom` includes version-managed entries for all published Serenity BDD modules:
+
+| Category | Modules |
+| -------- | ------- |
+| **Core** | `serenity-core`, `serenity-model`, `serenity-report-resources` |
+| **Test Runners** | `serenity-junit5`, `serenity-junit` (deprecated), `serenity-cucumber` |
+| **Screenplay** | `serenity-screenplay`, `serenity-screenplay-webdriver`, `serenity-screenplay-rest`, `serenity-screenplay-playwright` |
+| **Assertions** | `serenity-ensure`, `serenity-assertions` |
+| **REST** | `serenity-rest-assured` |
+| **Reporting** | `serenity-reports`, `serenity-single-page-report`, `serenity-json-summary-report`, `serenity-navigator-report` |
+| **Integrations** | `serenity-spring`, `serenity-playwright` |
+| **Cloud Providers** | `serenity-browserstack`, `serenity-saucelabs`, `serenity-lambdatest`, `serenity-selenoid`, `serenity-bitbar`, `serenity-zalenium`, `serenity-crossbrowsertesting` |
+| **Tools** | `serenity-browsermob-plugin`, `serenity-shutterbug`, `serenity-cli`, `serenity-ant-task` |
+| **JIRA** | `serenity-jira-plugin`, `serenity-jira-requirements-provider` |
