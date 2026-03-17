@@ -21,7 +21,7 @@ Add the BOM to your `<dependencyManagement>` section:
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-bom</artifactId>
-            <version>5.3.6</version>
+            <version>5.3.7</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -66,7 +66,7 @@ If you prefer not to use the BOM, you can manage versions manually by defining t
 
 ```xml
 <properties>
-    <serenity.version>5.3.6</serenity.version>
+    <serenity.version>5.3.7</serenity.version>
     <junit5.version>6.0.3</junit5.version>
     <cucumber.version>7.34.2</cucumber.version>
 </properties>
@@ -398,7 +398,7 @@ Here is a complete `pom.xml` for a Serenity BDD project using JUnit 5, the Scree
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <serenity.version>5.3.6</serenity.version>
+        <serenity.version>5.3.7</serenity.version>
     </properties>
 
     <dependencyManagement>
@@ -502,7 +502,7 @@ Here is a complete `pom.xml` for a Serenity BDD project using Cucumber, JUnit 5,
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <serenity.version>5.3.6</serenity.version>
+        <serenity.version>5.3.7</serenity.version>
         <cucumber.version>7.34.2</cucumber.version>
     </properties>
 

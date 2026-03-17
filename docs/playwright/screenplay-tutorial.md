@@ -22,7 +22,7 @@ Create a Maven project with these dependencies:
 
 ```xml
 <properties>
-    <serenity.version>5.3.3</serenity.version>
+    <serenity.version>5.3.7</serenity.version>
     <playwright.version>1.58.0</playwright.version>
 </properties>
 

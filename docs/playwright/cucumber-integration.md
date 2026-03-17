@@ -18,7 +18,7 @@ Add the following dependencies to your `pom.xml`:
 
 ```xml
 <properties>
-    <serenity.version>5.3.3</serenity.version>
+    <serenity.version>5.3.7</serenity.version>
     <playwright.version>1.58.0</playwright.version>
     <cucumber.version>7.34.2</cucumber.version>
     <junit.version>5.11.4</junit.version>
