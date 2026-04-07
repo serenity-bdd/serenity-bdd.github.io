@@ -198,6 +198,28 @@ aster.attemptsTo(
 );
 ```
 
+### Assertions with Questions and predicates
+
+You can also use a lambda predicate directly with a `Question` using the `Ensure.that(question, predicate)` form. This is useful when you need to check a value that comes from the system under test using custom logic:
+
+```java
+aster.attemptsTo(
+    Ensure.that(TheColor.displayed(), color -> color.startsWith("R"))
+);
+```
+
+You can provide a description for clearer reporting:
+
+```java
+aster.attemptsTo(
+    Ensure.that("the color starts with R",
+                TheColor.displayed(),
+                color -> color.startsWith("R"))
+);
+```
+
+This form fully supports [soft assertions](#soft-assertions), so all failures will be collected and reported together when soft assertions are enabled.
+
 ## Negative assertions
 
 You can negate an `Ensure.that()` statement simply by including the
@@ -696,6 +718,46 @@ aster.attemptsTo(
         Ensure.thatTheAnswersTo(colors()).contains("red")
 );
 ```
+
+## Soft Assertions
+
+By default, an `Ensure` assertion that fails will immediately throw an error and stop the test. Sometimes you want to check multiple things and report all failures together rather than stopping at the first one. You can do this with **soft assertions**.
+
+Enable soft assertions before your checks, and report them afterwards:
+
+```java
+Ensure.enableSoftAssertions();
+
+aster.attemptsTo(
+    Ensure.that(name).isEqualTo("Alice"),
+    Ensure.that(age).isGreaterThan(18),
+    Ensure.that(status).isEqualTo("ACTIVE")
+);
+
+Ensure.reportSoftAssertions(); // throws with all failures combined
+```
+
+When soft assertions are enabled, each failed `Ensure` statement records the error but allows execution to continue. When `reportSoftAssertions()` is called, all accumulated errors are thrown together as a single assertion error with a numbered list of failures.
+
+In JUnit tests, you would typically enable soft assertions in a `@Before` method and report them in an `@After` method:
+
+```java
+@Before
+public void enableSoftAsserts() {
+    Ensure.enableSoftAssertions();
+}
+
+@After
+public void reportSoftAsserts() {
+    Ensure.reportSoftAssertions();
+}
+```
+
+All `Ensure` assertion forms support soft assertions, including:
+- Type-specific assertions: `Ensure.that(value).isEqualTo(...)`
+- Lambda predicates: `Ensure.that(value).matches(...)`
+- Question-based assertions: `Ensure.that(question).isEqualTo(...)`
+- Question with predicate: `Ensure.that(question, predicate)`
 
 ## Reporting and hiding Ensure steps
 
