@@ -275,7 +275,8 @@ Display the pie charts on the dashboard by default. If this is set to false, the
 ### dashboard.tag.list
 If set, this will define the list of tag types to appear on the dashboard screens
 
-*dashboard.excluded.tag.list*::If set, this will define the list of tag types to be excluded from the dashboard screens
+### dashboard.excluded.tag.list
+If set, this will define the list of tag types to be excluded from the dashboard screens
 
 ### json.pretty.printing
 Format the JSON test outcomes nicely. "true" or "false", turned off by default.
