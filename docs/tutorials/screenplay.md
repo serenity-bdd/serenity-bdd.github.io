@@ -169,7 +169,7 @@ A question does nothing by itself - just as we need an actor to perform an inter
 One way we do this is to use the `asksFor()` method, like this:
 
 ```java
-        var todos = toby.asksFor(Text.ofEach(".todo-list label"));
+        Collection<String> todos = toby.asksFor(Text.ofEach(".todo-list label"));
 ```
 
 If we add an AssertJ assertion to check that the list contains the value we expect, our completed test will look like the following:
@@ -201,7 +201,7 @@ class AddNewTodos {
                 Open.url("https://todomvc.com/examples/angularjs/#/"),
                 Enter.theValue("Buy some milk").into(".new-todo").thenHit(Keys.RETURN)
         );
-        var todos = toby.asksFor(Text.ofEach(".todo-list li"));
+        Collection<String> todos = toby.asksFor(Text.ofEach(".todo-list li"));
         assertThat(todos).containsExactly("Buy some milk");
     }
 }
