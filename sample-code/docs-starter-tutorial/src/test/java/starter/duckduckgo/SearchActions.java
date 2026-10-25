@@ -1,7 +1,7 @@
 package starter.duckduckgo;
 
 import net.serenitybdd.core.steps.UIInteractions;
-import net.thucydides.core.annotations.Step;
+import net.serenitybdd.annotations.Step;
 
 public class SearchActions extends UIInteractions {
     @Step("Search for '{0}'")

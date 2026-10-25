@@ -30,7 +30,7 @@ We could express these tests using Serenity in JUnit 5 as follows:
 package flyer;
 
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
-import net.thucydides.core.annotations.Steps;
+import net.serenitybdd.annotations.Steps;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import flyer.steps.TravellerEarningStatusPoints;
