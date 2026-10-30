@@ -204,7 +204,7 @@ Now that we've created action classes for the first two steps, let's add them to
 ```java
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import org.junit.jupiter.api.Test;
-import net.thucydides.core.annotations.Managed;
+import net.serenitybdd.annotations.Managed;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -1392,7 +1392,7 @@ package com.example.api.tasks;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.interactions.Post;
-import net.thucydides.core.annotations.Step;
+import net.serenitybdd.annotations.Step;
 import com.example.api.model.Post;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
@@ -1434,7 +1434,7 @@ package com.example.api.tasks;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.interactions.Get;
-import net.thucydides.core.annotations.Step;
+import net.serenitybdd.annotations.Step;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
@@ -1700,7 +1700,7 @@ import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.interactions.Post;
-import net.thucydides.core.annotations.Step;
+import net.serenitybdd.annotations.Step;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
@@ -5799,7 +5799,7 @@ We could express these tests using Serenity in JUnit 5 as follows:
 package flyer;
 
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
-import net.thucydides.core.annotations.Steps;
+import net.serenitybdd.annotations.Steps;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import flyer.steps.TravellerEarningStatusPoints;
@@ -17052,7 +17052,7 @@ package examples.screenplay.rest.tasks;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.interactions.Get;
-import net.thucydides.core.annotations.Step;
+import net.serenitybdd.annotations.Step;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
