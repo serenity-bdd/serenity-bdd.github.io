@@ -130,6 +130,7 @@ Check that generated code compiles (`mvn test-compile`) before running it.
 ## Current Idioms and Imports
 
 - [Current Idioms and Imports](https://serenity-bdd.github.io/docs/ai/ai_idioms_overview): Exact packages, working examples and common mistakes for each way of writing tests with Serenity BDD.
+- [Using Serenity BDD with AI Coding Assistants](https://serenity-bdd.github.io/docs/ai/ai_using_assistants): What is available for AI coding assistants (documentation pages, llms.txt, an agent skill, AGENTS.md files), how to install each one, and what was measured.
 - [Living Documentation: Intent, Wording and Structure](https://serenity-bdd.github.io/docs/ai/ai_living_documentation): How scenario titles, step wording, packages, annotations and readme files become the Serenity report, and how to write tests that read as living documentation; the behaviour was...
 - [Screenplay: Imports and Idioms](https://serenity-bdd.github.io/docs/ai/ai_screenplay_idioms): Exact packages, common mistakes and compiling examples for Screenplay with Selenium, Playwright and REST, and for Cucumber with Screenplay.
 - [Cucumber: Runner, Tags, Hooks, Gradle and Parallel](https://serenity-bdd.github.io/docs/ai/ai_cucumber): Running Serenity with Cucumber on the JUnit Platform: the runner, tags and filters under Maven and Gradle, hooks, shared state, re-running failures and parallel runs; every comm...
