@@ -1,7 +1,7 @@
 ---
 id: ai_using_assistants
 title: Using Serenity BDD with AI Coding Assistants
-sidebar_position: 1.5
+sidebar_position: 1
 description: What is available for AI coding assistants (documentation pages, llms.txt, an agent skill, AGENTS.md files), how to install each one, and what was measured.
 ---
 
@@ -15,7 +15,7 @@ Serenity supports several ways of writing tests, and all of them are current: Pa
 
 | Material | What it is | Where |
 |---|---|---|
-| Documentation pages | Exact packages, dependencies, idioms and compiling examples for each style, plus configuration, upgrading, living documentation and troubleshooting by symptom | [Current Idioms and Imports](ai_idioms_overview) |
+| Documentation pages | Exact packages, dependencies, idioms and compiling examples for each style, plus configuration, upgrading, living documentation and troubleshooting by symptom | [Idioms and Imports by Style](ai_idioms_overview) |
 | `llms.txt` and `llms-full.txt` | An index of the documentation for AI assistants, and the full text of the pages | [llms.txt](https://serenity-bdd.github.io/llms.txt), [llms-full.txt](https://serenity-bdd.github.io/llms-full.txt) |
 | `AGENTS.md` files | One per style. They record the style, driver and runner your project uses, so an assistant stays in it | [`docs/ai/agents-md/variants`](https://github.com/serenity-bdd/serenity-core/tree/main/docs/ai/agents-md/variants) in the serenity-core repository |
 | An agent skill (Claude Code) | The same material as the pages, loaded when you ask for Serenity tests: it chooses the style (or asks), writes the tests, compiles them, and reviews the report | [`docs/ai/skill/serenity-bdd`](https://github.com/serenity-bdd/serenity-core/tree/main/docs/ai/skill/serenity-bdd) |

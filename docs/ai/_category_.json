@@ -1,5 +1,5 @@
 {
-  "label": "Current Idioms and Imports",
+  "label": "Using AI with Serenity BDD",
   "position": 10.5,
-  "link": {"type": "doc", "id": "ai_idioms_overview"}
+  "link": {"type": "doc", "id": "ai_using_assistants"}
 }

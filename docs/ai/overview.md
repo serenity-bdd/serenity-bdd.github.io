@@ -1,11 +1,11 @@
 ---
 id: ai_idioms_overview
-title: Current Idioms and Imports
-sidebar_position: 1
+title: Idioms and Imports by Style
+sidebar_position: 1.8
 description: Exact packages, working examples and common mistakes for each way of writing tests with Serenity BDD.
 ---
 
-# Current Idioms and Imports
+# Idioms and Imports by Style
 
 These pages list the exact packages, dependencies and idioms for each supported way of writing tests with Serenity BDD, with compiling examples. They are written for people and for AI coding assistants, which most often go wrong by guessing a package name.
 
@@ -27,4 +27,4 @@ Pick the style the project already uses, and stay in it: one approach, one drive
 
 ## If you use an AI coding assistant
 
-See [Using Serenity BDD with AI Coding Assistants](ai_using_assistants) for the `AGENTS.md` files, the agent skill and `llms.txt`. In short: tell it which style, driver and runner you want, or point it at these pages (or at [llms.txt](https://serenity-bdd.github.io/llms.txt)). Ask it to compile its output (`mvn test-compile`) before running it. Many `net.thucydides` packages are current core packages, so that prefix on its own is not a sign of outdated code: judge each class against these pages.
+See [Using Serenity BDD with AI Coding Assistants](ai_using_assistants) and [Writing Serenity BDD Tests with an AI Assistant](ai_writing_tests) for the `AGENTS.md` files, the agent skill and `llms.txt`. In short: tell it which style, driver and runner you want, or point it at these pages (or at [llms.txt](https://serenity-bdd.github.io/llms.txt)). Ask it to compile its output (`mvn test-compile`) before running it. Many `net.thucydides` packages are current core packages, so that prefix on its own is not a sign of outdated code: judge each class against these pages.
