@@ -209,6 +209,7 @@ const config = {
     }),
 
   plugins: [
+    path.resolve(__dirname, 'plugin/llms-txt'),
     [
       path.resolve(__dirname, 'plugin/dynamic-routes'),
       { // this is the options object passed to the plugin
