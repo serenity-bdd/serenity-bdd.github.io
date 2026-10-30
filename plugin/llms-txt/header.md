@@ -39,6 +39,7 @@ Every page below is also available as plain markdown (the same address with `.md
 - Living documentation (how titles, wording and structure become the report): https://serenity-bdd.github.io/docs/ai/ai_living_documentation.md
 - Reviewing tests and the report (checklist): https://serenity-bdd.github.io/docs/ai/ai_review_checklist.md
 - Upgrading from Serenity 2.x, 3.x or 4.x, and recognising old code (what moved, what to change; tested on real projects): https://serenity-bdd.github.io/docs/ai/ai_upgrading.md
+- Reading test results from files, also after a failed build (JSON outcome files, script, JSON summary): https://serenity-bdd.github.io/docs/ai/ai_test_results.md
 - Dependencies and configuration: https://serenity-bdd.github.io/docs/ai/ai_project_setup.md
 - Troubleshooting by error message (build, report and browser problems, each reproduced and fixed): https://serenity-bdd.github.io/docs/ai/ai_troubleshooting.md
 
