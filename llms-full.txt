@@ -39,6 +39,7 @@ Every page below is also available as plain markdown (the same address with `.md
 - Living documentation (how titles, wording and structure become the report): https://serenity-bdd.github.io/docs/ai/ai_living_documentation.md
 - Reviewing tests and the report (checklist): https://serenity-bdd.github.io/docs/ai/ai_review_checklist.md
 - Upgrading from Serenity 2.x, 3.x or 4.x, and recognising old code (what moved, what to change; tested on real projects): https://serenity-bdd.github.io/docs/ai/ai_upgrading.md
+- Reading test results from files, also after a failed build (JSON outcome files, script, JSON summary): https://serenity-bdd.github.io/docs/ai/ai_test_results.md
 - Dependencies and configuration: https://serenity-bdd.github.io/docs/ai/ai_project_setup.md
 - Troubleshooting by error message (build, report and browser problems, each reproduced and fixed): https://serenity-bdd.github.io/docs/ai/ai_troubleshooting.md
 
@@ -60,6 +61,7 @@ Serenity supports several ways of writing tests, and all of them are current: Pa
 | Material | What it is | Where |
 |---|---|---|
 | Documentation pages | Exact packages, dependencies, idioms and compiling examples for each style, plus configuration, upgrading, living documentation and troubleshooting by symptom | [Idioms and Imports by Style](ai_idioms_overview) |
+| Machine-readable results | The JSON outcome files Serenity writes for every test (also after a failed build), a script that summarises a run, and the optional JSON summary report | [Reading Test Results Without the HTML Report](ai_test_results) |
 | `llms.txt` and `llms-full.txt` | An index of the documentation for AI assistants (this section first), and the full text of the pages. Every page is also plain markdown at its own address with `.md` appended, for example `https://serenity-bdd.github.io/docs/ai/ai_writing_tests.md` | [llms.txt](https://serenity-bdd.github.io/llms.txt), [llms-full.txt](https://serenity-bdd.github.io/llms-full.txt) |
 | `AGENTS.md` files | One per style. They record the style, driver and runner your project uses, so an assistant stays in it | [`docs/ai/agents-md/variants`](https://github.com/serenity-bdd/serenity-core/tree/main/docs/ai/agents-md/variants) in the serenity-core repository |
 | An agent skill (Claude Code) | The same material as the pages, loaded when you ask for Serenity tests: it chooses the style (or asks), writes the tests, compiles them, and reviews the report | [`docs/ai/skill/serenity-bdd`](https://github.com/serenity-bdd/serenity-core/tree/main/docs/ai/skill/serenity-bdd) |
@@ -150,7 +152,7 @@ mvn verify              # runs the tests and builds the report
 
 Add `-Dheadless.mode=true` to run a browser test without opening a window. Compile errors from wrong imports are the most common fault in generated Serenity code, and the second pass fixes them. An assistant that can run Maven usually gets there; one that cannot (a chat window) will often need you to paste back the error.
 
-Do not stop at "it compiles". A test that passes on the application as it is has proved little until you know it can fail.
+If the build fails, there is no HTML report, but the result of every test is still in `target/site/serenity/*.json`; ask the assistant to read it (see [Reading Test Results Without the HTML Report](ai_test_results)). Do not stop at "it compiles". A test that passes on the application as it is has proved little until you know it can fail.
 
 ## 4. Check that the test can fail
 
@@ -2730,7 +2732,7 @@ List `junit-jupiter` and `junit-platform-suite` without versions.
 mvn net.serenity-bdd.maven.plugins:serenity-maven-plugin:5.4.1:aggregate
 ```
 
-(this produced `index.html`), or let the build continue past test failures with `-Dmaven.test.failure.ignore=true` (then the exit code is 0 even when tests fail, so a CI job must check results another way).
+(this produced `index.html`), or let the build continue past test failures with `-Dmaven.test.failure.ignore=true` (then the exit code is 0 even when tests fail, so a CI job must check results another way). To find out what failed without any report, read the JSON files: `python3 scripts/results.py target/site/serenity` (see `test-results.md`).
 
 ### `Conflicting module versions. Module [groovy-xml is loaded in version 4.0.29 and you are trying to load version 3.0.9` / `Could not initialize class io.restassured.RestAssured`
 
@@ -2963,6 +2965,111 @@ You do not have to move to JUnit 5. With `serenity-junit` and JUnit 4.13.2, `@Ru
 ## 7. Not covered
 
 Gradle plugin version history, Serenity 1.x, Appium and mobile modules, the Spring, JIRA and cloud-provider modules, and Selenium 3 to 4 API changes outside Serenity's own classes.
+
+## Examples
+
+These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+
+
+---
+
+<!-- https://serenity-bdd.github.io/docs/ai/ai_test_results -->
+
+# Reading Test Results Without the HTML Report
+
+Verified against Serenity **5.4.1** by running a passing and a failing project: the files, the fields and the script were all checked.
+
+An AI assistant, a script or a CI step can read the outcome of a run from files, not from the HTML report or the Maven console. Serenity writes them to `target/site/serenity/`.
+
+## What is written, and when
+
+| File | Written | Contains |
+|---|---|---|
+| `<64 hex characters>.json`, one per test | **While the tests run.** It exists after a failed build, when no HTML report was generated | The full outcome of one test: title, result, requirement path, the step tree, and the failure |
+| `SERENITY-JUNIT-<same 64 hex characters>.xml`, one per test | While the tests run | The same test in standard JUnit XML, for CI tools |
+| `index.html`, the other `.html` pages, `summary.txt` | **Only if the report was generated.** `mvn verify` stops at a failed test, so after a failure they are missing (see the troubleshooting page) | The HTML report; `summary.txt` has the totals as prose |
+| `serenity-summary.json` | Only if the optional JSON summary report is enabled (below) | Totals and one entry per scenario |
+
+The JSON file name is a 64-character hash. It was the same on every run of the same test, but it tells you nothing about the test, so read the `title`, `testCaseName` and `methodName` fields inside.
+
+So after any run, including a failed one, **read `target/site/serenity/*.json`**. Do not wait for `index.html` and do not scrape it.
+
+## The quickest way: `scripts/results.py`
+
+The script is in the skill (`scripts/results.py`) and in the serenity-core repository at `docs/ai/skill/serenity-bdd/scripts/results.py`; copy it into the project if the skill is not installed.
+
+```bash
+python3 <skill>/scripts/results.py target/site/serenity          # totals, a line per test, details of each failure
+python3 <skill>/scripts/results.py target/site/serenity --json   # the same as one JSON document
+```
+
+It prints the totals, one line per test (result, title, requirement path, outcome file), and for each failed test the failing step, the exception type and message, the first stack frame in the project's own code, and the outcome file to open for the full detail. The exit code is 1 if any test failed, errored or was compromised, and 2 if there are no outcome files. A run of more than 40 tests lists only the tests that did not pass unless you add `--all`. It reads only the JSON files, uses no dependencies, and is a different tool from `outline.py` (which judges the wording and structure of the report, not the result of the run).
+
+When the failure is an assertion or a wait (for example Screenplay `WaitUntil` or `should(seeThat(..))`), Serenity may not mark any step as failed. The script then says so and gives the last step recorded; the stack frame names the line of your test that failed.
+
+## The fields of an outcome file
+
+```text
+title, name          the scenario title as the report shows it
+result               SUCCESS, FAILURE, ERROR, COMPROMISED, PENDING, SKIPPED, IGNORED ...
+testCaseName         class name; methodName: the test method (JUnit)
+userStory            { path, storyName, ... }  the requirement it belongs to (package path or feature file)
+featureTag, tags     the feature and any @tags
+startTime, duration  duration in milliseconds
+testSource           JUnit5, Cucumber ...
+testSteps            the step tree: [ { number, description, result, duration, children: [ ... ] } ]
+```
+
+For a test that did not pass, the file also has:
+
+```text
+testFailureCause     { errorType, message, stackTrace: [ { declaringClass, methodName, fileName, lineNumber } ] }
+testFailureClassname the exception class
+testFailureMessage   the exception message
+testFailureSummary   "FAILURE;<class>;<message>;<file>"
+```
+
+and the step that failed (when one is marked) has `exception` with the same `errorType`, `message` and `stackTrace`. REST steps carry `restQuery` with `method`, `path`, `requestHeaders`, `content`, `statusCode`, `responseHeaders` and `responseBody`, which is often all that is needed to see why an API test failed. Nested steps are in `children`.
+
+The step tree is long for big tests (every request, with its response body, is in it). Read the summary first and open one outcome file only for a test you are investigating.
+
+## Optional: a JSON summary of the whole run
+
+The `serenity-json-summary-report` artifact writes one `serenity-summary.json` for the run. It is not enabled by default. Add it as a dependency of the Serenity Maven plugin and ask for the report:
+
+```xml
+<plugin>
+  <groupId>net.serenity-bdd.maven.plugins</groupId>
+  <artifactId>serenity-maven-plugin</artifactId>
+  <version>${serenity.version}</version>
+  <dependencies>
+    <dependency>
+      <groupId>net.serenity-bdd</groupId>
+      <artifactId>serenity-json-summary-report</artifactId>
+      <version>${serenity.version}</version>
+    </dependency>
+  </dependencies>
+  <!-- keep your existing executions -->
+</plugin>
+```
+
+```bash
+mvn serenity:reports -Dserenity.reports=json-summary
+```
+
+`serenity-summary.json` has `report`, `results` (`counts`: total, success, failure, error, pending, skipped ...; durations), `resultsByFeature` (each feature with its scenarios: `title`, `result` and for each outcome an `errorMessage`), `frequentFailures`, `unstableFeatures`, `coverage` and `tags`. It has the failure message of each scenario but not the failing step, the stack trace or the link to the outcome file, so for investigating a failure use the outcome files (or `results.py`). The goal ran after a failed build and produced it from the outcome files, with no HTML report.
+
+## What this is not
+
+- The outcome file format is Serenity's own. It is stable in practice but is not a published contract, so read the fields listed above and ignore the rest.
+- The JUnit XML (`SERENITY-JUNIT-*.xml`) and Maven's `target/surefire-reports/*.xml` are the standard formats; use them when a tool expects JUnit XML.
+
+## What an assistant should do after a run
+
+1. Run the build (`mvn verify`). If it fails, do not stop at the console output.
+2. Run `results.py` on `target/site/serenity`. Fix compile errors from the console first; they produce no outcome files.
+3. For each failed test, read the message and the stack frame in your own code, and decide whether the test or the application is wrong. If the application is wrong, say so rather than editing the test to pass.
+4. When all tests pass, build the report (`mvn verify` does it when the tests pass) and review it with `outline.py` and the review checklist.
 
 ## Examples
 

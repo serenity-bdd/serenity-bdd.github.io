@@ -41,7 +41,7 @@ mvn verify              # runs the tests and builds the report
 
 Add `-Dheadless.mode=true` to run a browser test without opening a window. Compile errors from wrong imports are the most common fault in generated Serenity code, and the second pass fixes them. An assistant that can run Maven usually gets there; one that cannot (a chat window) will often need you to paste back the error.
 
-Do not stop at "it compiles". A test that passes on the application as it is has proved little until you know it can fail.
+If the build fails, there is no HTML report, but the result of every test is still in `target/site/serenity/*.json`; ask the assistant to read it (see [Reading Test Results Without the HTML Report](https://serenity-bdd.github.io/docs/ai/ai_test_results.md)). Do not stop at "it compiles". A test that passes on the application as it is has proved little until you know it can fail.
 
 ## 4. Check that the test can fail
 

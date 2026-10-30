@@ -39,6 +39,7 @@ Every page below is also available as plain markdown (the same address with `.md
 - Living documentation (how titles, wording and structure become the report): https://serenity-bdd.github.io/docs/ai/ai_living_documentation.md
 - Reviewing tests and the report (checklist): https://serenity-bdd.github.io/docs/ai/ai_review_checklist.md
 - Upgrading from Serenity 2.x, 3.x or 4.x, and recognising old code (what moved, what to change; tested on real projects): https://serenity-bdd.github.io/docs/ai/ai_upgrading.md
+- Reading test results from files, also after a failed build (JSON outcome files, script, JSON summary): https://serenity-bdd.github.io/docs/ai/ai_test_results.md
 - Dependencies and configuration: https://serenity-bdd.github.io/docs/ai/ai_project_setup.md
 - Troubleshooting by error message (build, report and browser problems, each reproduced and fixed): https://serenity-bdd.github.io/docs/ai/ai_troubleshooting.md
 
@@ -58,6 +59,7 @@ Check that generated code compiles (`mvn test-compile`) before running it. Then 
 - [Project Setup: Dependencies and Configuration](https://serenity-bdd.github.io/docs/ai/ai_project_setup.md): Maven dependencies for each style, the report plugin, and a minimal serenity.conf.
 - [Troubleshooting by Symptom](https://serenity-bdd.github.io/docs/ai/ai_troubleshooting.md): Build, report and browser errors: the message, the cause and a fix that was reproduced and run.
 - [Upgrading to Serenity 5 and Recognising Old Code](https://serenity-bdd.github.io/docs/ai/ai_upgrading.md): What changed between Serenity 2.x, 3.x, 4.x and 5.x: Java and library versions, the 511 classes that moved, artifact changes, an upgrade recipe tested on real projects, and old...
+- [Reading Test Results Without the HTML Report](https://serenity-bdd.github.io/docs/ai/ai_test_results.md): Where Serenity writes the outcome of each test as JSON while tests run (also after a failed build), the fields to read, a script that summarises a run, and the optional JSON sum...
 - [Reviewing Tests and Living Documentation](https://serenity-bdd.github.io/docs/ai/ai_review_checklist.md): A checklist for judging Serenity tests and the report they produce: intent, business wording, organisation and test quality.
 
 ## Your First Steps with Serenity BDD
