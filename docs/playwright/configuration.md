@@ -58,14 +58,19 @@ environments {
 Access environment-specific configuration in your tests:
 
 ```java
+import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;
 import net.thucydides.model.environment.SystemEnvironmentVariables;
+import net.thucydides.model.util.EnvironmentVariables;
 
 public class ConfiguredSteps {
     private final String baseUrl;
 
     public ConfiguredSteps() {
         EnvironmentVariables env = SystemEnvironmentVariables.currentEnvironmentVariables();
-        this.baseUrl = env.getProperty("environments.default.base.url");
+        // Resolves the value for the environment chosen with -Denvironment=..., falling back to "default"
+        this.baseUrl = EnvironmentSpecificConfiguration.from(env)
+                .getOptionalProperty("base.url")
+                .orElse("https://www.example.com");
     }
 
     @Step("Open the application")
@@ -80,6 +85,8 @@ Run with a specific environment:
 ```bash
 mvn verify -Denvironment=staging
 ```
+
+Reading `environments.default.base.url` directly would always return the `default` value, whatever environment you chose. See [where Serenity reads configuration from](/docs/reference/serenity-properties) for how values are resolved, including how a `-D` option overrides an environment value.
 
 ## Playwright Configuration with @UsePlaywright
 

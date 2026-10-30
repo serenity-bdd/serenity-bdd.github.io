@@ -24,18 +24,59 @@ Serenity reads settings from these places. Each behaviour below was checked by r
 ### Environment-specific values
 
 ```hocon
+app.url = "https://top-level.example.com"
+
 environments {
   default { app.url = "https://dev.example.com" }
   staging { app.url = "https://staging.example.com" }
 }
 ```
 
-Choose an environment with `-Denvironment=staging`. Values that staging does not define fall back to `default`.
+Choose an environment with `-Denvironment=staging`. Values that staging does not define fall back to `default`, and a block called `all` applies in every environment.
 
-- Serenity's own keys inside `environments { }` (such as `webdriver.base.url`) override the top-level value.
-- Your own keys inside `environments { }` can be read with `environmentVariables.getProperty("app.url")` in releases after 5.4.1. **In 5.4.1 and earlier, `getProperty` returns `null` for them**; read them with `EnvironmentSpecificConfiguration.from(environmentVariables).getOptionalProperty("app.url")`, which works in every release.
-- In releases after 5.4.1, `getProperty` and `EnvironmentSpecificConfiguration` resolve a value in the same order: a value given explicitly (`-Dapp.url=...` on the command line, or set in code), then the chosen environment(s), then `all`, then `default`, then a plain value from `serenity.conf` or `serenity.properties`. So `-Dapp.url=https://...` overrides the value in `environments { staging { app.url } }`; `-Denvironments.staging.app.url=...` also works.
-- In 5.4.1 and earlier, a plain `-Dapp.url=...` did **not** override an environment value; use the full name, `-Denvironments.staging.app.url=https://...`.
+#### Reading a value in code
+
+```java
+EnvironmentVariables env = SystemEnvironmentVariables.currentEnvironmentVariables();
+
+// Works in every release:
+String url = EnvironmentSpecificConfiguration.from(env).getOptionalProperty("app.url").orElse("none");
+
+// Releases after 5.4.1 also resolve environment values here:
+String same = env.getProperty("app.url");
+```
+
+In 5.4.1 and earlier, `env.getProperty("app.url")` returns `null` for a key that is defined only inside `environments { }`. Reading `env.getProperty("environments.default.app.url")` returns the `default` block's value whatever environment you chose, so it is not a way to read the chosen environment's value.
+
+#### Which value wins
+
+In releases after 5.4.1, `getProperty` and `EnvironmentSpecificConfiguration` resolve a value in the same order:
+
+1. a value given explicitly: `-Dapp.url=...` on the command line, or set in code;
+2. the chosen environment (or environments, if you give several separated by commas; the last one wins);
+3. the `all` block, then the `default` block;
+4. the plain value from `serenity.conf` or `serenity.properties`.
+
+For the configuration above:
+
+| You run | `app.url` is |
+|---|---|
+| (nothing) | `https://dev.example.com` |
+| `-Denvironment=staging` | `https://staging.example.com` |
+| `-Denvironment=staging -Dapp.url=https://cli.example.com` | `https://cli.example.com` |
+| `-Denvironment=staging -Denvironments.staging.app.url=https://cli-staging.example.com` | `https://cli-staging.example.com` |
+
+Serenity's own keys (such as `webdriver.base.url` or `serenity.project.name`) inside `environments { }` have always overridden the top-level value; this now holds for your own keys too.
+
+:::info Changed in releases after 5.4.1
+Three things behave differently from 5.4.1 and earlier. Check any code or build scripts that depend on them.
+
+- **`getProperty` finds environment-only keys.** A key defined only inside `environments { }` used to return `null`; it now returns the value for the chosen environment.
+- **`-Dkey=value` overrides an environment value.** In 5.4.1 and earlier, `-Dapp.url=...` did not override `environments { staging { app.url } }`, and you had to write `-Denvironments.staging.app.url=...`. The long form still works.
+- **A key defined both at the top level and inside `environments { }`** now returns the environment value from `getProperty`, as `EnvironmentSpecificConfiguration` and Serenity's own keys already did. Before, `getProperty` returned the top-level value. If you relied on that, move the value you want to keep out of `environments { }`, or give it explicitly with `-D`.
+
+Values read from `serenity.conf` and `serenity.properties` still rank last, and operating-system environment variables such as `SERENITY_PROJECT_NAME` still do not set the matching property.
+:::
 
 ## Running Serenity tests from the command line
 
