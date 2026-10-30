@@ -174,6 +174,10 @@ public class CalculatorSteps extends UIInteractions {
 }
 ```
 
+:::caution Do not declare `@Managed WebDriver` in a step library
+`@Managed` is only filled in on the test class. In a step library the field stays `null`, and the first use fails with a `NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.get(String)" because "this.driver" is null`, which does not mention `@Managed`. Extend `UIInteractions` and use `getDriver()`, or use a page object, which gets the driver by itself. In releases after 5.4.1, Serenity also logs a warning when it finds a `@Managed` field in a step library.
+:::
+
 A more readable, refactored implementation might look like this:
 
 ```java

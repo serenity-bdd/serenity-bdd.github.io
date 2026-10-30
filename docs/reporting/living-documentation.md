@@ -175,6 +175,16 @@ report.assets.directory=src/test/resources/my-special-resources
 
 Note that the target directory in the `target/site/serenity` directory will always be called `assets`.
 
+### Requirements from JUnit 5 test classes
+
+With JUnit 5 you do not need a requirements directory: Serenity builds the hierarchy from the package of each test class (or from the `@Epic`, `@Feature` and `@Story` annotations, described in [Defining Requirements with Annotations](/docs/guide/annotation-requirements)). These points were checked by running them against Serenity 5.4.1:
+
+- A class `shop.ordering.WhenAReaderBuildsABasketTest` appears as `Shop` (capability), then `Ordering` (feature), then the class. The class is named from its class name, `Test` suffix included ("When a reader builds a basket test"), unless it has a `@DisplayName`, which is then used as the feature name. Put a `@DisplayName` with a business phrase on each test class.
+- Each scenario is titled by its `@DisplayName`, or by its method name when there is none.
+- The introductory text for a package comes from a `readme.md` in `src/test/resources/stories/` followed by the package path (for `shop.ordering`: `src/test/resources/stories/shop/ordering/readme.md`). A `readme.md` in any other folder is not picked up.
+- A `@Narrative` on a JUnit 5 test class is not shown in 5.4.1. In releases after 5.4.1 its text is used as the description of the class.
+- Package-based and annotation-based classes can coexist. They appear as two separate hierarchies side by side, so choose one way for the whole project if you want a single tree.
+
 ## The Test Results tab
 
 The _Test Results_ tab (shown below) tells you about the acceptance tests that were executed for this set of requirements. Both automated and manual tests appear in the summary donut chart and table (the manual results are the same color as the equivalent automated results, but in a lighter tone).

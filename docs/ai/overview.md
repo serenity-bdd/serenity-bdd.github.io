@@ -27,4 +27,4 @@ Pick the style the project already uses, and stay in it: one approach, one drive
 
 ## If you use an AI coding assistant
 
-Tell it which style, driver and runner you want, or point it at these pages (or at [llms.txt](https://serenity-bdd.github.io/llms.txt)). Ask it to compile its output (`mvn test-compile`) before running it. Many `net.thucydides` packages are current core packages, so that prefix on its own is not a sign of outdated code: judge each class against these pages.
+See [Using Serenity BDD with AI Coding Assistants](ai_using_assistants) for the `AGENTS.md` files, the agent skill and `llms.txt`. In short: tell it which style, driver and runner you want, or point it at these pages (or at [llms.txt](https://serenity-bdd.github.io/llms.txt)). Ask it to compile its output (`mvn test-compile`) before running it. Many `net.thucydides` packages are current core packages, so that prefix on its own is not a sign of outdated code: judge each class against these pages.

@@ -32,4 +32,8 @@ Up until November 2014, Serenity went by the name of Thucydides. Thucydides was 
 
 In a similar way Serenity BDD not only reports on test outcomes, but also records and documents how each scenario plays out, giving a particularly rich form of test reporting and living documentation.
 :::
+:::tip Using an AI coding assistant
+Serenity has several equally valid ways of writing tests, and AI coding assistants often guess a package name or mix two of them. See [Using Serenity BDD with AI Coding Assistants](/docs/ai/ai_using_assistants) for pages with verified packages and idioms, `AGENTS.md` files for each style, an agent skill and `llms.txt`.
+:::
+
 ![](img/intro-hoplites.jpeg)

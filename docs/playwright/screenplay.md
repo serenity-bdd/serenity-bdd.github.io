@@ -443,6 +443,23 @@ actor.attemptsTo(
 );
 ```
 
+:::caution Page URL and title assertions in 5.3.11 and earlier
+In the Playwright modules up to 5.3.11, the objects returned by `Ensure.thatTheCurrentUrl()` and `Ensure.thatThePageTitle()` are not public classes, so calling `contains(...)` or `isEqualTo(...)` on them from your own code fails to compile. This is fixed in later releases. Until then, write a small task that reads the page directly:
+
+```java
+static Performable currentUrlContains(String text) {
+    return Task.where("the current URL should contain '" + text + "'", actor -> {
+        String url = BrowseTheWebWithPlaywright.as(actor).getCurrentPage().url();
+        if (!url.contains(text)) {
+            throw new AssertionError("Expected URL to contain '" + text + "' but was: " + url);
+        }
+    });
+}
+```
+
+The page title works the same way with `getCurrentPage().title()`.
+:::
+
 ## Advanced Features
 
 ### Using `@UsePlaywright` with Screenplay
