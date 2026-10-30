@@ -21,7 +21,7 @@ Add the BOM to your `<dependencyManagement>` section:
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-bom</artifactId>
-            <version>5.3.7</version>
+            <version>5.4.1</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -66,7 +66,7 @@ If you prefer not to use the BOM, you can manage versions manually by defining t
 
 ```xml
 <properties>
-    <serenity.version>5.3.7</serenity.version>
+    <serenity.version>5.4.1</serenity.version>
     <junit5.version>6.0.3</junit5.version>
     <cucumber.version>7.34.2</cucumber.version>
 </properties>
@@ -337,6 +337,20 @@ If you want to generate the Serenity reports whenever you run `mvn verify`, you 
 
 By default, the `aggregate` goal will NOT fail the build if there are test failures - it will simply generate the reports. This way you can aggregate multiple report sets and then check for failures at the end using `mvn serenity:check`.
 
+:::note When tests fail, `mvn verify` does not build the report
+The `aggregate` goal is bound to the `post-integration-test` phase, which Maven never reaches when the tests fail. The per-test JSON files are still written to `target/site/serenity`, but there is no `index.html`. Either run the report goal after the failed build:
+
+```
+mvn net.serenity-bdd.maven.plugins:serenity-maven-plugin:aggregate
+```
+
+or let the build continue past test failures with `-Dmaven.test.failure.ignore=true` (the exit code is then 0 even when tests fail, so check the results another way on a CI server).
+:::
+
+:::note Old results are counted
+Serenity reports every outcome file it finds in `target/site/serenity`, including files left by earlier runs. Use `mvn clean verify`, or delete that directory, so the report only covers the latest run.
+:::
+
 ## Checking Gherkin feature files
 
 Some errors in Gherkin feature files can cause the Serenity reports to behave unpredictably. For this reason, the following rules should be followed when working with Cucumber and Serenity:
@@ -398,7 +412,7 @@ Here is a complete `pom.xml` for a Serenity BDD project using JUnit 5, the Scree
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <serenity.version>5.3.7</serenity.version>
+        <serenity.version>5.4.1</serenity.version>
     </properties>
 
     <dependencyManagement>
@@ -502,7 +516,7 @@ Here is a complete `pom.xml` for a Serenity BDD project using Cucumber, JUnit 5,
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <serenity.version>5.3.7</serenity.version>
+        <serenity.version>5.4.1</serenity.version>
         <cucumber.version>7.34.2</cucumber.version>
     </properties>
 

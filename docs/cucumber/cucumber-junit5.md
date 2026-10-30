@@ -32,7 +32,7 @@ Add the following dependencies to your `pom.xml`:
 
 ```xml
 <properties>
-    <serenity.version>5.3.7</serenity.version>
+    <serenity.version>5.4.1</serenity.version>
     <cucumber.version>7.34.2</cucumber.version>
     <junit.version>6.0.3</junit.version>
 </properties>
@@ -70,7 +70,7 @@ For Gradle, add to your `build.gradle`:
 
 ```groovy
 dependencies {
-    testImplementation "net.serenity-bdd:serenity-cucumber:5.3.7"
+    testImplementation "net.serenity-bdd:serenity-cucumber:5.4.1"
     testImplementation "io.cucumber:cucumber-junit-platform-engine:7.34.2"
     testImplementation "org.junit.platform:junit-platform-suite:6.0.3"
 }
@@ -324,6 +324,21 @@ mvn clean verify -Dcucumber.filter.tags="not @wip"
 # Complex expressions
 mvn clean verify -Dcucumber.filter.tags="(@smoke or @regression) and not @slow"
 ```
+
+:::caution Gradle ignores command-line `-D` options in the test JVM
+`gradle test -Dcucumber.filter.tags=@smoke` runs every scenario, because Gradle does not pass `-D` options to the JVM that runs the tests. Forward them in `build.gradle`:
+
+```groovy
+test {
+    systemProperties System.properties.findAll { k, v -> k.toString().startsWith('cucumber.') }
+}
+```
+:::
+
+:::caution Name the runner class so Maven runs it
+Maven's test plugin only runs classes named `*Test`, `*Tests`, `Test*` or `*TestCase`. A runner called `CucumberSuite` or `CucumberTestSuite` is skipped without a warning, and the build ends with `Results: 0 tests`. Call it `RunCucumberTests` (or similar), or add the name to the `includes` of the surefire plugin.
+:::
+
 
 ### In Code
 

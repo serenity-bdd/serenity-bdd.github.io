@@ -4,6 +4,39 @@ title: Serenity System Properties and Configuration
 sidebar_position: 1
 ---
 
+## Where Serenity reads configuration from
+
+Serenity reads settings from these places. Each behaviour below was checked by running it against Serenity 5.4.1.
+
+| Source | Where | Read? |
+|---|---|---|
+| `serenity.conf` (HOCON) | `src/test/resources/` (the classpath) | yes |
+| `serenity.conf` | the project root | **no, it is ignored** |
+| `serenity.properties` | the project root | yes |
+| `serenity.properties` | `src/test/resources/` | yes |
+| System properties | `-Dkey=value` on the command line | yes, they override the files |
+
+- A `-D` option on the command line wins over both files.
+- A `serenity.properties` in the project root wins over a `serenity.conf` in `src/test/resources`. When both files are in `src/test/resources`, `serenity.conf` wins.
+- Operating-system environment variables such as `SERENITY_PROJECT_NAME` do **not** set the matching property. They can be used inside `serenity.conf` as `${NAME}` substitutions.
+- After moving or deleting a configuration file, run `mvn clean`: Maven leaves the old copy in `target/test-classes`, so the old file keeps being read.
+
+### Environment-specific values
+
+```hocon
+environments {
+  default { app.url = "https://dev.example.com" }
+  staging { app.url = "https://staging.example.com" }
+}
+```
+
+Choose an environment with `-Denvironment=staging`. Values that staging does not define fall back to `default`.
+
+- Serenity's own keys inside `environments { }` (such as `webdriver.base.url`) override the top-level value.
+- Your own keys inside `environments { }` can be read with `environmentVariables.getProperty("app.url")` in releases after 5.4.1. **In 5.4.1 and earlier, `getProperty` returns `null` for them**; read them with `EnvironmentSpecificConfiguration.from(environmentVariables).getOptionalProperty("app.url")`, which works in every release.
+- In releases after 5.4.1, `getProperty` and `EnvironmentSpecificConfiguration` resolve a value in the same order: a value given explicitly (`-Dapp.url=...` on the command line, or set in code), then the chosen environment(s), then `all`, then `default`, then a plain value from `serenity.conf` or `serenity.properties`. So `-Dapp.url=https://...` overrides the value in `environments { staging { app.url } }`; `-Denvironments.staging.app.url=...` also works.
+- In 5.4.1 and earlier, a plain `-Dapp.url=...` did **not** override an environment value; use the full name, `-Denvironments.staging.app.url=https://...`.
+
 ## Running Serenity tests from the command line
 
 You typically run Serenity as part of the build process (either locally or on a CI server). In addition to the `webdriver.driver` option discussed [here](/docs/guide/driver_config), you can also pass a number of parameters in as system properties to customize the way the tests are run. You can also place these files in a Properties file called `serenity.properties`, in your project root directory.
