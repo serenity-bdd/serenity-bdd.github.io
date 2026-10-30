@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://serenity-bdd.github.io/sitemap.xml
+# For AI assistants: an index of the documentation is at /llms.txt, every page is also plain markdown
+# (append .md to the page address), and the full text is at /llms-full.txt.

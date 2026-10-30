@@ -27,118 +27,123 @@ Packages that are often guessed wrongly (verified against 5.4.1):
 - Serenity 5.4.1 depends on JUnit 6.1.3 and Cucumber 8.0.4. Don't pin older JUnit or Cucumber versions in the pom: the code compiles but the tests fail at run time with "conflicting versions". Import the JUnit BOM (`org.junit:junit-bom`) to keep all JUnit artifacts aligned.
 - Configuration lives in `src/test/resources/serenity.conf`. `serenity.*` and `thucydides.*` keys are synonyms. Use only keys listed in the reference.
 
-Full package tables, common mistakes and compiling examples per style:
+Every page below is also available as plain markdown (the same address with `.md` appended, and all of them in one file at https://serenity-bdd.github.io/llms-full.txt). Start with the guide to writing tests, then read the page for the style in use.
 
-- Screenplay (Selenium, Playwright, REST, Cucumber): https://serenity-bdd.github.io/docs/ai/ai_screenplay_idioms
-- Page Objects (Selenium, Playwright): https://serenity-bdd.github.io/docs/ai/ai_page_object_idioms
-- Cucumber (runner, tags under Maven and Gradle, hooks, shared state, re-running failures, parallel): https://serenity-bdd.github.io/docs/ai/ai_cucumber
-- Configuration (serenity.conf, properties, environments, reading values; which source wins): https://serenity-bdd.github.io/docs/ai/ai_configuration
-- Upgrading from Serenity 2.x, 3.x or 4.x, and recognising old code (what moved, what to change; tested on real projects): https://serenity-bdd.github.io/docs/ai/ai_upgrading
-- Dependencies and configuration: https://serenity-bdd.github.io/docs/ai/ai_project_setup
-- Troubleshooting by error message (build, report and browser problems, each reproduced and fixed): https://serenity-bdd.github.io/docs/ai/ai_troubleshooting
+- How to write and check Serenity tests with an AI assistant (request, compile, run, can it fail, read the report): https://serenity-bdd.github.io/docs/ai/ai_writing_tests.md
+- Using Serenity with AI assistants (AGENTS.md files, agent skill, reviewer agent, what was measured): https://serenity-bdd.github.io/docs/ai/ai_using_assistants.md
+- Screenplay (Selenium, Playwright, REST, Cucumber): https://serenity-bdd.github.io/docs/ai/ai_screenplay_idioms.md
+- Page Objects (Selenium, Playwright): https://serenity-bdd.github.io/docs/ai/ai_page_object_idioms.md
+- REST with SerenityRest and a step library: https://serenity-bdd.github.io/docs/ai/ai_rest_step_library.md
+- Cucumber (runner, tags under Maven and Gradle, hooks, shared state, re-running failures, parallel): https://serenity-bdd.github.io/docs/ai/ai_cucumber.md
+- Configuration (serenity.conf, properties, environments, reading values; which source wins): https://serenity-bdd.github.io/docs/ai/ai_configuration.md
+- Living documentation (how titles, wording and structure become the report): https://serenity-bdd.github.io/docs/ai/ai_living_documentation.md
+- Reviewing tests and the report (checklist): https://serenity-bdd.github.io/docs/ai/ai_review_checklist.md
+- Upgrading from Serenity 2.x, 3.x or 4.x, and recognising old code (what moved, what to change; tested on real projects): https://serenity-bdd.github.io/docs/ai/ai_upgrading.md
+- Dependencies and configuration: https://serenity-bdd.github.io/docs/ai/ai_project_setup.md
+- Troubleshooting by error message (build, report and browser problems, each reproduced and fixed): https://serenity-bdd.github.io/docs/ai/ai_troubleshooting.md
 
-Check that generated code compiles (`mvn test-compile`) before running it.
-
-## Your First Steps with Serenity BDD
-
-- [Your First Web Test](https://serenity-bdd.github.io/docs/tutorials/first_test): In this tutorial you'll write your very first Serenity BDD test, using JUnit 5 and Selenium.
-- [Your First Screenplay Scenario](https://serenity-bdd.github.io/docs/tutorials/screenplay): The Screenplay Pattern is a way to write clean, readable, scalable test automation modeled around the user.
-- [Your First API Test](https://serenity-bdd.github.io/docs/tutorials/rest): In the previous tutorial we looked at how to write a simple web test with Serenity BDD.
-- [Comprehensive REST API Testing](https://serenity-bdd.github.io/docs/tutorials/rest-api-testing): This tutorial provides a complete guide to testing REST APIs with Serenity BDD, covering everything from basic requests to advanced patterns like authentication, error handling,...
-- [Getting Started With Cucumber using Serenity BDD and Screenplay](https://serenity-bdd.github.io/docs/tutorials/cucumber-screenplay): This tutorial focuses on getting started with Cucumber and Screenplay.
-- [Data-Driven Testing with Serenity BDD](https://serenity-bdd.github.io/docs/tutorials/data-driven-testing): Data-driven testing allows you to run the same test logic with multiple sets of input data, making your tests more comprehensive and maintainable.
-- [Migrating From Serenity BDD 3.x to Serenity BDD 4.x](https://serenity-bdd.github.io/docs/tutorials/migrating_to_serenity_4)
-- [CI/CD Integration with Serenity BDD](https://serenity-bdd.github.io/docs/tutorials/cicd-integration): This guide shows you how to integrate Serenity BDD tests into popular CI/CD platforms, including GitHub Actions, Jenkins, and GitLab CI.
-- [How to Do Parallel Test Execution in Cucumber with Serenity](https://serenity-bdd.github.io/docs/tutorials/running_cucumber_scenarios_in_parallel): Cucumber 7 has introduced native support for parallel execution at both the feature and scenario levels.
-- [Three Strategies to Optimize Your Serenity BDD Reports](https://serenity-bdd.github.io/docs/tutorials/streamlining_your_serenity_reports): Serenity BDD stands out for its ability to produce detailed and informative reports.
-
-## Serenity Fundamentals
-
-- [Introduction](https://serenity-bdd.github.io/docs/guide/user_guide_intro): Serenity BDD is an open source library that aims to make the idea of living documentation a reality.
-- [Creating A New Project](https://serenity-bdd.github.io/docs/guide/getting_started): Creating A New Project With The Serenity BDD Templates
-- [Using Maven with Serenity](https://serenity-bdd.github.io/docs/guide/maven): Maven is the recommended build tool for Serenity BDD.
-- [Step Libraries](https://serenity-bdd.github.io/docs/guide/step_libraries): In Serenity, tests are broken down into reusable steps.
-- [Interacting With Web Pages](https://serenity-bdd.github.io/docs/guide/page_objects): Serenity integrates smoothly with Selenium WebDriver and manages details such as setting up the driver and maintaining the driver instance.
-- [Annotation-Based Requirements](https://serenity-bdd.github.io/docs/guide/annotation-requirements): Serenity BDD organises test results into a requirements hierarchy, which provides the structure for the Living Documentation reports.
-- [Serenity Page Elements](https://serenity-bdd.github.io/docs/guide/page_elements)
-- [Configuring Selenium WebDriver](https://serenity-bdd.github.io/docs/guide/driver_config): Selenium WebDriver lets you run your tests in a variety of browsers, each with a variety of configuration options.
-- [Running Cucumber scenarios with Serenity](https://serenity-bdd.github.io/docs/guide/cucumber): For a complete, in-depth guide on using Cucumber with Serenity BDD and JUnit 5, including configuration options, best practices, and troubleshooting, see the dedicated Cucumber...
-
-## Serenity BDD with JUnit 5
-
-- [JUnit 5 with Serenity BDD](https://serenity-bdd.github.io/docs/junit5/junit5-tests): This guide covers everything you need to know to write and run Serenity BDD tests using JUnit 5 (Jupiter), without Cucumber.
-- [Running JUnit 5 Tests in Parallel](https://serenity-bdd.github.io/docs/junit5/parallel-execution): Running JUnit 5 tests in parallel can significantly reduce test execution time.
-
-## Serenity BDD with Cucumber
-
-- [Cucumber with JUnit 5](https://serenity-bdd.github.io/docs/cucumber/cucumber-junit5): Serenity BDD provides seamless integration with Cucumber, allowing you to write executable specifications in Gherkin and run them using JUnit 5.
-- [Running Cucumber Tests in Parallel](https://serenity-bdd.github.io/docs/cucumber/parallel-execution): Running Cucumber scenarios in parallel can dramatically reduce test execution time.
-- [Advanced Cucumber Patterns](https://serenity-bdd.github.io/docs/cucumber/advanced-patterns): This guide covers advanced patterns and techniques for writing maintainable, scalable Cucumber tests with Serenity BDD.
-- [Cucumber Configuration Reference](https://serenity-bdd.github.io/docs/cucumber/configuration-reference): This page provides a comprehensive reference of all configuration options for running Cucumber with Serenity BDD and JUnit 5.
-
-## The Screenplay Pattern
-
-- [Screenplay Fundamentals](https://serenity-bdd.github.io/docs/screenplay/screenplay_fundamentals): The Screenplay Pattern is a modern test automation design pattern intented to make it easier to write scalabble, maintainable test code.
-- [Web Testing with Serenity Screenplay](https://serenity-bdd.github.io/docs/screenplay/screenplay_webdriver)
-- [Web Testing with Serenity Screenplay and Playwright](https://serenity-bdd.github.io/docs/screenplay/screenplay_playwright)
-- [Working with REST APIs using Serenity Screenplay](https://serenity-bdd.github.io/docs/screenplay/screenplay_rest): The Screenplay pattern is an approach to writing automated acceptance tests that helps us write cleaner, more maintainable, more scalable automation code.
-- [Making Screenplay Assertions with Serenity Ensure](https://serenity-bdd.github.io/docs/screenplay/screenplay_ensure)
-
-## Playwright
-
-- [Introduction to Serenity Playwright](https://serenity-bdd.github.io/docs/playwright/playwright_intro): The serenity-playwright module provides seamless integration between Serenity BDD's powerful reporting capabilities and Playwright's modern browser automation.
-- [Getting Started](https://serenity-bdd.github.io/docs/playwright/playwright_getting_started): This guide will help you set up a new Serenity Playwright project from scratch.
-- [Page Objects](https://serenity-bdd.github.io/docs/playwright/playwright_page_objects): Page Objects are a design pattern that encapsulates the structure and behavior of a web page.
-- [Screenplay Pattern with Playwright](https://serenity-bdd.github.io/docs/playwright/playwright_screenplay): The Screenplay Pattern is a modern, actor-centric approach to writing automated tests.
-- [Step Libraries](https://serenity-bdd.github.io/docs/playwright/playwright_step_libraries): Step Libraries are the bridge between your tests and Page Objects.
-- [Configuration](https://serenity-bdd.github.io/docs/playwright/playwright_configuration): Serenity Playwright can be configured through various means to customize browser behavior, screenshot capture, and reporting.
-- [Best Practices](https://serenity-bdd.github.io/docs/playwright/playwright_best_practices): This guide covers best practices for writing maintainable, reliable, and efficient Serenity Playwright tests.
-- [Tutorial: Testing TodoMVC](https://serenity-bdd.github.io/docs/playwright/playwright_tutorial_todomvc): This tutorial walks through building a Serenity Playwright test suite for the TodoMVC application.
-- [Tutorial: Screenplay with TodoMVC](https://serenity-bdd.github.io/docs/playwright/playwright_screenplay_tutorial): This tutorial walks through building a Serenity Playwright test suite using the Screenplay Pattern for the TodoMVC application.
-- [Cucumber Integration](https://serenity-bdd.github.io/docs/playwright/playwright_cucumber): Cucumber provides a natural language syntax for writing behavior-driven tests.
-
-## Integrating in Spring
-
-- [Integration Testing in Spring](https://serenity-bdd.github.io/docs/spring/integration_testing_spring): Spring projects are well suited for running your acceptance tests against different layers of your application.
-
-## Reporting and Living Documentation
-
-- [The Serenity Reports](https://serenity-bdd.github.io/docs/reporting/the_serenity_reports): The Serenity reports are a particularly powerful feature of Serenity BDD.
-- [Living Documentation](https://serenity-bdd.github.io/docs/reporting/living_documentation)
-- [Filtering Execution and Reports with Tags](https://serenity-bdd.github.io/docs/reporting/filtering_reports): Serenity BDD makes it easy to get both a broad overview of your test results and functional coverage.
-- [Additional Reports](https://serenity-bdd.github.io/docs/reporting/additional_reports): In addition to the standard HTML reports, Serenity provides additional reports for more specific usages.
-- [Custom Fields in Reports](https://serenity-bdd.github.io/docs/reporting/reports_custom_info)
-- [Integrating with JIRA](https://serenity-bdd.github.io/docs/reporting/integrating_with_jira): With Selenium BDD it is possible to create tight one and two-way integration with JIRA
-
-## Scaling Serenity
-
-- [Selenium Grid](https://serenity-bdd.github.io/docs/cloud/selenium-grid): Selenium Grid allows the execution of WebDriver scripts on remote machines (virtual or real) by routing commands sent by the client to remote browser instances.
-- [selenoid](https://serenity-bdd.github.io/docs/cloud/selenoid): Selenoid Selenoid is a powerful Golang implementation of original Selenium hub code.
-- [LambdaTest](https://serenity-bdd.github.io/docs/cloud/lambdatest): LambdaTest is a cloud platform for test execution and test orchestration.
-- [BrowserStack](https://serenity-bdd.github.io/docs/cloud/browserstack): Browserstack is an online platform that allows you to run cross-browser tests in parallel at scale.
-- [SauceLabs](https://serenity-bdd.github.io/docs/cloud/saucelabs): The serenity-saucelabs plugin provides seamless integration with the SauceLabs online test automation platform.
-- [BitBar](https://serenity-bdd.github.io/docs/cloud/bitbar): BitBar is the cloud for all your testing needs.
-
-## Mobile Testing with Serenity
-
-- [Running Serenity Tests on Appium](https://serenity-bdd.github.io/docs/mobile/appium): Serenity supports running tests on mobile devices/emulators out of the box with Appium.
-
-## Reference
-
-- [Serenity System Properties and Configuration](https://serenity-bdd.github.io/docs/reference/serenity-properties): Where Serenity reads configuration from
+Check that generated code compiles (`mvn test-compile`) before running it. Then run `mvn verify`, check that the test fails when the behaviour is broken, and read the report in `target/site/serenity/index.html`.
 
 ## Using AI with Serenity BDD
 
-- [Using Serenity BDD with AI Coding Assistants](https://serenity-bdd.github.io/docs/ai/ai_using_assistants): What is available for AI coding assistants (documentation pages, llms.txt, an agent skill, AGENTS.md files), how to install each one, and what was measured.
-- [Writing Serenity BDD Tests with an AI Assistant](https://serenity-bdd.github.io/docs/ai/ai_writing_tests): A practical workflow for asking an AI coding assistant for Serenity BDD tests, checking what it wrote, and reviewing the report, with one real example from prompt to result.
-- [Idioms and Imports by Style](https://serenity-bdd.github.io/docs/ai/ai_idioms_overview): Exact packages, working examples and common mistakes for each way of writing tests with Serenity BDD.
-- [Living Documentation: Intent, Wording and Structure](https://serenity-bdd.github.io/docs/ai/ai_living_documentation): How scenario titles, step wording, packages, annotations and readme files become the Serenity report, and how to write tests that read as living documentation; the behaviour was...
-- [Screenplay: Imports and Idioms](https://serenity-bdd.github.io/docs/ai/ai_screenplay_idioms): Exact packages, common mistakes and compiling examples for Screenplay with Selenium, Playwright and REST, and for Cucumber with Screenplay.
-- [Cucumber: Runner, Tags, Hooks, Gradle and Parallel](https://serenity-bdd.github.io/docs/ai/ai_cucumber): Running Serenity with Cucumber on the JUnit Platform: the runner, tags and filters under Maven and Gradle, hooks, shared state, re-running failures and parallel runs; every comm...
-- [Page Objects: Imports and Idioms](https://serenity-bdd.github.io/docs/ai/ai_page_object_idioms): Exact packages, common mistakes and compiling examples for Page Objects with step libraries, using Selenium or Playwright.
-- [REST with SerenityRest and a Step Library](https://serenity-bdd.github.io/docs/ai/ai_rest_step_library): Packages, the step-library pattern, and the number-matching and report pitfalls for REST API tests that use SerenityRest and @Steps; every claim was run.
-- [Configuration: serenity.conf, Properties and Environments](https://serenity-bdd.github.io/docs/ai/ai_configuration): Where Serenity reads configuration from, which source wins, environments, reading values in code and the common keys; the behaviour was run.
-- [Project Setup: Dependencies and Configuration](https://serenity-bdd.github.io/docs/ai/ai_project_setup): Maven dependencies for each style, the report plugin, and a minimal serenity.conf.
-- [Troubleshooting by Symptom](https://serenity-bdd.github.io/docs/ai/ai_troubleshooting): Build, report and browser errors: the message, the cause and a fix that was reproduced and run.
-- [Upgrading to Serenity 5 and Recognising Old Code](https://serenity-bdd.github.io/docs/ai/ai_upgrading): What changed between Serenity 2.x, 3.x, 4.x and 5.x: Java and library versions, the 511 classes that moved, artifact changes, an upgrade recipe tested on real projects, and old...
-- [Reviewing Tests and Living Documentation](https://serenity-bdd.github.io/docs/ai/ai_review_checklist): A checklist for judging Serenity tests and the report they produce: intent, business wording, organisation and test quality.
+- [Using Serenity BDD with AI Coding Assistants](https://serenity-bdd.github.io/docs/ai/ai_using_assistants.md): What is available for AI coding assistants (documentation pages, llms.txt, an agent skill, AGENTS.md files), how to install each one, and what was measured.
+- [Writing Serenity BDD Tests with an AI Assistant](https://serenity-bdd.github.io/docs/ai/ai_writing_tests.md): A practical workflow for asking an AI coding assistant for Serenity BDD tests, checking what it wrote, and reviewing the report, with one real example from prompt to result.
+- [Idioms and Imports by Style](https://serenity-bdd.github.io/docs/ai/ai_idioms_overview.md): Exact packages, working examples and common mistakes for each way of writing tests with Serenity BDD.
+- [Living Documentation: Intent, Wording and Structure](https://serenity-bdd.github.io/docs/ai/ai_living_documentation.md): How scenario titles, step wording, packages, annotations and readme files become the Serenity report, and how to write tests that read as living documentation; the behaviour was...
+- [Screenplay: Imports and Idioms](https://serenity-bdd.github.io/docs/ai/ai_screenplay_idioms.md): Exact packages, common mistakes and compiling examples for Screenplay with Selenium, Playwright and REST, and for Cucumber with Screenplay.
+- [Cucumber: Runner, Tags, Hooks, Gradle and Parallel](https://serenity-bdd.github.io/docs/ai/ai_cucumber.md): Running Serenity with Cucumber on the JUnit Platform: the runner, tags and filters under Maven and Gradle, hooks, shared state, re-running failures and parallel runs; every comm...
+- [Page Objects: Imports and Idioms](https://serenity-bdd.github.io/docs/ai/ai_page_object_idioms.md): Exact packages, common mistakes and compiling examples for Page Objects with step libraries, using Selenium or Playwright.
+- [REST with SerenityRest and a Step Library](https://serenity-bdd.github.io/docs/ai/ai_rest_step_library.md): Packages, the step-library pattern, and the number-matching and report pitfalls for REST API tests that use SerenityRest and @Steps; every claim was run.
+- [Configuration: serenity.conf, Properties and Environments](https://serenity-bdd.github.io/docs/ai/ai_configuration.md): Where Serenity reads configuration from, which source wins, environments, reading values in code and the common keys; the behaviour was run.
+- [Project Setup: Dependencies and Configuration](https://serenity-bdd.github.io/docs/ai/ai_project_setup.md): Maven dependencies for each style, the report plugin, and a minimal serenity.conf.
+- [Troubleshooting by Symptom](https://serenity-bdd.github.io/docs/ai/ai_troubleshooting.md): Build, report and browser errors: the message, the cause and a fix that was reproduced and run.
+- [Upgrading to Serenity 5 and Recognising Old Code](https://serenity-bdd.github.io/docs/ai/ai_upgrading.md): What changed between Serenity 2.x, 3.x, 4.x and 5.x: Java and library versions, the 511 classes that moved, artifact changes, an upgrade recipe tested on real projects, and old...
+- [Reviewing Tests and Living Documentation](https://serenity-bdd.github.io/docs/ai/ai_review_checklist.md): A checklist for judging Serenity tests and the report they produce: intent, business wording, organisation and test quality.
+
+## Your First Steps with Serenity BDD
+
+- [Your First Web Test](https://serenity-bdd.github.io/docs/tutorials/first_test.md): In this tutorial you'll write your very first Serenity BDD test, using JUnit 5 and Selenium.
+- [Your First Screenplay Scenario](https://serenity-bdd.github.io/docs/tutorials/screenplay.md): The Screenplay Pattern is a way to write clean, readable, scalable test automation modeled around the user.
+- [Your First API Test](https://serenity-bdd.github.io/docs/tutorials/rest.md): In the previous tutorial we looked at how to write a simple web test with Serenity BDD.
+- [Comprehensive REST API Testing](https://serenity-bdd.github.io/docs/tutorials/rest-api-testing.md): This tutorial provides a complete guide to testing REST APIs with Serenity BDD, covering everything from basic requests to advanced patterns like authentication, error handling,...
+- [Getting Started With Cucumber using Serenity BDD and Screenplay](https://serenity-bdd.github.io/docs/tutorials/cucumber-screenplay.md): This tutorial focuses on getting started with Cucumber and Screenplay.
+- [Data-Driven Testing with Serenity BDD](https://serenity-bdd.github.io/docs/tutorials/data-driven-testing.md): Data-driven testing allows you to run the same test logic with multiple sets of input data, making your tests more comprehensive and maintainable.
+- [Migrating From Serenity BDD 3.x to Serenity BDD 4.x](https://serenity-bdd.github.io/docs/tutorials/migrating_to_serenity_4.md)
+- [CI/CD Integration with Serenity BDD](https://serenity-bdd.github.io/docs/tutorials/cicd-integration.md): This guide shows you how to integrate Serenity BDD tests into popular CI/CD platforms, including GitHub Actions, Jenkins, and GitLab CI.
+- [How to Do Parallel Test Execution in Cucumber with Serenity](https://serenity-bdd.github.io/docs/tutorials/running_cucumber_scenarios_in_parallel.md): Cucumber 7 has introduced native support for parallel execution at both the feature and scenario levels.
+- [Three Strategies to Optimize Your Serenity BDD Reports](https://serenity-bdd.github.io/docs/tutorials/streamlining_your_serenity_reports.md): Serenity BDD stands out for its ability to produce detailed and informative reports.
+
+## Serenity Fundamentals
+
+- [Introduction](https://serenity-bdd.github.io/docs/guide/user_guide_intro.md): Serenity BDD is an open source library that aims to make the idea of living documentation a reality.
+- [Creating A New Project](https://serenity-bdd.github.io/docs/guide/getting_started.md): Creating A New Project With The Serenity BDD Templates
+- [Using Maven with Serenity](https://serenity-bdd.github.io/docs/guide/maven.md): Maven is the recommended build tool for Serenity BDD.
+- [Step Libraries](https://serenity-bdd.github.io/docs/guide/step_libraries.md): In Serenity, tests are broken down into reusable steps.
+- [Interacting With Web Pages](https://serenity-bdd.github.io/docs/guide/page_objects.md): Serenity integrates smoothly with Selenium WebDriver and manages details such as setting up the driver and maintaining the driver instance.
+- [Annotation-Based Requirements](https://serenity-bdd.github.io/docs/guide/annotation-requirements.md): Serenity BDD organises test results into a requirements hierarchy, which provides the structure for the Living Documentation reports.
+- [Serenity Page Elements](https://serenity-bdd.github.io/docs/guide/page_elements.md)
+- [Configuring Selenium WebDriver](https://serenity-bdd.github.io/docs/guide/driver_config.md): Selenium WebDriver lets you run your tests in a variety of browsers, each with a variety of configuration options.
+- [Running Cucumber scenarios with Serenity](https://serenity-bdd.github.io/docs/guide/cucumber.md): For a complete, in-depth guide on using Cucumber with Serenity BDD and JUnit 5, including configuration options, best practices, and troubleshooting, see the dedicated Cucumber...
+
+## Serenity BDD with JUnit 5
+
+- [JUnit 5 with Serenity BDD](https://serenity-bdd.github.io/docs/junit5/junit5-tests.md): This guide covers everything you need to know to write and run Serenity BDD tests using JUnit 5 (Jupiter), without Cucumber.
+- [Running JUnit 5 Tests in Parallel](https://serenity-bdd.github.io/docs/junit5/parallel-execution.md): Running JUnit 5 tests in parallel can significantly reduce test execution time.
+
+## Serenity BDD with Cucumber
+
+- [Cucumber with JUnit 5](https://serenity-bdd.github.io/docs/cucumber/cucumber-junit5.md): Serenity BDD provides seamless integration with Cucumber, allowing you to write executable specifications in Gherkin and run them using JUnit 5.
+- [Running Cucumber Tests in Parallel](https://serenity-bdd.github.io/docs/cucumber/parallel-execution.md): Running Cucumber scenarios in parallel can dramatically reduce test execution time.
+- [Advanced Cucumber Patterns](https://serenity-bdd.github.io/docs/cucumber/advanced-patterns.md): This guide covers advanced patterns and techniques for writing maintainable, scalable Cucumber tests with Serenity BDD.
+- [Cucumber Configuration Reference](https://serenity-bdd.github.io/docs/cucumber/configuration-reference.md): This page provides a comprehensive reference of all configuration options for running Cucumber with Serenity BDD and JUnit 5.
+
+## The Screenplay Pattern
+
+- [Screenplay Fundamentals](https://serenity-bdd.github.io/docs/screenplay/screenplay_fundamentals.md): The Screenplay Pattern is a modern test automation design pattern intented to make it easier to write scalabble, maintainable test code.
+- [Web Testing with Serenity Screenplay](https://serenity-bdd.github.io/docs/screenplay/screenplay_webdriver.md)
+- [Web Testing with Serenity Screenplay and Playwright](https://serenity-bdd.github.io/docs/screenplay/screenplay_playwright.md)
+- [Working with REST APIs using Serenity Screenplay](https://serenity-bdd.github.io/docs/screenplay/screenplay_rest.md): The Screenplay pattern is an approach to writing automated acceptance tests that helps us write cleaner, more maintainable, more scalable automation code.
+- [Making Screenplay Assertions with Serenity Ensure](https://serenity-bdd.github.io/docs/screenplay/screenplay_ensure.md)
+
+## Playwright
+
+- [Introduction to Serenity Playwright](https://serenity-bdd.github.io/docs/playwright/playwright_intro.md): The serenity-playwright module provides seamless integration between Serenity BDD's powerful reporting capabilities and Playwright's modern browser automation.
+- [Getting Started](https://serenity-bdd.github.io/docs/playwright/playwright_getting_started.md): This guide will help you set up a new Serenity Playwright project from scratch.
+- [Page Objects](https://serenity-bdd.github.io/docs/playwright/playwright_page_objects.md): Page Objects are a design pattern that encapsulates the structure and behavior of a web page.
+- [Screenplay Pattern with Playwright](https://serenity-bdd.github.io/docs/playwright/playwright_screenplay.md): The Screenplay Pattern is a modern, actor-centric approach to writing automated tests.
+- [Step Libraries](https://serenity-bdd.github.io/docs/playwright/playwright_step_libraries.md): Step Libraries are the bridge between your tests and Page Objects.
+- [Configuration](https://serenity-bdd.github.io/docs/playwright/playwright_configuration.md): Serenity Playwright can be configured through various means to customize browser behavior, screenshot capture, and reporting.
+- [Best Practices](https://serenity-bdd.github.io/docs/playwright/playwright_best_practices.md): This guide covers best practices for writing maintainable, reliable, and efficient Serenity Playwright tests.
+- [Tutorial: Testing TodoMVC](https://serenity-bdd.github.io/docs/playwright/playwright_tutorial_todomvc.md): This tutorial walks through building a Serenity Playwright test suite for the TodoMVC application.
+- [Tutorial: Screenplay with TodoMVC](https://serenity-bdd.github.io/docs/playwright/playwright_screenplay_tutorial.md): This tutorial walks through building a Serenity Playwright test suite using the Screenplay Pattern for the TodoMVC application.
+- [Cucumber Integration](https://serenity-bdd.github.io/docs/playwright/playwright_cucumber.md): Cucumber provides a natural language syntax for writing behavior-driven tests.
+
+## Integrating in Spring
+
+- [Integration Testing in Spring](https://serenity-bdd.github.io/docs/spring/integration_testing_spring.md): Spring projects are well suited for running your acceptance tests against different layers of your application.
+
+## Reporting and Living Documentation
+
+- [The Serenity Reports](https://serenity-bdd.github.io/docs/reporting/the_serenity_reports.md): The Serenity reports are a particularly powerful feature of Serenity BDD.
+- [Living Documentation](https://serenity-bdd.github.io/docs/reporting/living_documentation.md)
+- [Filtering Execution and Reports with Tags](https://serenity-bdd.github.io/docs/reporting/filtering_reports.md): Serenity BDD makes it easy to get both a broad overview of your test results and functional coverage.
+- [Additional Reports](https://serenity-bdd.github.io/docs/reporting/additional_reports.md): In addition to the standard HTML reports, Serenity provides additional reports for more specific usages.
+- [Custom Fields in Reports](https://serenity-bdd.github.io/docs/reporting/reports_custom_info.md)
+- [Integrating with JIRA](https://serenity-bdd.github.io/docs/reporting/integrating_with_jira.md): With Selenium BDD it is possible to create tight one and two-way integration with JIRA
+
+## Scaling Serenity
+
+- [Selenium Grid](https://serenity-bdd.github.io/docs/cloud/selenium-grid.md): Selenium Grid allows the execution of WebDriver scripts on remote machines (virtual or real) by routing commands sent by the client to remote browser instances.
+- [selenoid](https://serenity-bdd.github.io/docs/cloud/selenoid.md): Selenoid Selenoid is a powerful Golang implementation of original Selenium hub code.
+- [LambdaTest](https://serenity-bdd.github.io/docs/cloud/lambdatest.md): LambdaTest is a cloud platform for test execution and test orchestration.
+- [BrowserStack](https://serenity-bdd.github.io/docs/cloud/browserstack.md): Browserstack is an online platform that allows you to run cross-browser tests in parallel at scale.
+- [SauceLabs](https://serenity-bdd.github.io/docs/cloud/saucelabs.md): The serenity-saucelabs plugin provides seamless integration with the SauceLabs online test automation platform.
+- [BitBar](https://serenity-bdd.github.io/docs/cloud/bitbar.md): BitBar is the cloud for all your testing needs.
+
+## Mobile Testing with Serenity
+
+- [Running Serenity Tests on Appium](https://serenity-bdd.github.io/docs/mobile/appium.md): Serenity supports running tests on mobile devices/emulators out of the box with Appium.
+
+## Reference
+
+- [Serenity System Properties and Configuration](https://serenity-bdd.github.io/docs/reference/serenity-properties.md): Where Serenity reads configuration from
