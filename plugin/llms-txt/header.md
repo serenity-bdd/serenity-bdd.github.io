@@ -27,14 +27,19 @@ Packages that are often guessed wrongly (verified against 5.4.1):
 - Serenity 5.4.1 depends on JUnit 6.1.3 and Cucumber 8.0.4. Don't pin older JUnit or Cucumber versions in the pom: the code compiles but the tests fail at run time with "conflicting versions". Import the JUnit BOM (`org.junit:junit-bom`) to keep all JUnit artifacts aligned.
 - Configuration lives in `src/test/resources/serenity.conf`. `serenity.*` and `thucydides.*` keys are synonyms. Use only keys listed in the reference.
 
-Full package tables, common mistakes and compiling examples per style:
+Every page below is also available as plain markdown (the same address with `.md` appended, and all of them in one file at https://serenity-bdd.github.io/llms-full.txt). Start with the guide to writing tests, then read the page for the style in use.
 
-- Screenplay (Selenium, Playwright, REST, Cucumber): https://serenity-bdd.github.io/docs/ai/ai_screenplay_idioms
-- Page Objects (Selenium, Playwright): https://serenity-bdd.github.io/docs/ai/ai_page_object_idioms
-- Cucumber (runner, tags under Maven and Gradle, hooks, shared state, re-running failures, parallel): https://serenity-bdd.github.io/docs/ai/ai_cucumber
-- Configuration (serenity.conf, properties, environments, reading values; which source wins): https://serenity-bdd.github.io/docs/ai/ai_configuration
-- Upgrading from Serenity 2.x, 3.x or 4.x, and recognising old code (what moved, what to change; tested on real projects): https://serenity-bdd.github.io/docs/ai/ai_upgrading
-- Dependencies and configuration: https://serenity-bdd.github.io/docs/ai/ai_project_setup
-- Troubleshooting by error message (build, report and browser problems, each reproduced and fixed): https://serenity-bdd.github.io/docs/ai/ai_troubleshooting
+- How to write and check Serenity tests with an AI assistant (request, compile, run, can it fail, read the report): https://serenity-bdd.github.io/docs/ai/ai_writing_tests.md
+- Using Serenity with AI assistants (AGENTS.md files, agent skill, reviewer agent, what was measured): https://serenity-bdd.github.io/docs/ai/ai_using_assistants.md
+- Screenplay (Selenium, Playwright, REST, Cucumber): https://serenity-bdd.github.io/docs/ai/ai_screenplay_idioms.md
+- Page Objects (Selenium, Playwright): https://serenity-bdd.github.io/docs/ai/ai_page_object_idioms.md
+- REST with SerenityRest and a step library: https://serenity-bdd.github.io/docs/ai/ai_rest_step_library.md
+- Cucumber (runner, tags under Maven and Gradle, hooks, shared state, re-running failures, parallel): https://serenity-bdd.github.io/docs/ai/ai_cucumber.md
+- Configuration (serenity.conf, properties, environments, reading values; which source wins): https://serenity-bdd.github.io/docs/ai/ai_configuration.md
+- Living documentation (how titles, wording and structure become the report): https://serenity-bdd.github.io/docs/ai/ai_living_documentation.md
+- Reviewing tests and the report (checklist): https://serenity-bdd.github.io/docs/ai/ai_review_checklist.md
+- Upgrading from Serenity 2.x, 3.x or 4.x, and recognising old code (what moved, what to change; tested on real projects): https://serenity-bdd.github.io/docs/ai/ai_upgrading.md
+- Dependencies and configuration: https://serenity-bdd.github.io/docs/ai/ai_project_setup.md
+- Troubleshooting by error message (build, report and browser problems, each reproduced and fixed): https://serenity-bdd.github.io/docs/ai/ai_troubleshooting.md
 
-Check that generated code compiles (`mvn test-compile`) before running it.
+Check that generated code compiles (`mvn test-compile`) before running it. Then run `mvn verify`, check that the test fails when the behaviour is broken, and read the report in `target/site/serenity/index.html`.
