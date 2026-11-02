@@ -7,7 +7,7 @@ description: "Running Serenity with Cucumber on the JUnit Platform: the runner, 
 
 # Cucumber: Runner, Tags, Hooks, Gradle and Parallel
 
-Verified against Serenity **5.4.1** (Cucumber 8.0.4, JUnit 6.1.3). Every command on this page was run against the example at the end of the page.
+Verified against Serenity **5.4.2** (Cucumber 8.0.4, JUnit 6.1.3). Every command on this page was run against the example at the end of the page.
 
 ## 1. Setup
 
@@ -56,7 +56,7 @@ When `cucumber.features` is given, Cucumber ignores the runner's `@SelectClasspa
 
 ## 4. Gradle
 
-the `build.gradle` at the end of this page (Serenity Gradle plugin `net.serenity-bdd.serenity-gradle-plugin` 5.4.1, Gradle 9.8.1 tested, tasks `test` and `aggregate`) was run: `gradle clean test` ran the 5 scenarios and `aggregate` produced `target/site/serenity/index.html`.
+the `build.gradle` at the end of this page (Serenity Gradle plugin `net.serenity-bdd.serenity-gradle-plugin` 5.4.2, Gradle 9.8.1 tested, tasks `test` and `aggregate`) was run: `gradle clean test` ran the 5 scenarios and `aggregate` produced `target/site/serenity/index.html`.
 
 **Gradle does not pass `-D` options to the test JVM.** `gradle test -Dcucumber.filter.tags=@smoke` runs every scenario unless the build forwards the option (verified: 4 outcomes without it, 1 with it):
 
@@ -131,14 +131,14 @@ Gherkin in other languages, `@Before` for browser start-up in cloud grids, the C
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `build.gradle`
 
 ```groovy
 plugins {
     id 'java'
-    id 'net.serenity-bdd.serenity-gradle-plugin' version '5.4.1'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '5.4.2'
 }
 
 repositories {
@@ -151,15 +151,15 @@ java {
 }
 
 dependencies {
-    // One JUnit version for every JUnit artifact (Serenity 5.4.1 brings JUnit 6.1.3)
+    // One JUnit version for every JUnit artifact (Serenity 5.4.2 brings JUnit 6.1.3)
     testImplementation platform('org.junit:junit-bom:6.1.3')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.junit.platform:junit-platform-suite'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    testImplementation 'net.serenity-bdd:serenity-core:5.4.1'
-    testImplementation 'net.serenity-bdd:serenity-junit5:5.4.1'
-    testImplementation 'net.serenity-bdd:serenity-cucumber:5.4.1'
+    testImplementation 'net.serenity-bdd:serenity-core:5.4.2'
+    testImplementation 'net.serenity-bdd:serenity-junit5:5.4.2'
+    testImplementation 'net.serenity-bdd:serenity-cucumber:5.4.2'
     testImplementation 'io.cucumber:cucumber-java:8.0.4'
     testImplementation 'io.cucumber:cucumber-junit-platform-engine:8.0.4'
     testImplementation 'org.assertj:assertj-core:3.27.7'

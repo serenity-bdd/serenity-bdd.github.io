@@ -69,4 +69,4 @@ READY means no FAIL and at most two WEAK, and the report was seen. Be specific a
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).

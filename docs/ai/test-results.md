@@ -7,7 +7,7 @@ description: "Where Serenity writes the outcome of each test as JSON while tests
 
 # Reading Test Results Without the HTML Report
 
-Verified against Serenity **5.4.1** by running a passing and a failing project: the files, the fields and the script were all checked.
+Verified against Serenity **5.4.2** by running a passing and a failing project: the files, the fields and the script were all checked.
 
 An AI assistant, a script or a CI step can read the outcome of a run from files, not from the HTML report or the Maven console. Serenity writes them to `target/site/serenity/`.
 
@@ -103,4 +103,4 @@ mvn serenity:reports -Dserenity.reports=json-summary
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).

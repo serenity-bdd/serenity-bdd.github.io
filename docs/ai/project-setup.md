@@ -7,7 +7,7 @@ description: "Maven dependencies for each style, the report plugin, and a minima
 
 # Project Setup: Dependencies and Configuration
 
-Verified against Serenity **5.4.1**. The dependency sets, JUnit BOM and report plugin were run end to end (`mvn clean verify` ran the examples and produced the report). The `serenity.conf` snippet follows the project's own samples but was not run.
+Verified against Serenity **5.4.2**. The dependency sets, JUnit BOM and report plugin were run end to end (`mvn clean verify` ran the examples and produced the report). The `serenity.conf` snippet follows the project's own samples but was not run.
 
 Use one Serenity version for every `net.serenity-bdd` artifact (a `serenity.version` property). Java 17+. Playwright modules are published up to 5.3.11, so a Playwright project may need `serenity.version` 5.3.11 for those artifacts; check Maven Central for the latest before pinning.
 
@@ -22,7 +22,7 @@ Use one Serenity version for every `net.serenity-bdd` artifact (a `serenity.vers
 | Screenplay + REST | `serenity-core`, `serenity-junit5`, `serenity-screenplay`, `serenity-screenplay-rest`, `serenity-rest-assured`, `serenity-ensure` | JUnit Jupiter |
 | Cucumber (+ Screenplay) | the Screenplay web set above, plus `serenity-cucumber` | `io.cucumber:cucumber-java`, `io.cucumber:cucumber-junit-platform-engine`, `org.junit.platform:junit-platform-suite` |
 
-Serenity 5.4.1 itself depends on **JUnit 6.1.3** (`serenity-junit5`) and **Cucumber 8.0.4** (`serenity-cucumber`). Don't pin older JUnit or Cucumber versions: mixed JUnit versions fail at run time with "conflicting versions" errors, even though the code compiles. Import the JUnit BOM so every JUnit artifact (including `junit-platform-suite` and the engine that `cucumber-junit-platform-engine` brings in) has the same version:
+Serenity 5.4.2 itself depends on **JUnit 6.1.3** (`serenity-junit5`) and **Cucumber 8.0.4** (`serenity-cucumber`). Don't pin older JUnit or Cucumber versions: mixed JUnit versions fail at run time with "conflicting versions" errors, even though the code compiles. Import the JUnit BOM so every JUnit artifact (including `junit-platform-suite` and the engine that `cucumber-junit-platform-engine` brings in) has the same version:
 
 ```xml
 <dependencyManagement>
@@ -71,4 +71,4 @@ environments {
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).

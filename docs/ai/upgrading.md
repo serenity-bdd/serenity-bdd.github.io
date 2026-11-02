@@ -7,17 +7,17 @@ description: "What changed between Serenity 2.x, 3.x, 4.x and 5.x: Java and libr
 
 # Upgrading to Serenity 5 and Recognising Old Code
 
-Verified against Serenity **5.4.1**. The class counts come from the released jars, and the recipe was applied to five real projects.
+Verified against Serenity **5.4.2**. The class counts come from the released jars, and the recipe was applied to five real projects.
 
 ## 1. What changed, by release
 
 | Coming from | Java needed | What you must change |
 |---|---|---|
-| 4.x (tested: 4.2.34) | Java **17** (4.x classes are Java 11, 5.x classes are Java 17) | Versions only. All 1,587 public classes in the core, model, JUnit, Screenplay (including WebDriver and REST), REST-assured, Cucumber and Ensure jars have the same name and package in 5.4.1. A 4.2.8 project compiled with only a version bump. Align the JUnit and Cucumber versions with Serenity's (section 3). |
+| 4.x (tested: 4.2.34) | Java **17** (4.x classes are Java 11, 5.x classes are Java 17) | Versions only. All 1,587 public classes in the core, model, JUnit, Screenplay (including WebDriver and REST), REST-assured, Cucumber and Ensure jars have the same name and package in 5.4.2. A 4.2.8 project compiled with only a version bump. Align the JUnit and Cucumber versions with Serenity's (section 3). |
 | 3.x (tested: 3.9.8) | Java 17 (3.x classes are Java 8) | Version bump, **511 of 1,574 classes moved** (section 2), the artifact changes in section 3, and the fixes for removed API found by the compiler. |
 | 2.x | Java 17 | The same as 3.x, plus renamed Cucumber artifacts. |
 
-Serenity 5.4.1 depends on **JUnit 6.1.3** and **Cucumber 8.0.4** (`../references/project-setup.md`).
+Serenity 5.4.2 depends on **JUnit 6.1.3** and **Cucumber 8.0.4** (`../references/project-setup.md`).
 
 ## 2. Classes that moved (3.x to 5.x)
 
@@ -142,7 +142,7 @@ Each step was needed by at least one of the five tested projects.
 
 ## 5. JUnit 4 and the old Cucumber runner still work
 
-You do not have to move to JUnit 5. With `serenity-junit` and JUnit 4.13.2, `@RunWith(SerenityRunner.class)` with `@Steps` ran on 5.4.1 (1 test passed), and so did `@RunWith(CucumberWithSerenity.class)` with `@CucumberOptions(features = ..., glue = ...)` from `io.cucumber.junit` (3 scenarios passed). Use the JUnit 5 extension and the JUnit Platform suite for new code (`../references/cucumber.md`); do not rewrite a working JUnit 4 suite only to follow it. Keep one style per project.
+You do not have to move to JUnit 5. With `serenity-junit` and JUnit 4.13.2, `@RunWith(SerenityRunner.class)` with `@Steps` ran on 5.4.2 (1 test passed), and so did `@RunWith(CucumberWithSerenity.class)` with `@CucumberOptions(features = ..., glue = ...)` from `io.cucumber.junit` (3 scenarios passed). Use the JUnit 5 extension and the JUnit Platform suite for new code (`../references/cucumber.md`); do not rewrite a working JUnit 4 suite only to follow it. Keep one style per project.
 
 ## 6. Recognising old code in generated or copied examples
 
@@ -164,4 +164,4 @@ Gradle plugin version history, Serenity 1.x, Appium and mobile modules, the Spri
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).

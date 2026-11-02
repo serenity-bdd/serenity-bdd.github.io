@@ -7,7 +7,7 @@ description: What is available for AI coding assistants (documentation pages, ll
 
 # Using Serenity BDD with AI Coding Assistants
 
-AI coding assistants write Serenity tests quickly, and they most often go wrong by guessing: a package name from an old release, a method that does not exist, or a mix of two ways of working. Everything on this page is there to stop that. All of it describes the current release (Serenity 5.4.1; the Playwright modules are published up to 5.3.11), and every claim in it was checked against the released jars or by running it.
+AI coding assistants write Serenity tests quickly, and they most often go wrong by guessing: a package name from an old release, a method that does not exist, or a mix of two ways of working. Everything on this page is there to stop that. All of it describes the current release (Serenity 5.4.2; the Playwright modules are published up to 5.3.11), and every claim in it was checked against the released jars or by running it.
 
 Serenity supports several ways of writing tests, and all of them are current: Page Objects with step libraries, Screenplay, Cucumber (with Screenplay or with page objects), REST with a step library or with Screenplay, with Selenium or Playwright, with JUnit 5 or Cucumber. None is recommended over another. An assistant that has these materials asks which one you want when it cannot tell from the project, instead of choosing for you.
 
@@ -56,7 +56,7 @@ These are results from one evaluation, run by the authors of the materials, on C
 
 ## Known limits
 
-- The pages and the skill are verified against Serenity 5.4.1. Behaviour fixed in later releases is noted where it matters.
+- The pages and the skill are verified against Serenity 5.4.2. Behaviour fixed in later releases is noted where it matters.
 - The skill and reviewer agent are for Claude Code. The pages, `llms.txt` and the `AGENTS.md` files are plain text and work with any assistant, but they were only measured with Claude models.
 - Mobile testing, Spring and Guice object factories, and cloud grid configuration are not covered.
 - If a page here is wrong, or an error message you hit is missing from [troubleshooting](ai_troubleshooting), please open an issue.

@@ -7,7 +7,7 @@ description: "Exact packages, common mistakes and compiling examples for Screenp
 
 # Screenplay: Imports and Idioms
 
-Verified against Serenity **5.4.1** (Playwright modules: **5.3.11**, the latest published). The examples at the end of this page compile and their tests pass.
+Verified against Serenity **5.4.2** (Playwright modules: **5.3.11**, the latest published). The examples at the end of this page compile and their tests pass.
 
 Screenplay works with Selenium, Playwright and REST, with JUnit 5 or Cucumber. All of these are valid. Pick the one the user asked for or the project already uses, and don't mix them in one project.
 
@@ -122,12 +122,12 @@ The source files are under `` and are compile-checked. Names are the same across
 ## 4. Not yet verified
 - `Ensure` for web has several overloads. Only `that(Target).hasText(..)` is compile-tested.
 - Page Objects (Selenium and Playwright) are covered in `page-objects.md`, not here.
-- The examples were run once against the live sample sites with Serenity 5.4.1 (Playwright modules 5.3.11). Other sites and larger suites may behave differently.
+- The examples were run once against the live sample sites with Serenity 5.4.2 (Playwright modules 5.3.11). Other sites and larger suites may behave differently.
 - `serenity-screenplay-playwright` is documented at 5.3.11, not 5.4.x.
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `sp-selenium/todo/AddATodo.java`
 

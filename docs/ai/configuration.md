@@ -7,7 +7,7 @@ description: "Where Serenity reads configuration from, which source wins, enviro
 
 # Configuration: serenity.conf, Properties and Environments
 
-Verified against Serenity **5.4.1**. The behaviour described here was run against the example at the end of the page.
+Verified against Serenity **5.4.2**. The behaviour described here was run against the example at the end of the page.
 
 ## 1. Where configuration comes from
 
@@ -62,9 +62,9 @@ Pick one with `-Denvironment=staging`.
 
 - With no `environment`, the `default` block applies. With `-Denvironment=staging`, `staging` applies and values it does not define fall back to `default` (`db.name` stayed `dev`).
 - `all` applies in every environment.
-- **Your own keys inside `environments { }` are NOT visible as plain properties.** `environmentVariables.getProperty("app.url")` returns **null**, in every environment. Read them through `EnvironmentSpecificConfiguration` (next section). This is the usual cause of "I get null when I read a value from serenity.conf".
+- **Your own keys inside `environments { }`:** from **5.4.2**, `environmentVariables.getProperty("app.url")` returns the value for the chosen environment, then `all`, then `default`. In **earlier releases** it returns **null**, in every environment, and the value can only be read through `EnvironmentSpecificConfiguration` (next section), which works in every version. This is the usual cause of "I get null when I read a value from serenity.conf" on an older release.
 - **Serenity's own keys inside `environments { }` do work** and override the top-level value: `webdriver.base.url` and `serenity.project.name` inside `environments { staging { } }` took effect with `-Denvironment=staging`. Values in `default` override the top-level value too.
-- Command-line override of a value in `environments`: use the full name, `-Denvironments.staging.app.url=https://...`. A plain `-Dapp.url=...` did **not** override it.
+- Command-line override of a value in `environments`: from **5.4.2**, `-Dapp.url=https://...` overrides it (the full name, `-Denvironments.staging.app.url=...`, still works). In **earlier releases** a plain `-Dapp.url=...` did **not** override it and only the full name did.
 
 ## 4. Reading values in code
 
@@ -113,8 +113,8 @@ Do not invent keys. If a key is not in the Serenity documentation or `Thucydides
 | Wrong | Right |
 |---|---|
 | `serenity.conf` in the project root | `src/test/resources/serenity.conf` |
-| Reading `app.url` with `env.getProperty` when it is defined under `environments { }` | `EnvironmentSpecificConfiguration.from(env).getOptionalProperty("app.url")` |
-| `-Dapp.url=...` to override a value defined under `environments { staging { } }` | `-Denvironments.staging.app.url=...` |
+| (before 5.4.2) Reading `app.url` with `env.getProperty` when it is defined under `environments { }` | `EnvironmentSpecificConfiguration.from(env).getOptionalProperty("app.url")` (works in every version) |
+| (before 5.4.2) `-Dapp.url=...` to override a value defined under `environments { staging { } }` | `-Denvironments.staging.app.url=...` (works in every version) |
 | An old `serenity.properties` in the project root silently beating `serenity.conf` | Keep one file, or remember that the root properties file wins |
 | Setting a key through an OS environment variable | Use `-D`, the file, or the build tool's system property settings |
 | Hard-coding `webdriver.chrome.driver` to a path on one machine | Leave it unset (see Troubleshooting) |
@@ -125,7 +125,7 @@ Cloud and grid capabilities (`serenity.driver.capabilities`, `webdriver.capabili
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `config/cfg/ConfigReader.java`
 
@@ -187,7 +187,8 @@ class ConfigurationTest {
 
         System.out.println("CFG my.setting=" + env.getProperty("my.setting"));
 
-        // Keys under environments { }: ONLY through EnvironmentSpecificConfiguration
+        // Keys under environments { }: EnvironmentSpecificConfiguration works in every version;
+        // getProperty finds them from 5.4.2 (it returns null in earlier releases)
         System.out.println("CFG plain app.url=" + env.getProperty("app.url"));
         System.out.println("CFG specific app.url=" + environmentConfig.getOptionalProperty("app.url").orElse("<none>"));
         System.out.println("CFG specific db.name=" + environmentConfig.getOptionalProperty("db.name").orElse("<none>"));

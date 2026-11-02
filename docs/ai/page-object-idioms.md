@@ -7,7 +7,7 @@ description: "Exact packages, common mistakes and compiling examples for Page Ob
 
 # Page Objects: Imports and Idioms
 
-Verified against Serenity **5.4.1** (Playwright module: **5.3.11**, the latest published). The examples at the end of this page compile and their tests pass.
+Verified against Serenity **5.4.2** (Playwright module: **5.3.11**, the latest published). The examples at the end of this page compile and their tests pass.
 
 Page Objects with step libraries work with Selenium and with Playwright, with JUnit 5. This is as valid as Screenplay. Use the style the user asked for or the project already uses, and don't mix Page Objects and Screenplay in one test.
 
@@ -78,7 +78,7 @@ Files: `po-playwright/todo/{TodoPage,TodoSteps,AddTodoTest}.java`
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `po-selenium/todo/AddTodoTest.java`
 

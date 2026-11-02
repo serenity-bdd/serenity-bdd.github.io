@@ -7,7 +7,7 @@ description: "Packages, the step-library pattern, and the number-matching and re
 
 # REST with SerenityRest and a Step Library
 
-Verified against Serenity **5.4.1**. The example at the end of this page compiles and its tests pass; each claim was run.
+Verified against Serenity **5.4.2**. The example at the end of this page compiles and its tests pass; each claim was run.
 
 This is one of several valid ways to test a REST API with Serenity. The other is Screenplay with `CallAnApi` (see `screenplay.md` and `sp-rest/`). Use the one the user asked for or the project already uses; don't mix them.
 
@@ -56,7 +56,7 @@ Name steps for what a person does or sees, not for the HTTP call: "Look up book 
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `rest-steps/api/BookshopApi.java`
 
