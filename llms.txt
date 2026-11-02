@@ -31,6 +31,7 @@ Every page below is also available as plain markdown (the same address with `.md
 
 - How to write and check Serenity tests with an AI assistant (request, compile, run, can it fail, read the report): https://serenity-bdd.github.io/docs/ai/ai_writing_tests.md
 - Using Serenity with AI assistants (AGENTS.md files, agent skill, reviewer agent, what was measured): https://serenity-bdd.github.io/docs/ai/ai_using_assistants.md
+- Claude Code plugin with the Serenity skill and test-review agent: https://github.com/serenity-bdd/serenity-ai (install with `/plugin marketplace add serenity-bdd/serenity-ai`, then `/plugin install serenity-bdd@serenity`)
 - Screenplay (Selenium, Playwright, REST, Cucumber): https://serenity-bdd.github.io/docs/ai/ai_screenplay_idioms.md
 - Page Objects (Selenium, Playwright): https://serenity-bdd.github.io/docs/ai/ai_page_object_idioms.md
 - REST with SerenityRest and a step library: https://serenity-bdd.github.io/docs/ai/ai_rest_step_library.md
