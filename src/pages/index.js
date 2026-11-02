@@ -9,6 +9,7 @@ import HomepageFeatures from '../components/HomepageFeatures';
 import Sponsors from '../components/Sponsors';
 import Testimonials from '../components/Testimonials';
 import TrainingSection from '../components/TrainingSection';
+import AiSection from '../components/AiSection';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -45,6 +46,7 @@ export default function Home() {
       description="Serenity BDD is a modern automated test framework that makes writing high quality acceptance tests easier and faster">
       <HomepageHeader />
       <TrainingSection />
+      <AiSection />
       <main>
         <HomepageFeatures />
         {/* <Testimonials /> */}

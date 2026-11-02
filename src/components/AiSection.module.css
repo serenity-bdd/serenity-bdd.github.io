@@ -1,0 +1,45 @@
+.ai {
+  padding: 3rem 0;
+  background-color: var(--ifm-background-surface-color);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.lead {
+  max-width: 780px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.point {
+  margin-bottom: 1.5rem;
+}
+
+.point h3 {
+  font-size: 1.15rem;
+}
+
+.install {
+  max-width: 640px;
+  margin: 1rem auto 0;
+}
+
+.installLabel {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
