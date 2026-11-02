@@ -1,6 +1,6 @@
 # Serenity BDD
 
-> Serenity BDD is an open-source Java library for writing acceptance and regression tests (web, REST and mobile) that produce rich living-documentation reports. Current release described here: 5.4.1 (the Playwright modules are published up to 5.3.11). Requires Java 17+. Source: https://github.com/serenity-bdd/serenity-core
+> Serenity BDD is an open-source Java library for writing acceptance and regression tests (web, REST and mobile) that produce rich living-documentation reports. Current release described here: 5.4.2 (the Playwright modules are published up to 5.3.11). Requires Java 17+. Source: https://github.com/serenity-bdd/serenity-core
 
 ## Notes for AI coding assistants
 
@@ -12,7 +12,7 @@ Serenity supports several styles. All of them are current and valid; none is pre
 
 If the user hasn't said which style to use and the project doesn't show one (check `pom.xml` for `serenity-screenplay*`, `serenity-playwright`, `serenity-cucumber`, and look at existing tests), ask. Don't pick a default. Within a project, stay in one style, one driver and one runner. Don't mix Page Objects and Screenplay in one test.
 
-Packages that are often guessed wrongly (verified against 5.4.1):
+Packages that are often guessed wrongly (verified against 5.4.2):
 
 - `@Step`, `@Steps`, `@Managed`, `@DefaultUrl`, `@WithTag`: `net.serenitybdd.annotations` (not `net.thucydides.core.annotations`).
 - JUnit 5: `@ExtendWith(SerenityJUnit5Extension.class)` from `net.serenitybdd.junit5`. Don't use `@RunWith(SerenityRunner.class)` in a JUnit 5 project.
@@ -24,7 +24,7 @@ Packages that are often guessed wrongly (verified against 5.4.1):
 - Playwright Page Objects (`serenity-playwright`): plain classes holding a `com.microsoft.playwright.Page`, registered with `PlaywrightSerenity.registerPage(page)` from `net.serenitybdd.playwright`. They don't extend `PageObject`.
 - `ScenarioSteps` (`net.thucydides.core.steps`) and `Pages` (`net.thucydides.core.pages`) are correctly in `net.thucydides`. Many `net.thucydides` packages are current core packages, so don't treat that prefix as a sign of old code.
 - Cucumber with JUnit 5: a `@Suite` class with `@IncludeEngines("cucumber")` and the plugin `net.serenitybdd.cucumber.core.plugin.SerenityReporterParallel`.
-- Serenity 5.4.1 depends on JUnit 6.1.3 and Cucumber 8.0.4. Don't pin older JUnit or Cucumber versions in the pom: the code compiles but the tests fail at run time with "conflicting versions". Import the JUnit BOM (`org.junit:junit-bom`) to keep all JUnit artifacts aligned.
+- Serenity 5.4.2 depends on JUnit 6.1.3 and Cucumber 8.0.4. Don't pin older JUnit or Cucumber versions in the pom: the code compiles but the tests fail at run time with "conflicting versions". Import the JUnit BOM (`org.junit:junit-bom`) to keep all JUnit artifacts aligned.
 - Configuration lives in `src/test/resources/serenity.conf`. `serenity.*` and `thucydides.*` keys are synonyms. Use only keys listed in the reference.
 
 Every page below is also available as plain markdown (the same address with `.md` appended, and all of them in one file at https://serenity-bdd.github.io/llms-full.txt). Start with the guide to writing tests, then read the page for the style in use.
@@ -52,7 +52,7 @@ Check that generated code compiles (`mvn test-compile`) before running it. Then 
 
 # Using Serenity BDD with AI Coding Assistants
 
-AI coding assistants write Serenity tests quickly, and they most often go wrong by guessing: a package name from an old release, a method that does not exist, or a mix of two ways of working. Everything on this page is there to stop that. All of it describes the current release (Serenity 5.4.1; the Playwright modules are published up to 5.3.11), and every claim in it was checked against the released jars or by running it.
+AI coding assistants write Serenity tests quickly, and they most often go wrong by guessing: a package name from an old release, a method that does not exist, or a mix of two ways of working. Everything on this page is there to stop that. All of it describes the current release (Serenity 5.4.2; the Playwright modules are published up to 5.3.11), and every claim in it was checked against the released jars or by running it.
 
 Serenity supports several ways of writing tests, and all of them are current: Page Objects with step libraries, Screenplay, Cucumber (with Screenplay or with page objects), REST with a step library or with Screenplay, with Selenium or Playwright, with JUnit 5 or Cucumber. None is recommended over another. An assistant that has these materials asks which one you want when it cannot tell from the project, instead of choosing for you.
 
@@ -101,7 +101,7 @@ These are results from one evaluation, run by the authors of the materials, on C
 
 ## Known limits
 
-- The pages and the skill are verified against Serenity 5.4.1. Behaviour fixed in later releases is noted where it matters.
+- The pages and the skill are verified against Serenity 5.4.2. Behaviour fixed in later releases is noted where it matters.
 - The skill and reviewer agent are for Claude Code. The pages, `llms.txt` and the `AGENTS.md` files are plain text and work with any assistant, but they were only measured with Claude models.
 - Mobile testing, Spring and Guice object factories, and cloud grid configuration are not covered.
 - If a page here is wrong, or an error message you hit is missing from [troubleshooting](ai_troubleshooting), please open an issue.
@@ -292,7 +292,7 @@ See [Using Serenity BDD with AI Coding Assistants](ai_using_assistants) and [Wri
 
 # Living Documentation: Intent, Wording and Structure
 
-Verified against Serenity **5.4.1**. The behaviour described here was run against the example at the end of the page.
+Verified against Serenity **5.4.2**. The behaviour described here was run against the example at the end of the page.
 
 ## The idea
 
@@ -356,7 +356,7 @@ Rules that follow:
 
 - **Cucumber:** a `readme.md` in a features folder is the description of that capability. Its first line should be the name (`## Shopping`). Verified: it appears in the report.
 - **JUnit 5:** put `readme.md` files under `src/test/resources/stories/<package path>/` (for the example `src/test/resources/stories/shop/ordering/readme.md`); the text appears in the report. The same file in `src/test/resources/shop/ordering/` was **ignored** (verified).
-- **`@Narrative(text = {...})` did not appear in the JUnit 5 report** in 5.4.1 (verified, both on the class and in `package-info.java`). Don't rely on it; use the `readme.md` files.
+- **`@Narrative(text = {...})` did not appear in the JUnit 5 report** before 5.4.2 (verified on the previous release, both on the class and in `package-info.java`; 5.4.2 uses it as the story narrative for test classes, not re-run here). Don't rely on it; use the `readme.md` files.
 
 Keep a description to a few sentences: what the area is for, and the rules that matter.
 
@@ -412,7 +412,7 @@ Pending and manual scenarios, tags and `@WithTag`, Serenity's custom requirement
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `scripts/outline.py`
 
@@ -681,7 +681,7 @@ class WhenPayingForAnOrderTest {
 
 # Screenplay: Imports and Idioms
 
-Verified against Serenity **5.4.1** (Playwright modules: **5.3.11**, the latest published). The examples at the end of this page compile and their tests pass.
+Verified against Serenity **5.4.2** (Playwright modules: **5.3.11**, the latest published). The examples at the end of this page compile and their tests pass.
 
 Screenplay works with Selenium, Playwright and REST, with JUnit 5 or Cucumber. All of these are valid. Pick the one the user asked for or the project already uses, and don't mix them in one project.
 
@@ -796,12 +796,12 @@ The source files are under `` and are compile-checked. Names are the same across
 ## 4. Not yet verified
 - `Ensure` for web has several overloads. Only `that(Target).hasText(..)` is compile-tested.
 - Page Objects (Selenium and Playwright) are covered in `page-objects.md`, not here.
-- The examples were run once against the live sample sites with Serenity 5.4.1 (Playwright modules 5.3.11). Other sites and larger suites may behave differently.
+- The examples were run once against the live sample sites with Serenity 5.4.2 (Playwright modules 5.3.11). Other sites and larger suites may behave differently.
 - `serenity-screenplay-playwright` is documented at 5.3.11, not 5.4.x.
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `sp-selenium/todo/AddATodo.java`
 
@@ -1271,7 +1271,7 @@ public class TodoStepDefinitions {
 
 # Cucumber: Runner, Tags, Hooks, Gradle and Parallel
 
-Verified against Serenity **5.4.1** (Cucumber 8.0.4, JUnit 6.1.3). Every command on this page was run against the example at the end of the page.
+Verified against Serenity **5.4.2** (Cucumber 8.0.4, JUnit 6.1.3). Every command on this page was run against the example at the end of the page.
 
 ## 1. Setup
 
@@ -1320,7 +1320,7 @@ When `cucumber.features` is given, Cucumber ignores the runner's `@SelectClasspa
 
 ## 4. Gradle
 
-the `build.gradle` at the end of this page (Serenity Gradle plugin `net.serenity-bdd.serenity-gradle-plugin` 5.4.1, Gradle 9.8.1 tested, tasks `test` and `aggregate`) was run: `gradle clean test` ran the 5 scenarios and `aggregate` produced `target/site/serenity/index.html`.
+the `build.gradle` at the end of this page (Serenity Gradle plugin `net.serenity-bdd.serenity-gradle-plugin` 5.4.2, Gradle 9.8.1 tested, tasks `test` and `aggregate`) was run: `gradle clean test` ran the 5 scenarios and `aggregate` produced `target/site/serenity/index.html`.
 
 **Gradle does not pass `-D` options to the test JVM.** `gradle test -Dcucumber.filter.tags=@smoke` runs every scenario unless the build forwards the option (verified: 4 outcomes without it, 1 with it):
 
@@ -1395,14 +1395,14 @@ Gherkin in other languages, `@Before` for browser start-up in cloud grids, the C
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `build.gradle`
 
 ```groovy
 plugins {
     id 'java'
-    id 'net.serenity-bdd.serenity-gradle-plugin' version '5.4.1'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '5.4.2'
 }
 
 repositories {
@@ -1415,15 +1415,15 @@ java {
 }
 
 dependencies {
-    // One JUnit version for every JUnit artifact (Serenity 5.4.1 brings JUnit 6.1.3)
+    // One JUnit version for every JUnit artifact (Serenity 5.4.2 brings JUnit 6.1.3)
     testImplementation platform('org.junit:junit-bom:6.1.3')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.junit.platform:junit-platform-suite'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    testImplementation 'net.serenity-bdd:serenity-core:5.4.1'
-    testImplementation 'net.serenity-bdd:serenity-junit5:5.4.1'
-    testImplementation 'net.serenity-bdd:serenity-cucumber:5.4.1'
+    testImplementation 'net.serenity-bdd:serenity-core:5.4.2'
+    testImplementation 'net.serenity-bdd:serenity-junit5:5.4.2'
+    testImplementation 'net.serenity-bdd:serenity-cucumber:5.4.2'
     testImplementation 'io.cucumber:cucumber-java:8.0.4'
     testImplementation 'io.cucumber:cucumber-junit-platform-engine:8.0.4'
     testImplementation 'org.assertj:assertj-core:3.27.7'
@@ -1804,7 +1804,7 @@ public class SignInStepDefinitions {
 
 # Page Objects: Imports and Idioms
 
-Verified against Serenity **5.4.1** (Playwright module: **5.3.11**, the latest published). The examples at the end of this page compile and their tests pass.
+Verified against Serenity **5.4.2** (Playwright module: **5.3.11**, the latest published). The examples at the end of this page compile and their tests pass.
 
 Page Objects with step libraries work with Selenium and with Playwright, with JUnit 5. This is as valid as Screenplay. Use the style the user asked for or the project already uses, and don't mix Page Objects and Screenplay in one test.
 
@@ -1875,7 +1875,7 @@ Files: `po-playwright/todo/{TodoPage,TodoSteps,AddTodoTest}.java`
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `po-selenium/todo/AddTodoTest.java`
 
@@ -2106,7 +2106,7 @@ public class TodoSteps {
 
 # REST with SerenityRest and a Step Library
 
-Verified against Serenity **5.4.1**. The example at the end of this page compiles and its tests pass; each claim was run.
+Verified against Serenity **5.4.2**. The example at the end of this page compiles and its tests pass; each claim was run.
 
 This is one of several valid ways to test a REST API with Serenity. The other is Screenplay with `CallAnApi` (see `screenplay.md` and `sp-rest/`). Use the one the user asked for or the project already uses; don't mix them.
 
@@ -2155,7 +2155,7 @@ Name steps for what a person does or sees, not for the HTTP call: "Look up book 
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `rest-steps/api/BookshopApi.java`
 
@@ -2363,7 +2363,7 @@ public class BookshopServer {
 
 # Configuration: serenity.conf, Properties and Environments
 
-Verified against Serenity **5.4.1**. The behaviour described here was run against the example at the end of the page.
+Verified against Serenity **5.4.2**. The behaviour described here was run against the example at the end of the page.
 
 ## 1. Where configuration comes from
 
@@ -2418,9 +2418,9 @@ Pick one with `-Denvironment=staging`.
 
 - With no `environment`, the `default` block applies. With `-Denvironment=staging`, `staging` applies and values it does not define fall back to `default` (`db.name` stayed `dev`).
 - `all` applies in every environment.
-- **Your own keys inside `environments { }` are NOT visible as plain properties.** `environmentVariables.getProperty("app.url")` returns **null**, in every environment. Read them through `EnvironmentSpecificConfiguration` (next section). This is the usual cause of "I get null when I read a value from serenity.conf".
+- **Your own keys inside `environments { }`:** from **5.4.2**, `environmentVariables.getProperty("app.url")` returns the value for the chosen environment, then `all`, then `default`. In **earlier releases** it returns **null**, in every environment, and the value can only be read through `EnvironmentSpecificConfiguration` (next section), which works in every version. This is the usual cause of "I get null when I read a value from serenity.conf" on an older release.
 - **Serenity's own keys inside `environments { }` do work** and override the top-level value: `webdriver.base.url` and `serenity.project.name` inside `environments { staging { } }` took effect with `-Denvironment=staging`. Values in `default` override the top-level value too.
-- Command-line override of a value in `environments`: use the full name, `-Denvironments.staging.app.url=https://...`. A plain `-Dapp.url=...` did **not** override it.
+- Command-line override of a value in `environments`: from **5.4.2**, `-Dapp.url=https://...` overrides it (the full name, `-Denvironments.staging.app.url=...`, still works). In **earlier releases** a plain `-Dapp.url=...` did **not** override it and only the full name did.
 
 ## 4. Reading values in code
 
@@ -2469,8 +2469,8 @@ Do not invent keys. If a key is not in the Serenity documentation or `Thucydides
 | Wrong | Right |
 |---|---|
 | `serenity.conf` in the project root | `src/test/resources/serenity.conf` |
-| Reading `app.url` with `env.getProperty` when it is defined under `environments { }` | `EnvironmentSpecificConfiguration.from(env).getOptionalProperty("app.url")` |
-| `-Dapp.url=...` to override a value defined under `environments { staging { } }` | `-Denvironments.staging.app.url=...` |
+| (before 5.4.2) Reading `app.url` with `env.getProperty` when it is defined under `environments { }` | `EnvironmentSpecificConfiguration.from(env).getOptionalProperty("app.url")` (works in every version) |
+| (before 5.4.2) `-Dapp.url=...` to override a value defined under `environments { staging { } }` | `-Denvironments.staging.app.url=...` (works in every version) |
 | An old `serenity.properties` in the project root silently beating `serenity.conf` | Keep one file, or remember that the root properties file wins |
 | Setting a key through an OS environment variable | Use `-D`, the file, or the build tool's system property settings |
 | Hard-coding `webdriver.chrome.driver` to a path on one machine | Leave it unset (see Troubleshooting) |
@@ -2481,7 +2481,7 @@ Cloud and grid capabilities (`serenity.driver.capabilities`, `webdriver.capabili
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 ### `config/cfg/ConfigReader.java`
 
@@ -2543,7 +2543,8 @@ class ConfigurationTest {
 
         System.out.println("CFG my.setting=" + env.getProperty("my.setting"));
 
-        // Keys under environments { }: ONLY through EnvironmentSpecificConfiguration
+        // Keys under environments { }: EnvironmentSpecificConfiguration works in every version;
+        // getProperty finds them from 5.4.2 (it returns null in earlier releases)
         System.out.println("CFG plain app.url=" + env.getProperty("app.url"));
         System.out.println("CFG specific app.url=" + environmentConfig.getOptionalProperty("app.url").orElse("<none>"));
         System.out.println("CFG specific db.name=" + environmentConfig.getOptionalProperty("db.name").orElse("<none>"));
@@ -2596,7 +2597,7 @@ environments {
 
 # Project Setup: Dependencies and Configuration
 
-Verified against Serenity **5.4.1**. The dependency sets, JUnit BOM and report plugin were run end to end (`mvn clean verify` ran the examples and produced the report). The `serenity.conf` snippet follows the project's own samples but was not run.
+Verified against Serenity **5.4.2**. The dependency sets, JUnit BOM and report plugin were run end to end (`mvn clean verify` ran the examples and produced the report). The `serenity.conf` snippet follows the project's own samples but was not run.
 
 Use one Serenity version for every `net.serenity-bdd` artifact (a `serenity.version` property). Java 17+. Playwright modules are published up to 5.3.11, so a Playwright project may need `serenity.version` 5.3.11 for those artifacts; check Maven Central for the latest before pinning.
 
@@ -2611,7 +2612,7 @@ Use one Serenity version for every `net.serenity-bdd` artifact (a `serenity.vers
 | Screenplay + REST | `serenity-core`, `serenity-junit5`, `serenity-screenplay`, `serenity-screenplay-rest`, `serenity-rest-assured`, `serenity-ensure` | JUnit Jupiter |
 | Cucumber (+ Screenplay) | the Screenplay web set above, plus `serenity-cucumber` | `io.cucumber:cucumber-java`, `io.cucumber:cucumber-junit-platform-engine`, `org.junit.platform:junit-platform-suite` |
 
-Serenity 5.4.1 itself depends on **JUnit 6.1.3** (`serenity-junit5`) and **Cucumber 8.0.4** (`serenity-cucumber`). Don't pin older JUnit or Cucumber versions: mixed JUnit versions fail at run time with "conflicting versions" errors, even though the code compiles. Import the JUnit BOM so every JUnit artifact (including `junit-platform-suite` and the engine that `cucumber-junit-platform-engine` brings in) has the same version:
+Serenity 5.4.2 itself depends on **JUnit 6.1.3** (`serenity-junit5`) and **Cucumber 8.0.4** (`serenity-cucumber`). Don't pin older JUnit or Cucumber versions: mixed JUnit versions fail at run time with "conflicting versions" errors, even though the code compiles. Import the JUnit BOM so every JUnit artifact (including `junit-platform-suite` and the engine that `cucumber-junit-platform-engine` brings in) has the same version:
 
 ```xml
 <dependencyManagement>
@@ -2660,7 +2661,7 @@ environments {
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 
 ---
@@ -2669,7 +2670,7 @@ These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
 
 # Troubleshooting by Symptom
 
-Verified against Serenity **5.4.1** (Playwright modules: **5.3.11**). Each entry was reproduced in a test project and its fix was run.
+Verified against Serenity **5.4.2** (Playwright modules: **5.3.11**). Each entry was reproduced in a test project and its fix was run.
 
 How to use this page: find the message you see (the text is quoted from the real output), read the cause, apply the fix, and run the build again. If nothing here matches, read the first `Caused by:` and the first `[ERROR]` line in the Maven output, not the last.
 
@@ -2689,7 +2690,7 @@ The following conflicting versions were detected:
 - org.junit.platform.suite.api: 1.12.2 ...
 ```
 
-- **Cause:** the pom pins `junit-jupiter`, `junit-platform-suite` or another JUnit artifact to a version other than the one Serenity brings. Serenity 5.4.1 depends on **JUnit 6.1.3**. The code compiles; the tests fail when they start.
+- **Cause:** the pom pins `junit-jupiter`, `junit-platform-suite` or another JUnit artifact to a version other than the one Serenity brings. Serenity 5.4.2 depends on **JUnit 6.1.3**. The code compiles; the tests fail when they start.
 - **Fix:** remove the pinned JUnit versions and import the JUnit BOM so all JUnit artifacts match:
 
 ```xml
@@ -2704,7 +2705,7 @@ List `junit-jupiter` and `junit-platform-suite` without versions.
 
 ### `java.lang.AbstractMethodError: Receiver class io.cucumber.junit.platform.engine.CucumberConfiguration does not define or inherit an implementation of the resolved method 'abstract ... getGlueDiscoveryRequest()'`
 
-- **Cause:** `cucumber-java` or `cucumber-junit-platform-engine` is pinned to a version that does not match the Cucumber that `serenity-cucumber` brings (8.0.4 for Serenity 5.4.1; 7.34.2 for 5.3.11). Reproduced with 7.31.0.
+- **Cause:** `cucumber-java` or `cucumber-junit-platform-engine` is pinned to a version that does not match the Cucumber that `serenity-cucumber` brings (8.0.4 for Serenity 5.4.2; 7.34.2 for 5.3.11). Reproduced with 7.31.0.
 - **Fix:** use the version Serenity brings (check with `mvn dependency:tree -Dincludes=io.cucumber`), or leave the Cucumber versions out.
 
 ### `Failed to transform configuration parameter with key 'cucumber.plugin' and initial value 'io.cucumber.core.plugin.SerenityReporterParallel,pretty'`
@@ -2729,14 +2730,14 @@ List `junit-jupiter` and `junit-platform-suite` without versions.
 - **Fix:** run the report goal after the failed build. This is the recommended way, because the build keeps its failing exit code:
 
 ```
-mvn net.serenity-bdd.maven.plugins:serenity-maven-plugin:5.4.1:aggregate
+mvn net.serenity-bdd.maven.plugins:serenity-maven-plugin:5.4.2:aggregate
 ```
 
 (this produced `index.html`). The alternative is to let the build continue past test failures with `-Dmaven.test.failure.ignore=true`, but then the exit code is 0 even when tests fail, so a CI job must check results another way; avoid it unless you do. To find out what failed without any report, read the JSON files: `python3 scripts/results.py target/site/serenity` (see `test-results.md`).
 
 ### `Conflicting module versions. Module [groovy-xml is loaded in version 4.0.29 and you are trying to load version 3.0.9` / `Could not initialize class io.restassured.RestAssured`
 
-- **Cause:** the pom pins REST-assured (`io.rest-assured:*`) or Groovy (`org.codehaus.groovy:groovy*`, Groovy 3) versions left over from an older Serenity. Serenity 5.4.1's REST support uses Groovy 4. Reproduced with REST-assured 4.5.1 and Groovy 3.0.9.
+- **Cause:** the pom pins REST-assured (`io.rest-assured:*`) or Groovy (`org.codehaus.groovy:groovy*`, Groovy 3) versions left over from an older Serenity. Serenity 5.4.2's REST support uses Groovy 4. Reproduced with REST-assured 4.5.1 and Groovy 3.0.9.
 - **Fix:** delete those dependencies and let `serenity-rest-assured` bring its own. Seen when upgrading a real Serenity 2.4 project, which then passed 3 of 3 scenarios.
 
 ### The report shows more tests, or old failures, than the run had
@@ -2755,7 +2756,7 @@ java.lang.NullPointerException: No BaseStepListener has been registered - are yo
 
 ### A value defined in `serenity.conf` reads as `null`
 
-- **Cause (two common ones):** (1) the value is under `environments { }`, and `environmentVariables.getProperty("app.url")` never returns those; (2) the file is not where Serenity looks: `serenity.conf` is read from `src/test/resources`, not the project root. Reproduced both (the verification script in the serenity-core repository (`docs/ai/skill`)).
+- **Cause (two common ones):** (1) before Serenity 5.4.2, the value is under `environments { }`, and `environmentVariables.getProperty("app.url")` never returns those (5.4.2 does); (2) the file is not where Serenity looks: `serenity.conf` is read from `src/test/resources`, not the project root. Reproduced both (the verification script in the serenity-core repository (`docs/ai/skill`)).
 - **Fix:** (1) `EnvironmentSpecificConfiguration.from(env).getOptionalProperty("app.url")`; (2) move the file to `src/test/resources/serenity.conf` and run `mvn clean`.
 
 ### Filtering by tag does nothing under Gradle: all scenarios still run
@@ -2789,7 +2790,7 @@ java.lang.NullPointerException: No BaseStepListener has been registered - are yo
 ### `NoClassDefFoundError: io/cucumber/core/eventbus/EventBus` (and similar) after raising the Serenity version
 
 - **Cause:** the project still pins an older Cucumber (4.x) and excludes `cucumber-core` from Serenity, as old starter projects did. Seen upgrading a real Serenity 2.1 project; not reproduced in the test projects here. After the pin and the exclusion were replaced by Cucumber 8.0.4 the project built; remember `mvn clean`, because old compiled classes can hide the next error (see the upgrading reference).
-- **Fix:** use the Cucumber version Serenity brings (8.0.4 for 5.4.1) and remove the exclusion.
+- **Fix:** use the Cucumber version Serenity brings (8.0.4 for 5.4.2) and remove the exclusion.
 
 ## Not reproduced here
 
@@ -2802,7 +2803,7 @@ These come up often in public questions. They are not covered by a tested fix, s
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 
 ---
@@ -2811,17 +2812,17 @@ These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
 
 # Upgrading to Serenity 5 and Recognising Old Code
 
-Verified against Serenity **5.4.1**. The class counts come from the released jars, and the recipe was applied to five real projects.
+Verified against Serenity **5.4.2**. The class counts come from the released jars, and the recipe was applied to five real projects.
 
 ## 1. What changed, by release
 
 | Coming from | Java needed | What you must change |
 |---|---|---|
-| 4.x (tested: 4.2.34) | Java **17** (4.x classes are Java 11, 5.x classes are Java 17) | Versions only. All 1,587 public classes in the core, model, JUnit, Screenplay (including WebDriver and REST), REST-assured, Cucumber and Ensure jars have the same name and package in 5.4.1. A 4.2.8 project compiled with only a version bump. Align the JUnit and Cucumber versions with Serenity's (section 3). |
+| 4.x (tested: 4.2.34) | Java **17** (4.x classes are Java 11, 5.x classes are Java 17) | Versions only. All 1,587 public classes in the core, model, JUnit, Screenplay (including WebDriver and REST), REST-assured, Cucumber and Ensure jars have the same name and package in 5.4.2. A 4.2.8 project compiled with only a version bump. Align the JUnit and Cucumber versions with Serenity's (section 3). |
 | 3.x (tested: 3.9.8) | Java 17 (3.x classes are Java 8) | Version bump, **511 of 1,574 classes moved** (section 2), the artifact changes in section 3, and the fixes for removed API found by the compiler. |
 | 2.x | Java 17 | The same as 3.x, plus renamed Cucumber artifacts. |
 
-Serenity 5.4.1 depends on **JUnit 6.1.3** and **Cucumber 8.0.4** (`../references/project-setup.md`).
+Serenity 5.4.2 depends on **JUnit 6.1.3** and **Cucumber 8.0.4** (`../references/project-setup.md`).
 
 ## 2. Classes that moved (3.x to 5.x)
 
@@ -2946,7 +2947,7 @@ Each step was needed by at least one of the five tested projects.
 
 ## 5. JUnit 4 and the old Cucumber runner still work
 
-You do not have to move to JUnit 5. With `serenity-junit` and JUnit 4.13.2, `@RunWith(SerenityRunner.class)` with `@Steps` ran on 5.4.1 (1 test passed), and so did `@RunWith(CucumberWithSerenity.class)` with `@CucumberOptions(features = ..., glue = ...)` from `io.cucumber.junit` (3 scenarios passed). Use the JUnit 5 extension and the JUnit Platform suite for new code (`../references/cucumber.md`); do not rewrite a working JUnit 4 suite only to follow it. Keep one style per project.
+You do not have to move to JUnit 5. With `serenity-junit` and JUnit 4.13.2, `@RunWith(SerenityRunner.class)` with `@Steps` ran on 5.4.2 (1 test passed), and so did `@RunWith(CucumberWithSerenity.class)` with `@CucumberOptions(features = ..., glue = ...)` from `io.cucumber.junit` (3 scenarios passed). Use the JUnit 5 extension and the JUnit Platform suite for new code (`../references/cucumber.md`); do not rewrite a working JUnit 4 suite only to follow it. Keep one style per project.
 
 ## 6. Recognising old code in generated or copied examples
 
@@ -2968,7 +2969,7 @@ Gradle plugin version history, Serenity 1.x, Appium and mobile modules, the Spri
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 
 ---
@@ -2977,7 +2978,7 @@ These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
 
 # Reading Test Results Without the HTML Report
 
-Verified against Serenity **5.4.1** by running a passing and a failing project: the files, the fields and the script were all checked.
+Verified against Serenity **5.4.2** by running a passing and a failing project: the files, the fields and the script were all checked.
 
 An AI assistant, a script or a CI step can read the outcome of a run from files, not from the HTML report or the Maven console. Serenity writes them to `target/site/serenity/`.
 
@@ -3073,7 +3074,7 @@ mvn serenity:reports -Dserenity.reports=json-summary
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 
 ---
@@ -3144,7 +3145,7 @@ READY means no FAIL and at most two WEAK, and the report was seen. Be specific a
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 
 
 ---

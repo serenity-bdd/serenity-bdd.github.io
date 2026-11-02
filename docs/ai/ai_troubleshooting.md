@@ -2,7 +2,7 @@
 
 Source: https://serenity-bdd.github.io/docs/ai/ai_troubleshooting
 
-Verified against Serenity **5.4.1** (Playwright modules: **5.3.11**). Each entry was reproduced in a test project and its fix was run.
+Verified against Serenity **5.4.2** (Playwright modules: **5.3.11**). Each entry was reproduced in a test project and its fix was run.
 
 How to use this page: find the message you see (the text is quoted from the real output), read the cause, apply the fix, and run the build again. If nothing here matches, read the first `Caused by:` and the first `[ERROR]` line in the Maven output, not the last.
 
@@ -22,7 +22,7 @@ The following conflicting versions were detected:
 - org.junit.platform.suite.api: 1.12.2 ...
 ```
 
-- **Cause:** the pom pins `junit-jupiter`, `junit-platform-suite` or another JUnit artifact to a version other than the one Serenity brings. Serenity 5.4.1 depends on **JUnit 6.1.3**. The code compiles; the tests fail when they start.
+- **Cause:** the pom pins `junit-jupiter`, `junit-platform-suite` or another JUnit artifact to a version other than the one Serenity brings. Serenity 5.4.2 depends on **JUnit 6.1.3**. The code compiles; the tests fail when they start.
 - **Fix:** remove the pinned JUnit versions and import the JUnit BOM so all JUnit artifacts match:
 
 ```xml
@@ -37,7 +37,7 @@ List `junit-jupiter` and `junit-platform-suite` without versions.
 
 ### `java.lang.AbstractMethodError: Receiver class io.cucumber.junit.platform.engine.CucumberConfiguration does not define or inherit an implementation of the resolved method 'abstract ... getGlueDiscoveryRequest()'`
 
-- **Cause:** `cucumber-java` or `cucumber-junit-platform-engine` is pinned to a version that does not match the Cucumber that `serenity-cucumber` brings (8.0.4 for Serenity 5.4.1; 7.34.2 for 5.3.11). Reproduced with 7.31.0.
+- **Cause:** `cucumber-java` or `cucumber-junit-platform-engine` is pinned to a version that does not match the Cucumber that `serenity-cucumber` brings (8.0.4 for Serenity 5.4.2; 7.34.2 for 5.3.11). Reproduced with 7.31.0.
 - **Fix:** use the version Serenity brings (check with `mvn dependency:tree -Dincludes=io.cucumber`), or leave the Cucumber versions out.
 
 ### `Failed to transform configuration parameter with key 'cucumber.plugin' and initial value 'io.cucumber.core.plugin.SerenityReporterParallel,pretty'`
@@ -62,14 +62,14 @@ List `junit-jupiter` and `junit-platform-suite` without versions.
 - **Fix:** run the report goal after the failed build. This is the recommended way, because the build keeps its failing exit code:
 
 ```
-mvn net.serenity-bdd.maven.plugins:serenity-maven-plugin:5.4.1:aggregate
+mvn net.serenity-bdd.maven.plugins:serenity-maven-plugin:5.4.2:aggregate
 ```
 
 (this produced `index.html`). The alternative is to let the build continue past test failures with `-Dmaven.test.failure.ignore=true`, but then the exit code is 0 even when tests fail, so a CI job must check results another way; avoid it unless you do. To find out what failed without any report, read the JSON files: `python3 scripts/results.py target/site/serenity` (see `test-results.md`).
 
 ### `Conflicting module versions. Module [groovy-xml is loaded in version 4.0.29 and you are trying to load version 3.0.9` / `Could not initialize class io.restassured.RestAssured`
 
-- **Cause:** the pom pins REST-assured (`io.rest-assured:*`) or Groovy (`org.codehaus.groovy:groovy*`, Groovy 3) versions left over from an older Serenity. Serenity 5.4.1's REST support uses Groovy 4. Reproduced with REST-assured 4.5.1 and Groovy 3.0.9.
+- **Cause:** the pom pins REST-assured (`io.rest-assured:*`) or Groovy (`org.codehaus.groovy:groovy*`, Groovy 3) versions left over from an older Serenity. Serenity 5.4.2's REST support uses Groovy 4. Reproduced with REST-assured 4.5.1 and Groovy 3.0.9.
 - **Fix:** delete those dependencies and let `serenity-rest-assured` bring its own. Seen when upgrading a real Serenity 2.4 project, which then passed 3 of 3 scenarios.
 
 ### The report shows more tests, or old failures, than the run had
@@ -88,7 +88,7 @@ java.lang.NullPointerException: No BaseStepListener has been registered - are yo
 
 ### A value defined in `serenity.conf` reads as `null`
 
-- **Cause (two common ones):** (1) the value is under `environments { }`, and `environmentVariables.getProperty("app.url")` never returns those; (2) the file is not where Serenity looks: `serenity.conf` is read from `src/test/resources`, not the project root. Reproduced both (the verification script in the serenity-core repository (`docs/ai/skill`)).
+- **Cause (two common ones):** (1) before Serenity 5.4.2, the value is under `environments { }`, and `environmentVariables.getProperty("app.url")` never returns those (5.4.2 does); (2) the file is not where Serenity looks: `serenity.conf` is read from `src/test/resources`, not the project root. Reproduced both (the verification script in the serenity-core repository (`docs/ai/skill`)).
 - **Fix:** (1) `EnvironmentSpecificConfiguration.from(env).getOptionalProperty("app.url")`; (2) move the file to `src/test/resources/serenity.conf` and run `mvn clean`.
 
 ### Filtering by tag does nothing under Gradle: all scenarios still run
@@ -122,7 +122,7 @@ java.lang.NullPointerException: No BaseStepListener has been registered - are yo
 ### `NoClassDefFoundError: io/cucumber/core/eventbus/EventBus` (and similar) after raising the Serenity version
 
 - **Cause:** the project still pins an older Cucumber (4.x) and excludes `cucumber-core` from Serenity, as old starter projects did. Seen upgrading a real Serenity 2.1 project; not reproduced in the test projects here. After the pin and the exclusion were replaced by Cucumber 8.0.4 the project built; remember `mvn clean`, because old compiled classes can hide the next error (see the upgrading reference).
-- **Fix:** use the Cucumber version Serenity brings (8.0.4 for 5.4.1) and remove the exclusion.
+- **Fix:** use the Cucumber version Serenity brings (8.0.4 for 5.4.2) and remove the exclusion.
 
 ## Not reproduced here
 
@@ -135,4 +135,4 @@ These come up often in public questions. They are not covered by a tested fix, s
 
 ## Examples
 
-These files compile against Serenity 5.4.1 (Playwright examples: 5.3.11).
+These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).

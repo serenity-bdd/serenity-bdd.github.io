@@ -1,6 +1,6 @@
 # Serenity BDD
 
-> Serenity BDD is an open-source Java library for writing acceptance and regression tests (web, REST and mobile) that produce rich living-documentation reports. Current release described here: 5.4.1 (the Playwright modules are published up to 5.3.11). Requires Java 17+. Source: https://github.com/serenity-bdd/serenity-core
+> Serenity BDD is an open-source Java library for writing acceptance and regression tests (web, REST and mobile) that produce rich living-documentation reports. Current release described here: 5.4.2 (the Playwright modules are published up to 5.3.11). Requires Java 17+. Source: https://github.com/serenity-bdd/serenity-core
 
 ## Notes for AI coding assistants
 
@@ -12,7 +12,7 @@ Serenity supports several styles. All of them are current and valid; none is pre
 
 If the user hasn't said which style to use and the project doesn't show one (check `pom.xml` for `serenity-screenplay*`, `serenity-playwright`, `serenity-cucumber`, and look at existing tests), ask. Don't pick a default. Within a project, stay in one style, one driver and one runner. Don't mix Page Objects and Screenplay in one test.
 
-Packages that are often guessed wrongly (verified against 5.4.1):
+Packages that are often guessed wrongly (verified against 5.4.2):
 
 - `@Step`, `@Steps`, `@Managed`, `@DefaultUrl`, `@WithTag`: `net.serenitybdd.annotations` (not `net.thucydides.core.annotations`).
 - JUnit 5: `@ExtendWith(SerenityJUnit5Extension.class)` from `net.serenitybdd.junit5`. Don't use `@RunWith(SerenityRunner.class)` in a JUnit 5 project.
@@ -24,7 +24,7 @@ Packages that are often guessed wrongly (verified against 5.4.1):
 - Playwright Page Objects (`serenity-playwright`): plain classes holding a `com.microsoft.playwright.Page`, registered with `PlaywrightSerenity.registerPage(page)` from `net.serenitybdd.playwright`. They don't extend `PageObject`.
 - `ScenarioSteps` (`net.thucydides.core.steps`) and `Pages` (`net.thucydides.core.pages`) are correctly in `net.thucydides`. Many `net.thucydides` packages are current core packages, so don't treat that prefix as a sign of old code.
 - Cucumber with JUnit 5: a `@Suite` class with `@IncludeEngines("cucumber")` and the plugin `net.serenitybdd.cucumber.core.plugin.SerenityReporterParallel`.
-- Serenity 5.4.1 depends on JUnit 6.1.3 and Cucumber 8.0.4. Don't pin older JUnit or Cucumber versions in the pom: the code compiles but the tests fail at run time with "conflicting versions". Import the JUnit BOM (`org.junit:junit-bom`) to keep all JUnit artifacts aligned.
+- Serenity 5.4.2 depends on JUnit 6.1.3 and Cucumber 8.0.4. Don't pin older JUnit or Cucumber versions in the pom: the code compiles but the tests fail at run time with "conflicting versions". Import the JUnit BOM (`org.junit:junit-bom`) to keep all JUnit artifacts aligned.
 - Configuration lives in `src/test/resources/serenity.conf`. `serenity.*` and `thucydides.*` keys are synonyms. Use only keys listed in the reference.
 
 Every page below is also available as plain markdown (the same address with `.md` appended, and all of them in one file at https://serenity-bdd.github.io/llms-full.txt). Start with the guide to writing tests, then read the page for the style in use.
