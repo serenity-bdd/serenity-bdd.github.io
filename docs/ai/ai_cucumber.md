@@ -51,7 +51,7 @@ When `cucumber.features` is given, Cucumber ignores the runner's `@SelectClasspa
 
 ## 4. Gradle
 
-the `build.gradle` at the end of this page (Serenity Gradle plugin `net.serenity-bdd.serenity-gradle-plugin` 5.4.1, which is released separately from Serenity and may lag behind it; the Serenity libraries in the file are 5.4.2; Gradle 9.8.1 tested, tasks `test` and `aggregate`) was run: `gradle clean test` ran the 5 scenarios and `aggregate` produced `target/site/serenity/index.html`.
+the `build.gradle` at the end of this page (Serenity Gradle plugin `net.serenity-bdd.serenity-gradle-plugin` 5.4.2, which is released separately from Serenity and can lag behind it; Gradle 9.8.1 tested, tasks `test` and `aggregate`) was run: `gradle clean test` ran the 5 scenarios and `aggregate` produced `target/site/serenity/index.html`.
 
 **Gradle does not pass `-D` options to the test JVM.** `gradle test -Dcucumber.filter.tags=@smoke` runs every scenario unless the build forwards the option (verified: 4 outcomes without it, 1 with it):
 
@@ -133,7 +133,7 @@ These files compile against Serenity 5.4.2 (Playwright examples: 5.3.11).
 ```groovy
 plugins {
     id 'java'
-    id 'net.serenity-bdd.serenity-gradle-plugin' version '5.4.1'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '5.4.2'
 }
 
 repositories {
